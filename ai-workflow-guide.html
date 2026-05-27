@@ -48,6 +48,7 @@
 
     <div class="nav-section">
       <a href="index.html" class="nav-item"><span class="nav-num">⌂</span>홈 — 인덱스</a>
+      <a href="#quickstart" class="nav-item" style="color:var(--accent); font-weight:600;"><span class="nav-num" style="color:var(--accent);">⚡</span>빠른 시작</a>
     </div>
 
     <div class="nav-section">
@@ -153,6 +154,68 @@
       </div>
     </div>
 
+    <!-- Quickstart -->
+    <section class="section" id="quickstart">
+      <div class="callout" style="border-left-color:var(--accent); background:var(--accent-dim); margin-bottom:20px;">
+        <div class="callout-icon">⚡</div>
+        <div>
+          <p style="font-weight:700; color:var(--text-primary); margin-bottom:6px;">지금 당장 시작하려면</p>
+          <p style="margin:0;">아래 4단계가 전부입니다. 25분이면 AI와 첫 작업을 시작할 수 있어요.<br>나머지 가이드는 더 깊이 운영하고 싶을 때 참고하세요.</p>
+        </div>
+      </div>
+
+      <div class="flow">
+        <div class="flow-item">
+          <div style="flex:1;">
+            <strong>1. docs/ 폴더 만들기</strong>
+            <div class="subdesc">프로젝트 루트에 <code>docs/</code> 폴더 생성. 여기에 모든 기준 문서를 씁니다. 도구가 바뀌어도 이 폴더는 그대로 유지됩니다.</div>
+          </div>
+          <span class="quickstart-time">2분</span>
+        </div>
+        <div class="flow-item">
+          <div style="flex:1;">
+            <strong>2. product-context.md 초안 작성</strong>
+            <div class="subdesc">제품 목적, 주요 사용자, 톤앤매너 3가지만 먼저. 완벽하게 쓰지 않아도 됩니다.</div>
+          </div>
+          <span class="quickstart-time">10분</span>
+        </div>
+        <div class="flow-item">
+          <div style="flex:1;">
+            <strong>3. agent-rules.md 최소 버전 작성</strong>
+            <div class="subdesc">hardcoded color 금지, 기존 컴포넌트 우선 사용 — 2줄이면 시작할 수 있어요.</div>
+          </div>
+          <span class="quickstart-time">10분</span>
+        </div>
+        <div class="flow-item">
+          <div style="flex:1;">
+            <strong>4. 진입점 파일에서 docs/ 참조하기</strong>
+            <div class="subdesc">쓰는 도구마다 진입점 파일이 달라도 <strong>docs/ 폴더는 하나만 유지하면 됩니다.</strong> 각 진입점 파일이 같은 docs/를 참조하는 구조예요.</div>
+          </div>
+          <span class="quickstart-time">3분</span>
+        </div>
+        <div class="flow-item highlight-item">
+          <div style="flex:1;">
+            <strong>5. AI에게 실제 작업 요청해보기</strong>
+            <div class="subdesc">진입점 파일이 읽히는 상태에서 화면 하나 요청 → 결과 확인</div>
+          </div>
+          <span class="quickstart-time">—</span>
+        </div>
+      </div>
+
+      <div class="callout orange" style="margin-top:16px;">
+        <div class="callout-icon">📌</div>
+        <p><strong>도구를 여러 개 쓴다면 —</strong> Claude Code + Cursor + Codex를 동시에 써도 <code>docs/</code>는 하나입니다. <code>CLAUDE.md</code>, <code>.cursor/rules/design.mdc</code>, <code>.windsurfrules</code>가 각각 같은 <code>docs/product-context.md</code>와 <code>docs/agent-rules.md</code>를 참조하면 됩니다. 관리 포인트는 <code>docs/</code> 하나.</p>
+      </div>
+
+      <div class="quickstart-links">
+        <a href="#connect" class="quickstart-link">도구별 연결 설정 →</a>
+        <a href="#step1" class="quickstart-link">문서 작성 가이드 →</a>
+        <a href="#mvp" class="quickstart-link">MVP 4개 문서 →</a>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
     <!-- 01 목적 -->
     <section class="section" id="intro">
       <div class="section-header">
@@ -161,6 +224,11 @@
       </div>
 
       <p>이 가이드는 프로덕트 디자이너가 앞으로 제품 디자인 과정에서 AI를 활용할 때, 어떤 기준으로 <strong>AI Workflow 문서</strong>와 <strong>운영 문서</strong>를 구축해나가면 좋을지 정리한 가이드입니다.</p>
+
+      <div class="callout">
+        <div class="callout-icon">📌</div>
+        <p><strong>이 가이드의 전제 환경 —</strong> Cursor, Claude Code, Windsurf, GitHub Copilot 같은 <strong>AI 코드 에디터</strong>에서 작업하는 디자이너를 기준으로 씌어 있습니다. AI 에디터는 프로젝트 내 <code>.md</code> 파일을 자동으로 읽고 컨텍스트로 활용합니다. Figma 단독 워크플로나 AI 채팅만 쓰는 경우와는 맞지 않을 수 있어요.</p>
+      </div>
 
       <div class="highlight">
         <p>핵심 목적은 단순히 <strong>"AI에게 프롬프트를 잘 쓰는 법"</strong>이 아닙니다. AI가 디자인 시스템, 제품 맥락, UX 의도, 컴포넌트 사용 기준을 이해하고 일관된 결과물을 만들 수 있도록 <strong>작업 기준과 운영 구조를 문서화하는 것</strong>이 목적입니다.</p>
