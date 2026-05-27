@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Changelog — AI Workflow 가이드</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="stylesheet" href="ai-workflow-guide.css" />
+</head>
+<body>
+
+<header class="mobile-topbar">
+  <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+    <span></span><span></span><span></span>
+  </button>
+  <span class="mobile-topbar-title">Changelog</span>
+</header>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<div class="layout">
+
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-version">
+      <div class="sidebar-version-label">CHANGELOG</div>
+      <div class="version-select-wrap">
+        <select class="version-select" id="version-select" title="버전 히스토리">
+          <option value="v0.1" selected>v0.1 — 최초 작성 (2025.05)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-badge">
+        <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 1L10.5 3.5V8.5L6 11L1.5 8.5V3.5L6 1Z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <circle cx="6" cy="6" r="1.5" fill="currentColor"/>
+        </svg>
+        AI Workflow
+      </div>
+      <div class="sidebar-title">운영 문서 구축 가이드</div>
+      <div class="sidebar-subtitle">프로덕트 디자이너를 위한</div>
+    </div>
+
+    <div class="nav-section">
+      <a href="index.html" class="nav-item"><span class="nav-num">⌂</span>홈 — 인덱스</a>
+      <a href="changelog.html" class="nav-item active"><span class="nav-num">↻</span>Changelog</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">개요</div>
+      <a href="ai-workflow-guide.html#intro" class="nav-item"><span class="nav-num">01</span>문서 목적</a>
+      <a href="ai-workflow-guide.html#perspective" class="nav-item"><span class="nav-num">02</span>핵심 관점</a>
+      <div class="nav-label nav-label-ref">배경</div>
+      <a href="ai-workflow-guide.html#problem-space" class="nav-item nav-item-sub">현장 이슈와 AI 역할 구분</a>
+      <a href="ai-workflow-guide.html#structure" class="nav-item nav-item-sub">문서 레이어 구조</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">AI 전략</div>
+      <a href="ai-workflow-guide.html#ai-strategy" class="nav-item">제품 단계별 AI 전략</a>
+      <div class="nav-label">단계별 가이드</div>
+      <a href="ai-workflow-guide.html#step0" class="nav-item"><span class="nav-num">0</span>디자인 탐색 단계에서 구체화하기</a>
+      <a href="ai-workflow-guide.html#step1" class="nav-item"><span class="nav-num">1</span>Product / UX Context</a>
+      <a href="ai-workflow-guide.html#step2" class="nav-item"><span class="nav-num">2</span>Design System Context</a>
+      <a href="ai-workflow-guide.html#step3" class="nav-item"><span class="nav-num">3</span>AI Workflow</a>
+      <a href="ai-workflow-guide.html#step4" class="nav-item"><span class="nav-num">4</span>Agent Rules</a>
+      <a href="ai-workflow-guide.html#step5" class="nav-item"><span class="nav-num">5</span>Prompts</a>
+      <a href="ai-workflow-guide.html#step6" class="nav-item"><span class="nav-num">6</span>Review / QA</a>
+      <a href="ai-workflow-guide.html#step7" class="nav-item"><span class="nav-num">7</span>Handoff</a>
+      <a href="ai-workflow-guide.html#step8" class="nav-item"><span class="nav-num">8</span>Release / Operation</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">실행 플랜</div>
+      <a href="ai-workflow-guide.html#priority" class="nav-item"><span class="nav-num">01</span>구축 우선순위</a>
+      <a href="ai-workflow-guide.html#mvp" class="nav-item"><span class="nav-num">02</span>MVP 문서 4개</a>
+      <a href="ai-workflow-guide.html#usage" class="nav-item"><span class="nav-num">03</span>실제 업무 활용</a>
+      <a href="ai-workflow-guide.html#principles" class="nav-item"><span class="nav-num">04</span>핵심 원칙</a>
+      <a href="ai-workflow-guide.html#experiment" class="nav-item"><span class="nav-num">05</span>2주 실험 계획</a>
+      <div class="nav-label nav-label-ref">참조</div>
+      <a href="ai-workflow-guide.html#schedule-template" class="nav-item nav-item-sub">AI 도입 시 일정 산정 가이드</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="hero">
+      <div class="hero-eyebrow">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v5l3 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/></svg>
+        Changelog
+      </div>
+      <h1>버전 히스토리</h1>
+      <p>AI Workflow 가이드의 변경 사항을 버전별로 기록합니다.</p>
+    </div>
+
+    <!-- v0.1 -->
+    <section class="section" id="v0-1">
+      <div class="section-header">
+        <div class="section-num">0.1</div>
+        <h2>최초 작성 <span class="section-tag">2025.05</span></h2>
+      </div>
+
+      <div class="highlight">
+        <p>프로덕트 디자이너를 위한 AI Workflow 운영 문서 구축 가이드 초기 버전. 홈 페이지(인덱스) + 전체 가이드 문서로 구성.</p>
+      </div>
+
+      <h3>추가된 내용</h3>
+      <ul class="styled">
+        <li><strong>홈 페이지 (index.html)</strong> — 가이드 사용법, 지금 할 수 있는 액션, 단계별 빠른 참조</li>
+        <li><strong>개요</strong> — 01 문서 목적, 02 핵심 관점</li>
+        <li><strong>배경</strong> — 현장 이슈와 AI 역할 구분, 문서 레이어 구조</li>
+        <li><strong>AI 전략</strong> — 제품 단계별 AI 활용 전략 (0→1 / 1→10 / 10→100)</li>
+        <li><strong>단계별 가이드</strong> — Step 0~8 (탐색, Product Context, Design System, AI Workflow, Agent Rules, Prompts, Review/QA, Handoff, Release)</li>
+        <li><strong>실행 플랜 01~05</strong> — 구축 우선순위, MVP 문서 4개, 실제 업무 활용, 핵심 원칙, 2주 실험 계획</li>
+        <li><strong>참조</strong> — AI 도입 시 디자이너 일정 산정 가이드</li>
+        <li><strong>디자인팀 AI 활용 실험 기록 DB</strong> 링크 및 3종 템플릿 안내</li>
+      </ul>
+
+      <h3>설계 기준</h3>
+      <ul class="styled">
+        <li>Socra AI 디자인 시스템 라이트 테마 적용 (SocraPurple #664FFF 기반)</li>
+        <li>사이드바 고정 + scroll-spy 현재 위치 하이라이트</li>
+        <li>반응형: 모바일(≤640px) 햄버거 + 슬라이드 드로어</li>
+        <li>폰트: Pretendard Variable, 본문 16px / 라인높이 1.75</li>
+        <li>CSS/JS 외부 파일 분리, 인라인 스타일 없음</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- v0.2 placeholder -->
+    <section class="section" id="v0-2">
+      <div class="section-header">
+        <div class="section-num" style="opacity:0.35;">0.2</div>
+        <h2 style="opacity:0.35;">예정 <span class="section-tag">작성 중</span></h2>
+      </div>
+      <div class="callout">
+        <div class="callout-icon">📝</div>
+        <p>다음 버전에 추가될 내용을 이곳에 기록합니다. 작업이 완료되면 v0.2로 릴리즈합니다.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="ai-workflow-guide.js"></script>
+</body>
+</html>

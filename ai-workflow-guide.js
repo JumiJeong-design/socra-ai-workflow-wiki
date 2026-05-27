@@ -1,3 +1,11 @@
+// Version selector → changelog
+const versionSelect = document.getElementById('version-select');
+if (versionSelect) {
+  versionSelect.addEventListener('change', () => {
+    window.location.href = 'changelog.html';
+  });
+}
+
 // Mobile sidebar toggle
 const hamburger = document.getElementById('hamburger');
 const sidebar = document.getElementById('sidebar');
