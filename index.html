@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Workflow 가이드 — 홈</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="stylesheet" href="ai-workflow-guide.css" />
+  <style>
+    /* ─── Home page content styles ─── */
+    .home-eyebrow {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .home-hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.28;
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .home-hero p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 540px;
+      margin-bottom: 28px;
+    }
+
+    .home-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: inherit;
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .home-cta:hover { opacity: 0.88; }
+
+    /* Group */
+    .home-group { margin-bottom: 44px; }
+
+    .home-group-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    /* Index cards */
+    .home-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .home-cards.col-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .home-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .home-card:hover {
+      border-color: rgba(102, 79, 255, 0.4);
+      box-shadow: 0 2px 10px rgba(102, 79, 255, 0.07);
+    }
+
+    .home-card-num {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .home-card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+
+    .home-card-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Step grid */
+    .home-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .home-step {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: border-color 0.15s;
+    }
+
+    .home-step:hover { border-color: rgba(102, 79, 255, 0.4); }
+
+    .home-step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .home-step-text {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .home-hero h1 { font-size: 24px; }
+      .home-cards, .home-cards.col-3 { grid-template-columns: 1fr; }
+      .home-steps { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Mobile top bar -->
+<header class="mobile-topbar">
+  <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+    <span></span><span></span><span></span>
+  </button>
+  <span class="mobile-topbar-title">AI Workflow 구축 가이드</span>
+</header>
+
+<!-- Sidebar overlay -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-version">
+      <div class="sidebar-version-label">CHANGELOG</div>
+      <div class="version-select-wrap">
+        <select class="version-select" title="버전 히스토리">
+          <option value="v0.1" selected>v0.1 — 최초 작성 (2025.05)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-badge">
+        <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 1L10.5 3.5V8.5L6 11L1.5 8.5V3.5L6 1Z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <circle cx="6" cy="6" r="1.5" fill="currentColor"/>
+        </svg>
+        AI Workflow
+      </div>
+      <div class="sidebar-title">운영 문서 구축 가이드</div>
+      <div class="sidebar-subtitle">프로덕트 디자이너를 위한</div>
+    </div>
+
+    <div class="nav-section">
+      <a href="index.html" class="nav-item active"><span class="nav-num">⌂</span>홈 — 인덱스</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">개요</div>
+      <a href="ai-workflow-guide.html#intro" class="nav-item"><span class="nav-num">01</span>문서 목적</a>
+      <a href="ai-workflow-guide.html#perspective" class="nav-item"><span class="nav-num">02</span>핵심 관점</a>
+      <div class="nav-label nav-label-ref">배경</div>
+      <a href="ai-workflow-guide.html#problem-space" class="nav-item nav-item-sub">현장 이슈와 AI 역할 구분</a>
+      <a href="ai-workflow-guide.html#structure" class="nav-item nav-item-sub">문서 레이어 구조</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">AI 전략</div>
+      <a href="ai-workflow-guide.html#ai-strategy" class="nav-item">제품 단계별 AI 전략</a>
+      <div class="nav-label">단계별 가이드</div>
+      <a href="ai-workflow-guide.html#step0" class="nav-item"><span class="nav-num">0</span>디자인 탐색 단계에서 구체화하기</a>
+      <a href="ai-workflow-guide.html#step1" class="nav-item"><span class="nav-num">1</span>Product / UX Context</a>
+      <a href="ai-workflow-guide.html#step2" class="nav-item"><span class="nav-num">2</span>Design System Context</a>
+      <a href="ai-workflow-guide.html#step3" class="nav-item"><span class="nav-num">3</span>AI Workflow</a>
+      <a href="ai-workflow-guide.html#step4" class="nav-item"><span class="nav-num">4</span>Agent Rules</a>
+      <a href="ai-workflow-guide.html#step5" class="nav-item"><span class="nav-num">5</span>Prompts</a>
+      <a href="ai-workflow-guide.html#step6" class="nav-item"><span class="nav-num">6</span>Review / QA</a>
+      <a href="ai-workflow-guide.html#step7" class="nav-item"><span class="nav-num">7</span>Handoff</a>
+      <a href="ai-workflow-guide.html#step8" class="nav-item"><span class="nav-num">8</span>Release / Operation</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">실행 플랜</div>
+      <a href="ai-workflow-guide.html#priority" class="nav-item"><span class="nav-num">01</span>구축 우선순위</a>
+      <a href="ai-workflow-guide.html#mvp" class="nav-item"><span class="nav-num">02</span>MVP 문서 4개</a>
+      <a href="ai-workflow-guide.html#usage" class="nav-item"><span class="nav-num">03</span>실제 업무 활용</a>
+      <a href="ai-workflow-guide.html#principles" class="nav-item"><span class="nav-num">04</span>핵심 원칙</a>
+      <a href="ai-workflow-guide.html#experiment" class="nav-item"><span class="nav-num">05</span>2주 실험 계획</a>
+      <div class="nav-label nav-label-ref">참조</div>
+      <a href="ai-workflow-guide.html#schedule-template" class="nav-item nav-item-sub">AI 도입 시 일정 산정 가이드</a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Hero -->
+    <div class="hero home-hero">
+      <div class="home-eyebrow">AI Workflow Guide · 홈</div>
+      <h1>프로덕트 디자이너를 위한<br>AI 운영 문서 구축 가이드</h1>
+      <p>AI가 디자인 시스템, 제품 맥락, UX 의도를 이해하고 일관된 결과물을 만들게 하려면 어떤 문서가 필요한지 단계별로 정리했습니다.</p>
+      <a href="ai-workflow-guide.html" class="home-cta">
+        전체 가이드 보기
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+    </div>
+
+    <!-- 이 가이드 사용법 -->
+    <div class="home-group">
+      <div class="home-group-title">이 가이드, 이렇게 씁니다</div>
+      <div class="home-cards">
+        <a href="ai-workflow-guide.html#intro" class="home-card">
+          <div class="home-card-num">처음 접했다면</div>
+          <div class="home-card-title">개요(01, 02) → AI 전략 → Step 1~2 순서로 읽기</div>
+          <div class="home-card-desc">전체 맥락 파악 후 내 업무에서 AI를 어디에 쓸지 기준을 먼저 잡습니다.</div>
+        </a>
+        <a href="ai-workflow-guide.html#step0" class="home-card">
+          <div class="home-card-num">업무 중 막혔다면</div>
+          <div class="home-card-title">해당 Step 섹션 바로 조회</div>
+          <div class="home-card-desc">Step 0~8은 독립적으로 읽히도록 구성했습니다. 앞뒤 맥락 없이 바로 참고 가능합니다.</div>
+        </a>
+        <a href="ai-workflow-guide.html#experiment" class="home-card">
+          <div class="home-card-num">실험 진행 중이라면</div>
+          <div class="home-card-title">실행 플랜 05 + 실험 기록 DB 활용</div>
+          <div class="home-card-desc">2주 실험 계획과 노션 실험 기록 DB로 과정을 기록하고 팀 자산으로 쌓습니다.</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 지금 할 수 있는 것 -->
+    <div class="home-group">
+      <div class="home-group-title">지금 바로 할 수 있는 것</div>
+      <div class="home-cards">
+        <a href="ai-workflow-guide.html#mvp" class="home-card">
+          <div class="home-card-num">액션 01</div>
+          <div class="home-card-title">MVP 문서 4개부터 시작하기</div>
+          <div class="home-card-desc">product-context, ux-principles, component-usage, review-checklist — 이 4개만 있어도 AI와 기본 협업이 가능합니다.</div>
+        </a>
+        <a href="ai-workflow-guide.html#problem-space" class="home-card">
+          <div class="home-card-num">액션 02</div>
+          <div class="home-card-title">AI로 해결 가능한 업무 구분하기</div>
+          <div class="home-card-desc">내 업무에서 반복·구조화 가능한 구간을 먼저 파악합니다. AI 도입은 전체 프로세스가 아닌 적용 가능한 지점부터.</div>
+        </a>
+        <a href="https://www.notion.so/socraai/3425bc5f630780c6840fdfc0d333b216?v=3425bc5f630780ca8e6a000cb79aea84" target="_blank" class="home-card">
+          <div class="home-card-num">액션 03 · Notion →</div>
+          <div class="home-card-title">AI 활용 실험 기록 남기기</div>
+          <div class="home-card-desc">작게 시작하고 기록합니다. 어떤 업무에 AI를 썼는지, 효과는 어떠했는지 팀 DB에 쌓아가면 공통 기준이 만들어집니다.</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 빠른 참조 -->
+    <div class="home-group">
+      <div class="home-group-title">단계별 가이드 — 빠른 참조</div>
+      <div class="home-steps">
+        <a href="ai-workflow-guide.html#step0" class="home-step">
+          <div class="home-step-num">0</div>
+          <div class="home-step-text">디자인 탐색 단계에서 구체화하기</div>
+        </a>
+        <a href="ai-workflow-guide.html#step1" class="home-step">
+          <div class="home-step-num">1</div>
+          <div class="home-step-text">Product / UX Context</div>
+        </a>
+        <a href="ai-workflow-guide.html#step2" class="home-step">
+          <div class="home-step-num">2</div>
+          <div class="home-step-text">Design System Context</div>
+        </a>
+        <a href="ai-workflow-guide.html#step3" class="home-step">
+          <div class="home-step-num">3</div>
+          <div class="home-step-text">AI Workflow</div>
+        </a>
+        <a href="ai-workflow-guide.html#step4" class="home-step">
+          <div class="home-step-num">4</div>
+          <div class="home-step-text">Agent Rules</div>
+        </a>
+        <a href="ai-workflow-guide.html#step5" class="home-step">
+          <div class="home-step-num">5</div>
+          <div class="home-step-text">Prompts</div>
+        </a>
+        <a href="ai-workflow-guide.html#step6" class="home-step">
+          <div class="home-step-num">6</div>
+          <div class="home-step-text">Review / QA</div>
+        </a>
+        <a href="ai-workflow-guide.html#step7" class="home-step">
+          <div class="home-step-num">7</div>
+          <div class="home-step-text">Handoff</div>
+        </a>
+        <a href="ai-workflow-guide.html#step8" class="home-step">
+          <div class="home-step-num">8</div>
+          <div class="home-step-text">Release / Operation</div>
+        </a>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="ai-workflow-guide.js"></script>
+
+</body>
+</html>
