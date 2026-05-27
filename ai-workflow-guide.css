@@ -1020,6 +1020,7 @@ ol.styled li::before {
     padding: calc(68px + env(safe-area-inset-top, 0px)) calc(16px + env(safe-area-inset-right, 0px)) calc(48px + env(safe-area-inset-bottom, 0px)) calc(16px + env(safe-area-inset-left, 0px));
   }
 
+  .hero { margin-bottom: 36px; padding-bottom: 28px; }
   .hero h1 { font-size: 22px; }
   .hero p { font-size: 14px; }
 
