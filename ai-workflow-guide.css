@@ -978,9 +978,9 @@ ol.styled li::before {
 @media (max-width: 900px) {
   .sidebar {
     position: fixed;
-    top: 0;
+    top: 52px;
     left: 0;
-    height: 100vh;
+    height: calc(100vh - 52px);
     z-index: 160;
     transform: translateX(-100%);
     transition: transform 0.25s ease;
