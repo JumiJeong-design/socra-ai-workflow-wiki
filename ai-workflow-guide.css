@@ -50,12 +50,14 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 52px;
+  /* safe area: notch / Dynamic Island / Android punch-hole */
+  height: calc(52px + env(safe-area-inset-top, 0px));
   background: var(--bg-card);
   border-bottom: 1px solid var(--border);
   z-index: 200;
-  align-items: center;
-  padding: 0 16px;
+  align-items: flex-end;
+  padding: 0 calc(16px + env(safe-area-inset-right, 0px)) 0 calc(16px + env(safe-area-inset-left, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
   gap: 12px;
 }
 
@@ -978,13 +980,17 @@ ol.styled li::before {
 @media (max-width: 900px) {
   .sidebar {
     position: fixed;
-    top: 52px;
+    /* topbar height + notch/Dynamic Island/punch-hole */
+    top: calc(52px + env(safe-area-inset-top, 0px));
     left: 0;
-    height: calc(100vh - 52px);
+    /* 100dvh: 모바일 브라우저 주소창 show/hide 대응 (100vh fallback) */
+    height: calc(100vh - 52px - env(safe-area-inset-top, 0px));
+    height: calc(100dvh - 52px - env(safe-area-inset-top, 0px));
+    /* 홈 인디케이터 영역 침범 방지 */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
     z-index: 160;
     transform: translateX(-100%);
     transition: transform 0.25s ease;
-    padding-top: 0;
   }
 
   .sidebar.open {
@@ -994,7 +1000,8 @@ ol.styled li::before {
   .mobile-topbar { display: flex; }
 
   .main {
-    padding: 72px 24px 60px;
+    /* topbar + safe area top 만큼 밀어내기 */
+    padding: calc(72px + env(safe-area-inset-top, 0px)) calc(24px + env(safe-area-inset-right, 0px)) 60px calc(24px + env(safe-area-inset-left, 0px));
     max-width: 100%;
   }
 
@@ -1011,7 +1018,9 @@ ol.styled li::before {
 
 /* ─── Responsive: Mobile (≤640px) ─── */
 @media (max-width: 640px) {
-  .main { padding: 68px 16px 48px; }
+  .main {
+    padding: calc(68px + env(safe-area-inset-top, 0px)) calc(16px + env(safe-area-inset-right, 0px)) calc(48px + env(safe-area-inset-bottom, 0px)) calc(16px + env(safe-area-inset-left, 0px));
+  }
 
   .hero h1 { font-size: 22px; }
   .hero p { font-size: 14px; }
