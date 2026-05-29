@@ -1,7 +1,7 @@
 <div class="sidebar-version">
   <div style="display:flex; align-items:center; justify-content:space-between;">
     <a href="changelog.html" data-nav="changelog" style="display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-muted); text-decoration:none; transition:color 0.15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-muted)'">
-      <span>↻</span> v0.7 Changelog
+      <span>↻</span> v0.8 Changelog
     </a>
     <button class="theme-toggle" aria-label="다크 모드로 전환"></button>
   </div>
@@ -25,20 +25,23 @@
 </div>
 
 <div class="nav-section">
-  <div class="nav-label">개요</div>
+  <div class="nav-label">기본 이해</div>
   <a href="ai-workflow-guide.html#intro" class="nav-item"><span class="nav-num">01</span>문서 목적</a>
   <a href="ai-workflow-guide.html#perspective" class="nav-item"><span class="nav-num">02</span>핵심 관점</a>
-  <div class="nav-label nav-label-ref">배경</div>
   <a href="ai-workflow-guide.html#problem-space" class="nav-item nav-item-sub">현장 이슈와 AI 역할 구분</a>
   <a href="ai-workflow-guide.html#structure" class="nav-item nav-item-sub">문서 레이어 구조</a>
-  <a href="ai-workflow-guide.html#connect" class="nav-item nav-item-sub">AI 에디터 연결 설정</a>
-  <a href="ai-workflow-guide.html#figma-mcp-setup" class="nav-item nav-item-sub">Figma MCP 연결</a>
+  <a href="ai-workflow-guide.html#ai-strategy" class="nav-item nav-item-sub">제품 단계별 AI 전략</a>
 </div>
 
 <div class="nav-section">
-  <div class="nav-label">AI 전략</div>
-  <a href="ai-workflow-guide.html#ai-strategy" class="nav-item">제품 단계별 AI 전략</a>
-  <div class="nav-label">단계별 가이드</div>
+  <div class="nav-label">연결 / 환경 설정</div>
+  <a href="ai-workflow-guide.html#connect" class="nav-item">AI 에디터 연결 설정</a>
+  <a href="ai-workflow-guide.html#figma-mcp-setup" class="nav-item nav-item-sub">Figma MCP 연결 설정</a>
+  <a href="figma-mcp-traps.html" class="nav-item nav-item-sub">Figma MCP 작업 함정 모음</a>
+</div>
+
+<div class="nav-section">
+  <div class="nav-label">문서 구축 가이드</div>
   <a href="ai-workflow-guide.html#step0" class="nav-item"><span class="nav-num">0</span>디자인 탐색 단계에서 구체화하기</a>
   <a href="ai-workflow-guide.html#step1" class="nav-item"><span class="nav-num">1</span>Product / UX Context</a>
   <a href="ai-workflow-guide.html#step2" class="nav-item"><span class="nav-num">2</span>Design System Context</a>
@@ -51,27 +54,16 @@
 </div>
 
 <div class="nav-section">
-  <div class="nav-label">실행 플랜</div>
+  <div class="nav-label">실무 운영</div>
   <a href="ai-workflow-guide.html#priority" class="nav-item"><span class="nav-num">01</span>구축 우선순위</a>
   <a href="ai-workflow-guide.html#mvp" class="nav-item"><span class="nav-num">02</span>MVP 문서 4개</a>
   <a href="ai-workflow-guide.html#usage" class="nav-item"><span class="nav-num">03</span>실제 업무 활용</a>
   <a href="ai-workflow-guide.html#figma-ai-skills" class="nav-item nav-item-sub">도구 / 작업 선택 가이드</a>
   <a href="ai-workflow-guide.html#drift-signals" class="nav-item nav-item-sub">방향 이탈 감지</a>
-  <a href="ai-workflow-guide.html#principles" class="nav-item"><span class="nav-num">04</span>핵심 원칙</a>
-  <a href="ai-workflow-guide.html#experiment" class="nav-item"><span class="nav-num">05</span>2주 실험 계획</a>
-  <div class="nav-label nav-label-ref">참조</div>
+  <a href="ai-workflow-guide.html#motion-ai-workflow" class="nav-item nav-item-sub">AI 모션 제작 워크플로</a>
+  <a href="ai-workflow-guide.html#experiment" class="nav-item nav-item-sub">2주 실험 계획</a>
   <a href="ai-workflow-guide.html#schedule-template" class="nav-item nav-item-sub">AI 도입 시 일정 산정 가이드</a>
-</div>
-
-<div class="nav-section">
-  <div class="nav-label">실전 레퍼런스</div>
-  <a href="figma-mcp-traps.html" class="nav-item">
-    <span class="nav-num">⚠</span>Figma MCP 작업 함정 모음
-  </a>
-  <a href="figma-mcp-traps.html#component-traps" class="nav-item nav-item-sub">컴포넌트 작업 함정</a>
-  <a href="figma-mcp-traps.html#api-traps" class="nav-item nav-item-sub">API 기술 함정</a>
-  <a href="figma-mcp-traps.html#operation-traps" class="nav-item nav-item-sub">운영 함정</a>
-  <a href="figma-mcp-traps.html#environment-traps" class="nav-item nav-item-sub">환경/연결 함정</a>
+  <a href="ai-workflow-guide.html#principles" class="nav-item nav-item-sub">핵심 원칙</a>
 </div>
 
 <div class="nav-section">
@@ -81,6 +73,5 @@
   <a href="ai-workflow-guide.html#ext-i18n" class="nav-item nav-item-sub">다국어(i18n) 설계</a>
   <a href="ai-workflow-guide.html#ext-responsive" class="nav-item nav-item-sub">반응형 + 기기 QA</a>
   <a href="ai-workflow-guide.html#ext-motion" class="nav-item nav-item-sub">인터랙션 / 모션 품질</a>
-  <a href="ai-workflow-guide.html#motion-ai-workflow" class="nav-item nav-item-sub">AI 모션 제작 워크플로</a>
   <a href="ai-workflow-guide.html#ext-brand" class="nav-item nav-item-sub">브랜드 시각 언어</a>
 </div>
