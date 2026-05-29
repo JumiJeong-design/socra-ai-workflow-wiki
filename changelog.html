@@ -34,6 +34,36 @@
       <p>AI Workflow 가이드의 변경 사항을 버전별로 기록합니다.</p>
     </div>
 
+    <!-- v0.6 -->
+    <section class="section" id="v0-6">
+      <div class="section-header">
+        <div class="section-num">0.6</div>
+        <h2>방향 이탈 감지와 실전 운영 보강 <span class="section-tag">2026.05.29</span></h2>
+      </div>
+
+      <div class="highlight">
+        <p>Figma 공식 리포트와 디자인팀 실험 기록에서 바로 운영 문서에 녹일 수 있는 항목을 선별해, 방향 확정 전 점검과 QA/MCP 실전 함정을 보강했습니다.</p>
+      </div>
+
+      <h3>가이드 본문 보강</h3>
+      <ul class="styled">
+        <li><strong>방향 이탈(Drift) 감지 신호</strong> — 피드백 반복, 설명하기 어려운 어긋남, 구현 drift, 방향 선택 지연의 4가지 신호와 대응 액션 추가</li>
+        <li><strong>방향 확정 전 체크</strong> — 옵션 비교, 트레이드오프 명시, 코드/Make 현실화, 외부인 이해 가능 여부 확인 흐름 추가</li>
+        <li><strong>충실도별 프로토타입 선택 기준</strong> — FigJam, Figma, Make, 코드 프로토타입을 언제 쓸지 정리</li>
+        <li><strong>디자이너 + AI QA 운영 구조</strong> — 디자이너 수정 후 개발자 검수 흐름과 QA R&amp;R 기준 추가</li>
+        <li><strong>AI 모션 제작 프롬프트 흐름</strong> — 레퍼런스 녹화, 넘버링, 수치화, 조정 가능한 미리보기 요청 방식 추가</li>
+      </ul>
+
+      <h3>Figma MCP 함정 추가</h3>
+      <ul class="styled">
+        <li><strong>T7 · 작업 페이지 지정 누락</strong> — 여러 페이지 파일에서 <code>setCurrentPageAsync</code>로 컨텍스트를 먼저 맞추는 원칙 추가</li>
+        <li><strong>T8 · 로컬 폰트 접근 단정</strong> — 원격 플러그인/로컬 서버 방식에 따라 폰트 접근 가능성이 달라짐을 조건부로 정리</li>
+        <li><strong>T9 · Variables 읽기 실패 단정</strong> — 연결 방식과 권한, semantic token 구조를 먼저 확인하도록 정리</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
     <!-- v0.5 -->
     <section class="section" id="v0-5">
       <div class="section-header">

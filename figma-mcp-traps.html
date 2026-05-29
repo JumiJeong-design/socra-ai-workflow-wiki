@@ -46,7 +46,7 @@
         </div>
         <div class="hero-meta-item">
           <svg fill="none" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h8M2 12h10"/></svg>
-          운영 함정 1개
+          운영/환경 함정 4개
         </div>
       </div>
     </div>
@@ -240,6 +240,58 @@
     </section>
 
     <!-- ───────────────────────────────── -->
+    <!-- 섹션 4: 환경 / 연결 함정 -->
+    <!-- ───────────────────────────────── -->
+    <section class="section" id="environment-traps">
+      <h2>환경 / 연결 함정</h2>
+
+      <!-- 함정 7 -->
+      <div id="trap-current-page" style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:20px;">
+        <div style="padding:16px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
+          <span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:var(--orange-dim); border:1px solid var(--orange-border); font-size:13px; font-weight:700; color:var(--orange); flex-shrink:0;">T7</span>
+          <strong style="font-size:15px;">작업 페이지를 지정하지 않아 첫 번째 페이지만 바라보는 실수</strong>
+        </div>
+        <div style="padding:20px;">
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">Figma 파일에 여러 페이지가 있을 때, 에이전트가 기본 페이지나 첫 번째 페이지 기준으로 노드를 찾는 경우가 있다. 사용자가 특정 페이지 링크를 주었더라도 코드 실행 시 페이지 컨텍스트를 명시하지 않으면 엉뚱한 페이지에서 작업할 수 있다.</p>
+          <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
+            <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">✅ 대안</div>
+            <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">작업 시작 시 전달받은 node-id의 상위 page를 찾고 <code>await figma.setCurrentPageAsync(page)</code>를 먼저 실행한다. 페이지 이동이 필요한 스크립트에는 이 처리를 공통 유틸처럼 넣는다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 함정 8 -->
+      <div id="trap-fonts" style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:20px;">
+        <div style="padding:16px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
+          <span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:var(--orange-dim); border:1px solid var(--orange-border); font-size:13px; font-weight:700; color:var(--orange); flex-shrink:0;">T8</span>
+          <strong style="font-size:15px;">로컬 폰트 접근 여부를 단정하는 실수</strong>
+        </div>
+        <div style="padding:20px;">
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">Figma AI나 원격 플러그인 방식은 내 컴퓨터의 로컬 폰트를 직접 쓰지 못할 수 있다. 반대로 Figma 데스크탑 앱과 연결된 로컬 서버 방식에서는 데스크탑 앱이 인식한 폰트를 사용할 수 있는 경우가 있어, “항상 불가”처럼 단정하면 안 된다.</p>
+          <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
+            <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">✅ 대안</div>
+            <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">팀에서 쓰는 폰트는 Figma 팀 폰트 또는 클라우드에서 접근 가능한 폰트로 등록한다. AI에게는 폰트명, 용도, 대체 폰트, 지원 언어를 문서로 제공하고, 실행 전 <code>figma.loadFontAsync()</code> 가능 여부를 확인한다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 함정 9 -->
+      <div id="trap-variables-readable" style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:20px;">
+        <div style="padding:16px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
+          <span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:var(--orange-dim); border:1px solid var(--orange-border); font-size:13px; font-weight:700; color:var(--orange); flex-shrink:0;">T9</span>
+          <strong style="font-size:15px;">Variables를 못 읽는다고 결론내리는 실수</strong>
+        </div>
+        <div style="padding:20px;">
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">연결 방식이나 권한, 변수 구조에 따라 AI가 Variables를 충분히 읽지 못하는 것처럼 보일 수 있다. 하지만 MCP가 올바르게 연결되어 있으면 컬렉션, 모드, 오타, semantic token 부족 같은 구조 문제까지 감사할 수 있다.</p>
+          <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
+            <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">✅ 대안</div>
+            <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">“Variables 못 읽음”으로 기록하지 말고, 연결 방식과 권한을 먼저 확인한다. Semantic 컬렉션에는 bg, text, border, icon, status처럼 목적 기반 토큰을 충분히 만들고, mode 이름은 <code>light</code>/<code>dark</code>처럼 명확하게 둔다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────────── -->
     <!-- 빠른 체크리스트 -->
     <!-- ───────────────────────────────── -->
     <section class="section" id="checklist">
@@ -263,6 +315,18 @@
               <div style="flex:1;">
                 <strong>SVG 아이콘은 직접 드래그</strong>
                 <div class="subdesc">브랜드 로고·커스텀 아이콘은 코드 주입 대신 <a href="https://lobehub.com/ko/icons" target="_blank" style="color:var(--accent);">LobeHub</a> 등에서 직접 드래그해 넣는다.</div>
+              </div>
+            </div>
+            <div class="flow-item">
+              <div style="flex:1;">
+                <strong>작업 페이지와 폰트 접근 확인</strong>
+                <div class="subdesc">여러 페이지가 있는 파일은 <code>setCurrentPageAsync</code>로 페이지를 먼저 맞춘다. 로컬 폰트는 연결 방식에 따라 접근 가능 여부가 달라지므로 실행 전 확인한다.</div>
+              </div>
+            </div>
+            <div class="flow-item">
+              <div style="flex:1;">
+                <strong>Variables 읽기 실패를 바로 단정하지 않기</strong>
+                <div class="subdesc">권한, 연결 방식, collection/mode 구조를 먼저 확인한다. semantic token이 부족하면 AI도 Palette를 직접 쓰는 방향으로 흔들린다.</div>
               </div>
             </div>
             <div class="flow-item highlight-item">
