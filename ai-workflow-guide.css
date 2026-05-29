@@ -433,6 +433,22 @@ body {
   scroll-margin-top: 32px;
 }
 
+.section.search-hit,
+.search-hit {
+  animation: searchHit 2.4s ease-out;
+}
+
+@keyframes searchHit {
+  0% {
+    background: var(--accent-dim);
+    box-shadow: 0 0 0 12px var(--accent-dim);
+  }
+  100% {
+    background: transparent;
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
 .section-header {
   display: flex;
   align-items: flex-start;

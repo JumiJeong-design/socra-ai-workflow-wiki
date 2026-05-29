@@ -74,7 +74,7 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.9')
+fetch('sidebar.html?v=0.10')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;
@@ -170,17 +170,38 @@ function renderSearchResults(resultsEl, results, query) {
     return;
   }
 
-  resultsEl.innerHTML = results.slice(0, 7).map(result => `
-    <a class="sidebar-search-result" href="${result.href}">
+  resultsEl.innerHTML = results.slice(0, 7).map(result => {
+    const [path, hash = ''] = result.href.split('#');
+    const href = `${path}?q=${encodeURIComponent(query)}${hash ? `#${hash}` : ''}`;
+    return `
+    <a class="sidebar-search-result" href="${href}">
       <div class="sidebar-search-result-title">${escapeHtml(result.title)}</div>
       <div class="sidebar-search-result-meta">${escapeHtml(result.page)}</div>
       <div class="sidebar-search-result-snippet">${escapeHtml(result.snippet)}</div>
     </a>
-  `).join('');
+  `;
+  }).join('');
 
   resultsEl.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => { if (window.innerWidth <= 900) closeSidebar(); });
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 900) closeSidebar();
+      const targetUrl = new URL(link.href);
+      if (targetUrl.pathname === location.pathname && targetUrl.hash) {
+        setTimeout(() => highlightTargetFromHash(targetUrl.hash), 80);
+      }
+    });
   });
+}
+
+function highlightTargetFromHash(hash = location.hash) {
+  const id = decodeURIComponent((hash || '').replace('#', ''));
+  if (!id) return;
+  const target = document.getElementById(id);
+  if (!target) return;
+  target.classList.remove('search-hit');
+  void target.offsetWidth;
+  target.classList.add('search-hit');
+  setTimeout(() => target.classList.remove('search-hit'), 2600);
 }
 
 function initSiteSearch() {
@@ -219,6 +240,16 @@ function initSiteSearch() {
     if (first) first.click();
   });
 }
+
+window.addEventListener('hashchange', () => {
+  if (new URLSearchParams(location.search).has('q')) highlightTargetFromHash();
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (new URLSearchParams(location.search).has('q')) {
+    setTimeout(() => highlightTargetFromHash(), 350);
+  }
+});
 
 function initSidebarInteractions() {
   // Sidebar theme toggle
