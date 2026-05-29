@@ -62,7 +62,8 @@
               <div style="font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:4px;">2026-05-29 — 실제 운영 도구 기준으로 재정리</div>
               <ul style="list-style:none; padding:0; margin:0; font-size:12px; color:var(--text-secondary); line-height:1.8;">
                 <li>· 사용하지 않는 프로토타이핑 도구 기준을 가이드에서 제외</li>
-                <li>· Figma MCP 연결 설정을 메인 가이드와 홈/사이드바에 추가</li>
+                <li>· Figma MCP 연결 설정과 첫 테스트 체크리스트 보강</li>
+                <li>· 도구 / 작업 선택 가이드를 실제 업무 기준으로 재정리</li>
                 <li>· AI 모션 제작 워크플로를 FE 전달 가능한 형태로 보강</li>
               </ul>
             </div>
@@ -76,7 +77,7 @@
               <ul style="list-style:none; padding:0; margin:0; font-size:12px; color:var(--text-secondary); line-height:1.8;">
                 <li>· Figma 공식 리포트 기반 방향 이탈 신호와 대응 액션 추가</li>
                 <li>· QA R&amp;R, 디자이너+AI 수정 후 개발자 검수 구조 보강</li>
-                <li>· 모션 제작 프롬프트 워크플로와 MCP 환경 함정 추가</li>
+                <li>· Figma MCP 환경 함정 3개 추가</li>
               </ul>
             </div>
           </div>
@@ -134,11 +135,11 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <svg fill="none" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.5"><path d="M8 2a6 6 0 100 12A6 6 0 008 2z"/><path d="M8 5v3l2 1.5"/></svg>
-          8단계 가이드
+          Step 0~8 가이드
         </div>
         <div class="hero-meta-item">
           <svg fill="none" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h12M2 12h8"/></svg>
-          11개 문서 템플릿
+          12개 운영 문서
         </div>
         <div class="hero-meta-item">
           <svg fill="none" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.5"><path d="M12 3L4 8l8 5V3z" stroke-linejoin="round"/></svg>
@@ -541,9 +542,9 @@
       </table>
 
       <h3>진입점 파일 구조</h3>
-      <p>11개 문서 전체를 복사하지 않습니다. 핵심 규칙만 요약하고 나머지는 참조 경로로 연결합니다.</p>
+      <p>12개 문서 전체를 복사하지 않습니다. 핵심 규칙만 요약하고 나머지는 참조 경로로 연결합니다.</p>
 
-      <div class="code-label">CLAUDE.md / .cursorrules / .windsurfrules — 공통 구조</div>
+      <div class="code-label">CLAUDE.md / .cursor/rules/design.mdc / .windsurfrules — 공통 구조</div>
       <pre><code><span class="token-heading"># 이 프로젝트의 AI 작업 기준</span>
 
 <span class="token-heading">## 제품 맥락</span>
@@ -692,8 +693,8 @@ QA → review-checklist.md</code></pre>
       <h3>기본 연결 흐름</h3>
       <div class="flow">
         <div class="flow-item">
-          <strong>1. AI 도구에서 Figma MCP 또는 Figma 플러그인 연결</strong>
-          <div class="subdesc">Claude Code, Cursor, Codex 등 사용하는 MCP 클라이언트의 공식 연결 방식을 따릅니다.</div>
+          <strong>1. AI 도구에서 Figma MCP 연결 추가</strong>
+          <div class="subdesc">Claude Code, Cursor, Codex 등 사용하는 MCP 클라이언트의 공식 설정 화면에서 Figma MCP를 추가합니다.</div>
         </div>
         <div class="flow-item">
           <strong>2. Figma OAuth 승인 계정 확인</strong>
@@ -705,13 +706,40 @@ QA → review-checklist.md</code></pre>
         </div>
         <div class="flow-item">
           <strong>4. IDE/터미널에서 MCP 상태 확인</strong>
-          <div class="subdesc">Claude Code라면 <code>/mcp</code> 같은 서버 상태 화면에서 연결 실패 여부를 확인하고 필요 시 reconnect합니다.</div>
+          <div class="subdesc">Claude Code라면 <code>/mcp</code> 같은 서버 상태 화면에서 연결 실패 여부를 확인하고 필요 시 reconnect합니다. Cursor/Codex도 MCP 서버 목록에서 연결 상태를 먼저 봅니다.</div>
         </div>
         <div class="flow-item highlight-item">
           <strong>5. 첫 테스트는 읽기 작업으로 시작</strong>
           <div class="subdesc">Figma 링크를 주고 "이 파일의 page 목록, 선택한 frame의 metadata, variables를 읽을 수 있는지 확인해줘"처럼 요청합니다.</div>
         </div>
       </div>
+
+      <h3>첫 연결 테스트 체크리스트</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><div class="card-title-dot"></div>읽기 테스트</div>
+          <ul class="styled">
+            <li>Figma 파일 URL을 주고 page 목록을 읽을 수 있는지 확인</li>
+            <li>작업할 frame/node URL을 주고 metadata를 읽을 수 있는지 확인</li>
+            <li>Variables, text styles, component 목록을 읽을 수 있는지 확인</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title"><div class="card-title-dot"></div>쓰기 테스트</div>
+          <ul class="styled">
+            <li>운영 파일이 아닌 테스트 파일에서 작은 text 또는 rectangle을 생성</li>
+            <li>여러 page가 있는 파일이면 작업 page를 먼저 지정할 수 있는지 확인</li>
+            <li>실제 디자인 시스템 파일에 쓰기 전에는 반드시 읽기 결과를 먼저 검토</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="code-label">첫 테스트 프롬프트</div>
+      <pre><code>이 Figma 파일에 접근할 수 있는지 먼저 확인해줘.
+1. page 목록을 읽어줘.
+2. 이 node URL의 metadata를 요약해줘.
+3. 이 파일에서 variables와 text styles를 읽을 수 있는지 확인해줘.
+아직 캔버스에는 아무것도 만들지 말고, 읽기 가능 여부만 알려줘.</code></pre>
 
       <div class="compare">
         <div class="compare-box bad">
@@ -1679,26 +1707,26 @@ UX 기준:
     <section class="section" id="figma-ai-skills">
       <div class="section-header">
         <div class="section-num">03A</div>
-        <h2>스킬 선택 가이드</h2>
+        <h2>도구 / 작업 선택 가이드</h2>
       </div>
 
-      <p>설치된 스킬은 별도의 기능 목록으로 외우기보다, 실제 업무 흐름 안에서 선택하는 것이 좋습니다. 먼저 지금 하려는 일이 <strong>탐색</strong>, <strong>정리</strong>, <strong>검증</strong>, <strong>전달</strong> 중 어디에 가까운지 판단하고 그에 맞는 스킬을 고릅니다.</p>
+      <p>AI 도구는 기능 목록으로 외우기보다, 실제 업무 흐름 안에서 선택하는 것이 좋습니다. 먼저 지금 하려는 일이 <strong>탐색</strong>, <strong>정리</strong>, <strong>검증</strong>, <strong>전달</strong> 중 어디에 가까운지 판단하고 그에 맞는 작업 방식을 고릅니다.</p>
 
       <div class="highlight">
-        <p><strong>핵심 기준:</strong> Figma 스킬은 디자인 판단을 대신하는 도구가 아니라, 이미 정한 제품 맥락·UX 원칙·디자인 시스템 기준을 빠르게 적용하고 검토하기 위한 운영 도구입니다.</p>
+        <p><strong>핵심 기준:</strong> Figma와 AI 도구는 디자인 판단을 대신하는 도구가 아니라, 이미 정한 제품 맥락·UX 원칙·디자인 시스템 기준을 빠르게 적용하고 검토하기 위한 운영 도구입니다.</p>
       </div>
 
       <h3>업무 흐름별 선택 순서</h3>
       <div class="flow">
-        <div class="flow-item"><strong>1. 탐색 / 초안</strong>&nbsp;— 화면 구조나 플로우를 빠르게 보고 싶다면 <code>figma-generate-design</code>, 기존 시안을 텍스트 피드백으로 다듬는다면 <code>edit-figma-design</code></div>
+        <div class="flow-item"><strong>1. 탐색 / 초안</strong>&nbsp;— 화면 구조나 플로우를 빠르게 보고 싶다면 Figma 시안, FigJam 플로우, 코드 스파이크 중 가장 빠른 형식으로 시작</div>
         <div class="flow-arrow">↓</div>
-        <div class="flow-item"><strong>2. 시스템 적용</strong>&nbsp;— 확정에 가까운 화면은 <code>apply-design-system</code>으로 컴포넌트와 token 기준에 맞춰 정리</div>
+        <div class="flow-item"><strong>2. 시스템 적용</strong>&nbsp;— 확정에 가까운 화면은 기존 컴포넌트, token, typography, spacing 기준에 맞춰 정리</div>
         <div class="flow-arrow">↓</div>
-        <div class="flow-item"><strong>3. 드리프트 점검</strong>&nbsp;— 로컬 스타일, override, 누락 token, 컴포넌트 이탈은 <code>audit-design-system</code>으로 확인</div>
+        <div class="flow-item"><strong>3. 드리프트 점검</strong>&nbsp;— 로컬 스타일, override, 누락 token, 컴포넌트 이탈을 체크리스트나 AI 리뷰로 확인</div>
         <div class="flow-arrow">↓</div>
-        <div class="flow-item"><strong>4. 스펙화</strong>&nbsp;— 컴포넌트 릴리즈나 핸드오프 전에는 uSpec 계열로 API, 구조, 색상, 접근성 기준을 문서화</div>
+        <div class="flow-item"><strong>4. 스펙화</strong>&nbsp;— 컴포넌트 릴리즈나 핸드오프 전에는 구조, 상태, 색상, 접근성 기준을 문서화</div>
         <div class="flow-arrow">↓</div>
-        <div class="flow-item"><strong>5. 전달 / 동기화</strong>&nbsp;— 코드 컴포넌트 연결은 <code>figma-code-connect</code>, 토큰 동기화는 <code>sync-figma-token</code>, 프로토타입 정리는 <code>prototype-to-figma</code></div>
+        <div class="flow-item"><strong>5. 전달 / 동기화</strong>&nbsp;— 코드 컴포넌트 연결, 토큰 차이, QA 결과를 개발팀이 확인 가능한 형식으로 정리</div>
       </div>
 
       <h3>디자이너가 자주 만나는 상황별 추천</h3>
@@ -1706,39 +1734,39 @@ UX 기준:
         <thead>
           <tr>
             <th>상황</th>
-            <th>먼저 쓸 스킬</th>
+            <th>먼저 할 일</th>
             <th>다음에 이어질 작업</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>신규 기능 화면을 빠르게 구체화해야 한다</td>
-            <td><code>figma-generate-design</code></td>
+            <td>제품 맥락과 UX 원칙 기준으로 초안 생성</td>
             <td><code>product-context.md</code>, <code>ux-principles.md</code> 기준으로 초안을 만들고, Figma에서 방향성을 좁힙니다.</td>
           </tr>
           <tr>
             <td>기존 화면이 디자인 시스템과 어긋나 보인다</td>
-            <td><code>audit-design-system</code></td>
-            <td>문제 지점을 확인한 뒤 <code>apply-design-system</code>으로 component/token 기준에 맞게 정리합니다.</td>
+            <td>컴포넌트, token, local style 이탈 점검</td>
+            <td>문제 지점을 확인한 뒤 component/token 기준에 맞게 정리합니다.</td>
           </tr>
           <tr>
             <td>컴포넌트 업데이트를 개발팀에 넘겨야 한다</td>
-            <td><code>uspec-create-component-md</code></td>
-            <td>필요에 따라 <code>uspec-create-api</code>, <code>uspec-create-structure</code>, <code>uspec-create-color</code>, <code>uspec-create-voice</code>로 세부 스펙을 보강합니다.</td>
+            <td>상태, variant, 접근성, 사용 조건 문서화</td>
+            <td>필요에 따라 구조, 색상, 문구, 상태값, 접근성 기준을 세부 스펙으로 보강합니다.</td>
           </tr>
           <tr>
             <td>정책, 상태, 예외 케이스가 복잡하다</td>
-            <td><code>figma-generate-diagram</code></td>
+            <td>플로우 다이어그램으로 먼저 정리</td>
             <td>FigJam에서 플로우를 합의한 뒤 화면 설계와 QA 체크리스트로 연결합니다.</td>
           </tr>
           <tr>
             <td>코드와 Figma 기준이 서로 다를 수 있다</td>
-            <td><code>sync-figma-token</code></td>
+            <td>token/컴포넌트 drift 확인</td>
             <td>토큰 drift를 확인하고, 변경 영향도가 크면 review / release 문서에 남깁니다.</td>
           </tr>
           <tr>
             <td>디자인 리뷰나 공유 자료가 필요하다</td>
-            <td><code>figma-use-slides</code></td>
+            <td>결정 배경과 비교안을 공유 자료로 정리</td>
             <td>결정 배경, 비교안, QA 결과를 슬라이드로 정리해 팀 공유 자료로 만듭니다.</td>
           </tr>
         </tbody>
@@ -1746,12 +1774,12 @@ UX 기준:
 
       <h3>ai-workflow.md에 남기면 좋은 운영 규칙</h3>
       <div class="code-label">ai-workflow.md</div>
-      <pre><code><span class="token-heading">## Figma / AI 스킬 선택 기준</span>
-<span class="token-item">- 탐색 단계에서는 figma-generate-design, edit-figma-design으로 빠르게 방향을 본다.</span>
-<span class="token-item">- 확정 단계에서는 apply-design-system, audit-design-system으로 시스템 기준을 확인한다.</span>
-<span class="token-item">- 컴포넌트 릴리즈 전에는 uSpec으로 API, 구조, 색상, 접근성 스펙을 남긴다.</span>
-<span class="token-item">- 토큰 변경은 sync-figma-token으로 drift를 확인한 뒤 반영한다.</span>
-<span class="token-item">- 복잡한 정책과 상태 변화는 figma-generate-diagram으로 먼저 시각화한다.</span>
+      <pre><code><span class="token-heading">## Figma / AI 작업 선택 기준</span>
+<span class="token-item">- 탐색 단계에서는 Figma 시안, FigJam 플로우, 코드 스파이크 중 가장 빠른 방식으로 방향을 본다.</span>
+<span class="token-item">- 확정 단계에서는 component, token, typography, spacing 기준을 확인한다.</span>
+<span class="token-item">- 컴포넌트 릴리즈 전에는 구조, 상태, 색상, 접근성 스펙을 남긴다.</span>
+<span class="token-item">- 토큰 변경은 Figma와 코드의 drift를 확인한 뒤 반영한다.</span>
+<span class="token-item">- 복잡한 정책과 상태 변화는 화면을 만들기 전에 다이어그램으로 먼저 시각화한다.</span>
 <span class="token-item">- 최종 산출물은 review-checklist.md와 handoff.md 기준으로 사람이 승인한다.</span></code></pre>
 
       <h3 id="drift-signals">방향 이탈(Drift) 감지 신호</h3>
