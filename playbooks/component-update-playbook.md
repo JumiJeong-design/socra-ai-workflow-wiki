@@ -2,22 +2,39 @@
 
 ## When To Use
 
-Figma component, Git component spec, or design token 중 하나가 바뀌어 다른 쪽과 sync가 필요한 경우 사용한다.
+Figma component, Git component spec, code component, or Storybook story 중 하나가 바뀌어 sync 판단이 필요한 경우 사용한다.
+
+## First Decision
+
+변경을 바로 sync하지 않는다. 먼저 Figma source의 상태를 판단한다.
+
+| Status | Action |
+| --- | --- |
+| `exploration` | worklog/context만 남기고 Git spec/code/Storybook은 바꾸지 않는다. |
+| `candidate` | 비교와 논의용으로 기록하되 implementation contract로 보지 않는다. |
+| `approved component` | Git spec, sync map, Storybook mapping을 확인한다. |
+| `archived` | rationale로 필요한 경우만 링크한다. |
 
 ## Steps
 
-1. 변경이 Figma-origin인지 Git-origin인지 표시한다.
-2. affected component와 Figma node를 확인한다.
-3. variant, state, token, accessibility 영향 범위를 정리한다.
-4. `socra-ai-product-design/design-system/sync/sync-log.md`에 변경 의도를 기록한다.
-5. component spec과 sync checklist를 업데이트한다.
-6. PR에서 Figma link, sync log entry, affected spec을 연결한다.
+1. 변경이 Figma-origin, Git-spec-origin, code-origin, Storybook-origin 중 무엇인지 표시한다.
+2. Figma source가 `exploration`, `candidate`, `approved`, `archived` 중 어디인지 확인한다.
+3. approved component가 아니면 Git spec으로 승격하지 않는다.
+4. approved component라면 affected component와 Figma node를 확인한다.
+5. variant, state, token, accessibility, Storybook impact를 정리한다.
+6. `socra-ai-product-design/design-system/sync/sync-log.md`에 변경 의도를 기록한다.
+7. component spec, sync checklist, Storybook mapping을 업데이트한다.
+8. 구현이 있다면 Storybook에서 variant/state를 검증한다.
+9. PR에서 Figma link, sync log entry, affected spec, Storybook story를 연결한다.
 
 ## Done Criteria
 
-- 컴포넌트 이름과 Git 문서 slug가 대응된다.
+- Figma source status가 명확하다.
+- Exploration/Candidate 작업이 실수로 implementation contract가 되지 않았다.
+- Approved component의 이름과 Git 문서 slug가 대응된다.
 - Figma node id가 spec에 남아 있다.
 - 변경된 state/variant가 누락 없이 문서화됐다.
+- Storybook status가 `pending`, `implemented`, `verified` 중 하나로 표시됐다.
 - 디자이너 판단이 필요한 항목은 open question으로 남았다.
 
 ## Source Worklog
