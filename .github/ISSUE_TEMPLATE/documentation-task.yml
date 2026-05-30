@@ -1,0 +1,29 @@
+name: Documentation task
+description: Guide, playbook, or case documentation task
+title: "[Docs] "
+labels: ["type:docs", "status:draft"]
+body:
+  - type: textarea
+    id: source
+    attributes:
+      label: Source material
+      description: Link worklog, PR, Figma, or discussion that this doc comes from.
+    validations:
+      required: true
+  - type: dropdown
+    id: doc_type
+    attributes:
+      label: Document type
+      options:
+        - guide
+        - playbook
+        - case
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Expected outcome
+      description: What should this documentation help future work do faster or better?
+    validations:
+      required: true
