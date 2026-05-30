@@ -1,0 +1,19 @@
+name: Sync task
+description: Document a Figma/Git sync process
+title: "[Sync] "
+labels: ["sync:figma-to-git", "type:workflow"]
+body:
+  - type: input
+    id: figma
+    attributes:
+      label: Figma link
+      description: Link the Figma node, page, or file.
+    validations:
+      required: true
+  - type: textarea
+    id: process
+    attributes:
+      label: Process to document
+      description: What part of the sync loop should become reusable guidance?
+    validations:
+      required: true
