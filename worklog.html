@@ -123,10 +123,12 @@ body{
 
 /* ── Skills panel ── */
 .skills-panel{flex:1;overflow-y:auto;padding:10px}
-.skills-panel-title{
-  font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
-  color:var(--text-dim);padding:4px 4px 10px
+.skill-category{
+  font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--text-dim);padding:14px 4px 6px;display:flex;align-items:center;gap:6px
 }
+.skill-category:first-child{padding-top:4px}
+.skill-category-line{flex:1;height:1px;background:var(--border)}
 .skill-card{
   background:var(--surface-2);border:1px solid var(--border);border-radius:8px;
   padding:12px 12px 10px;margin-bottom:8px;transition:border-color .12s
@@ -141,7 +143,13 @@ body{
 .skill-card.expanded .skill-toggle{transform:rotate(90deg);color:var(--accent)}
 .skill-name{
   font-size:12px;font-weight:700;color:var(--accent);
-  font-family:'SF Mono','Fira Code','Fira Mono',monospace;margin-bottom:4px
+  font-family:'SF Mono','Fira Code','Fira Mono',monospace;margin-bottom:4px;
+  display:flex;align-items:center;gap:6px
+}
+.skill-badge{
+  font-size:9px;font-family:inherit;font-weight:500;letter-spacing:.03em;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text-dim);padding:1px 5px;border-radius:3px
 }
 .skill-desc{font-size:11px;color:var(--text-muted);line-height:1.5;margin-bottom:8px}
 .skill-triggers{display:flex;flex-wrap:wrap;gap:4px}
@@ -309,7 +317,9 @@ body{
 
   <div id="skills-section" style="display:none;flex-direction:column;flex:1;overflow:hidden">
     <div class="skills-panel">
-      <div class="skills-panel-title">공통 스킬</div>
+
+      <!-- 📋 업무 기록 -->
+      <div class="skill-category">📋 업무 기록 <span class="skill-category-line"></span></div>
 
       <div class="skill-card" id="skill-write-worklog">
         <div class="skill-card-header" onclick="toggleSkill('write-worklog')">
@@ -331,30 +341,6 @@ body{
             <li>초안 확인 후 수정 반영</li>
             <li>GitHub jumi-worklog에 push</li>
             <li>Notion 디자인팀 DB에 로그 업로드</li>
-          </ol>
-        </div>
-      </div>
-
-      <div class="skill-card" id="skill-bump-version">
-        <div class="skill-card-header" onclick="toggleSkill('bump-version')">
-          <div class="skill-header-text">
-            <div class="skill-name">bump-version</div>
-            <div class="skill-desc">socra-ai-workflow-guide 버전 올릴 때 4개 파일 동시 수정</div>
-          </div>
-          <span class="skill-toggle">›</span>
-        </div>
-        <div class="skill-triggers">
-          <span class="skill-trigger">버전 올려줘</span>
-          <span class="skill-trigger">배포할게</span>
-          <span class="skill-trigger">/bump-version</span>
-        </div>
-        <div class="skill-detail">
-          <ol class="skill-steps">
-            <li>새 버전 번호 + 날짜 확인 (currentDate 자동 추출)</li>
-            <li>sidebar.html 버전 선택기 업데이트</li>
-            <li>ai-workflow-guide.html 버전 뱃지 수정</li>
-            <li>changelog.html 신규 항목 추가</li>
-            <li>index.html 메타 버전 수정</li>
           </ol>
         </div>
       </div>
@@ -382,6 +368,33 @@ body{
         </div>
       </div>
 
+      <!-- ⚙️ 워크플로우 -->
+      <div class="skill-category">⚙️ 워크플로우 <span class="skill-category-line"></span></div>
+
+      <div class="skill-card" id="skill-bump-version">
+        <div class="skill-card-header" onclick="toggleSkill('bump-version')">
+          <div class="skill-header-text">
+            <div class="skill-name">bump-version</div>
+            <div class="skill-desc">socra-ai-workflow-guide 버전 올릴 때 4개 파일 동시 수정</div>
+          </div>
+          <span class="skill-toggle">›</span>
+        </div>
+        <div class="skill-triggers">
+          <span class="skill-trigger">버전 올려줘</span>
+          <span class="skill-trigger">배포할게</span>
+          <span class="skill-trigger">/bump-version</span>
+        </div>
+        <div class="skill-detail">
+          <ol class="skill-steps">
+            <li>새 버전 번호 + 날짜 확인 (currentDate 자동 추출)</li>
+            <li>sidebar.html 버전 선택기 업데이트</li>
+            <li>ai-workflow-guide.html 버전 뱃지 수정</li>
+            <li>changelog.html 신규 항목 추가</li>
+            <li>index.html 메타 버전 수정</li>
+          </ol>
+        </div>
+      </div>
+
       <div class="skill-card" id="skill-record-trap">
         <div class="skill-card-header" onclick="toggleSkill('record-trap')">
           <div class="skill-header-text">
@@ -404,7 +417,114 @@ body{
         </div>
       </div>
 
-      <a class="skills-link" href="https://github.com/JumiJeong-design/jumi-worklog/tree/main/skills" target="_blank">GitHub에서 전체 보기 →</a>
+      <!-- 🎨 디자인 (Figma) -->
+      <div class="skill-category">🎨 디자인 <span class="skill-category-line"></span></div>
+
+      <div class="skill-card" id="skill-figma-use">
+        <div class="skill-card-header" onclick="toggleSkill('figma-use')">
+          <div class="skill-header-text">
+            <div class="skill-name">figma-use <span class="skill-badge">Figma MCP</span></div>
+            <div class="skill-desc">Figma 파일에서 컴포넌트·프레임·레이아웃 수정·생성</div>
+          </div>
+          <span class="skill-toggle">›</span>
+        </div>
+        <div class="skill-triggers">
+          <span class="skill-trigger">/figma-use</span>
+          <span class="skill-trigger">피그마에서 수정해줘</span>
+        </div>
+        <div class="skill-detail">
+          <ol class="skill-steps">
+            <li>Figma 파일 컨텍스트 읽기 (get_design_context)</li>
+            <li>변경 사항 실행 (use_figma)</li>
+            <li>결과 스크린샷으로 확인 (get_screenshot)</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="skill-card" id="skill-figma-generate-design">
+        <div class="skill-card-header" onclick="toggleSkill('figma-generate-design')">
+          <div class="skill-header-text">
+            <div class="skill-name">figma-generate-design <span class="skill-badge">Figma MCP</span></div>
+            <div class="skill-desc">설명·코드로부터 새 화면·컴포넌트를 Figma에 자동 생성</div>
+          </div>
+          <span class="skill-toggle">›</span>
+        </div>
+        <div class="skill-triggers">
+          <span class="skill-trigger">/figma-generate-design</span>
+          <span class="skill-trigger">이 화면 피그마로 만들어줘</span>
+        </div>
+        <div class="skill-detail">
+          <ol class="skill-steps">
+            <li>기존 컴포넌트·라이브러리 파악 (get_libraries)</li>
+            <li>레이아웃·구조 설계</li>
+            <li>Figma에 새 화면 생성 (use_figma)</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="skill-card" id="skill-figma-generate-library">
+        <div class="skill-card-header" onclick="toggleSkill('figma-generate-library')">
+          <div class="skill-header-text">
+            <div class="skill-name">figma-generate-library <span class="skill-badge">Figma MCP</span></div>
+            <div class="skill-desc">코드베이스 → Figma 디자인 시스템 라이브러리 빌드</div>
+          </div>
+          <span class="skill-toggle">›</span>
+        </div>
+        <div class="skill-triggers">
+          <span class="skill-trigger">/figma-generate-library</span>
+          <span class="skill-trigger">디자인 시스템 피그마에 반영해줘</span>
+        </div>
+        <div class="skill-detail">
+          <ol class="skill-steps">
+            <li>코드 컴포넌트·토큰 분석</li>
+            <li>Figma 라이브러리 구조 생성</li>
+            <li>Variables·토큰 연결 (get_variable_defs)</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="skill-card" id="skill-figma-code-connect">
+        <div class="skill-card-header" onclick="toggleSkill('figma-code-connect')">
+          <div class="skill-header-text">
+            <div class="skill-name">figma-code-connect <span class="skill-badge">Figma MCP</span></div>
+            <div class="skill-desc">Figma 컴포넌트 ↔ 코드 컴포넌트 1:1 매핑 설정</div>
+          </div>
+          <span class="skill-toggle">›</span>
+        </div>
+        <div class="skill-triggers">
+          <span class="skill-trigger">/figma-code-connect</span>
+          <span class="skill-trigger">코드커넥트 설정해줘</span>
+        </div>
+        <div class="skill-detail">
+          <ol class="skill-steps">
+            <li>Figma 컴포넌트 목록 읽기 (get_code_connect_suggestions)</li>
+            <li>코드 컴포넌트 매핑 제안 확인</li>
+            <li>Code Connect 파일 생성 후 push (send_code_connect_mappings)</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="skill-card" id="skill-figma-generate-diagram">
+        <div class="skill-card-header" onclick="toggleSkill('figma-generate-diagram')">
+          <div class="skill-header-text">
+            <div class="skill-name">figma-generate-diagram <span class="skill-badge">Figma MCP</span></div>
+            <div class="skill-desc">FigJam에 다이어그램·플로우차트·유저플로우 자동 생성</div>
+          </div>
+          <span class="skill-toggle">›</span>
+        </div>
+        <div class="skill-triggers">
+          <span class="skill-trigger">/figma-generate-diagram</span>
+          <span class="skill-trigger">다이어그램 만들어줘</span>
+        </div>
+        <div class="skill-detail">
+          <ol class="skill-steps">
+            <li>다이어그램 구조·노드 설계</li>
+            <li>FigJam에 다이어그램 생성 (generate_diagram)</li>
+          </ol>
+        </div>
+      </div>
+
+      <a class="skills-link" href="https://github.com/JumiJeong-design/jumi-worklog/tree/main/skills" target="_blank">커스텀 스킬 전체 보기 →</a>
     </div>
   </div>
 </aside>
@@ -768,95 +888,20 @@ ux 프린시플도 기본적인 룰을 넣거나 기획서기반 우선가치를
 
 ```
 # 프로덕트 디자이너를 위한 AI Workflow / 운영 문서 구축 가이드
-
-이 문서의 목적, 접근 원칙, 문서 레이어 구조, 단계별 실행 플랜
 ```
 
 **Claude Code 작업:**
 - `ai-workflow-guide.html` 신규 작성 — Step 0~8, 실행 플랜, 일정 산정, 반응형 사이드바 scroll-spy
-- `index.html` 홈 페이지 생성 — 사용법 / 액션 카드 / 단계별 참조
-- `ai-workflow-guide.css` — Socra AI 라이트 테마, 반응형 레이아웃
-- `ai-workflow-guide.js` — scroll-spy 네비게이션, 버전 선택기
-- `product-context.md` — 핵심 UX 원칙 문서
+- `index.html` 홈 페이지 생성
 - GitHub 저장소 생성: `JumiJeong-design/socra-ai-workflow-guide`
-- `v0.1` 태그 → GitHub Pages 배포: `jumijeong-design.github.io/socra-ai-workflow-guide`
-
----
-
-### 2. Step 0 문구 개선 + 코드 정리
-
-```
-그치 Step 0의 "Figma에서" 표현을 "디자인 탐색 단계에서" 이걸로 바꾸고
-대안 접근:
-1. 레퍼런스 이미지 수집 (Dribbble, 경쟁사 등)
-2. 텍스트로 화면 구조 스케치 (마크다운 또는 노션)
-3. ...
-```
-
-**Claude Code 작업:**
-- Step 0 텍스트 수정: "Figma에서" → "디자인 탐색 단계에서" (도구 중립적 표현으로 변경)
-- 인라인 `<style>` 33개 → `.subdesc` / `.text-muted` / `.compare-box-plain` CSS 클래스로 추출
-- `changelog.html` 신규 추가 — 버전 히스토리 페이지 (v0.1 기록, v0.2 플레이스홀더)
-- 버전 선택기 JS 연결 (선택 시 changelog.html으로 이동)
-
----
-
-### 3. 디자인 리뷰 피드백 반영 4종
-
-**Claude Code 작업:**
-- `compare-box-plain`, `text-muted` HTML 중복 class 속성 버그 수정 (중립 비교 박스 배경/테두리 복구)
-- 버전 날짜 오타 `2025.05` → `2026.05` 수정
-- 코드 블록 복사 버튼 추가 (`product-context.md` 핵심 UX 원칙 구현, 복사/복사됨 상태 전환)
-- 실행 플랜 섹션에 section-num 뱃지 추가 (사이드바 nav 번호 01~05와 본문 헤더 일관성 확보)
-- scroll-spy에 `aria-current` 속성 추가 (접근성 개선)
-
----
-
-### 4. AI 에디터 연결 설정 섹션 추가
-
-**Claude Code 작업:**
-- `#editor-setup` 섹션 신규 추가
-- Claude Code(CLAUDE.md), Cursor(.cursor/rules), Windsurf(.windsurfrules), Copilot 도구별 진입점 파일 설정 방법과 공통 구조 예시 작성
-- 사이드바에 `🔗 에디터 연결` nav 항목 추가
-
----
-
-### 5. 빠른 시작 섹션 + 환경 전제 callout 추가
-
-**Claude Code 작업:**
-- hero 직후 `#quickstart` 섹션 신규 추가 (25분 5단계, 시간 배지)
-- 멀티 도구 사용 시 docs/ 폴더 하나로 관리하는 구조 안내
-- `#intro` 섹션에 AI 에디터 환경 전제 callout 추가
-- 사이드바에 `⚡ 빠른 시작` nav 항목 추가
-
----
-
-### 6. doc-comment 컴포넌트 추가 → 목적 재논의
-
-```
-아 그리고 혹시 내부에 댓글 달수도있어? 그 부분만 표시해서 나중에 반영하고싶어서
-```
-
-**Claude Code 작업:**
-- `doc-comment` 컴포넌트 추가 — 페이지 내 검토 메모 표시용
-
-```
-아~ 너한테 말하라고? 난 다른 디자이너들이 보고 댓글달길 바란건데
-```
-
-- 용도 혼선 확인: `doc-comment`는 Claude Code가 읽는 작업 메모 → 팀 협업 댓글은 별도 방식 필요 (미결)
+- `v0.1` 태그 → GitHub Pages 배포
 
 ---
 
 ### 7. 버전 관리 구조 개선 + v0.2 → v0.3 배포
 
-```
-이제 이런 내용들을 버전 별로 관리해서 업데이트하면 v0.2로 쌓고싶은데
-```
-
 **Claude Code 작업:**
 - `sidebar.html` 분리 — 3개 HTML 파일의 중복 버전 선택기를 단일 파일로 통합
-- 모바일 safe area 전면 대응: `viewport-fit=cover`, `env(safe-area-inset-*)`, `100dvh`
 - **v0.2 배포**: changelog 상세 기입, 버전 날짜 수정
 - **v0.3 배포**: 다크 모드, 제품 유형 자가진단 섹션, 5가지 확장 섹션 추가
 
@@ -867,32 +912,14 @@ ux 프린시플도 기본적인 룰을 넣거나 기획서기반 우선가치를
 | 커밋 | 설명 |
 |------|------|
 | `60dd2ab` | feat: v0.1 — AI Workflow 가이드 초기 배포 |
-| `c75c644` | refactor: 코드 정리 + changelog 추가 |
-| `ab70688` | feat: doc-comment 컴포넌트 추가 |
-| `03fdda7` | fix: 디자인 리뷰 피드백 반영 — 4개 이슈 수정 |
-| `ac9d4be` | feat: AI 에디터 연결 설정 섹션 추가 |
-| `b0f2de2` | feat: 빠른 시작 섹션 + 환경 전제 callout 추가 |
 | `89e1558` | v0.2 bump + 버전 선택기 Merge 충돌 해결 |
 | `0e5588f` | v0.3: 다크 모드 + 자가진단 + 5가지 확장 섹션 |
-| `810ecc4` | fix: 홈 카드 col-3 레이아웃 + extension 섹션 수정 |
 </script>
 
 <script type="text/plain" id="entry-2026-05-26">
 # 2026-05-26
 
 ## 주요 작업
-
-### Pencil MCP 활용 — 화면 탐색 실험
-
-```
-screens/home.html 읽고 현재 디자인을 canvas에 반영해줘.
-```
-
-- Pencil MCP로 홈 포함 6개 화면 캔버스 반영 (모바일 390×844 기준)
-- 문제 발견: Pencil 내부 변수가 SocraChat 팔레트 무시하고 자체 teal/blue로 렌더링
-- Pencil vs Figma MCP 비교 정리 → 팀 협업·핸드오프 목적이라면 Figma가 맞음
-
----
 
 ### Figma 계정 전환 + 계정 설정 확정
 
@@ -902,37 +929,13 @@ figma 토큰 내 계정인지 다시봐봐
 ```
 
 - Figma MCP가 `sangeun.park@socra.ai`로 연결된 것 확인 → `jumi.jeong@socra.ai`로 재연결
-- 최종 계정 설정 확정
-
----
-
-### DESIGN_SYSTEM.md 통합 + 문서 구조 정리
-
-```
-클로드.md, devlog.md, design_system.md, readme.md 이거 다 무슨차이야?
-```
-
-- `docs/DESIGN-SC.md` + AI Agent Rules → `DESIGN_SYSTEM.md` 단일 통합
-- `CLAUDE.md` 간소화 — 디자인 규칙 제거, `DESIGN_SYSTEM.md` 참조 방식으로
 
 ---
 
 ### 기획-프론트 미팅 준비
 
-```
-이번주~지난주 내가 무슨 업무했는지 요약해봐
-근데 이따 기획-프론트 개발자랑 프로세스 논의를 해야하는데
-```
-
 - 5/21~5/22 작업 요약 + 미팅 자료 정리
 - 미팅 핵심 아젠다 선별: 컴포넌트 시스템, i18n 배포 게이트, CSS 토큰 3계층
-- 해결 방향: `탐색(Figma 스케치) → 방향 확정 → AI 구현` 순서 재정비 필요
-
----
-
-### Notion 동기화 스크립트 버그 수정
-
-- 인자 없이 실행 시 전체 파일 중복 처리 문제 → 오늘 날짜 파일만 처리하도록 기본값 수정
 
 ---
 
@@ -940,8 +943,8 @@ figma 토큰 내 계정인지 다시봐봐
 
 | 커밋 | 설명 |
 |------|------|
-| `16b60cd` | refactor: 디자인 시스템 문서 정리 + Figma MCP 싱크 devlog 업데이트 |
-| `ed86ce6` | docs: 2026-05-26 devlog 추가 + Notion sync 스크립트 오늘 파일 우선 처리 |
+| `16b60cd` | refactor: 디자인 시스템 문서 정리 |
+| `ed86ce6` | docs: 2026-05-26 devlog 추가 |
 </script>
 
 <script type="text/plain" id="entry-2026-05-22">
@@ -955,22 +958,10 @@ figma 토큰 내 계정인지 다시봐봐
 
 - `scripts/sync-devlog-to-notion.mjs` 생성 — devlog/*.md → Notion DB 자동 동기화
 - Notion Integration `Socra_Rog Auto` 생성 + 토큰 연결
-- DAX 로그 DB Integration 공유 후 연동 완료
-
----
-
-### components.css 리팩토링
-
-> 나머지 6개 화면 컴포넌트 인스턴스로 재조립
-
-- 7개 screens/*.html의 중복 CSS → `components.css`로 추출
-- storybook이 유일한 컴포넌트 CSS 원본, 화면은 링크 방식으로 통일
 
 ---
 
 ### CSS 토큰 3계층 + 하드코딩 전부 제거
-
-> 하드코딩을 왜 하는거야? 안해야지
 
 - `colors_and_type.css` Primitive/Semantic/Component 3계층 구조화
 - 전체 파일 hex/px 하드코딩 0개로 완전 제거
@@ -978,18 +969,10 @@ figma 토큰 내 계정인지 다시봐봐
 
 ---
 
-### Figma Variables 3계층 구축 + 싱크 플로우 확정
-
-> 피그마 싱크해줘
+### Figma Variables 3계층 구축
 
 - Primitives(25개) → Theme(36개) → Spacing+Radii(16개) 완성
 - CSS ↔ Figma Variables 완전 정렬 확인
-
----
-
-### i18n 자동 검사 + 배포 게이트
-
-- `scripts/check-i18n.js` — 누락 키 있으면 Vercel 빌드 차단 (exit 1)
 
 ---
 
@@ -999,7 +982,6 @@ figma 토큰 내 계정인지 다시봐봐
 |------|------|
 | `24dbdf8` | refactor: eliminate all hardcoded values; add a11y WCAG 2.1 AA pass |
 | `bbde767` | feat: automated i18n coverage checker + deploy gate |
-| `9208220` | fix: vercel.json — set outputDirectory to root for static site |
 </script>
 
 <script type="text/plain" id="entry-2026-05-21">
@@ -1009,33 +991,19 @@ figma 토큰 내 계정인지 다시봐봐
 
 ### SocraChat — 프로토타입 첫 구현 + 배포
 
-> 이거 왜 안되는거야?
-
 - Claude Code Mac 설치 (`npm install -g @anthropic-ai/claude-code`)
-- Vercel 배포 결정 (Password Protection + 팀 공유)
 - 디자인 파일 기반 7개 화면 구현: landing, home, analyzing, comparison, source, followup, deep-chat
-- `flow.html` — 전체 화면 스텝 탐색, 키보드 화살표, KO/JA/EN 언어 전환, 다크/반응형 토글
+- `flow.html` — 전체 화면 스텝 탐색, KO/JA/EN 언어 전환
 - `storybook.html` — 컴포넌트 라이브러리 (Button, AI Avatar, Composer 등 12종)
-- `vercel.json` 라우팅 수정으로 404 해결 → https://socrachat.vercel.app 배포
+- https://socrachat.vercel.app 배포
 
 ---
 
-### Figma MCP 연동 + 컴포넌트 라이브러리
-
-> 지금 여기 있는 코드기반의 화면들을 피그마 화면으로 보내고싶어
+### Figma MCP 연동
 
 - Figma Personal Access Token 발급 + MCP 설정 완료
-- 7개 화면 각각 Figma 캡처 → 파일 `HFRVQXoWTWVaxMDNW7yapS`에 전송
+- 7개 화면 Figma 캡처 → 파일 전송
 - Figma Variables 65개 생성 (Theme 49개, Spacing 9개, Radius 7개, light/dark 2모드)
-
----
-
-### ship 체크리스트 자동화
-
-> 앞으로 수정 후 해야할 일 리스트업 해봐
-
-- `/ship` 커맨드 등록: i18n 검사 → 커밋 → 배포 → 브라우저 확인
-- `CLAUDE.md` i18n 규칙 등록
 
 ---
 
@@ -1043,10 +1011,9 @@ figma 토큰 내 계정인지 다시봐봐
 
 | 커밋 | 설명 |
 |------|------|
-| `797629f` | Initial commit: SocraChat prototype with Apple theme override |
+| `797629f` | Initial commit: SocraChat prototype |
 | `a53593e` | feat: Apple HIG theme + Figma component library |
-| `97ba429` | feat: unified toolbar, full i18n coverage, AP palette tokens |
-| `1565d2f` | chore: add /ship command and post-change checklist to CLAUDE.md |
+| `97ba429` | feat: unified toolbar, full i18n coverage |
 </script>
 
 <script>
@@ -1106,13 +1073,10 @@ function shiftMonth(delta) {
 
 function buildCalendar() {
   document.getElementById('cal-month').textContent = `${calYear}. ${MONTH_KO[calMonth]}`;
-
   const firstDow = new Date(calYear, calMonth, 1).getDay();
   const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
-
   let html = DOW.map(d => `<div class="cal-dow">${d}</div>`).join('');
   for (let i = 0; i < firstDow; i++) html += `<div class="cal-cell"></div>`;
-
   for (let d = 1; d <= daysInMonth; d++) {
     const dateStr = `${calYear}-${pad(calMonth + 1)}-${pad(d)}`;
     const dow = (firstDow + d - 1) % 7;
@@ -1127,7 +1091,6 @@ function buildCalendar() {
     const click = hasEntry ? `onclick="goTo(${idx})"` : '';
     html += `<div class="cal-cell${dowClass}${entryClass}${activeClass}${todayClass}" ${click}>${d}</div>`;
   }
-
   document.getElementById('cal-grid').innerHTML = html;
   buildList();
 }
@@ -1135,11 +1098,9 @@ function buildCalendar() {
 function setView(mode) {
   viewMode = mode;
   document.querySelectorAll('.vt-btn').forEach(b => b.classList.toggle('active', b.dataset.view === mode));
-
   const calSection = document.getElementById('cal-section');
   const list = document.getElementById('sidebar-list');
   const skillsSection = document.getElementById('skills-section');
-
   if (mode === 'skills') {
     calSection.style.display = 'none';
     list.style.display = 'none';
