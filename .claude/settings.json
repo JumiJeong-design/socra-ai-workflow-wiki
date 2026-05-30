@@ -1,0 +1,19 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/check-inline-style.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/check-version-consistency.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
