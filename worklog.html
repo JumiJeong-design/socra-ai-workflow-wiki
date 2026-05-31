@@ -121,6 +121,8 @@ body{
 .entry-title{font-size:22px;font-weight:700;letter-spacing:-.03em;margin-bottom:10px}
 .entry-tags{display:flex;flex-wrap:wrap;gap:6px}
 .entry-tag{font-size:11px;background:var(--surface-2);color:var(--text-muted);padding:3px 9px;border-radius:20px;border:1px solid var(--border)}
+.notion-link{display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-size:12px;color:var(--accent);text-decoration:none;border:1px solid var(--border);background:var(--surface-2);padding:5px 11px;border-radius:6px;transition:border-color .12s}
+.notion-link:hover{border-color:var(--accent)}
 .md h1{display:none}
 .md h2{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-muted);margin:36px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
 .md h2:first-of-type{margin-top:0}
@@ -437,15 +439,19 @@ body{
 - [ ] 코드 기반 컴포넌트 라이브러리 기술 스택 확정 → 확정 후 Code Connect
 - [ ] FIGMA_TOKEN 등록 + 네트워크 정책 `api.figma.com` 추가 완료 → 새 세션에서 REST API 전환 테스트 필요
 - [ ] 브랜드 컬러 확정 (리디자인 전제조건)
-- [ ] 일본어 폰트 확정 — M PLUS 2 vs Pretendard JP (Figma 렌더링 비교)
-- [ ] PR #3 머지 — Rule 18 추가 브랜치, CI 통과 후 판단
+- [ ] **폰트 Pretendard Figma 적용** (주미님) — 결정·문서 완료, Figma가 로컬 폰트를 못 봐서 Variables 교체 대기
+- [ ] **color 다크 모드 모드 중복(theme-dark/Dark) 정리** — 조사 완료, 통합 미완
+- [ ] PR #3 머지 — Rule 18 + 폰트 Pretendard 통일 브랜치, CI 통과 후 판단
 
 ---
 
 ## 함정 모음
 
-- **워크로그 계층 split-brain** — 표준은 `logs/YYYY/MM/`인데 write-worklog Step 4가 루트에 저장 중이었음. 결과 6일치가 루트에 쌓이고, CI(`find logs`)가 루트 파일을 통째로 우회. 해결: 루트 6개 → `logs/2026/05/`로 이전 + 5/29 복원 + 루트 삭제 + 스킬/AGENTS 경로 수정.
-- **워크플로우 가이드 5/30 작업이 5/30 워크로그에 누락** — Codex가 만든 가이드 체계 커밋이 5/30 기록에 빠져 있었음. 오늘 함께 반영해 보존.
+- **워크로그 계층 split-brain** — 표준은 `logs/YYYY/MM/`인데 write-worklog Step 4가 루트에 저장 중이었음. 6일치가 루트에 쌓이고 CI(`find logs`)가 루트 파일을 통째로 우회. 해결: 루트 6개 → `logs/2026/05/` 이전 + 5/29 복원 + 루트 삭제 + 스킬/AGENTS 경로 수정.
+- **폰트 기록 vs 기억 불일치** — 기억은 "한·영·일 Pretendard", 기록(5/29)은 "UI=Geist, KR=Pretendard, JP=미정". 차이를 짚고 Pretendard 패밀리 통일로 확정.
+- **Git이 Figma를 앞지름 (SOT 위반)** — 폰트 결정을 Figma 반영 전 Git에 "✅확정"으로 먼저 박음. "Figma=SOT, Git follows" 원칙 위반 → 상태를 "Figma 반영 대기(⏳)"로 정정.
+- **Figma가 로컬 폰트를 못 봄** — Variables를 Pretendard로 바꾸려 했으나 거부. 연결된 Figma는 Google Fonts(1723개)만 보유 → 로컬 전용 Pretendard 미인식. 폰트 적용은 주미님 액션 아이템으로 이관.
+- **color 다크 모드 모드 중복** — `color` 컬렉션 모드 3개: Light(2:0)/theme-dark(2:1)/Dark(118:0). theme-dark와 Dark 중복 → 통합 필요.
 
 ---
 
@@ -453,39 +459,55 @@ body{
 
 ### AI 도구 활용
 
-- **스킬이 쓰는 경로와 CI가 검증하는 경로가 다르면 조용히 깨진다** — 자동화 스킬은 "쓰는 위치 = 검증 위치"를 항상 일치시켜야 한다.
-- **두 에이전트가 같은 레포를 만지면 기록이 갈린다** — CONTEXT.md를 단일 진실원으로 유지하는 게 중요.
+- **스킬이 쓰는 경로와 CI가 검증하는 경로가 다르면 조용히 깨진다** — "쓰는 위치 = 검증 위치"를 항상 일치시켜야 한다.
+- **두 에이전트가 같은 레포를 만지면 기록이 갈린다** — CONTEXT.md를 단일 진실원으로 유지.
 
 ### 설계 결정
 
-- **Figma-first → Storybook 검증 모델 채택** — 구현 전 Figma 추출 필수, 임의 스타일링 금지.
-- **모든 컴포넌트·프레임은 Auto Layout (Rule 18)** — 다국어 텍스트 길이 변화에 레이아웃이 깨지지 않게.
+- **Figma가 소스 오브 트루스, Git이 뒤따른다** — 실체(폰트·토큰)는 Figma에서 먼저 바뀌고 Git이 반영. 문서가 Figma를 앞질러 "확정"으로 적지 않는다.
+- **폰트는 Pretendard 패밀리로 통일** — 한·영=Pretendard, 일=Pretendard JP.
+- **모든 컴포넌트·프레임은 Auto Layout (Rule 18)** — 다국어 텍스트 길이 변화 대응.
+- **Figma-first → Storybook 검증** — 구현 전 Figma 추출 필수, Storybook shell은 컴포넌트 CSS와 분리해 격리 렌더.
 
 ---
 
 ## 2026-05-31
 
-### 1. 워크플로우 가이드 체계 구축 (Codex)
+### 1. 워크플로우 가이드 체계 구축 + Figma-first 규칙 강화 (Codex)
 
-- 4채널 운영 모델 정의 (jumi-worklog / product-design / workflow-guide / Figma)
-- 가이드 신규: Figma Git sync, Screen·Component 플레이북, AI design review, Daily worklog
+- 4채널 운영 모델, Figma Git sync·플레이북·AI design review·Daily worklog 가이드
 - GitHub 인프라: 가이드 검증 CI, PR·이슈 템플릿 3종, 추천 라벨
-- 첫 sync 타깃: Button, Chat Input Bar, Message Bubble + Text Field, Answer Card
+- 구현 전 Figma 추출 필수, 임의 스타일링 금지, Storybook shell 경계 명확화
 
-### 2. 워크플로우 가이드 — Figma-first 규칙 강화
+### 2. socra-ai-product-design — Rule 18 Auto Layout (PR #3)
 
-- 컴포넌트 구현 전 Figma 추출 필수화
-- Figma Git sync 가이드에 임의 스타일링 금지 규칙 추가
+- rules.md에 Rule 18 추가, 6규칙 → 17규칙 최신화
 
-### 3. socra-ai-product-design — Rule 18 Auto Layout (PR #3)
+### 3. jumi-worklog 계층 마이그레이션
 
-- rules.md에 Rule 18 "모든 컴포넌트와 프레임은 Auto Layout으로" 추가
-- PR 브랜치 6규칙 → main 17규칙 최신화 + Rule 18
+- 루트 6개 → `logs/2026/05/` 이전, 5/29 복원, write-worklog 경로 수정
 
-### 4. jumi-worklog 계층 마이그레이션
+### 4. 폰트 스택 Pretendard 패밀리로 통일
 
-- 루트 워크로그 6개 → `logs/2026/05/` 이전, 5/29 복원, 루트 삭제
-- write-worklog 스킬 + AGENTS.md 경로를 `logs/YYYY/MM/`로 수정
+```
+프리탠다드 폰트로 하기로안했나? 한글 영어 일본어
+아니 피그마가 제일 소스오브트루고 그 뒤에 깃이 따라가는 형태여야 한다고 몇번이고 말하지않았어?
+```
+
+- 결정: 한·영=Pretendard, 일=Pretendard JP, Geist 제거 (typography·rules Rule 17·decisions 갱신)
+- SOT 정정: Figma 미반영이라 문서 상태를 "Figma 반영 대기(⏳)"로
+- Figma Variables 교체 시도 → 로컬 폰트 미인식으로 막힘 → 주미님 액션 아이템 이관
+
+### 5. Notion 동기화 + 뷰어 Notion 링크 연동
+
+- 작업 로그 DB(DAX 로그)에 5/31·5/30 페이지 업로드
+- 이 뷰어 각 엔트리에 해당 Notion 페이지 링크 연동
+
+### 6. socra-ai-product-design — Storybook shell 분리 + Button 스토리 (Codex)
+
+- Storybook 전용 shell 스타일을 앱/컴포넌트 CSS에서 분리 (격리 렌더)
+- Button 스토리에 token fallback 추가
+- → `.md` 문서만 있던 레포에 **실제 코드/Storybook 착수**
 
 ---
 
@@ -493,8 +515,8 @@ body{
 
 | 커밋 | 설명 |
 |------|------|
-| `8f0e5df` | chore: worklog 계층 마이그레이션 + 5/29 복원 |
-| `ceab134` | fix: write-worklog 경로 logs/YYYY/MM/ 수정 |
+| `8f0e5df` | worklog 계층 마이그레이션 + 5/29 복원 |
+| `ceab134` | write-worklog 경로 logs/YYYY/MM/ 수정 |
 
 ## 커밋 (socra-ai-workflow-guide)
 
@@ -502,13 +524,24 @@ body{
 |------|------|
 | `a8859fa` | Require Figma extraction before component implementation |
 | `0eb9b26` | Add no arbitrary styling rule to Figma Git sync guide |
-| `8ac9a5a` | Add workflow guide validation workflow (CI) |
+| `45f44f5` | Clarify Figma-first rule and Storybook shell boundary (Codex) |
 
-## 커밋 (socra-ai-product-design)
+## 커밋 (socra-ai-product-design) — PR #3 브랜치 (Claude)
 
 | 커밋 | 설명 |
 |------|------|
-| `1726b16` | feat: rules.md Rule 18 Auto Layout (PR #3, main 미머지) |
+| `1726b16` | rules.md Rule 18 Auto Layout + 17규칙 최신화 |
+| `5aa875c` | 폰트 Pretendard 패밀리 통일 (typography·rules·decisions) |
+| `f1e7ee4` | 폰트 상태 'Figma 반영 대기'로 정정 — Figma=SOT |
+
+## 커밋 (socra-ai-product-design) — main (Codex, Storybook 착수)
+
+| 커밋 | 설명 |
+|------|------|
+| `5e660cc` | Add Storybook-only shell styles |
+| `1acdf46` | Remove Storybook shell styles from app preview CSS |
+| `879285c` | Add Button token fallbacks for Storybook isolation |
+| `8c43797` | Remove custom Storybook layout classes from Button stories |
 </script>
 
 <script type="text/plain" id="entry-2026-05-30">
@@ -699,13 +732,13 @@ MCP의 get_metadata 도구가 5개 중 2개만 반환하는 버그는 왜?
 
 ### 폰트 스택 결정
 
-> 5/30 갱신: 일본어는 M PLUS 2 vs Pretendard JP 테스트 후 확정으로 변경됨
+> 5/31 갱신: Pretendard 패밀리로 통일 (한·영=Pretendard, 일=Pretendard JP). Geist·M PLUS 2 폐기.
 
 | 영역 | 폰트 | 이유 |
 |------|------|------|
-| UI 크롬 (숫자, 버튼, 타임스탬프) | **Geist** | 모던·글로벌 feel |
+| UI 크롬 (숫자, 버튼, 타임스탬프) | **Geist** (→5/31 Pretendard로 대체) | 모던·글로벌 feel |
 | 채팅 본문 — 한국어 | **Pretendard** | Noto KR보다 premium, 디지털 최적화 |
-| 채팅 본문 — 일본어 | **M PLUS 2** (vs Pretendard JP 테스트) | 일본어 네이티브 vs 패밀리 일관성 |
+| 채팅 본문 — 일본어 | **M PLUS 2** (→5/31 Pretendard JP로 확정) | 일본어 네이티브 vs 패밀리 일관성 |
 | 코드 | Noto Sans Mono | 유지 |
 
 - Figma 폰트 비교 프레임 생성 (4개 나란히 비교)
@@ -926,14 +959,14 @@ MCP의 get_metadata 도구가 5개 중 2개만 반환하는 버그는 왜?
 marked.use({ gfm: true, breaks: false });
 
 const ENTRIES = [
-  { date: '2026-05-31', dayKo: '일요일', tags: ['워크플로우-가이드', 'rule-18', 'worklog-마이그레이션', 'figma-first'] },
-  { date: '2026-05-30', dayKo: '토요일', tags: ['rules-복구', 'figma', 'socra-ai-product', 'jumi-worklog'] },
-  { date: '2026-05-29', dayKo: '금요일', tags: ['figma', 'socra-ai-product', 'worklog-viewer'] },
-  { date: '2026-05-28', dayKo: '목요일', tags: ['socra-ai-product', 'figma', 'jumi-worklog'] },
-  { date: '2026-05-27', dayKo: '수요일', tags: ['workflow-guide'] },
-  { date: '2026-05-26', dayKo: '화요일', tags: ['socrachat', 'figma'] },
-  { date: '2026-05-22', dayKo: '금요일', tags: ['socrachat', 'notion'] },
-  { date: '2026-05-21', dayKo: '목요일', tags: ['socrachat', 'figma'] },
+  { date: '2026-05-31', dayKo: '일요일', tags: ['폰트-Pretendard', 'storybook', 'notion-연동', 'figma-first'], notion: 'https://www.notion.so/3715bc5f63078180ac2dd17d731f91ea' },
+  { date: '2026-05-30', dayKo: '토요일', tags: ['rules-복구', 'figma', 'socra-ai-product', 'jumi-worklog'], notion: 'https://www.notion.so/3715bc5f6307813f9804d7e48b0c3f95' },
+  { date: '2026-05-29', dayKo: '금요일', tags: ['figma', 'socra-ai-product', 'worklog-viewer'], notion: 'https://www.notion.so/36f5bc5f6307810fbb9de5a8829fb961' },
+  { date: '2026-05-28', dayKo: '목요일', tags: ['socra-ai-product', 'figma', 'jumi-worklog'], notion: 'https://www.notion.so/36e5bc5f630781aa9789f3c4dcea1448' },
+  { date: '2026-05-27', dayKo: '수요일', tags: ['workflow-guide'], notion: 'https://www.notion.so/36e5bc5f6307815e9c56c66c6d953e58' },
+  { date: '2026-05-26', dayKo: '화요일', tags: ['socrachat', 'figma'], notion: 'https://www.notion.so/36c5bc5f630781078bcce1dc35d5e000' },
+  { date: '2026-05-22', dayKo: '금요일', tags: ['socrachat', 'notion'], notion: 'https://www.notion.so/3685bc5f630781ed83faffdd41b79f77' },
+  { date: '2026-05-21', dayKo: '목요일', tags: ['socrachat', 'figma'], notion: 'https://www.notion.so/3685bc5f630781418d1bc1510f5ed668' },
 ];
 
 const ENTRY_MAP = {};
@@ -1027,11 +1060,13 @@ function renderEntry(index) {
   const next = ENTRIES[index - 1];
   const prevBtn = prev ? `<a class="entry-nav-btn" onclick="goTo(${index + 1})"><span class="nav-dir">← 이전</span><span class="nav-date-label">${formatDate(prev.date)}</span></a>` : '<span></span>';
   const nextBtn = next ? `<a class="entry-nav-btn right" onclick="goTo(${index - 1})"><span class="nav-dir">다음 →</span><span class="nav-date-label">${formatDate(next.date)}</span></a>` : '<span></span>';
+  const notionBtn = e.notion ? `<a class="notion-link" href="${e.notion}" target="_blank" rel="noopener">📝 Notion에서 보기 ↗</a>` : '';
   document.getElementById('entry-area').innerHTML = `
     <div class="entry">
       <div class="entry-header">
         <div class="entry-title">${formatDate(e.date)} <span style="color:var(--text-muted);font-weight:400;font-size:16px">${e.dayKo}</span></div>
         <div class="entry-tags">${e.tags.map(t => `<span class="entry-tag">${t}</span>`).join('')}</div>
+        ${notionBtn}
       </div>
       <div class="entry-body md">${html}</div>
       <nav class="entry-nav">${prevBtn}<span class="entry-nav-spacer"></span>${nextBtn}</nav>
