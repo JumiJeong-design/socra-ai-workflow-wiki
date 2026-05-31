@@ -21,11 +21,21 @@
 
 AI must not invent visual values inside code, preview, or Storybook and call that sync.
 
-- No arbitrary colors, spacing, radius, typography, shadows, sizes, labels, or state styling.
+- If Figma read/write access exists, synced component visual changes start in Figma first.
+- Do not create a Git/Storybook-first component candidate for color, size, spacing, radius, typography, state styling, icon size, or variant naming when the Figma source can be edited.
 - Every visual implementation value must come from a Figma node extraction, Figma variable, Git spec, sync log, or ADR.
-- If a value is missing, stop and document an open question instead of guessing.
+- If a value is missing and Figma is editable, update Figma or ask for designer approval before changing Git/code.
+- If Figma access is blocked, mark the work `blocked-by-figma-permission` or `prototype-only`; do not call it verified sync.
 - Prototype-only experiments must be labeled as `exploration` or `prototype-only` and must not update approved specs or verified Storybook status.
 - Preview/Storybook is a verification surface, not a replacement design surface.
+
+## Storybook Boundary
+
+Storybook does not need to visually copy the Figma design file as a page.
+
+- Storybook chrome, docs page layout, panels, headings, examples, and explanatory surfaces may be designed for developer/designer readability.
+- The rendered component internals must match Figma: tokens, dimensions, variants, states, typography, spacing, radius, shadows, icon sizing, and interaction state visuals.
+- Storybook page-shell styling must not leak into component CSS or become component source-of-truth.
 
 ## Figma Zones
 
@@ -58,13 +68,17 @@ Figma Exploration
 -> Verified sync
 ```
 
+If Figma is editable and a component visual contract changes, the flow must not start at Git spec or Storybook.
+
 ## AI Checklist
 
 Before updating Git spec, code, preview, or Storybook, AI must answer:
 
 - Is this Figma work exploration, candidate, approved component, approved screen, or archive?
 - Is this a sync target?
+- Do I have Figma read/write access? If yes, has the component source been updated or verified there first?
 - Which Figma node/variable or Git decision is the source for every visual value?
+- Am I changing the component internals, or only the Storybook/preview page shell?
 - Does it need a Git spec update, or only worklog/context capture?
 - Is there a Storybook story or should the story status remain `pending`?
 - Is Code Connect relevant now, or optional later?
@@ -78,6 +92,7 @@ Before updating Git spec, code, preview, or Storybook, AI must answer:
 - Exploration and candidate work are not forced into implementation contracts.
 - PRs explain whether the change affects Figma, Git spec, code, Storybook, or only exploration context.
 - No preview or Storybook visual value is introduced without a source.
+- Storybook shell may differ from Figma, but synced component internals must match Figma.
 
 ## Source Worklog
 
