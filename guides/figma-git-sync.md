@@ -17,6 +17,16 @@
 | Implemented UI review | Storybook | Figma/Git comparison |
 | Design decisions | Git ADR | Figma annotations when useful |
 
+## Non-Negotiable Rule
+
+AI must not invent visual values inside code, preview, or Storybook and call that sync.
+
+- No arbitrary colors, spacing, radius, typography, shadows, sizes, labels, or state styling.
+- Every visual implementation value must come from a Figma node extraction, Figma variable, Git spec, sync log, or ADR.
+- If a value is missing, stop and document an open question instead of guessing.
+- Prototype-only experiments must be labeled as `exploration` or `prototype-only` and must not update approved specs or verified Storybook status.
+- Preview/Storybook is a verification surface, not a replacement design surface.
+
 ## Figma Zones
 
 | Zone | Sync Rule |
@@ -41,6 +51,7 @@
 Figma Exploration
 -> Figma Candidates
 -> Approved Component / Screen
+-> Figma extraction audit
 -> Git spec
 -> Code implementation
 -> Storybook review
@@ -49,10 +60,11 @@ Figma Exploration
 
 ## AI Checklist
 
-Before updating Git spec, AI must answer:
+Before updating Git spec, code, preview, or Storybook, AI must answer:
 
 - Is this Figma work exploration, candidate, approved component, approved screen, or archive?
 - Is this a sync target?
+- Which Figma node/variable or Git decision is the source for every visual value?
 - Does it need a Git spec update, or only worklog/context capture?
 - Is there a Storybook story or should the story status remain `pending`?
 - Is Code Connect relevant now, or optional later?
@@ -61,9 +73,11 @@ Before updating Git spec, AI must answer:
 
 - Every sync-target component links a Figma node or explains why none exists.
 - Every approved component has a Git spec.
+- Every implemented component has a Figma extraction audit or equivalent source mapping.
 - Every implemented component has or plans a Storybook story.
 - Exploration and candidate work are not forced into implementation contracts.
 - PRs explain whether the change affects Figma, Git spec, code, Storybook, or only exploration context.
+- No preview or Storybook visual value is introduced without a source.
 
 ## Source Worklog
 
