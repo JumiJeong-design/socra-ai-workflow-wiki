@@ -49,27 +49,45 @@
       <div class="home-group-title">대표 운영 흐름</div>
       <div class="home-flow">
         <div class="home-flow-intro">
-          <h2>Figma에서 결정하고, Git에 남기고, Storybook에서 검수하고, Worklog로 맥락을 이어간다.</h2>
-          <p>디자인 판단, 구현 기준, 검수 표면, 업무 기록이 따로 흩어지지 않도록 하나의 루프로 연결합니다.</p>
+          <h2>탐색은 빠른 도구에서 하고, 확정 기준은 팀이 다시 찾을 수 있는 표면에 남긴다.</h2>
+          <p>Figma만 보거나 코드만 보는 흐름이 아니라, 디자인 판단·구현 계약·검수 표면·업무 기록을 역할별로 연결합니다.</p>
         </div>
+
+        <div class="home-flow-lane">
+          <div class="home-flow-lane-label">Explore</div>
+          <div class="home-flow-options" aria-label="디자인 탐색에 사용할 수 있는 도구">
+            <div class="home-flow-step">
+              <div class="home-flow-kicker">Visual exploration</div>
+              <div class="home-flow-title">Figma</div>
+              <p>시각 방향, 컴포넌트 구조, 정적 레이아웃을 빠르게 탐색한다.</p>
+            </div>
+            <div class="home-flow-step">
+              <div class="home-flow-kicker">Interaction exploration</div>
+              <div class="home-flow-title">Code Prototype</div>
+              <p>HTML, React, local app, Storybook screen으로 데이터 상태와 인터랙션을 먼저 확인한다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="home-flow-divider" aria-hidden="true">↓</div>
 
         <div class="home-flow-steps" aria-label="Figma, Git, Storybook, Notes와 Worklog로 이어지는 AI workflow 운영 흐름">
           <div class="home-flow-step">
-            <div class="home-flow-kicker">Source</div>
+            <div class="home-flow-kicker">Design source</div>
             <div class="home-flow-title">Figma</div>
-            <p>디자인 의도, 컴포넌트 구조, 시각 기준을 먼저 결정한다.</p>
+            <p>확정된 시각 기준, 컴포넌트 구조, 사용 의도를 정리한다.</p>
           </div>
           <div class="home-flow-arrow" aria-hidden="true">→</div>
           <div class="home-flow-step">
-            <div class="home-flow-kicker">Contract</div>
+            <div class="home-flow-kicker">Implementation source</div>
             <div class="home-flow-title">Git</div>
-            <p>토큰, 규칙, ADR, 컴포넌트 spec을 변경 이력으로 남긴다.</p>
+            <p>토큰, 규칙, ADR, md spec, 코드 변경 이력을 계약으로 남긴다.</p>
           </div>
           <div class="home-flow-arrow" aria-hidden="true">→</div>
           <div class="home-flow-step">
             <div class="home-flow-kicker">Review</div>
             <div class="home-flow-title">Storybook</div>
-            <p>상태, 다국어, 접근성, 화면 조합을 실제 구현 기준으로 검수한다.</p>
+            <p>컴포넌트, 패턴, 대표 화면을 상태·다국어·접근성 기준으로 검수한다.</p>
           </div>
           <div class="home-flow-arrow" aria-hidden="true">→</div>
           <div class="home-flow-step">
@@ -80,7 +98,7 @@
         </div>
 
         <div class="home-flow-loop">
-          <span>AI는 각 단계를 대신 결정하지 않고, 읽기 · 정리 · 구현 보조 · QA · 기록 승격을 돕는다.</span>
+          <span>AI는 각 단계를 대신 결정하지 않고, 탐색 가속 · 구현 보조 · QA · 기록 정리 · rules/playbook 승격을 돕는다.</span>
         </div>
       </div>
     </div>

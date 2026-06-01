@@ -562,6 +562,11 @@ body{
 - [ ] workflow guide에 새 guide/playbook 파일을 별도 커밋으로 정리
 - [ ] `publish-pages`를 실제 커스텀 스킬 파일로 승격할지 검토
 
+## 내일 먼저 확인할 문서
+
+- [2026-06-03 주간 디자인 미팅 아젠다](https://github.com/JumiJeong-design/socra-ai-workflow-guide/blob/main/notes/weekly-design-meeting-2026-06-03.md)
+- [Storybook을 디자이너 검수 기준으로 쓰는 방향 메모](https://github.com/JumiJeong-design/socra-ai-workflow-guide/blob/main/notes/storybook-design-system-memo-2026-06-03.md)
+
 ---
 
 ## 함정 모음
@@ -585,6 +590,8 @@ body{
 
 - 하드코딩 금지는 “이 값은 박지 않는다”를 계속 나열하는 일이 아니다. 값의 출처, 바뀔 가능성, 함께 바뀌어야 하는 범위를 확인한 뒤 source에서 읽거나 계산하는 태도다.
 - Storybook이 최종 화면 조합 기준이 되려면 Figma 값, Git spec, 전역 token/font 로딩이 같은 루프로 움직여야 한다.
+- “Figma-first”는 모든 탐색을 Figma에서만 해야 한다는 뜻이 아니다. 탐색은 Figma, code prototype, Storybook screen, local app 등 문제를 가장 빨리 검증할 수 있는 실행 표면에서 시작할 수 있다.
+- 다만 탐색이 끝난 뒤에는 시각 기준은 Figma, 구현 기준은 Git, 구현 검수는 Storybook, 결정 맥락은 Worklog/Notes에 정리해야 다음 작업자가 같은 기준을 회수할 수 있다.
 
 ---
 
@@ -640,11 +647,6 @@ body{
 - Storybook을 “디자이너가 검수하는 구현 결과물”에서 시작해 장기적으로 “디자인 시스템 작업 공간”으로 확장하는 방향을 별도 메모로 정리했다.
 - worklog를 기준 인덱스로 쓰기 위해 세부 문서를 `notes/`에 분리하고, 아래 링크로 연결했다.
 
-#### 참고 문서
-
-- [2026-06-03 주간 디자인 미팅 아젠다](https://github.com/JumiJeong-design/socra-ai-workflow-guide/blob/main/notes/weekly-design-meeting-2026-06-03.md)
-- [Storybook을 디자이너 검수 기준으로 쓰는 방향 메모](https://github.com/JumiJeong-design/socra-ai-workflow-guide/blob/main/notes/storybook-design-system-memo-2026-06-03.md)
-
 ### 7. 스킬 / 훅 후보 정리
 
 - 기존 `prep-meeting` 스킬이 이미 있었으므로 `weekly-design-meeting-prep`을 새로 만들지 않고 `prep-meeting`으로 통합했다.
@@ -652,6 +654,15 @@ body{
 - 긴 메모를 worklog에 직접 넣지 않고 `notes/`로 분리한 뒤 worklog에 링크하는 `worklog-link-notes` 스킬을 추가했다.
 - Figma source와 Storybook 구현을 비교하는 `storybook-design-review` 스킬을 추가했다.
 - 자동화 훅 후보로 `worklog-note-link-check`, `storybook-story-coverage-check`를 추가했다.
+
+### 8. Figma-first에서 탐색 도구 분리로 확장
+
+- AI로 레이아웃과 인터랙션이 포함된 화면을 코드 기반 프로토타입으로 먼저 만드는 흐름도 가능하다는 점을 정리했다.
+- 특히 채팅, 입력, 로딩, 에러, 데이터 상태 변화, 모바일 반응형처럼 실제 동작을 봐야 판단되는 화면은 Figma보다 HTML/React prototype, Storybook screen, local app에서 먼저 보는 편이 빠를 수 있다.
+- 여기서 말하는 prototype은 Figma Prototype만이 아니라 HTML/CSS/JS, React prototype, Storybook screen, local app, Framer 등 실행 가능한 검수 표면 전체를 뜻한다.
+- 최종 원칙을 다음처럼 보정했다.
+
+> 탐색은 가장 빠르고 정확한 도구에서 한다. 시각 기준은 Figma에 정리하고, 구현 기준은 Git에 남기고, 실제 동작은 Storybook, code prototype, local app, Figma Prototype 같은 실행 가능한 표면에서 검수한다.
 
 ## 커밋 (socra-ai-workflow-guide)
 
@@ -662,6 +673,7 @@ body{
 | `ca55e2a` | docs: add context record workflow guidance |
 | `bad7b6d` | docs: link weekly meeting notes from worklog |
 | `350af4b` | docs: add home workflow loop visual |
+| `29acfbb` | docs: update worklog skills and hook candidates |
 
 ## 검증
 

@@ -1347,6 +1347,39 @@ ol.styled li::before {
   align-items: stretch;
 }
 
+.home-flow-lane {
+  border: 1px solid var(--accent-border2);
+  background: var(--accent-dim2);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.home-flow-lane-label {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.home-flow-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.home-flow-divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
 .home-flow-step {
   min-height: 156px;
   background: var(--bg);
@@ -1446,6 +1479,7 @@ ol.styled li::before {
   .home-flow { padding: 18px; }
   .home-flow-intro { grid-template-columns: 1fr; gap: 10px; }
   .home-flow-intro h2 { font-size: 17px; }
+  .home-flow-options { grid-template-columns: 1fr; }
   .home-flow-steps { grid-template-columns: 1fr; }
   .home-flow-step { min-height: auto; }
   .home-flow-arrow {
