@@ -174,7 +174,6 @@ body{
 
   <div class="view-toggle">
     <button class="vt-btn active" data-view="cal" onclick="setView('cal')">📅 캘린더</button>
-    <button class="vt-btn" data-view="list" onclick="setView('list')">☰ 리스트</button>
     <button class="vt-btn" data-view="skills" onclick="setView('skills')">⚡ 스킬</button>
   </div>
 
@@ -429,6 +428,61 @@ body{
   </div>
   <div id="entry-area"></div>
 </div>
+
+<script type="text/plain" id="entry-2026-06-02">
+# 2026-06-02
+
+## 주요 작업
+
+### Prism Storybook QA
+
+- `riiid/prism` Storybook을 로컬에서 다시 띄우고 Button / Tooltip / Typography를 검수했다.
+- Button story 구조를 정리했다.
+  - `Playground`: props 조합 확인
+  - `Overview`: 주요 상태 빠른 확인
+  - `Matrix`: variant × size × state 누락 검수
+  - `Locales`: 영어/한국어/일본어 길이 검수
+- Button 기본 상태는 icon이 없는 text button으로 두고, icon 포함 버튼은 명시적 조합으로 다루기로 했다.
+- loading 상태는 텍스트를 `loading`으로 바꾸지 않고 dots 형태로 표현했다.
+- icon-only 버튼은 접근성 이름이 필요하고, Tooltip은 시각 보조로 pairing할 수 있다는 기준을 정리했다.
+
+### Tooltip component
+
+- Figma Tooltip component set을 다시 읽고 Storybook Tooltip을 최신 디자인으로 맞췄다.
+- Tooltip은 hover, focus, long press에서 보이도록 구현했다.
+- visual review용으로는 상시 노출되는 `Positions` story를 별도로 두었다.
+- Tooltip `Locales` story를 추가해 영어/한국어/일본어 문구 길이를 확인할 수 있게 했다.
+- 최신 Figma 값에 맞춰 white bubble, neutral/900 text, 8px radius, 34px height, 2px trigger gap을 반영했다.
+
+### Typography / Fonts
+
+- Storybook이 Figma와 다르게 보이는 문제를 줄이기 위해 Pretendard / Pretendard JP variable font를 repo에 self-hosting했다.
+- Storybook preview가 실제 앱 스타일을 읽도록 전역 style import를 추가했다.
+- Pretendard weight diagnostic story를 추가해 Figma 메뉴 기준 weight를 확인했다.
+- Button text style 혼재를 Figma에서 정리했다.
+  - `button/s`: 14px, Regular 400
+  - `button/m`: 16px, Medium 500
+  - `button/l`: 17px, Medium 500
+
+### Worklog / Workflow Guide
+
+- 6/1과 6/2 작업 기록을 날짜별로 분리했다.
+- worklog 캘린더의 `리스트` 탭은 중복이라 제거하고, 캘린더 아래 compact list를 유지했다.
+- 캘린더 시작 월은 하드코딩하지 않고 최신 entry 날짜에서 계산하도록 바꿨다.
+- workflow guide와 Prism agent rules에 재사용성과 관계를 먼저 보는 원칙을 추가했다.
+
+## 검증
+
+- Prism `npm run build` 통과.
+- Prism `npm run build-storybook -- --disable-telemetry` 통과.
+- workflow guide `sh scripts/validate-docs.sh` 통과.
+
+## 다음 할 일
+
+- [ ] 남은 컴포넌트에 같은 Figma - Git - Storybook sync loop 적용
+- [ ] Button / Tooltip 변경분 commit / PR 범위 결정
+- [ ] workflow guide에 새 guide/playbook 파일을 별도 커밋으로 정리
+</script>
 
 <script type="text/plain" id="entry-2026-06-01">
 # 2026-06-01
@@ -1013,6 +1067,7 @@ MCP의 get_metadata 도구가 5개 중 2개만 반환하는 버그는 왜?
 marked.use({ gfm: true, breaks: false });
 
 const ENTRIES = [
+  { date: '2026-06-02', dayKo: '화요일', tags: ['prism', 'storybook', 'tooltip', 'typography'] },
   { date: '2026-06-01', dayKo: '월요일', tags: ['핸드오프', 'codex-인계', '에이전트-분담'], notion: 'https://www.notion.so/3725bc5f630781ad8c3cdf2ab1987206' },
   { date: '2026-05-31', dayKo: '일요일', tags: ['폰트-Pretendard', 'storybook', 'notion-연동', 'figma-first'], notion: 'https://www.notion.so/3715bc5f63078180ac2dd17d731f91ea' },
   { date: '2026-05-30', dayKo: '토요일', tags: ['rules-복구', 'figma', 'socra-ai-product', 'jumi-worklog'], notion: 'https://www.notion.so/3715bc5f6307813f9804d7e48b0c3f95' },
@@ -1031,7 +1086,8 @@ const DOW = ['일','월','화','수','목','금','토'];
 const MONTH_KO = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
 
 let currentIndex = 0;
-let calYear = 2026, calMonth = 4;
+const [latestYear, latestMonth] = ENTRIES[0].date.split('-').map(Number);
+let calYear = latestYear, calMonth = latestMonth - 1;
 let viewMode = 'cal';
 const todayStr = new Date().toISOString().slice(0, 10);
 
@@ -1076,6 +1132,7 @@ function buildCalendar() {
   buildList();
 }
 function setView(mode) {
+  if (mode !== 'skills') mode = 'cal';
   viewMode = mode;
   document.querySelectorAll('.vt-btn').forEach(b => b.classList.toggle('active', b.dataset.view === mode));
   const cal = document.getElementById('cal-section');
@@ -1083,30 +1140,19 @@ function setView(mode) {
   const skills = document.getElementById('skills-section');
   if (mode === 'skills') {
     cal.style.display = 'none'; list.style.display = 'none'; skills.style.display = 'flex';
-  } else if (mode === 'cal') {
-    cal.style.display = ''; list.style.display = ''; list.classList.add('with-border'); skills.style.display = 'none'; buildList();
   } else {
-    cal.style.display = 'none'; list.style.display = ''; list.classList.remove('with-border'); skills.style.display = 'none'; buildList();
+    cal.style.display = ''; list.style.display = ''; list.classList.add('with-border'); skills.style.display = 'none'; buildList();
   }
 }
 function toggleSkill(id) { document.getElementById('skill-' + id).classList.toggle('expanded'); }
 function buildList() {
   document.getElementById('brand-meta').textContent = `${ENTRIES.length}개 항목`;
   const list = document.getElementById('sidebar-list');
-  if (viewMode === 'cal') {
-    list.innerHTML = ENTRIES.map((e, i) => `
-      <div class="list-item compact${i === currentIndex ? ' active' : ''}" onclick="goTo(${i})">
-        <div class="list-dot"></div>
-        <span class="list-date">${formatDate(e.date)} ${e.dayKo}</span>
-      </div>`).join('');
-  } else {
-    list.innerHTML = ENTRIES.map((e, i) => `
-      <div class="list-item${i === currentIndex ? ' active' : ''}" onclick="goTo(${i})">
-        <span class="list-date">${formatDate(e.date)}</span>
-        <span class="list-day">${e.dayKo}</span>
-        <div class="list-tags">${e.tags.map(t => `<span class="list-tag">${t}</span>`).join('')}</div>
-      </div>`).join('');
-  }
+  list.innerHTML = ENTRIES.map((e, i) => `
+    <div class="list-item compact${i === currentIndex ? ' active' : ''}" onclick="goTo(${i})">
+      <div class="list-dot"></div>
+      <span class="list-date">${formatDate(e.date)} ${e.dayKo}</span>
+    </div>`).join('');
 }
 function renderEntry(index) {
   const e = ENTRIES[index];
