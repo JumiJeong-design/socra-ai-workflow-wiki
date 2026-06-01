@@ -455,9 +455,43 @@ body{
 <script type="text/plain" id="entry-2026-06-02">
 # 2026-06-02
 
-## 주요 작업
+## 미해결 항목
 
-### Prism Storybook QA
+- [ ] 남은 컴포넌트에 같은 Figma - Git - Storybook sync loop 적용
+- [ ] Button / Tooltip 변경분 commit / PR 범위 결정
+- [ ] workflow guide에 새 guide/playbook 파일을 별도 커밋으로 정리
+- [ ] `publish-pages`를 실제 커스텀 스킬 파일로 승격할지 검토
+- [ ] `changelog.html`에 이번 workflow guide 변경을 버전 항목으로 올릴지 결정
+
+---
+
+## 함정 모음
+
+- **원격 최신을 받지 않은 상태에서 Pages HTML을 수정하면 충돌난다.** 원격에 이미 6/1·5/31·Notion 링크가 반영돼 있었고, 오래된 로컬 파일에 6/1·6/2를 추가해서 같은 영역에서 rebase conflict가 발생했다.
+- **untracked 파일도 pull/rebase를 막을 수 있다.** 원격에는 이미 있는 guide/playbook 파일이 로컬에서는 untracked라 checkout을 막았다. 삭제가 아니라 stash로 보관한 뒤 rebase해야 했다.
+- **push 완료와 웹 반영은 같은 순간이 아니다.** GitHub Pages deployment 완료까지 기다리고, cache-busting URL로 실제 HTML에 변경이 들어왔는지 확인해야 한다.
+- **worklog와 changelog는 역할이 다르다.** 일일 작업 기록은 `worklog.html`, 가이드 사이트의 버전 변경 기록은 `changelog.html`에 남긴다. worklog만 바꾼 배포를 changelog 변경으로 착각하면 안 된다.
+- **하드코딩 금지를 항목별 금지 목록으로 쓰면 규칙이 좁아진다.** 핵심은 재사용성과 관계를 먼저 보는 것이다.
+
+---
+
+## 회고 및 인사이트
+
+### 운영
+
+- 빠른 배포일수록 먼저 원격 최신 상태를 확인해야 한다. 당장 보여줘야 하는 상황에서도 `fetch/pull → 최소 파일 stage → push → deployment 확인 → URL 검증` 순서를 지키는 편이 결과적으로 더 빠르다.
+- 충돌 해결은 새 내용만 밀어붙이는 일이 아니다. 기존 원격 데이터가 더 최신이면 그것을 기준으로 살리고, 내가 추가한 부분만 얹어야 기록 유실을 막을 수 있다.
+
+### 코드 품질
+
+- 하드코딩 금지는 “이 값은 박지 않는다”를 계속 나열하는 일이 아니다. 값의 출처, 바뀔 가능성, 함께 바뀌어야 하는 범위를 확인한 뒤 source에서 읽거나 계산하는 태도다.
+- Storybook이 최종 화면 조합 기준이 되려면 Figma 값, Git spec, 전역 token/font 로딩이 같은 루프로 움직여야 한다.
+
+---
+
+## 2026-06-02
+
+### 1. Prism Storybook QA
 
 - `riiid/prism` Storybook을 로컬에서 다시 띄우고 Button / Tooltip / Typography를 검수했다.
 - Button story 구조를 정리했다.
@@ -469,7 +503,7 @@ body{
 - loading 상태는 텍스트를 `loading`으로 바꾸지 않고 dots 형태로 표현했다.
 - icon-only 버튼은 접근성 이름이 필요하고, Tooltip은 시각 보조로 pairing할 수 있다는 기준을 정리했다.
 
-### Tooltip component
+### 2. Tooltip component
 
 - Figma Tooltip component set을 다시 읽고 Storybook Tooltip을 최신 디자인으로 맞췄다.
 - Tooltip은 hover, focus, long press에서 보이도록 구현했다.
@@ -477,7 +511,7 @@ body{
 - Tooltip `Locales` story를 추가해 영어/한국어/일본어 문구 길이를 확인할 수 있게 했다.
 - 최신 Figma 값에 맞춰 white bubble, neutral/900 text, 8px radius, 34px height, 2px trigger gap을 반영했다.
 
-### Typography / Fonts
+### 3. Typography / Fonts
 
 - Storybook이 Figma와 다르게 보이는 문제를 줄이기 위해 Pretendard / Pretendard JP variable font를 repo에 self-hosting했다.
 - Storybook preview가 실제 앱 스타일을 읽도록 전역 style import를 추가했다.
@@ -487,12 +521,25 @@ body{
   - `button/m`: 16px, Medium 500
   - `button/l`: 17px, Medium 500
 
-### Worklog / Workflow Guide
+### 4. Worklog / Workflow Guide
 
 - 6/1과 6/2 작업 기록을 날짜별로 분리했다.
 - worklog 캘린더의 `리스트` 탭은 중복이라 제거하고, 캘린더 아래 compact list를 유지했다.
 - 캘린더 시작 월은 하드코딩하지 않고 최신 entry 날짜에서 계산하도록 바꿨다.
 - workflow guide와 Prism agent rules에 재사용성과 관계를 먼저 보는 원칙을 추가했다.
+
+### 5. GitHub Pages 배포 검증
+
+- `worklog.html`만 최소 변경으로 commit / push했다.
+- GitHub Pages deployment 완료까지 확인했다.
+- cache-busting URL로 실제 배포 HTML에 `entry-2026-06-02`, `publish-pages`, 최신 캘린더 계산 코드가 들어왔는지 확인했다.
+
+## 커밋 (socra-ai-workflow-guide)
+
+| 커밋 | 설명 |
+|------|------|
+| `7d2bf31` | docs: update worklog entries |
+| `b8cd717` | docs: add pages publish lessons |
 
 ## 검증
 
@@ -501,24 +548,6 @@ body{
 - workflow guide `sh scripts/validate-docs.sh` 통과.
 - GitHub Pages deployment 완료 확인.
 - 배포 URL에서 `entry-2026-06-02`와 최신 캘린더 계산 코드 확인.
-
-## 함정 모음
-
-- **원격 최신을 받지 않은 상태에서 Pages HTML을 수정하면 충돌난다.** 원격에 이미 6/1·5/31·Notion 링크가 반영돼 있었고, 오래된 로컬 파일에 6/1·6/2를 추가해서 같은 영역에서 rebase conflict가 발생했다.
-- **untracked 파일도 pull/rebase를 막을 수 있다.** 원격에는 이미 있는 guide/playbook 파일이 로컬에서는 untracked라 checkout을 막았다. 삭제가 아니라 stash로 보관한 뒤 rebase해야 했다.
-- **push 완료와 웹 반영은 같은 순간이 아니다.** GitHub Pages deployment 완료까지 기다리고, cache-busting URL로 실제 HTML에 변경이 들어왔는지 확인해야 한다.
-- **worklog와 changelog는 역할이 다르다.** 일일 작업 기록은 `worklog.html`, 가이드 사이트의 버전 변경 기록은 `changelog.html`에 남긴다. worklog만 바꾼 배포를 changelog 변경으로 착각하면 안 된다.
-
-## 회고 및 인사이트
-
-### 운영
-
-- 빠른 배포일수록 먼저 원격 최신 상태를 확인해야 한다. 당장 보여줘야 하는 상황에서도 `fetch/pull → 최소 파일 stage → push → deployment 확인 → URL 검증` 순서를 지키는 편이 결과적으로 더 빠르다.
-- 충돌 해결은 새 내용만 밀어붙이는 일이 아니다. 기존 원격 데이터가 더 최신이면 그것을 기준으로 살리고, 내가 추가한 부분만 얹어야 기록 유실을 막을 수 있다.
-
-### 코드 품질
-
-- 하드코딩 금지는 항목별 금지 목록이 아니라 재사용성과 관계를 먼저 보는 태도다. 값의 출처, 바뀔 가능성, 함께 바뀌어야 하는 범위를 확인한 뒤 source에서 읽거나 계산해야 한다.
 
 ## 다음 할 일
 
@@ -544,6 +573,9 @@ body{
 ## 함정 모음
 
 - **두 에이전트 동시 작업 시 파일 충돌 위험** — Claude/Codex가 같은 레포를 동시에 만지면 기록·코드가 갈림. 해결: 영역 분리(소유권). Codex=workflow-guide 구조 + Storybook 코드, Claude=Figma MCP·워크로그·CONTEXT·Notion. 같은 파일 동시 편집 금지.
+- **Figma source보다 Git/Storybook이 앞서가면 sync가 깨진다** — Button size 후보를 먼저 preview에 만들었던 흐름을 되짚고, Figma source first hard stop과 ADR로 재발 방지 규칙을 남겼다.
+- **Storybook shell과 component internals를 섞으면 기준이 흐려진다** — Storybook page chrome은 문서/검수 UI이고, sync 대상은 렌더되는 컴포넌트 내부 값이다.
+- **candidate를 너무 빨리 approved spec으로 승격하면 축이 과해진다** — Button v2 candidate는 기록만 남기고 rollback했다.
 
 ---
 
@@ -557,6 +589,9 @@ body{
 ### 설계 결정
 
 - **단일 진실원(CONTEXT.md)을 유지하면 에이전트가 바뀌어도 이어진다** — 누가 작업하든 CONTEXT.md를 먼저 읽고 시작하는 흐름이 핸드오프의 핵심.
+- **Figma-first, Storybook-verified 모델 유지** — Figma는 탐색과 시각 판단, Git은 승인된 계약과 sync 기록, Storybook은 구현 검증 표면으로 둔다.
+- **Code Connect는 optional bridge** — 현재는 Figma node id, Git spec, Storybook story mapping만으로 운영 가능한 구조를 우선한다.
+- **컴포넌트 화면 조립은 component-first** — 화면을 만들 때 임의 UI를 먼저 그리지 않고 Figma Components page와 Git component inventory를 먼저 확인한다.
 
 ---
 
@@ -573,7 +608,58 @@ body{
 - Codex 영역: workflow-guide 사이드바 네비 + Storybook 확장 + 6/1 뷰어·CONTEXT·Notion 동기화
 - Claude/주미님 영역: Figma Variables, 워크로그 원본
 
+### 3. Prism 이전 맥락 복구
+
+- `riiid/prism` repo를 기준으로 이전 `socra-ai-product-design` 맥락이 Prism으로 이름/범위 변경된 상태를 확인했다.
+- 이전에 보던 세 축을 다시 연결했다.
+  - Figma: `Socra Design system test`
+  - Git: `riiid/prism`
+  - 운영 기록/가이드: `Jumi Worklog`, `socra-ai-workflow-guide`
+- GitHub 접근과 로컬 clone 상태를 확인하고, Storybook을 로컬에서 띄워 Figma 변경이 Git/Storybook까지 따라왔는지 보는 루프를 재개했다.
+
+### 4. Figma-first / Storybook-verified 규칙 강화
+
+- `AGENTS.md`, `CLAUDE.md`, `docs/agent-rules.md`에 Figma source first 규칙을 강화했다.
+- `ADR-0003: Figma Source First For Component Visuals`를 추가했다.
+- Figma 접근이 가능하면 컴포넌트 visual change는 Figma 원본에서 먼저 확인하거나 수정하고, Git spec / code / Storybook은 그 뒤를 따르도록 명시했다.
+- Figma 접근이 막힌 작업은 `blocked-by-figma-permission`, `prototype-only`, `exploration`으로 구분하고 verified sync로 부르지 않도록 정리했다.
+
+### 5. Button preview / Storybook 기반 구축
+
+- Button component S/M/L sizing을 Figma Button node `17:184` 기준으로 다시 맞췄다.
+- 기존 Button v2 / Candidate는 과확장이라는 판단 후 rollback했다.
+- Figma Button에 `Icon=true/false` axis를 추가하고 Git spec / preview / Storybook props에 `showIcon` toggle을 반영했다.
+- Storybook scripts, dependencies, `.storybook` 설정, Button official stories를 추가했다.
+- Storybook page 자체를 Figma처럼 꾸미는 스타일은 제거하고, Button 내부 값만 Figma sync 대상으로 두었다.
+
+### 6. Foundation token / typography / icon 기준 정리
+
+- Figma Foundation page와 color charts를 기준으로 material palette와 token 문서를 정리했다.
+- neutral palette를 cool gray 방향으로 전환하고 Git token / color foundation 문서에 반영했다.
+- Figma non-reference solid paints를 현재 color library에 다시 바인딩했다.
+- black/white alpha material scale을 추가했다.
+- Typography variable 값을 Figma Text Styles 기준으로 sync했다.
+- line-height scale을 `tight 130%`, `snug 145%`, `normal 160%`, `relaxed 175%`로 정리했다.
+- `font/family/mono`는 Figma 런타임에서 안정적으로 쓰기 어려운 `Noto Sans Mono` 대신 `Geist Mono`로 조정했다.
+- Lucide icon stroke를 2px에서 1.5px로 낮췄다.
+
 ---
+
+## 커밋 (riiid/prism)
+
+| 커밋 | 설명 |
+|------|------|
+| `20a604c` | foundation color cleanup 기록 |
+| `fd86217` | typography variables sync |
+| `6dadd46` | black/white alpha material 추가 |
+| `3052f50` | icon stroke 1.5px 기준 기록 |
+| `b4b0815` | Button icon toggle 추가 |
+| `5f15f27` | Button v2 candidate rollback |
+| `b71701d` | Button v2 candidate contract 기록 |
+| `777def2` | cool gray palette 전환 |
+| `d14b3ff` | component-first screen assembly 규칙 추가 |
+| `9a9870c` | Button Storybook stories 추가 |
+| `6bb4d16` | Figma-source-first ADR 추가 |
 
 ## 커밋 (jumi-worklog)
 
