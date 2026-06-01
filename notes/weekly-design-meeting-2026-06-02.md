@@ -1,4 +1,4 @@
-# 2026-06-03 주간 디자인 미팅 아젠다 초안
+# 2026-06-02 주간 디자인 미팅 아젠다 초안
 
 ## 목적
 
@@ -177,6 +177,29 @@
 결정이 필요한 것:
 - dark theme 작업 방식과 우선순위
 
+### Agenda 7. 제품 반영 이후 QA 루프 확장
+
+논의 질문:
+- 지금은 구축 단계라 Storybook 검수 기준을 먼저 만들고 있지만, 제품 반영 후 QA 결과를 어떤 채널로 다시 회수할지?
+- 실제 제품 QA에서 발견된 문제를 Figma 수정, Git spec 수정, Storybook story 추가, Worklog/Issue 기록 중 어디로 보낼지?
+- QA 결과를 GitHub Issue, Worklog, Notion, Linear/Jira 중 어디에 남기는 것이 팀 운영에 맞을지?
+- QA에서 발견된 케이스를 Storybook story로 승격하는 기준은 무엇인지?
+
+결정이 필요한 것:
+- QA 루프를 지금 홈 대표 흐름에 넣을지, 운영 확장 단계로 따로 둘지
+- 제품 QA 결과를 기록할 기준 채널
+- QA finding을 디자인 시스템 기준으로 승격하는 조건
+
+참고 흐름:
+
+```txt
+Storybook 검수
+→ 제품 반영
+→ App/Product QA
+→ Issue / Worklog / Notes 기록
+→ Figma / Git spec / Storybook story 보강
+```
+
 ## 미팅에서 내가 말할 수 있는 요약 스크립트
 
 이번 주에는 Prism 디자인 시스템의 운영 흐름을 정리했습니다. 처음에는 Figma, Git, Storybook이 각각 어떤 기준을 가져야 하는지 조금 섞여 있었고, 그래서 시각 기준은 Figma, 구현 기준은 Git, 구현 검수는 Storybook, 결정 맥락은 Worklog/Notes에 남기는 구조로 정리했습니다.
@@ -198,6 +221,7 @@
 - [ ] Figma Button component set과 Tooltip component set 최신 상태 확인
 - [ ] 다음 컴포넌트 우선순위 후보 1~2개 마음속으로 정해두기
 - [ ] code prototype이나 Storybook screen으로 먼저 탐색해볼 화면 후보 생각해두기
+- [ ] QA 루프를 지금 구조도에 넣을지, 운영 확장 후보로만 둘지 입장 정리
 - [ ] dark theme을 이번 주 바로 할지, 다음 foundation 작업으로 뺄지 입장 정리
 - [ ] “Storybook을 디자이너 검수 기준으로 쓸 것인지” 팀에 물어볼 질문 준비
 
