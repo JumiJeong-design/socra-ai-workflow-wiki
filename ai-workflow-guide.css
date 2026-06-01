@@ -1312,6 +1312,91 @@ ol.styled li::before {
   line-height: 1.6;
 }
 
+.home-flow {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+
+.home-flow-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 20px;
+}
+
+.home-flow-intro h2 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--text-primary);
+}
+
+.home-flow-intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.home-flow-steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr) 24px minmax(0, 1fr) 24px minmax(0, 1fr);
+  gap: 10px;
+  align-items: stretch;
+}
+
+.home-flow-step {
+  min-height: 156px;
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.home-flow-kicker {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.home-flow-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.home-flow-step p {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.home-flow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.home-flow-loop {
+  margin-top: 16px;
+  border: 1px solid var(--accent-border2);
+  background: var(--accent-dim2);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
 .home-steps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1358,6 +1443,15 @@ ol.styled li::before {
   .home-cards,
   .home-cards.col-3 { grid-template-columns: 1fr; }
   .home-steps { grid-template-columns: 1fr 1fr; }
+  .home-flow { padding: 18px; }
+  .home-flow-intro { grid-template-columns: 1fr; gap: 10px; }
+  .home-flow-intro h2 { font-size: 17px; }
+  .home-flow-steps { grid-template-columns: 1fr; }
+  .home-flow-step { min-height: auto; }
+  .home-flow-arrow {
+    min-height: 18px;
+    transform: rotate(90deg);
+  }
 }
 
 /* ─── Theme Toggle ─── */
