@@ -197,7 +197,7 @@ body{
         <div class="skill-card-header" onclick="toggleSkill('write-worklog')">
           <div class="skill-header-text">
             <div class="skill-name">write-worklog</div>
-            <div class="skill-desc">요약 → 문서화 → GitHub push → 뷰어 동기화 → Notion 업로드 자동화</div>
+            <div class="skill-desc">요약 → 맥락 기록 → 규칙 후보 승격 → GitHub push → 뷰어 동기화</div>
           </div>
           <span class="skill-toggle">›</span>
         </div>
@@ -208,8 +208,9 @@ body{
         </div>
         <div class="skill-detail">
           <ol class="skill-steps">
-            <li>최근 worklog 읽기 — 미완료 항목 이월</li>
-            <li>대화에서 오늘 작업·커밋·함정 추출</li>
+            <li>최근 기록 채널 읽기 — 미완료 항목·결정·함정 이월</li>
+            <li>대화에서 오늘 작업·커밋·함정·반복 규칙 후보 추출</li>
+            <li>다음에도 지켜야 할 내용은 rules/playbook/checklist 후보로 표시</li>
             <li>커밋 SHA가 main에 도달 가능한지 검증 (orphaned 방지)</li>
             <li>GitHub jumi-worklog에 push + CONTEXT.md 갱신</li>
             <li>worklog.html 뷰어 동기화 + Notion DB 업로드</li>
