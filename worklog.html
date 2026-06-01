@@ -266,6 +266,29 @@ body{
         </div>
       </div>
 
+      <div class="skill-card" id="skill-publish-pages">
+        <div class="skill-card-header" onclick="toggleSkill('publish-pages')">
+          <div class="skill-header-text">
+            <div class="skill-name">publish-pages</div>
+            <div class="skill-desc">GitHub Pages에 바로 보이게 push·배포·URL 검증까지 확인</div>
+          </div>
+          <span class="skill-toggle">›</span>
+        </div>
+        <div class="skill-triggers">
+          <span class="skill-trigger">당장 볼 수 있게 해</span>
+          <span class="skill-trigger">페이지 배포해줘</span>
+          <span class="skill-trigger">/publish-pages</span>
+        </div>
+        <div class="skill-detail">
+          <ol class="skill-steps">
+            <li>원격 main 최신 상태 확인 후 필요한 변경만 stage</li>
+            <li>untracked 파일이 pull/rebase를 막을 수 있으면 stash로 보관</li>
+            <li>commit + push 후 GitHub Pages deployment 완료까지 대기</li>
+            <li>cache-busting URL로 실제 배포 HTML에 변경이 있는지 확인</li>
+          </ol>
+        </div>
+      </div>
+
       <div class="skill-card" id="skill-record-trap">
         <div class="skill-card-header" onclick="toggleSkill('record-trap')">
           <div class="skill-header-text">
@@ -476,12 +499,33 @@ body{
 - Prism `npm run build` 통과.
 - Prism `npm run build-storybook -- --disable-telemetry` 통과.
 - workflow guide `sh scripts/validate-docs.sh` 통과.
+- GitHub Pages deployment 완료 확인.
+- 배포 URL에서 `entry-2026-06-02`와 최신 캘린더 계산 코드 확인.
+
+## 함정 모음
+
+- **원격 최신을 받지 않은 상태에서 Pages HTML을 수정하면 충돌난다.** 원격에 이미 6/1·5/31·Notion 링크가 반영돼 있었고, 오래된 로컬 파일에 6/1·6/2를 추가해서 같은 영역에서 rebase conflict가 발생했다.
+- **untracked 파일도 pull/rebase를 막을 수 있다.** 원격에는 이미 있는 guide/playbook 파일이 로컬에서는 untracked라 checkout을 막았다. 삭제가 아니라 stash로 보관한 뒤 rebase해야 했다.
+- **push 완료와 웹 반영은 같은 순간이 아니다.** GitHub Pages deployment 완료까지 기다리고, cache-busting URL로 실제 HTML에 변경이 들어왔는지 확인해야 한다.
+- **worklog와 changelog는 역할이 다르다.** 일일 작업 기록은 `worklog.html`, 가이드 사이트의 버전 변경 기록은 `changelog.html`에 남긴다. worklog만 바꾼 배포를 changelog 변경으로 착각하면 안 된다.
+
+## 회고 및 인사이트
+
+### 운영
+
+- 빠른 배포일수록 먼저 원격 최신 상태를 확인해야 한다. 당장 보여줘야 하는 상황에서도 `fetch/pull → 최소 파일 stage → push → deployment 확인 → URL 검증` 순서를 지키는 편이 결과적으로 더 빠르다.
+- 충돌 해결은 새 내용만 밀어붙이는 일이 아니다. 기존 원격 데이터가 더 최신이면 그것을 기준으로 살리고, 내가 추가한 부분만 얹어야 기록 유실을 막을 수 있다.
+
+### 코드 품질
+
+- 하드코딩 금지는 항목별 금지 목록이 아니라 재사용성과 관계를 먼저 보는 태도다. 값의 출처, 바뀔 가능성, 함께 바뀌어야 하는 범위를 확인한 뒤 source에서 읽거나 계산해야 한다.
 
 ## 다음 할 일
 
 - [ ] 남은 컴포넌트에 같은 Figma - Git - Storybook sync loop 적용
 - [ ] Button / Tooltip 변경분 commit / PR 범위 결정
 - [ ] workflow guide에 새 guide/playbook 파일을 별도 커밋으로 정리
+- [ ] `publish-pages`를 실제 커스텀 스킬 파일로 승격할지 검토
 </script>
 
 <script type="text/plain" id="entry-2026-06-01">
