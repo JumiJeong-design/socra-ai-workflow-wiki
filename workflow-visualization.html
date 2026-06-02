@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prism 운영 흐름</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+    background: #f8f8fc;
+    color: #1a1a2e;
+    min-height: 100vh;
+    padding: 56px 48px 100px;
+  }
+
+  .page { max-width: 680px; margin: 0 auto; }
+
+  .eyebrow {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: #c4c4d8; margin-bottom: 10px;
+  }
+  h1 { font-size: 26px; font-weight: 700; color: #111128; margin-bottom: 8px; }
+  .tagline {
+    font-size: 12px; color: #9898b0; line-height: 1.7;
+    margin-bottom: 52px;
+  }
+  .tagline em { color: #5050a0; font-style: normal; }
+
+  /* ─── 파이프라인 ─── */
+  .pipeline {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 0;
+  }
+
+  /* 스파인 */
+  .spine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    border: 2px solid; background: #f8f8fc;
+    position: relative; z-index: 1; flex-shrink: 0;
+    margin-top: 20px;
+  }
+
+  .spine-seg {
+    width: 1px; flex: 1;
+    margin: 3px 0;
+  }
+  .spine-seg.solid   { background: #dcdcf0; }
+  .spine-seg.dashed  {
+    background: repeating-linear-gradient(
+      to bottom,
+      #c0d8d8 0px, #c0d8d8 4px,
+      transparent 4px, transparent 8px
+    );
+  }
+
+  /* ─── 스텝 ─── */
+  .steps { padding-left: 20px; }
+
+  .step {
+    padding: 18px 0 20px;
+    border-bottom: 1px solid #eeeef6;
+  }
+  .step:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .step-header {
+    display: flex; align-items: baseline; gap: 10px;
+    margin-bottom: 10px;
+  }
+  .step-num {
+    font-size: 10px; font-weight: 800; color: #d0d0e4;
+    min-width: 20px; padding-top: 2px;
+  }
+  .step-title { font-size: 14px; font-weight: 700; }
+  .step-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.06em;
+    padding: 2px 8px; border-radius: 20px;
+    border: 1px solid; margin-left: auto;
+    white-space: nowrap; align-self: center;
+  }
+  .step-who {
+    font-size: 10px; font-weight: 600;
+    padding: 2px 9px; border-radius: 20px;
+    border: 1px solid; white-space: nowrap; align-self: center;
+  }
+  .sw-designer  { background: #ece8ff; color: #5050a8; border-color: #d4d0f8; }
+  .sw-dev       { background: #e4f4e4; color: #2a6a2a; border-color: #b8e0b8; }
+  .sw-all       { background: #f4f4f4; color: #505060; border-color: #d8d8e0; }
+
+  .step-content { padding-left: 30px; }
+
+  /* 설명 텍스트 */
+  .step-desc {
+    font-size: 11px; color: #9090a8; line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .step-desc li { list-style: none; padding: 2px 0 2px 12px; position: relative; }
+  .step-desc li::before { content: '·'; position: absolute; left: 0; color: #c8c8e0; }
+  .step-desc strong { color: #6868a0; font-weight: 600; }
+
+  /* ─── 탐색: 병렬 카드 ─── */
+  .parallel-row {
+    display: flex; gap: 8px; align-items: stretch;
+    margin-bottom: 10px;
+  }
+  .parallel-card {
+    flex: 1; border: 1px solid; border-radius: 8px;
+    padding: 10px 12px; background: #fff;
+  }
+  .parallel-card-title {
+    font-size: 11px; font-weight: 700; margin-bottom: 4px;
+  }
+  .parallel-card-desc {
+    font-size: 10px; color: #a0a0b8; line-height: 1.5;
+  }
+  .parallel-divider {
+    display: flex; align-items: center;
+    font-size: 9px; font-weight: 700; color: #c8c8e0;
+    padding: 0 2px;
+  }
+
+  .pc-figma { border-color: #dcdcf8; }
+  .pc-figma .parallel-card-title { color: #4444b0; }
+
+  .pc-proto { border-color: #d0e4f8; }
+  .pc-proto .parallel-card-title { color: #2060a0; }
+
+  /* ─── 확정 기준: 순차 체인 ─── */
+  .chain {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    align-items: flex-end; margin-bottom: 12px;
+  }
+  .chain-item {
+    display: flex; flex-direction: column;
+    align-items: flex-start; gap: 5px;
+  }
+  .chain-item-role {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.06em;
+    padding: 2px 7px; border-radius: 20px;
+    white-space: nowrap;
+  }
+  .role-designer { background: #ece8ff; color: #5050a8; }
+  .role-dev      { background: #e4f4e4; color: #2a6a2a; }
+  .role-shared   {
+    background: linear-gradient(90deg, #ece8ff 0%, #e4f4e4 100%);
+    color: #446088;
+  }
+  .chain-item-body {
+    font-size: 11px; font-weight: 700;
+    padding: 8px 12px; border-radius: 8px; border: 1px solid;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .chain-item-body small {
+    font-size: 9px; font-weight: 400; opacity: 0.65;
+  }
+  /* 작성/리뷰 행 */
+  .who-row {
+    display: flex; align-items: baseline; gap: 6px; margin-top: 2px;
+    padding-top: 6px; border-top: 1px solid rgba(0,0,0,0.06);
+    font-size: 9px; line-height: 1.5;
+  }
+  .who-label {
+    font-weight: 700; letter-spacing: 0.05em; white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .who-label.wl-write { color: #a0a0c0; }
+  .who-label.wl-review { color: #70a070; }
+  .who-names { color: #8888a8; font-weight: 500; }
+  .chain-arrow {
+    font-size: 12px; color: #c8d8c8;
+    flex-shrink: 0; padding-bottom: 8px;
+  }
+
+  .ci-figma     .chain-item-body { background: #f4f4ff; border-color: #d4d4f8; color: #4040b0; }
+  .ci-git       .chain-item-body { background: #f2fbf2; border-color: #b8e0b8; color: #2a6a2a; }
+  .ci-storybook .chain-item-body {
+    background: linear-gradient(135deg, #f6f4ff 0%, #f2faf2 100%);
+    border-color: #c8c8e8;
+    color: #3a5080;
+    border-width: 1.5px;
+  }
+  .ci-worklog   .chain-item-body { background: #fdfaf0; border-color: #e0d8a8; color: #806010; }
+
+  /* ─── 기록&보강 분기 ─── */
+  .branch {
+    display: flex; flex-direction: column; gap: 6px;
+    margin-bottom: 10px;
+  }
+  .branch-row {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 10px;
+  }
+  .branch-trigger {
+    padding: 3px 9px; border-radius: 6px; border: 1px solid;
+    font-weight: 600; white-space: nowrap;
+  }
+  .branch-arrow { color: #c0c0d8; flex-shrink: 0; }
+  .branch-dest {
+    padding: 3px 9px; border-radius: 6px; border: 1px solid;
+    font-weight: 600;
+  }
+
+  .bt-visual   { background: #f4f4ff; border-color: #dcdcf8; color: #4444b0; }
+  .bt-impl     { background: #f2fbf2; border-color: #c8e8c8; color: #2a702a; }
+  .bt-qa       { background: #fdf2fd; border-color: #ecd0ec; color: #882888; }
+  .bt-issue    { background: #f0fafa; border-color: #b0e0e0; color: #208080; }
+
+  /* ─── 리턴 노트 (step 05 하단) ─── */
+  .return-note {
+    margin-top: 16px;
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, #e8fafa 0%, #eef8ee 100%);
+    border: 1.5px solid #90d0d0;
+    border-radius: 10px;
+    font-size: 12px; color: #207878;
+    font-weight: 600;
+  }
+  .return-note-icon {
+    width: 32px; height: 32px; flex-shrink: 0;
+    background: #c8ecec; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; color: #208080;
+  }
+  .return-note-body { display: flex; flex-direction: column; gap: 2px; }
+  .return-note-body strong { font-size: 12px; font-weight: 700; color: #187878; }
+  .return-note-body span { font-size: 10px; font-weight: 400; color: #70a8a8; }
+
+  /* step-specific colors */
+  .s1 .step-title { color: #4040a8; }
+  .s1 .step-badge { background: #eaeaff; color: #5050b8; border-color: #dcdcf8; }
+  .s1 .dot        { border-color: #8888cc; }
+
+  .s2 .step-title { color: #2a6a2a; }
+  .s2 .step-badge { background: #e4f4e4; color: #2a7a2a; border-color: #c8e8c8; }
+  .s2 .dot        { border-color: #70b070; }
+
+  .s3 .step-title { color: #903030; }
+  .s3 .step-badge { background: #ffe8e8; color: #a03030; border-color: #f0d0d0; }
+  .s3 .dot        { border-color: #c07878; }
+
+  .s4 .step-title { color: #208080; }
+  .s4 .step-badge { background: #e0f8f8; color: #208888; border-color: #b0e0e0; }
+  .s4 .dot        { border-color: #70c0c0; }
+
+  .s5 .step-title { color: #806010; }
+  .s5 .step-badge { background: #fff8e0; color: #907020; border-color: #e8e0a8; }
+  .s5 .dot        { border-color: #c0a040; }
+
+  /* ── QA 루프 아크 ── */
+  .loop-wrap { position: relative; }
+
+  .loop-arc {
+    position: absolute;
+    top: 16px; bottom: 20px;
+    right: -44px;
+    width: 26px;
+    border: 2px dashed #80c8c8;
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+    pointer-events: none;
+  }
+
+  /* 왼쪽 화살표 (step 02로 돌아감) */
+  .loop-arc::before {
+    content: '';
+    position: absolute;
+    top: -6px; left: -9px;
+    width: 0; height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 8px solid #80c8c8;
+  }
+
+  .loop-arc-label {
+    position: absolute;
+    right: -18px; top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-size: 8px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #a0d4d4;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="eyebrow">Prism Design System</div>
+  <h1>AI 기반 프로덕트 디자인 워크플로우</h1>
+  <p class="tagline">
+    탐색은 <em>가장 빠르고 정확한 도구</em>에서.<br>
+    확정된 기준은 <em>팀이 다시 찾을 수 있는 표면</em>에.
+  </p>
+
+  <!-- 비교 표 -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:48px;">
+
+    <!-- 레거시 -->
+    <div style="background:#f0f0f4; border-radius:10px; padding:18px 20px; display:flex; flex-direction:column; gap:16px;">
+      <div style="font-size:9px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#9090a8;">레거시 플로우</div>
+
+      <div>
+        <div style="font-size:9px; font-weight:700; color:#80c080; letter-spacing:0.06em; margin-bottom:6px;">장점</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:6px;">
+          <li style="font-size:11px; line-height:1.55; padding-left:16px; position:relative;">
+            <span style="position:absolute;left:0;color:#90c890;">✓</span>
+            <span style="color:#606070;">Figma만 알면 됨 → 진입장벽 낮고 초기 세팅 비용 없음</span>
+          </li>
+          <li style="font-size:11px; line-height:1.55; padding-left:16px; position:relative;">
+            <span style="position:absolute;left:0;color:#90c890;">✓</span>
+            <span style="color:#606070;">도구 간 동기화 신경 쓸 필요 없음 → 단순함</span>
+          </li>
+          <li style="font-size:11px; line-height:1.55; padding-left:16px; position:relative;">
+            <span style="position:absolute;left:0;color:#90c890;">✓</span>
+            <span style="color:#606070;">팀 전체가 Figma만 보면 되므로 커뮤니케이션 도구가 단일화됨</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div style="font-size:9px; font-weight:700; color:#c08080; letter-spacing:0.06em; margin-bottom:6px;">단점</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:6px;">
+          <li style="font-size:11px; line-height:1.55; padding-left:16px; position:relative;">
+            <span style="position:absolute;left:0;color:#c0a0a0;">✕</span>
+            <span style="color:#606070;">인터랙션·데이터 상태는 실제 화면 들어가야 확인 → 후반부에 문제 발견</span>
+          </li>
+          <li style="font-size:11px; line-height:1.55; padding-left:16px; position:relative;">
+            <span style="position:absolute;left:0;color:#c0a0a0;">✕</span>
+            <span style="color:#606070;">컴포넌트 문제와 UX 문제를 화면 QA에서 한꺼번에 → 원인 구분 어려움</span>
+          </li>
+          <li style="font-size:11px; line-height:1.55; padding-left:16px; position:relative;">
+            <span style="position:absolute;left:0;color:#c0a0a0;">✕</span>
+            <span style="color:#606070;">QA 발견이 기록 안 되고 수정으로 끝남 → 다음 이터레이션에 같은 문제 반복</span>
+          </li>
+          <li style="font-size:11px; line-height:1.55; padding-left:16px; position:relative;">
+            <span style="position:absolute;left:0;color:#c0a0a0;">✕</span>
+            <span style="color:#606070;">기준이 사람 머릿속에만 존재 → AI·개발자에게 매번 다시 설명</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 신규 -->
+    <div style="background:#eef8f4; border:1.5px solid #b8e8d8; border-radius:10px; padding:18px 20px; display:flex; flex-direction:column; gap:16px;">
+      <div style="font-size:9px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#308060;">신규 플로우 (AI 기반)</div>
+
+      <div>
+        <div style="font-size:9px; font-weight:700; color:#80c080; letter-spacing:0.06em; margin-bottom:6px;">장점</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:6px;">
+          <li style="font-size:11px; line-height:1.55; padding-left:16px; position:relative;">
+            <span style="position:absolute;left:0;color:#60c090;">✓</span>
+            <span style="color:#406050;"><strong style="color:#208050;">이터레이션이 사이클마다 빨라짐</strong> — 기준이 쌓일수록 다음 작업은 그 위에서 시작. AI가 발전할수록 활용도 높아짐</span>
+          </li>
+          <li style="font-size:11px; line-height:1.55; padding-left:16px; position:relative;">
+            <span style="position:absolute;left:0;color:#60c090;">✓</span>
+            <span style="color:#406050;">Storybook에 검수 기준 저장 → 컴포넌트 문제 미리 잡고 화면 QA는 UX 흐름에 집중</span>
+          </li>
+          <li style="font-size:11px; line-height:1.55; padding-left:16px; position:relative;">
+            <span style="position:absolute;left:0;color:#60c090;">✓</span>
+            <span style="color:#406050;">QA 발견 → story 승격 → 재사용. 같은 문제 반복 줄어듦</span>
+          </li>
+          <li style="font-size:11px; line-height:1.55; padding-left:16px; position:relative;">
+            <span style="position:absolute;left:0;color:#60c090;">✓</span>
+            <span style="color:#406050;">Worklog가 AI context source → 지금 쌓는 기록이 미래 AI 활용의 기반</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div style="font-size:9px; font-weight:700; color:#c08080; letter-spacing:0.06em; margin-bottom:6px;">단점</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:6px;">
+          <li style="font-size:11px; line-height:1.55; padding-left:16px; position:relative;">
+            <span style="position:absolute;left:0;color:#c0a0a0;">✕</span>
+            <span style="color:#406050;">초기 세팅 비용 큼 → Figma·Git·Storybook 각각 기준 정리 필요</span>
+          </li>
+          <li style="font-size:11px; line-height:1.55; padding-left:16px; position:relative;">
+            <span style="position:absolute;left:0;color:#c0a0a0;">✕</span>
+            <span style="color:#406050;">도구 간 sync가 어긋나면 오히려 혼란 → 지속적인 관리 부담</span>
+          </li>
+          <li style="font-size:11px; line-height:1.55; padding-left:16px; position:relative;">
+            <span style="position:absolute;left:0;color:#c0a0a0;">✕</span>
+            <span style="color:#406050;">화면 설계 단계 적용 여부는 아직 미검증 → 컴포넌트 이상의 범위는 테스트 필요</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pipeline">
+
+    <!-- 스파인 -->
+    <div class="spine">
+      <div class="dot s1" style="border-color:#8888cc;"></div>
+      <div class="spine-seg solid"></div>
+      <div class="dot s2" style="border-color:#70b070;"></div>
+      <div class="spine-seg solid"></div>
+      <div class="dot s3" style="border-color:#c07878;"></div>
+      <div class="spine-seg dashed"></div>
+      <div class="dot s4" style="border-color:#70c0c0;"></div>
+      <div class="spine-seg dashed"></div>
+      <div class="dot s5" style="border-color:#c0a040;"></div>
+    </div>
+
+    <!-- 스텝 -->
+    <div class="steps">
+
+      <!-- 01 탐색 -->
+      <div class="step s1">
+        <div class="step-header">
+          <span class="step-num">01</span>
+          <span class="step-title">탐색</span>
+          <span class="step-who sw-designer">디자이너</span>
+          <span class="step-badge">Explore</span>
+        </div>
+        <div class="step-content">
+          <div class="parallel-row">
+            <div class="parallel-card pc-figma">
+              <div class="parallel-card-title">🎨 Figma</div>
+              <div class="parallel-card-desc">컴포넌트 구조, variant, 레이아웃, 색상·타이포 방향</div>
+            </div>
+            <div class="parallel-divider">또는</div>
+            <div class="parallel-card pc-proto">
+              <div class="parallel-card-title">⚡ Code Prototype</div>
+              <div class="parallel-card-desc">인터랙션, 데이터 상태, loading·error·empty, 반응형</div>
+            </div>
+          </div>
+          <ul class="step-desc">
+            <li><strong>탐색 ≠ 확정.</strong> 결과가 결정되면 아래 확정 기준 표면에 다시 정리</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="loop-wrap">
+      <div class="loop-arc"><span class="loop-arc-label">QA 피드백 루프</span></div>
+
+      <!-- 02 확정 기준 -->
+      <div class="step s2">
+        <div class="step-header">
+          <span class="step-num">02</span>
+          <span class="step-title">확정 기준</span>
+          <span class="step-badge">Source of Truth</span>
+        </div>
+        <div class="step-content">
+          <div class="chain">
+
+            <div class="chain-item ci-figma">
+              <span class="chain-item-role role-designer">디자이너 primary</span>
+              <div class="chain-item-body">
+                🎨 Figma
+                <small>시각 의도 · 컴포넌트 기준</small>
+                <div class="who-row">
+                  <span class="who-label wl-write">작성</span>
+                  <span class="who-names">디자이너</span>
+                </div>
+                <div class="who-row">
+                  <span class="who-label wl-review">리뷰</span>
+                  <span class="who-names">기획자 · 외부 이해관계자</span>
+                </div>
+              </div>
+            </div>
+
+            <span class="chain-arrow">→</span>
+
+            <div class="chain-item ci-git">
+              <span class="chain-item-role role-dev">개발자 primary</span>
+              <div class="chain-item-body">
+                💾 Git
+                <small>구현 규칙 · token · ADR</small>
+                <div class="who-row">
+                  <span class="who-label wl-write">작성</span>
+                  <span class="who-names">디자이너 (md spec · 문서) · 개발자 (코드)</span>
+                </div>
+                <div class="who-row">
+                  <span class="who-label wl-review">리뷰</span>
+                  <span class="who-names">디자이너 · 개발자</span>
+                </div>
+              </div>
+            </div>
+
+            <span class="chain-arrow">→</span>
+
+            <div class="chain-item ci-storybook">
+              <span class="chain-item-role role-shared">디자이너 + 개발자</span>
+              <div class="chain-item-body">
+                📖 Storybook
+                <small>둘이 맞는지 함께 검증</small>
+                <div class="who-row">
+                  <span class="who-label wl-write">작성</span>
+                  <span class="who-names">디자이너 (story 작성 · 검수 기준) → 개발자 (실제 데이터 연결 · 제품 통합)</span>
+                </div>
+                <div class="who-row">
+                  <span class="who-label wl-review">리뷰</span>
+                  <span class="who-names">디자이너 · 개발자 · 기획자</span>
+                </div>
+              </div>
+            </div>
+
+            <span class="chain-arrow">→</span>
+
+            <div class="chain-item ci-worklog">
+              <span class="chain-item-role role-shared">팀 운영에 따라 다름</span>
+              <div class="chain-item-body">
+                📝 Worklog
+                <small>결정 이유 · 함정 · 맥락</small>
+                <div class="who-row">
+                  <span class="who-label wl-write">작성</span>
+                  <span class="who-names">현재 디자이너 · 팀 운영에 따라 확장</span>
+                </div>
+                <div class="who-row">
+                  <span class="who-label wl-review">리뷰</span>
+                  <span class="who-names">팀 전체</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <ul class="step-desc">
+            <li>각 표면은 역할이 다름. 탐색 결과가 여기 각각의 형태로 정착</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 02.5 화면 설계 단계 -->
+      <div class="step" style="
+        background: #4a4a5a;
+        border-radius: 10px;
+        padding: 16px;
+        margin: 0 0 0 -4px;
+        border-bottom: none;
+      ">
+        <div class="step-header">
+          <span class="step-num" style="color:#9090a8;">?</span>
+          <span class="step-title" style="color:#ffffff;">화면 설계 단계</span>
+          <span class="step-who" style="background:#5a5a6a; color:#c0c0d8; border:1px solid #6a6a7a;">🧪 테스트 필요</span>
+          <span class="step-badge" style="background:#5a5a6a; color:#c0c0d8; border-color:#6a6a7a;">미결</span>
+        </div>
+        <div class="step-content">
+          <ul class="step-desc" style="color:#b0b0c8;">
+            <li>컴포넌트 기준이 잡히면 <strong style="color:#e0e0f0;">화면 조합·UX 흐름</strong>에도 같은 루프가 동작할 수 있음</li>
+            <li>Storybook에 pattern · screen story를 어디까지 넣을지 팀 합의 필요</li>
+            <li>AI로 화면 prototype 먼저 만든 뒤 → Figma · Git · Storybook에 기준 정착시키는 흐름이 될 수 있음</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 03 제품 반영 -->
+      <div class="step s3">
+        <div class="step-header">
+          <span class="step-num">03</span>
+          <span class="step-title">제품 반영</span>
+          <span class="step-who sw-dev">개발자</span>
+          <span class="step-badge">Ship</span>
+        </div>
+        <div class="step-content">
+          <ul class="step-desc">
+            <li>실제 데이터 · 라우팅 · 사용자 플로우 맥락에서 확인</li>
+            <li>Storybook 검수를 통과한 컴포넌트 · 패턴 반영</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 04 Product QA -->
+      <div class="step s4">
+        <div class="step-header">
+          <span class="step-num">04</span>
+          <span class="step-title">Product QA</span>
+          <span class="step-who sw-all">전체</span>
+          <span class="step-badge">QA</span>
+        </div>
+        <div class="step-content">
+          <ul class="step-desc">
+            <li>실제 데이터 · 다국어 · 접근성 · 반응형 확인</li>
+            <li>Storybook에서 미처 재현하지 못한 케이스 발견</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 05 기록 & 보강 -->
+      <div class="step s5">
+        <div class="step-header">
+          <span class="step-num">05</span>
+          <span class="step-title">기록 & 보강</span>
+          <span class="step-who sw-all">전체</span>
+          <span class="step-badge">→ 02로</span>
+        </div>
+        <div class="step-content">
+          <div class="branch">
+            <div class="branch-row">
+              <span class="branch-trigger bt-issue">Issue · Worklog 기록</span>
+              <span class="branch-arrow">→ 시각 문제면</span>
+              <span class="branch-dest bt-visual" style="background:#f4f4ff; border-color:#dcdcf8; color:#4444b0;">Figma 수정</span>
+            </div>
+            <div class="branch-row">
+              <span class="branch-trigger bt-issue">Issue · Worklog 기록</span>
+              <span class="branch-arrow">→ 구현 규칙이면</span>
+              <span class="branch-dest bt-impl" style="background:#f2fbf2; border-color:#c8e8c8; color:#2a702a;">Git spec 보강</span>
+            </div>
+            <div class="branch-row">
+              <span class="branch-trigger bt-issue">Issue · Worklog 기록</span>
+              <span class="branch-arrow">→ 재현 케이스면</span>
+              <span class="branch-dest bt-qa" style="background:#fdf2fd; border-color:#ecd0ec; color:#882888;">Storybook story 추가</span>
+            </div>
+          </div>
+
+          <div class="return-note">
+            <div class="return-note-icon">↺</div>
+            <div class="return-note-body">
+              <strong>02 확정 기준으로 루프</strong>
+              <span>Figma · Git · Storybook 중 해당 표면 보강 → 다음 사이클의 기준이 됨</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
