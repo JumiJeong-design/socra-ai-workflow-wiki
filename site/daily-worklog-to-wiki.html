@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Daily Worklog → Wiki — Socra AI Workflow Wiki</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="stylesheet" href="ai-workflow-guide.css" />
+  <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+
+<header class="mobile-topbar">
+  <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+    <span></span><span></span><span></span>
+  </button>
+  <span class="mobile-topbar-title">Daily Worklog → Wiki</span>
+</header>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar"></nav>
+
+  <main class="main">
+    <div class="wiki-doc">
+      <h1>Daily Worklog to Wiki</h1>
+      <h2>Purpose</h2>
+      <p><code>jumi-worklog</code>의 날짜별 기록을 그대로 복사하지 않고, 반복 가능한 지식으로 정제해서 이 repo에 승격한다.</p>
+      <h2>Promotion Criteria</h2>
+      <p>Worklog 항목은 아래 중 하나 이상에 해당하면 위키 후보가 된다.</p>
+      <ul>
+      <li>같은 문제가 다시 나올 가능성이 높다.</li>
+      <li>Figma, Git, AI 협업 방식의 규칙을 바꿨다.</li>
+      <li>특정 컴포넌트나 화면 설계 방식에 재사용 가능한 판단이 생겼다.</li>
+      <li>실패한 시도에서 다음 작업을 줄여주는 교훈이 나왔다.</li>
+      </ul>
+      <h2>Promotion Flow</h2>
+      <ol>
+      <li>Source worklog link를 확인한다.</li>
+      <li>날짜별 맥락에서 재사용 가능한 규칙만 추린다.</li>
+      <li><code>wiki/guides/</code>, <code>wiki/playbooks/</code>, <code>wiki/cases/</code> 중 목적에 맞는 위치를 고른다.</li>
+      <li>새 문서 하단에 <code>Source Worklog</code> 섹션을 둔다.</li>
+      <li>worklog에는 어떤 위키 문서로 승격됐는지 역링크를 남긴다.</li>
+      </ol>
+      <h2>Required Footer</h2>
+      <pre><code class="language-md">## Source Worklog
+      
+      - `jumi-worklog/YYYY-MM-DD.md`
+      </code></pre>
+      <h2>Source Worklog</h2>
+      <ul>
+      <li>Pending first promoted worklog entry.</li>
+      </ul>
+    </div>
+
+    <nav class="wiki-page-nav">
+      <a href="ai-design-review.html" class="wiki-nav-btn wiki-nav-prev">← AI 디자인 리뷰</a>
+      <a href="designer-dev-terms.html" class="wiki-nav-btn wiki-nav-next">개발 협업 용어 →</a>
+    </nav>
+  </main>
+</div>
+
+<script src="ai-workflow-guide.js?v=0.14-wiki"></script>
+</body>
+</html>

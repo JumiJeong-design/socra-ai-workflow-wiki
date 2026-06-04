@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Historical Figma / Storybook 교훈 — Socra AI Workflow Wiki</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="stylesheet" href="ai-workflow-guide.css" />
+  <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+
+<header class="mobile-topbar">
+  <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+    <span></span><span></span><span></span>
+  </button>
+  <span class="mobile-topbar-title">Historical Figma / Storybook 교훈</span>
+</header>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar"></nav>
+
+  <main class="main">
+    <div class="wiki-doc">
+      <h1>Historical Lesson: Figma / Storybook Role Lessons</h1>
+      <h2>Purpose</h2>
+      <p>과거 Socra 디자인 시스템 작업에서 정리한 Figma, Git spec, Code, Storybook의 역할 분리 교훈을 남긴다. 이 문서는 현재 운영 원칙이 아니라 historical lesson이다.</p>
+      <p>이 문서는 현재 Prism package 운영 모델을 대체하지 않는다. 현재 컴포넌트/토큰/package 계약과 Storybook 기준은 <code>riiid/prism</code>의 README, AGENTS, <code>docs/agent-rules.md</code>, <code>design-system/rules.md</code>, <code>packages/prism/*</code>, <code>apps/storybook/*</code> 문서를 우선한다.</p>
+      <h2>Lesson</h2>
+      <table>
+      <thead>
+      <tr>
+      <th>Surface</th>
+      <th>Role</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Figma</td>
+      <td>Visual evidence, exploration, sharing surface</td>
+      </tr>
+      <tr>
+      <td><code>riiid/prism</code></td>
+      <td>Current package/component/token contract</td>
+      </tr>
+      <tr>
+      <td>Code</td>
+      <td>Implementation source</td>
+      </tr>
+      <tr>
+      <td>Storybook</td>
+      <td>Designer QA and implementation review surface</td>
+      </tr>
+      <tr>
+      <td>Worklog / Wiki</td>
+      <td>Context, decisions, reusable operating lessons</td>
+      </tr>
+      </tbody>
+      </table>
+      <h2>Figma Zones</h2>
+      <p>Figma 전체를 sync 대상으로 보지 않는다는 교훈은 여전히 유효하다. 단, 현재 Prism의 실제 sync/status 판단은 <code>riiid/prism</code>의 최신 문서를 우선한다.</p>
+      <table>
+      <thead>
+      <tr>
+      <th>Zone</th>
+      <th>Meaning</th>
+      <th>Sync Rule</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Exploration</td>
+      <td>자유 실험, 시각 방향 테스트, 버려질 수 있는 아이디어</td>
+      <td>Do not sync to Git/Storybook</td>
+      </tr>
+      <tr>
+      <td>Candidates</td>
+      <td>제품 방향으로 가능성 있는 안</td>
+      <td>Record context, but do not treat as implementation contract</td>
+      </tr>
+      <tr>
+      <td>Components</td>
+      <td>승인된 디자인 시스템 컴포넌트</td>
+      <td>Check current product-design contract before sync</td>
+      </tr>
+      <tr>
+      <td>Screens</td>
+      <td>승인된 제품 화면 기준</td>
+      <td>Check current product-design contract before implementation</td>
+      </tr>
+      <tr>
+      <td>Archive</td>
+      <td>버린 안, 과거 실험, 비교용 히스토리</td>
+      <td>Do not sync unless referenced as rationale</td>
+      </tr>
+      </tbody>
+      </table>
+      <h2>AI Rules</h2>
+      <ul>
+      <li>Do not convert every Figma experiment into Git documentation.</li>
+      <li>Before writing a spec, identify whether the source is exploration, candidate, approved component, or approved screen.</li>
+      <li>Check <code>riiid/prism</code> before treating anything as a current Prism contract.</li>
+      <li>Treat Storybook as QA/review surface, not as arbitrary visual source of truth.</li>
+      <li>Treat Code Connect as optional; do not block workflow on it.</li>
+      </ul>
+      <h2>Sync Flow</h2>
+      <pre><code class="language-text">Worklog / Figma / Prototype insight
+      -&gt; Check `riiid/prism` source of truth
+      -&gt; Update current contract when needed
+      -&gt; Code implementation
+      -&gt; Storybook QA
+      -&gt; Promote reusable lesson back to this wiki
+      </code></pre>
+      <h2>Decision Rule</h2>
+      <p>If Figma, product-design contract, Code, and Storybook disagree:</p>
+      <ol>
+      <li>Check the current <code>riiid/prism</code> README/AGENTS first.</li>
+      <li>Check relevant token/component/package contracts.</li>
+      <li>Treat this wiki as context, not contract.</li>
+      <li>Verify implementation in Storybook when product-design docs require it.</li>
+      <li>Promote only the reusable lesson back to this wiki.</li>
+      </ol>
+      <h2>Source Worklog</h2>
+      <ul>
+      <li>Pending first promoted worklog entry.</li>
+      </ul>
+    </div>
+
+    <nav class="wiki-page-nav">
+      <a href="figma-git-sync.html" class="wiki-nav-btn wiki-nav-prev">← Figma-Git Sync</a>
+      <a href="ai-design-review.html" class="wiki-nav-btn wiki-nav-next">AI 디자인 리뷰 →</a>
+    </nav>
+  </main>
+</div>
+
+<script src="ai-workflow-guide.js?v=0.14-wiki"></script>
+</body>
+</html>

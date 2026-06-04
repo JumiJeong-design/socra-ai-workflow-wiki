@@ -80,7 +80,38 @@ fetch('sidebar.html?v=0.14-wiki')
     sidebarEl.innerHTML = html;
     initSidebarInteractions();
     initSiteSearch();
+    markActivePage();
   });
+
+function markActivePage() {
+  const currentFile = location.pathname.split('/').pop() || 'index.html';
+
+  // 그룹 active 표시
+  sidebarEl.querySelectorAll('.nav-section').forEach(section => {
+    const hasCurrentPage = [...section.querySelectorAll('a.nav-item')].some(a =>
+      (a.getAttribute('href') || '').split('#')[0] === currentFile
+    );
+    if (hasCurrentPage) section.classList.add('active-group');
+  });
+
+  // 섹션 scrollspy
+  const sections = document.querySelectorAll('section[id]');
+  if (!sections.length) return;
+
+  function setActiveLink(id) {
+    sidebarEl.querySelectorAll('a.nav-item').forEach(a => a.classList.remove('active'));
+    const target = sidebarEl.querySelector(`a.nav-item[href*="#${id}"]`);
+    if (target) target.classList.add('active');
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActiveLink(entry.target.id);
+    });
+  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+
+  sections.forEach(s => observer.observe(s));
+}
 
 const SEARCH_PAGES = [
   { path: 'index.html', label: '홈' },
@@ -170,14 +201,21 @@ function renderSearchResults(resultsEl, results, query) {
     return;
   }
 
+  const highlight = (text, q) => {
+    const escaped = escapeHtml(text);
+    if (!q) return escaped;
+    const regex = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    return escaped.replace(regex, '<mark>$1</mark>');
+  };
+
   resultsEl.innerHTML = results.slice(0, 7).map(result => {
     const [path, hash = ''] = result.href.split('#');
     const href = `${path}?q=${encodeURIComponent(query)}${hash ? `#${hash}` : ''}`;
     return `
     <a class="sidebar-search-result" href="${href}">
-      <div class="sidebar-search-result-title">${escapeHtml(result.title)}</div>
+      <div class="sidebar-search-result-title">${highlight(result.title, query)}</div>
       <div class="sidebar-search-result-meta">${escapeHtml(result.page)}</div>
-      <div class="sidebar-search-result-snippet">${escapeHtml(result.snippet)}</div>
+      <div class="sidebar-search-result-snippet">${highlight(result.snippet, query)}</div>
     </a>
   `;
   }).join('');
@@ -203,6 +241,81 @@ function highlightTargetFromHash(hash = location.hash) {
   target.classList.add('search-hit');
   setTimeout(() => target.classList.remove('search-hit'), 2600);
 }
+
+// ─── In-page search highlight ─────────────────────────────
+(function initInPageSearch() {
+  const q = new URLSearchParams(location.search).get('q');
+  if (!q || q.length < 2) return;
+
+  const main = document.querySelector('.main');
+  if (!main) return;
+
+  const regex = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+    acceptNode: n => {
+      const tag = n.parentElement?.tagName;
+      if (['SCRIPT','STYLE','CODE','PRE'].includes(tag)) return NodeFilter.FILTER_REJECT;
+      return regex.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+    }
+  });
+
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+
+  nodes.forEach(node => {
+    regex.lastIndex = 0;
+    const frag = document.createDocumentFragment();
+    let last = 0, m;
+    while ((m = regex.exec(node.nodeValue)) !== null) {
+      if (m.index > last) frag.appendChild(document.createTextNode(node.nodeValue.slice(last, m.index)));
+      const mark = document.createElement('mark');
+      mark.className = 'search-inline-hit';
+      mark.textContent = m[0];
+      frag.appendChild(mark);
+      last = m.index + m[0].length;
+    }
+    if (last < node.nodeValue.length) frag.appendChild(document.createTextNode(node.nodeValue.slice(last)));
+    node.parentNode.replaceChild(frag, node);
+  });
+
+  const hits = [...document.querySelectorAll('.search-inline-hit')];
+  if (!hits.length) return;
+
+  let cur = 0;
+
+  const bar = document.createElement('div');
+  bar.className = 'search-nav-bar';
+  bar.innerHTML = `
+    <span class="search-nav-query">"${q}"</span>
+    <span class="search-nav-count"></span>
+    <button class="search-nav-btn" id="snav-prev">↑</button>
+    <button class="search-nav-btn" id="snav-next">↓</button>
+    <button class="search-nav-close">✕</button>
+  `;
+  document.body.appendChild(bar);
+
+  const countEl = bar.querySelector('.search-nav-count');
+
+  function goTo(i) {
+    hits[cur]?.classList.remove('search-inline-hit--active');
+    cur = (i + hits.length) % hits.length;
+    hits[cur].classList.add('search-inline-hit--active');
+    hits[cur].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    countEl.textContent = `${cur + 1} / ${hits.length}`;
+  }
+
+  bar.querySelector('#snav-prev').addEventListener('click', () => goTo(cur - 1));
+  bar.querySelector('#snav-next').addEventListener('click', () => goTo(cur + 1));
+  bar.querySelector('.search-nav-close').addEventListener('click', () => {
+    hits.forEach(h => { h.outerHTML = h.textContent; });
+    bar.remove();
+    const url = new URL(location.href);
+    url.searchParams.delete('q');
+    history.replaceState(null, '', url);
+  });
+
+  goTo(0);
+})();
 
 function initSiteSearch() {
   const input = sidebarEl.querySelector('#site-search-input');

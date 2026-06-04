@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Wiki — Socra AI Workflow</title>
+  <title>실무 가이드 & 플레이북 — Socra AI Workflow</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
   <link rel="stylesheet" href="ai-workflow-guide.css" />
@@ -17,7 +17,7 @@
   <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
     <span></span><span></span><span></span>
   </button>
-  <span class="mobile-topbar-title" id="mobile-doc-title">Wiki</span>
+  <span class="mobile-topbar-title">실무 가이드 & 플레이북</span>
 </header>
 
 <!-- Sidebar overlay -->
@@ -29,57 +29,63 @@
   <nav class="sidebar" id="sidebar"></nav>
 
   <!-- Main -->
-  <main class="main">
-    <div id="wiki-content" class="wiki-doc">
-      <div class="wiki-loading">문서를 불러오는 중...</div>
-    </div>
+  <main class="main" id="wiki-main">
+    <div class="wiki-loading">문서를 불러오는 중...</div>
   </main>
 
 </div>
 
 <script>
-// ─── Doc registry ─────────────────────────────────────────
-const DOCS = {
-  'figma-git-sync':               '../wiki/guides/figma-git-sync.md',
-  'figma-first-storybook-verified': '../wiki/guides/figma-first-storybook-verified.md',
-  'ai-design-review':             '../wiki/guides/ai-design-review.md',
-  'daily-worklog-to-wiki':        '../wiki/guides/daily-worklog-to-wiki.md',
-  'designer-dev-terms':           '../wiki/guides/designer-dev-terms.md',
-  'component-update-playbook':    '../wiki/playbooks/component-update-playbook.md',
-  'screen-design-playbook':       '../wiki/playbooks/screen-design-playbook.md',
-};
-
-// ─── Render ───────────────────────────────────────────────
-const contentEl = document.getElementById('wiki-content');
-
-function renderDoc(docId) {
-  const path = DOCS[docId];
-  if (!path) {
-    contentEl.innerHTML = '<div class="wiki-error"><strong>문서를 찾을 수 없습니다.</strong><br>올바른 <code>?doc=</code> 파라미터를 확인해주세요.</div>';
-    return;
+const GROUPS = [
+  {
+    label: '실무 가이드',
+    docs: [
+      { id: 'figma-git-sync',                path: '../wiki/guides/figma-git-sync.md' },
+      { id: 'figma-first-storybook-verified', path: '../wiki/guides/figma-first-storybook-verified.md' },
+      { id: 'ai-design-review',              path: '../wiki/guides/ai-design-review.md' },
+      { id: 'daily-worklog-to-wiki',         path: '../wiki/guides/daily-worklog-to-wiki.md' },
+      { id: 'designer-dev-terms',            path: '../wiki/guides/designer-dev-terms.md' },
+    ]
+  },
+  {
+    label: '플레이북 / 기록',
+    docs: [
+      { id: 'component-update-playbook', path: '../wiki/playbooks/component-update-playbook.md' },
+      { id: 'screen-design-playbook',    path: '../wiki/playbooks/screen-design-playbook.md' },
+    ]
   }
+];
 
-  fetch(path)
-    .then(res => {
-      if (!res.ok) throw new Error('fetch failed');
-      return res.text();
-    })
-    .then(md => {
-      marked.use({ gfm: true, breaks: false });
-      contentEl.innerHTML = marked.parse(md);
-      const h1 = contentEl.querySelector('h1');
-      if (h1) {
-        document.title = h1.textContent + ' — Socra AI Workflow';
-        document.getElementById('mobile-doc-title').textContent = h1.textContent;
-      }
-    })
-    .catch(() => {
-      contentEl.innerHTML = '<div class="wiki-error">문서를 불러오지 못했습니다. 경로를 확인해주세요.</div>';
-    });
-}
+const DOCS = GROUPS.flatMap(g => g.docs);
 
-const docId = new URLSearchParams(location.search).get('doc');
-renderDoc(docId || '');
+marked.use({ gfm: true, breaks: false });
+
+const mainEl = document.getElementById('wiki-main');
+
+Promise.all(DOCS.map(doc =>
+  fetch(doc.path).then(r => r.ok ? r.text() : Promise.reject(doc.id))
+)).then(texts => {
+  let docIndex = 0;
+  mainEl.innerHTML = GROUPS.map(group => {
+    const sections = group.docs.map(doc => {
+      const html = marked.parse(texts[docIndex++]);
+      return `<section class="wiki-doc" id="${doc.id}">${html}</section>`;
+    }).join('\n');
+    return `<div class="wiki-group">
+  <div class="wiki-group-label">${group.label}</div>
+  ${sections}
+</div>`;
+  }).join('\n');
+
+  // scroll to anchor if present
+  const hash = location.hash.slice(1);
+  if (hash) {
+    const el = document.getElementById(hash);
+    if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
+  }
+}).catch(id => {
+  mainEl.innerHTML = `<div class="wiki-doc"><p style="color:var(--text-muted)">일부 문서를 불러오지 못했습니다 (${id}).</p></div>`;
+});
 </script>
 
 <script src="ai-workflow-guide.js?v=0.14-wiki"></script>

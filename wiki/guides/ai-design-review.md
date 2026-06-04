@@ -1,18 +1,18 @@
-# AI Design Review
+# AI 디자인 리뷰
 
-## Purpose
+## 목적
 
 AI가 디자인 결과물을 단순 취향 평가가 아니라 제품 사용성, 일관성, 접근성, 구현 가능성 관점으로 검토하게 만든다.
 
-## Review Inputs
+## 리뷰 입력 정보
 
-- Figma link or screenshot
-- Intended user task
-- Component or screen scope
-- Current design system constraints
-- Known open questions
+- Figma 링크 또는 스크린샷
+- 사용자가 수행하려는 작업
+- 컴포넌트 또는 화면 범위
+- 현재 디자인 시스템 제약 조건
+- 미결 질문 (Open questions)
 
-## Review Checklist
+## 리뷰 체크리스트
 
 - 사용자가 주요 행동을 바로 찾을 수 있는가
 - 컴포넌트 variant/state가 기존 시스템과 맞는가
@@ -20,16 +20,12 @@ AI가 디자인 결과물을 단순 취향 평가가 아니라 제품 사용성,
 - loading, disabled, empty, error 상태가 있는가
 - 모바일/데스크톱에서 텍스트가 넘치거나 겹치지 않는가
 
-## Output Format
+## 출력 형식
 
 AI 리뷰는 다음 순서로 작성한다.
 
-1. Critical issues
-2. Product/design risks
-3. Suggested fixes
-4. Questions for designer judgment
-5. Links to related worklog or `riiid/prism` source-of-truth doc
-
-## Source Worklog
-
-- Pending first promoted worklog entry.
+1. 치명적 이슈 (Critical issues)
+2. 제품/디자인 리스크
+3. 수정 제안
+4. 디자이너 판단이 필요한 질문
+5. 관련 워크로그 또는 `riiid/prism` 출처 문서 링크

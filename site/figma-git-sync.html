@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Figma-Git Sync — Socra AI Workflow Wiki</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="stylesheet" href="ai-workflow-guide.css" />
+  <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+
+<header class="mobile-topbar">
+  <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+    <span></span><span></span><span></span>
+  </button>
+  <span class="mobile-topbar-title">Figma-Git Sync</span>
+</header>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar"></nav>
+
+  <main class="main">
+    <div class="wiki-doc">
+      <h1>Figma / Git Sync Boundary</h1>
+      <h2>Purpose</h2>
+      <p>Figma, <code>riiid/prism</code>, code implementation, Storybook이 서로 다른 기준을 말하지 않도록 역할 경계를 정리한다.</p>
+      <p>이 문서는 현재 Prism의 실제 계약 문서가 아니다. Prism의 component/token/package/source-of-truth 판단은 <code>riiid/prism</code>의 README, AGENTS, <code>docs/agent-rules.md</code>, <code>design-system/rules.md</code>, <code>packages/prism/*</code>, <code>apps/storybook/*</code> 문서를 우선한다.</p>
+      <h2>Source of Truth</h2>
+      <table>
+      <thead>
+      <tr>
+      <th>Area</th>
+      <th>Current Source</th>
+      <th>This Wiki Role</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Daily work context</td>
+      <td><code>jumi-worklog</code></td>
+      <td>Promote reusable lessons only</td>
+      </tr>
+      <tr>
+      <td>Prism component/token/package contract</td>
+      <td><code>riiid/prism</code></td>
+      <td>Link and explain boundaries</td>
+      </tr>
+      <tr>
+      <td>Design exploration / visual evidence</td>
+      <td>Figma / product-design evidence docs</td>
+      <td>Preserve lessons, not contracts</td>
+      </tr>
+      <tr>
+      <td>Implementation behavior</td>
+      <td>Code / package contract</td>
+      <td>Do not duplicate specs</td>
+      </tr>
+      <tr>
+      <td>Implemented UI review</td>
+      <td>Storybook in <code>riiid/prism</code></td>
+      <td>Explain QA pattern only</td>
+      </tr>
+      </tbody>
+      </table>
+      <h2>Non-Negotiable Rule</h2>
+      <p>AI must not invent visual values inside code, preview, or Storybook and call that sync.</p>
+      <ul>
+      <li>Before applying this guide, check <code>riiid/prism</code>'s current operating model.</li>
+      <li>If product-design docs define a package or component contract, do not restate it here.</li>
+      <li>If this wiki and product-design docs disagree, product-design docs win for implementation.</li>
+      <li>This wiki may record why a boundary exists and how to avoid repeating a mistake.</li>
+      </ul>
+      <h2>Storybook Boundary</h2>
+      <p>Storybook does not need to visually copy the Figma design file as a page.</p>
+      <ul>
+      <li>Storybook chrome, docs page layout, panels, headings, examples, and explanatory surfaces may be designed for developer/designer readability.</li>
+      <li>The rendered component internals must match Figma: tokens, dimensions, variants, states, typography, spacing, radius, shadows, icon sizing, and interaction state visuals.</li>
+      <li>Storybook page-shell styling must not leak into component CSS or become component source-of-truth.</li>
+      </ul>
+      <h2>Figma Zones</h2>
+      <table>
+      <thead>
+      <tr>
+      <th>Zone</th>
+      <th>Sync Rule</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Exploration</td>
+      <td>Do not sync to Git/Storybook</td>
+      </tr>
+      <tr>
+      <td>Candidates</td>
+      <td>Capture context only; not an implementation contract</td>
+      </tr>
+      <tr>
+      <td>Components</td>
+      <td>Sync when approved</td>
+      </tr>
+      <tr>
+      <td>Screens</td>
+      <td>Sync only when marked approved</td>
+      </tr>
+      <tr>
+      <td>Archive</td>
+      <td>Do not sync unless referenced as rationale</td>
+      </tr>
+      </tbody>
+      </table>
+      <h2>Sync Rule</h2>
+      <ul>
+      <li>This wiki does not own component specs, token contracts, package API, or release rules.</li>
+      <li><code>riiid/prism</code> owns current implementation contracts.</li>
+      <li>This wiki owns cross-session patterns: what to check first, what not to duplicate, and when to promote a worklog lesson.</li>
+      <li>Code Connect is optional; do not block workflow on it.</li>
+      </ul>
+      <h2>Sync Flow</h2>
+      <pre><code class="language-text">Worklog / Figma / Prototype signal
+      -&gt; Check `riiid/prism` source of truth
+      -&gt; Update product-design contract if needed
+      -&gt; Implement / verify in code and Storybook
+      -&gt; Record reusable lesson in workflow wiki
+      </code></pre>
+      <p>If a component visual contract changes, the flow must start from the current <code>riiid/prism</code> source-of-truth documents, not from this wiki.</p>
+      <h2>AI Checklist</h2>
+      <p>Before updating product-design contract docs, code, preview, or Storybook, AI must answer:</p>
+      <ul>
+      <li>Which repo owns this decision: <code>jumi-worklog</code>, <code>riiid/prism</code>, or this workflow wiki?</li>
+      <li>Is this a current Prism contract or only a reusable operating lesson?</li>
+      <li>Have I checked product-design README/AGENTS and relevant contract docs?</li>
+      <li>Am I duplicating component/token/package details that should live in product-design?</li>
+      <li>Does this belong in worklog first and wiki only after repetition?</li>
+      </ul>
+      <h2>Acceptance Criteria</h2>
+      <ul>
+      <li>Current implementation rules link to <code>riiid/prism</code> source-of-truth docs instead of duplicating them.</li>
+      <li>Workflow wiki docs explain reusable boundaries and lessons.</li>
+      <li>Worklog entries remain source records; wiki docs contain only promoted patterns.</li>
+      <li>No component/token/package contract is treated as current unless product-design confirms it.</li>
+      </ul>
+      <h2>Source Worklog</h2>
+      <ul>
+      <li>Pending first promoted worklog entry.</li>
+      </ul>
+    </div>
+
+    <nav class="wiki-page-nav">
+      <span></span>
+      <a href="figma-first-storybook-verified.html" class="wiki-nav-btn wiki-nav-next">Historical Figma / Storybook 교훈 →</a>
+    </nav>
+  </main>
+</div>
+
+<script src="ai-workflow-guide.js?v=0.14-wiki"></script>
+</body>
+</html>

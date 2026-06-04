@@ -209,6 +209,5 @@ Figma는 중요한 디자인 근거를 제공하지만, 현재 구조에서는 p
 - **Source of Truth**는 최종으로 믿어야 하는 기준이다.
 - **Sync**는 Figma, Git, Storybook, Worklog를 다시 맞추는 과정이다.
 
-## Source Worklog
 
 - Side conversation: 디자이너가 PR, CI, Storybook, Token, Contract 같은 개발 협업 용어를 Notion/Worklog에 정리할 수 있도록 가이드 문구로 변환한 내용.
