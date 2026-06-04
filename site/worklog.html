@@ -648,7 +648,20 @@ Button 기준으로 Figma evidence → package contract → Storybook QA → 발
 - **UX 개선**: scrollspy(현재 섹션 사이드바 하이라이트), 검색어 하이라이트, 페이지 내 결과 ↑↓ 이동.
 - **v0.15 버전업**.
 - **레포 이름 반영**: URL `wiki` → `socra-ai-workflow-wiki` 수정, 검색 인덱스 업데이트, orphaned 페이지 제거.
-- **워크로그 뷰어 개선**: 인터랙티브 체크박스(localStorage 영속성 + strikethrough), Plan/Log 탭 분리, 캘린더 점 표시.
+- **v0.15 버전업**.
+- **레포 이름 반영**: URL `wiki` → `socra-ai-workflow-wiki` 수정, 검색 인덱스 업데이트, orphaned 페이지 제거.
+
+---
+
+## 워크로그 뷰어 개선 (worklog.html)
+
+### 실행 기록
+
+- **Plan/Log 탭 분리**: 날짜별로 `plan` 탭(계획·체크리스트)과 `log` 탭(실행 기록)으로 구분. 탭 전환 시 해당 `<script type="text/plain">` 블록을 렌더.
+- **캘린더 점 표시**: 해당 날짜에 log 엔트리가 있으면 날짜 셀에 점 표시. 오늘 날짜 강조와 중복되지 않도록 `today dot` 숨김 처리.
+- **인터랙티브 체크박스**: marked renderer override로 `disabled` 속성 제거 → 클릭 가능하게. localStorage에 `cb:{date}:{panel}:{index}` 키로 체크 상태 저장. strikethrough(`cb-done` 클래스) 토글.
+- **이벤트 위임**: `entry-area` 전체에 `change` 이벤트 한 번만 등록해 동적 렌더 후에도 정상 동작.
+- **체크박스 초기 상태 버그 수정**: localStorage 미방문 시 `[x]` 항목이 unchecked로 초기화되던 문제 → `stored !== null`일 때만 override하도록 수정.
 
 ### 커밋
 
@@ -662,7 +675,11 @@ Button 기준으로 Figma evidence → package contract → Storybook QA → 발
 | `6f536a9` | fix: update search index, remove orphaned wiki pages |
 | `76f7e80` | fix: correct GitHub Pages URL |
 | `eb44dd6` | feat: interactive checkboxes with localStorage |
+| `0f7c3cc` | fix: remove disabled from checkboxes via marked renderer |
+| `16ee701` | fix: event delegation for checkbox strikethrough |
 | `3d26ff6` | feat: add plan/log tabs and calendar dots to worklog viewer |
+| `9ad7fbe` | fix: hide today dot when cal-dots present |
+| `8a695e2` | fix: preserve markdown [x] checked state when localStorage has no entry |
 </script>
 
 <script type="text/plain" id="entry-2026-06-02">
