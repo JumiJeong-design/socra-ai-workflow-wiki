@@ -71,6 +71,7 @@ body{
 .cal-cell.active{background:var(--accent) !important;color:#fff !important;font-weight:700}
 .cal-cell.today::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:3px;height:3px;border-radius:50%;background:var(--accent)}
 .cal-cell.active.today::after{background:#fff}
+.cal-cell.today:has(.cal-dots)::after{display:none}
 .cal-cell .cal-dots{position:absolute;bottom:3px;left:50%;transform:translateX(-50%);display:flex;gap:2px}
 .cal-cell .cal-dots span{width:3px;height:3px;border-radius:50%}
 .cal-cell .cal-dots .dot-plan{background:#f0a500}
