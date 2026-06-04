@@ -6,7 +6,7 @@
 
 ## 세션 시작 시
 
-1. `JumiJeong-design/jumi-worklog` 레포에서 최근 날짜 파일 1~2개를 읽어 맥락 파악
+1. `JumiJeong-design/jumi-worklog` 레포에서 최근 `logs/YYYY/MM/` 날짜 파일 1~2개를 읽어 맥락 파악
 2. 오늘 날짜 worklog 파일이 없으면 세션 종료 시 생성
 3. 이 레포 작업 내용은 jumi-worklog 날짜 파일에 합산 기록
 
@@ -28,10 +28,10 @@
 
 ## jumi-worklog 연동
 
-`jumi-worklog`는 날짜별 작업 로그, 작업별 plan, 반복 패턴 후보를 관리하는 운영 저장소입니다.
+`jumi-worklog`는 날짜별 작업 로그, 세션 맥락, 반복 패턴 후보를 관리하는 운영 저장소입니다.
 
-- 날짜별 작업 기록: `jumi-worklog/YYYY-MM-DD.md`
-- 진행 중 작업 계획: `jumi-worklog/plans/YYYY-MM-DD-topic-plan.md`
-- 승격 전 반복 패턴 후보: `jumi-worklog/patterns/`
+- 날짜별 작업 기록: `jumi-worklog/logs/YYYY/MM/YYYY-MM-DD.md`
+- 세션 간 현재 상태: `jumi-worklog/CONTEXT.md`
+- 공통 스킬: `jumi-worklog/skills/`
 
-검증되고 정제된 guide/playbook/case만 이 repo의 `wiki/`로 승격합니다. `jumi-worklog/patterns/`는 최종 가이드가 아니라 승격 전 후보 저장소입니다.
+검증되고 정제된 guide/playbook/case만 이 repo의 `wiki/`로 승격합니다. 제품/컴포넌트/package 계약은 `riiid/prism`을 우선합니다.
