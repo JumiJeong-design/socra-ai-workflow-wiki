@@ -1461,16 +1461,24 @@ function renderEntry(index) {
 
 function initCheckboxes(date) {
   document.querySelectorAll('.entry-body input[type="checkbox"]').forEach((cb, i) => {
-    cb.removeAttribute('disabled');
     const key = `cb:${date}:${i}`;
     cb.checked = localStorage.getItem(key) === '1';
-    cb.addEventListener('change', () => {
-      localStorage.setItem(key, cb.checked ? '1' : '0');
-      cb.closest('li')?.classList.toggle('cb-done', cb.checked);
-    });
     if (cb.checked) cb.closest('li')?.classList.add('cb-done');
   });
 }
+
+// 이벤트 위임 — entry-area 전체에 한 번만 등록
+document.getElementById('entry-area').addEventListener('change', e => {
+  const cb = e.target;
+  if (cb.type !== 'checkbox') return;
+  const li = cb.closest('li');
+  if (li) li.classList.toggle('cb-done', cb.checked);
+  // 현재 날짜 기준으로 key 저장
+  const allCbs = [...document.querySelectorAll('.entry-body input[type="checkbox"]')];
+  const i = allCbs.indexOf(cb);
+  const date = document.querySelector('.entry-title')?.textContent?.match(/\d{4}[년.]\s*\d{1,2}[월.]\s*\d{1,2}/)?.[0] || ENTRIES[currentIndex]?.date;
+  if (i >= 0) localStorage.setItem(`cb:${ENTRIES[currentIndex]?.date}:${i}`, cb.checked ? '1' : '0');
+});
 function goTo(index) {
   if (index < 0 || index >= ENTRIES.length) return;
   currentIndex = index;
