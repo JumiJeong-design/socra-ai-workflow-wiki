@@ -1,6 +1,6 @@
 # Claude Entry — AI Workflow 가이드
 
-이 폴더는 `socra-ai-workflow-guide` 정적 사이트 소스입니다.
+이 폴더는 `socra-ai-workflow-wiki` 정적 사이트 소스입니다.
 
 ## 버전 업데이트 시 체크리스트
 
@@ -19,6 +19,8 @@
 | 트리거 | 스킬 | 위치 |
 |--------|------|------|
 | `워크로그 써줘`, `오늘 정리해줘`, `/write-worklog` | write-worklog | `jumi-worklog/skills/write-worklog/SKILL.md` |
+| `지금까지 뭐했어?`, `중간 정리`, `/session-snapshot` | session-snapshot | `jumi-worklog/skills/session-snapshot/SKILL.md` |
+| `동기화 확인해줘`, `뷰어랑 맞아?`, `/sync-entry` | sync-entry | `jumi-worklog/skills/sync-entry/SKILL.md` |
 | `버전 올려줘`, `배포할게`, `/bump-version` | bump-version | `jumi-worklog/skills/bump-version/SKILL.md` |
 | `미팅 준비해줘`, `이번주 요약해줘`, `/prep-meeting` | prep-meeting | `jumi-worklog/skills/prep-meeting/SKILL.md` |
 | `이거 기억해줘`, `규칙 추가해줘`, `/record-trap` | record-trap | `jumi-worklog/skills/record-trap/SKILL.md` |
