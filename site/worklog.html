@@ -242,6 +242,50 @@ body{
         </div>
       </div>
 
+      <div class="skill-card" id="skill-session-snapshot">
+        <div class="skill-card-header" onclick="toggleSkill('session-snapshot')">
+          <div class="skill-header-text">
+            <div class="skill-name">session-snapshot</div>
+            <div class="skill-desc">세션 중간 작업 현황 요약 — 파일 저장 없이 채팅 출력만</div>
+          </div>
+          <span class="skill-toggle">›</span>
+        </div>
+        <div class="skill-triggers">
+          <span class="skill-trigger">지금까지 뭐했어?</span>
+          <span class="skill-trigger">중간 정리</span>
+          <span class="skill-trigger">/session-snapshot</span>
+        </div>
+        <div class="skill-detail">
+          <ol class="skill-steps">
+            <li>3개 레포 오늘 커밋 조회</li>
+            <li>대화 컨텍스트에서 완료·진행 중·미결 항목 추출</li>
+            <li>채팅에 스냅샷 출력 (파일 저장·push 없음)</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="skill-card" id="skill-sync-entry">
+        <div class="skill-card-header" onclick="toggleSkill('sync-entry')">
+          <div class="skill-header-text">
+            <div class="skill-name">sync-entry</div>
+            <div class="skill-desc">jumi-worklog md와 worklog.html 뷰어 내용 비교 → 누락·불일치 보고</div>
+          </div>
+          <span class="skill-toggle">›</span>
+        </div>
+        <div class="skill-triggers">
+          <span class="skill-trigger">동기화 확인해줘</span>
+          <span class="skill-trigger">뷰어랑 맞아?</span>
+          <span class="skill-trigger">/sync-entry</span>
+        </div>
+        <div class="skill-detail">
+          <ol class="skill-steps">
+            <li>원본 md와 worklog.html 엔트리 블록 읽기</li>
+            <li>섹션·커밋·회고 누락 여부 비교</li>
+            <li>불일치 보고 + 원하면 뷰어 블록 업데이트</li>
+          </ol>
+        </div>
+      </div>
+
       <div class="skill-card" id="skill-prep-meeting">
         <div class="skill-card-header" onclick="toggleSkill('prep-meeting')">
           <div class="skill-header-text">
