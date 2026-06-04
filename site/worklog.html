@@ -71,6 +71,19 @@ body{
 .cal-cell.active{background:var(--accent) !important;color:#fff !important;font-weight:700}
 .cal-cell.today::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:3px;height:3px;border-radius:50%;background:var(--accent)}
 .cal-cell.active.today::after{background:#fff}
+.cal-cell .cal-dots{position:absolute;bottom:3px;left:50%;transform:translateX(-50%);display:flex;gap:2px}
+.cal-cell .cal-dots span{width:3px;height:3px;border-radius:50%}
+.cal-cell .cal-dots .dot-plan{background:#f0a500}
+.cal-cell .cal-dots .dot-log{background:var(--accent)}
+.cal-cell.active .cal-dots .dot-plan{background:rgba(255,255,255,.8)}
+.cal-cell.active .cal-dots .dot-log{background:#fff}
+/* ── Entry tabs ── */
+.entry-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:24px}
+.entry-tab{padding:8px 16px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .12s,border-color .12s;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.entry-tab:hover{color:var(--text)}
+.entry-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.entry-tab-panel{display:none}
+.entry-tab-panel.active{display:block}
 .sidebar-list{flex:1;overflow-y:auto;padding:6px 0}
 .sidebar-list.with-border{border-top:1px solid var(--border)}
 .list-item{display:flex;flex-direction:column;padding:9px 16px;cursor:pointer;border-left:2px solid transparent;transition:all .12s}
@@ -699,6 +712,15 @@ body{
 - [ ] 남은 컴포넌트에 같은 Figma - Git - Storybook sync loop 적용
 - [ ] Button / Tooltip 변경분 commit / PR 범위 결정
 - [ ] workflow guide에 새 guide/playbook 파일을 별도 커밋으로 정리
+- [ ] `publish-pages`를 실제 커스텀 스킬 파일로 승격할지 검토
+</script>
+
+<script type="text/plain" id="plan-2026-06-02">
+## 오늘 할 일
+
+- [ ] 남은 컴포넌트에 같은 Figma - Git - Storybook sync loop 적용
+- [ ] Button / Tooltip 변경분 commit / PR 범위 결정
+- [ ] workflow guide 사이드바 네비 연결 검토
 - [ ] `publish-pages`를 실제 커스텀 스킬 파일로 승격할지 검토
 </script>
 
@@ -1350,7 +1372,7 @@ marked.use({
 });
 
 const ENTRIES = [
-  { date: '2026-06-02', dayKo: '화요일', tags: ['prism', 'storybook', 'tooltip', 'typography', 'meeting'] },
+  { date: '2026-06-02', dayKo: '화요일', tags: ['prism', 'storybook', 'tooltip', 'typography', 'meeting'], plan: true },
   { date: '2026-06-01', dayKo: '월요일', tags: ['핸드오프', 'codex-인계', '에이전트-분담'], notion: 'https://www.notion.so/3725bc5f630781ad8c3cdf2ab1987206' },
   { date: '2026-05-31', dayKo: '일요일', tags: ['폰트-Pretendard', 'storybook', 'notion-연동', 'figma-first'], notion: 'https://www.notion.so/3715bc5f63078180ac2dd17d731f91ea' },
   { date: '2026-05-30', dayKo: '토요일', tags: ['rules-복구', 'figma', 'socra-ai-product', 'jumi-worklog'], notion: 'https://www.notion.so/3715bc5f6307813f9804d7e48b0c3f95' },
@@ -1376,6 +1398,14 @@ const todayStr = new Date().toISOString().slice(0, 10);
 
 function pad(n) { return String(n).padStart(2, '0'); }
 function getMarkdown(date) { const el = document.getElementById('entry-' + date); return el ? el.textContent.trim() : ''; }
+function getPlan(date) { const el = document.getElementById('plan-' + date); return el ? el.textContent.trim() : ''; }
+function hasPlan(date) { return !!document.getElementById('plan-' + date); }
+
+function switchTab(tab) {
+  document.querySelectorAll('.entry-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  document.querySelectorAll('.entry-tab-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === tab));
+  if (tab === 'plan') initCheckboxes(ENTRIES[currentIndex].date, 'plan');
+}
 function formatDate(dateStr) { const [y, m, d] = dateStr.split('-'); return `${y}. ${parseInt(m)}. ${parseInt(d)}`; }
 
 function openSidebar() {
@@ -1409,7 +1439,10 @@ function buildCalendar() {
     const isToday = dateStr === todayStr;
     const dowClass = dow === 0 ? ' sun' : dow === 6 ? ' sat' : '';
     const click = hasEntry ? `onclick="goTo(${idx})"` : '';
-    html += `<div class="cal-cell${dowClass}${hasEntry?' has-entry':''}${isActive?' active':''}${isToday?' today':''}" ${click}>${d}</div>`;
+    const planDot = (hasEntry && ENTRIES[idx].plan) ? `<span class="dot-plan"></span>` : '';
+    const logDot = hasEntry ? `<span class="dot-log"></span>` : '';
+    const dots = (planDot || logDot) ? `<span class="cal-dots">${planDot}${logDot}</span>` : '';
+    html += `<div class="cal-cell${dowClass}${hasEntry?' has-entry':''}${isActive?' active':''}${isToday?' today':''}" ${click}>${d}${dots}</div>`;
   }
   document.getElementById('cal-grid').innerHTML = html;
   buildList();
@@ -1439,12 +1472,24 @@ function buildList() {
 }
 function renderEntry(index) {
   const e = ENTRIES[index];
-  const html = marked.parse(getMarkdown(e.date));
+  const logHtml = marked.parse(getMarkdown(e.date));
+  const planHtml = hasPlan(e.date) ? marked.parse(getPlan(e.date)) : '';
   const prev = ENTRIES[index + 1];
   const next = ENTRIES[index - 1];
   const prevBtn = prev ? `<a class="entry-nav-btn" onclick="goTo(${index + 1})"><span class="nav-dir">← 이전</span><span class="nav-date-label">${formatDate(prev.date)}</span></a>` : '<span></span>';
   const nextBtn = next ? `<a class="entry-nav-btn right" onclick="goTo(${index - 1})"><span class="nav-dir">다음 →</span><span class="nav-date-label">${formatDate(next.date)}</span></a>` : '<span></span>';
   const notionBtn = e.notion ? `<a class="notion-link" href="${e.notion}" target="_blank" rel="noopener">📝 Notion에서 보기 ↗</a>` : '';
+  const tabs = planHtml ? `
+    <div class="entry-tabs">
+      <button class="entry-tab" data-tab="plan" onclick="switchTab('plan')">📋 계획</button>
+      <button class="entry-tab active" data-tab="log" onclick="switchTab('log')">📝 기록</button>
+    </div>
+    <div class="entry-tab-panel" data-panel="plan">
+      <div class="entry-body md">${planHtml}</div>
+    </div>
+    <div class="entry-tab-panel active" data-panel="log">
+      <div class="entry-body md">${logHtml}</div>
+    </div>` : `<div class="entry-body md">${logHtml}</div>`;
   document.getElementById('entry-area').innerHTML = `
     <div class="entry">
       <div class="entry-header">
@@ -1452,16 +1497,20 @@ function renderEntry(index) {
         <div class="entry-tags">${e.tags.map(t => `<span class="entry-tag">${t}</span>`).join('')}</div>
         ${notionBtn}
       </div>
-      <div class="entry-body md">${html}</div>
+      ${tabs}
       <nav class="entry-nav">${prevBtn}<span class="entry-nav-spacer"></span>${nextBtn}</nav>
     </div>`;
   document.querySelector('.main').scrollTop = 0;
-  initCheckboxes(e.date);
+  initCheckboxes(e.date, 'log');
 }
 
-function initCheckboxes(date) {
-  document.querySelectorAll('.entry-body input[type="checkbox"]').forEach((cb, i) => {
-    const key = `cb:${date}:${i}`;
+function initCheckboxes(date, panel) {
+  const scope = panel === 'plan'
+    ? document.querySelector('.entry-tab-panel[data-panel="plan"] .entry-body')
+    : document.querySelector('.entry-tab-panel[data-panel="log"] .entry-body, .entry-body');
+  if (!scope) return;
+  scope.querySelectorAll('input[type="checkbox"]').forEach((cb, i) => {
+    const key = `cb:${date}:${panel}:${i}`;
     cb.checked = localStorage.getItem(key) === '1';
     if (cb.checked) cb.closest('li')?.classList.add('cb-done');
   });
@@ -1473,11 +1522,12 @@ document.getElementById('entry-area').addEventListener('change', e => {
   if (cb.type !== 'checkbox') return;
   const li = cb.closest('li');
   if (li) li.classList.toggle('cb-done', cb.checked);
-  // 현재 날짜 기준으로 key 저장
-  const allCbs = [...document.querySelectorAll('.entry-body input[type="checkbox"]')];
+  const panel = cb.closest('.entry-tab-panel')?.dataset.panel || 'log';
+  const scope = cb.closest('.entry-body');
+  const allCbs = scope ? [...scope.querySelectorAll('input[type="checkbox"]')] : [];
   const i = allCbs.indexOf(cb);
-  const date = document.querySelector('.entry-title')?.textContent?.match(/\d{4}[년.]\s*\d{1,2}[월.]\s*\d{1,2}/)?.[0] || ENTRIES[currentIndex]?.date;
-  if (i >= 0) localStorage.setItem(`cb:${ENTRIES[currentIndex]?.date}:${i}`, cb.checked ? '1' : '0');
+  const date = ENTRIES[currentIndex]?.date;
+  if (i >= 0 && date) localStorage.setItem(`cb:${date}:${panel}:${i}`, cb.checked ? '1' : '0');
 });
 function goTo(index) {
   if (index < 0 || index >= ENTRIES.length) return;
