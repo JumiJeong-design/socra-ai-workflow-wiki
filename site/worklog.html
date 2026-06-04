@@ -132,7 +132,8 @@ body{
 .md ul,.md ol{padding-left:20px;margin-bottom:12px}
 .md li{font-size:14px;color:var(--text);margin-bottom:5px;line-height:1.65}
 .md li p{margin-bottom:2px}
-.md li input[type="checkbox"]{margin-right:6px;accent-color:var(--accent)}
+.md li input[type="checkbox"]{margin-right:6px;accent-color:var(--accent);cursor:pointer}
+.md li.cb-done{text-decoration:line-through;color:var(--text-dim,#888);}
 .md blockquote{margin:12px 0;padding:10px 16px;background:var(--surface-2);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;font-size:13px;color:var(--text-muted);font-style:italic}
 .md code{font-family:'SF Mono','Fira Code','Fira Mono',monospace;font-size:12.5px;background:var(--code-bg);border:1px solid var(--border);padding:2px 5px;border-radius:4px;color:var(--text)}
 .md pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:16px;overflow-x:auto;margin:12px 0}
@@ -1447,6 +1448,20 @@ function renderEntry(index) {
       <nav class="entry-nav">${prevBtn}<span class="entry-nav-spacer"></span>${nextBtn}</nav>
     </div>`;
   document.querySelector('.main').scrollTop = 0;
+  initCheckboxes(e.date);
+}
+
+function initCheckboxes(date) {
+  document.querySelectorAll('.entry-body input[type="checkbox"]').forEach((cb, i) => {
+    cb.removeAttribute('disabled');
+    const key = `cb:${date}:${i}`;
+    cb.checked = localStorage.getItem(key) === '1';
+    cb.addEventListener('change', () => {
+      localStorage.setItem(key, cb.checked ? '1' : '0');
+      cb.closest('li')?.classList.toggle('cb-done', cb.checked);
+    });
+    if (cb.checked) cb.closest('li')?.classList.add('cb-done');
+  });
 }
 function goTo(index) {
   if (index < 0 || index >= ENTRIES.length) return;
