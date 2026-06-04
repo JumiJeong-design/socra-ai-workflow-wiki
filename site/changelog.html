@@ -34,6 +34,48 @@
       <p>Socra AI Workflow Wiki의 변경 사항을 버전별로 기록합니다.</p>
     </div>
 
+    <!-- v0.15 -->
+    <section class="section" id="v0-15">
+      <div class="section-header">
+        <div class="section-num">0.15</div>
+        <h2>사이트 그룹 페이지 분리 · 검색 · UX 개선 <span class="section-tag">2026.06.04</span></h2>
+      </div>
+
+      <div class="highlight">
+        <p>단일 페이지였던 ai-workflow-guide.html을 사이드바 그룹 단위로 분리하고, 검색 하이라이트와 scrollspy를 추가해 탐색 경험을 개선했습니다.</p>
+      </div>
+
+      <h3>구조 변경</h3>
+      <ul class="styled">
+        <li><strong>사이트 그룹 페이지 분리</strong> — 3000줄짜리 단일 페이지를 사이드바 그룹 단위 5개(basics/setup/build/ops/extensions)로 분리. wiki 문서도 실무가이드/플레이북 2개 그룹 페이지로 통합</li>
+        <li><strong>prev/next 네비게이션</strong> — 각 페이지 하단에 이전/다음 페이지 이동 버튼 추가. 전체 12개 페이지가 순서대로 연결</li>
+        <li><strong>빌드 스크립트 추가</strong> — <code>scripts/build-guide.py</code>, <code>scripts/build-wiki.py</code>로 MD 수정 시 재빌드</li>
+      </ul>
+
+      <h3>검색 개선</h3>
+      <ul class="styled">
+        <li><strong>검색어 하이라이트</strong> — 검색 결과 클릭 후 페이지 내 일치 텍스트 전체 하이라이트</li>
+        <li><strong>결과 간 이동 네비게이터</strong> — 하단 플로팅 바로 ↑↓ 이동, 현재 위치(N/전체) 표시, ✕ 닫기</li>
+      </ul>
+
+      <h3>사이드바 UX</h3>
+      <ul class="styled">
+        <li><strong>Scrollspy</strong> — 스크롤 위치 기반으로 현재 섹션 sidebar 링크 active 표시</li>
+        <li><strong>현재 페이지 그룹 표시</strong> — 현재 보고 있는 페이지 그룹의 nav-label이 accent 컬러로 강조</li>
+      </ul>
+
+      <h3>콘텐츠 · 링크 정리</h3>
+      <ul class="styled">
+        <li><strong>wiki 문서 한국어 번역</strong> — 영어로 남아있던 섹션 전체 한국어로 수정. "역사적 교훈" → "시행착오 정리" 등 자연스러운 표현으로 개선</li>
+        <li><strong>riiid/lampro → riiid/prism</strong> — 통합된 패키지 레포 링크로 업데이트</li>
+        <li><strong>불필요한 내용 제거</strong> — Pending placeholder, 팀 역할 분담 테이블, 중복 divider 제거</li>
+        <li><strong>index.html 링크 전수 업데이트</strong> — 분리된 페이지 구조에 맞게 전체 내부 링크 수정</li>
+        <li><strong>공통 sidebar 캐시 버전을 v0.15로 갱신</strong></li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
     <!-- v0.14 -->
     <section class="section" id="v0-14">
       <div class="section-header">
