@@ -576,6 +576,40 @@ body{
   <div id="entry-area"></div>
 </div>
 
+<script type="text/plain" id="plan-2026-06-05">
+## 오늘 할 일
+
+- [ ] PreToolUse 훅 추가 — 로컬 `~/.claude/settings.json` 수정
+- [ ] riiid/prism Button: Figma component vs Storybook QA surface 결정
+- [ ] `pnpm visual` Chromatic 업로드 승인 여부 확인
+</script>
+
+<script type="text/plain" id="entry-2026-06-05">
+# 2026-06-05
+
+## 워크로그 시스템 개선 — Claude Code Web 세션
+
+### 작업 내역
+
+- **체크박스 버그 수정**: 새 기기에서 `[x]` 항목이 unchecked로 보이는 문제
+  - `restoreCheckboxes()` 에서 localStorage 값이 없을 때 markdown `[x]` 상태를 덮어쓰지 않도록 수정
+- **Log 탭 서브탭 기능 추가**: `##` H2 헤더 기준으로 자동 서브탭 생성
+  - `buildSubTabs(container)` 함수 추가
+  - CSS `.sub-tabs`, `.sub-tab-btn`, `.sub-section` 추가
+- **스킬 3종 추가/갱신**:
+  - `/session-snapshot` 신규: 중간 현황 채팅 출력 (파일 저장 없음)
+  - `/sync-entry` 신규: md 엔트리 vs worklog.html 뷰어 내용 비교
+  - `write-worklog` 갱신: 3-repo 커밋 체크 필수화, 회고 섹션 필수화, 서브탭 구조 명시
+- **CONTEXT.md 갱신**: 6개 스킬 테이블 + PreToolUse 훅 미완료 항목 추가
+- **2026-06-04 워크로그 보완**: wiki 구조 개편 작업 누락 섹션 추가
+
+## 회고 및 인사이트
+
+- 웹 세션은 로컬 파일 접근 불가 — settings.json 같은 로컬 설정은 별도 TODO로 남겨야 함
+- 서브탭 구조가 긴 로그를 영역별로 읽기 좋게 만들어줌 — 앞으로도 영역마다 `##` 분리 유지
+- 스킬 추가 후 CONTEXT.md 즉시 반영하는 패턴 정착됨
+</script>
+
 <script type="text/plain" id="plan-2026-06-04">
 ## 목표
 
