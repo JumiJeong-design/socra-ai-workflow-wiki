@@ -17,14 +17,9 @@
 | Claude Code | `CLAUDE.md` + SessionStart 훅 (`~/.claude/settings.json`) |
 | Codex | 이 파일(`AGENTS.md`) |
 
-## 버전 업데이트 시 체크리스트
+## 버전 업데이트
 
-버전을 올릴 때 아래 4개 파일을 모두 수정한다:
-
-1. `site/sidebar.html` — 버전 텍스트 (`v0.X`)
-2. `site/ai-workflow-guide.html` — 상단 버전 배지 + 인라인 changelog 항목
-3. `site/changelog.html` — 버전 섹션 신규 추가
-4. 필요 시 `site/index.html` — 신규 카드 추가
+`/bump-version` 스킬 실행 — 상세 절차는 `jumi-worklog/skills/bump-version/SKILL.md` 참고.
 
 ## jumi-worklog 연동
 
