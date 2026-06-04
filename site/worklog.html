@@ -571,8 +571,9 @@ body{
 ## 목표
 
 Button 기준으로 Figma evidence → package contract → Storybook QA → 발견사항 회수 루트가 실제로 작동하는지 확인한다.
+socra-ai-workflow-wiki 사이트 구조를 개편하고 worklog 뷰어를 개선한다.
 
-## 체크리스트
+## riiid/prism 체크리스트
 
 - [x] `riiid/prism` README / AGENTS 확인
 - [x] `docs/agent-rules.md` 확인
@@ -584,6 +585,19 @@ Button 기준으로 Figma evidence → package contract → Storybook QA → 발
 - [x] `pnpm visual` 실행 결과 또는 중단 사유 기록
 - [x] 발견사항을 contract / token / story / rules / worklog / workflow-guide 중 어디로 회수할지 분류
 - [x] 다음 액션 정리
+
+## socra-ai-workflow-wiki 체크리스트
+
+- [x] wiki 히어라키 구조 + SOT 경계 문서화
+- [x] wiki.html 뷰어 추가 (마크다운 → 사이트 렌더링)
+- [x] 디자이너-개발자 용어 가이드 추가
+- [x] 사이트 5개 그룹 페이지로 분리 (guide-basics/setup/build/ops/extensions)
+- [x] wiki 문서 전체 한국어 번역
+- [x] scrollspy + 검색 하이라이트 + 페이지 간 네비게이션
+- [x] v0.15 버전업
+- [x] GitHub Pages URL 수정 + 검색 인덱스 정리 + orphaned 페이지 제거
+- [x] 워크로그 뷰어 인터랙티브 체크박스 (localStorage)
+- [x] Plan/Log 탭 분리 + 캘린더 점 표시
 </script>
 
 <script type="text/plain" id="entry-2026-06-04">
@@ -600,22 +614,55 @@ Button 기준으로 Figma evidence → package contract → Storybook QA → 발
 - 시작 상태: `riiid/prism` Package workflow `fc55102` 성공 확인.
 - 기준 문서 확인: README, AGENTS, `docs/agent-rules.md`, `design-system/rules.md` 순서 확인.
 - Button 루프 확인: Figma evidence → package contract → Implementation/token → Storybook stories 확인.
-- `pnpm check` 성공. Storybook build Vite chunk size warning은 non-blocking.
-- `pnpm visual` 미실행. 사유: Chromatic 외부 업로드 차단. 대체: local Storybook build 성공으로 확인.
-- Local Storybook light/dark QA: `http://127.0.0.1:6101`로 서빙. Button Matrix iframe light/dark 캡처 확인.
-- Button package/token/implementation 변경 시도 → 조건 충돌로 revert. `pnpm token:build --check` 통과.
+- `pnpm check` 성공 (token build/check, lint, typecheck, vitest, package build, Storybook build 포함). Vite chunk size warning은 non-blocking.
+- `pnpm visual` 미실행 — Chromatic 외부 업로드 차단. 대체: local static Storybook을 `http://127.0.0.1:6101`로 서빙해 Button Matrix light/dark 캡처 확인.
+- Button package/token/implementation 변경 시도 (radius, state color, icon-size 조정) → "package 변경 금지" 조건 확인 후 revert. `pnpm token:build --check` 통과.
 
-### 발견사항 분류
+### 발견사항
 
-- Button icon+text min-width: Figma evidence(`s=85/m=98/l=120px`) vs package contract(`s=80/m=96/l=120px`) 차이 확인 → Figma component 실제 `minWidth`가 package와 이미 일치함. stale evidence 문서 정리 필요.
-- package 변경 금지 조건 재확인: 개발자 구현/contract/token은 명시적 승인 전 수정하지 않는다.
-- Chromatic visual upload는 외부 서비스 업로드 승인 여부 확인 후 진행.
+- **Button min-width 불일치 (해소됨)**: Figma evidence 문서에 `s=85/m=98/l=120px`로 기재돼 있었으나 Figma component 실제 `minWidth`는 package contract(`s=80/m=96/l=120px`)와 동일. stale evidence 문서 정리 필요.
+- **package 변경 금지 원칙 확인**: 개발자가 추가한 구현/contract/token은 디자인 동기화 목적으로 임의 수정 금지. 명시적 승인 후에만 진행.
+- **Chromatic 미결**: `pnpm visual` 외부 업로드 승인 여부 결정 필요.
 
 ### 다음 액션
 
 1. 변경 대상이 Figma component인지, Storybook QA surface인지 먼저 분리한다.
 2. package 변경이 필요하면 승인 후에만 진행한다.
 3. Chromatic 업로드 승인 여부 결정.
+
+---
+
+## socra-ai-workflow-wiki — 사이트 구조 전면 개편
+
+### 실행 기록
+
+- **wiki 히어라키 구조 문서화**: wiki 구조 + SOT(Source of Truth) 경계 정리. riiid/prism package-first 원칙과 workflow guide 내용 정렬.
+- **wiki.html 뷰어 추가**: `?doc=` 파라미터로 마크다운 문서를 사이트 디자인으로 렌더링. sidebar.html의 직접 md 링크를 wiki.html 경유로 전환.
+- **디자이너-개발자 용어 가이드 추가**: `wiki/designer-dev-terms.md` 신규 작성.
+- **사이트 구조 전면 개편**: `ai-workflow-guide.html` 단일 파일 → 5개 그룹 페이지로 분리
+  - `guide-basics.html` / `guide-setup.html` / `guide-build.html` / `guide-ops.html` / `guide-extensions.html`
+  - wiki 문서 → `guide-wiki.html`, `guide-playbooks.html`
+  - 빌드 스크립트: `scripts/build-guide.py`, `scripts/build-wiki.py`
+  - 페이지 간 prev/next 네비게이션 추가
+- **한국어 번역**: wiki 문서 전체 한국어 번역, 영어 섹션 제거.
+- **UX 개선**: scrollspy(현재 섹션 사이드바 하이라이트), 검색어 하이라이트, 페이지 내 결과 ↑↓ 이동.
+- **v0.15 버전업**.
+- **레포 이름 반영**: URL `wiki` → `socra-ai-workflow-wiki` 수정, 검색 인덱스 업데이트, orphaned 페이지 제거.
+- **워크로그 뷰어 개선**: 인터랙티브 체크박스(localStorage 영속성 + strikethrough), Plan/Log 탭 분리, 캘린더 점 표시.
+
+### 커밋
+
+| 커밋 | 설명 |
+|------|------|
+| `8ce1106` | docs: wiki hierarchy and source-of-truth boundaries |
+| `354bd5d` | feat: add wiki.html viewer |
+| `02a1eca` | docs: add designer dev terms guide |
+| `2922d7a` | feat: split site into group pages + scrollspy + search highlight |
+| `2018bff` | chore: bump version to v0.15 |
+| `6f536a9` | fix: update search index, remove orphaned wiki pages |
+| `76f7e80` | fix: correct GitHub Pages URL |
+| `eb44dd6` | feat: interactive checkboxes with localStorage |
+| `3d26ff6` | feat: add plan/log tabs and calendar dots to worklog viewer |
 </script>
 
 <script type="text/plain" id="entry-2026-06-02">
