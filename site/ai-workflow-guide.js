@@ -114,10 +114,15 @@ function markActivePage() {
 }
 
 const SEARCH_PAGES = [
-  { path: 'index.html', label: '홈' },
-  { path: 'ai-workflow-guide.html', label: '가이드' },
-  { path: 'figma-mcp-traps.html', label: 'MCP 함정' },
-  { path: 'changelog.html', label: 'Changelog' }
+  { path: 'index.html',             label: '홈' },
+  { path: 'guide-basics.html',      label: '기본 이해' },
+  { path: 'guide-setup.html',       label: '연결 / 환경 설정' },
+  { path: 'guide-build.html',       label: '문서 구축 가이드' },
+  { path: 'guide-ops.html',         label: '실무 운영' },
+  { path: 'guide-extensions.html',  label: '제품 유형별 확장' },
+  { path: 'guide-wiki.html',        label: '실무 가이드' },
+  { path: 'guide-playbooks.html',   label: '플레이북' },
+  { path: 'changelog.html',         label: 'Changelog' },
 ];
 
 let searchIndexPromise;
