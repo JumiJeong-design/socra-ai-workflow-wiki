@@ -1339,7 +1339,15 @@ MCP의 get_metadata 도구가 5개 중 2개만 반환하는 버그는 왜?
 </script>
 
 <script>
-marked.use({ gfm: true, breaks: false });
+marked.use({
+  gfm: true,
+  breaks: false,
+  renderer: {
+    checkbox(checked) {
+      return `<input type="checkbox"${checked ? ' checked' : ''}> `;
+    }
+  }
+});
 
 const ENTRIES = [
   { date: '2026-06-02', dayKo: '화요일', tags: ['prism', 'storybook', 'tooltip', 'typography', 'meeting'] },
