@@ -680,6 +680,20 @@ Button 기준으로 Figma evidence → package contract → Storybook QA → 발
 | `3d26ff6` | feat: add plan/log tabs and calendar dots to worklog viewer |
 | `9ad7fbe` | fix: hide today dot when cal-dots present |
 | `8a695e2` | fix: preserve markdown [x] checked state when localStorage has no entry |
+
+---
+
+## 회고 및 인사이트
+
+### AI 도구 활용
+
+- **세션 간 워크로그가 조각나기 쉽다** — 오늘처럼 prism/wiki 작업이 동시에 진행되면 한 세션의 write-worklog가 나머지 세션 기록을 빠뜨릴 수 있다. 세션 종료 전 "오늘 커밋 전체"를 레포별로 조회해서 빠진 게 없는지 확인하는 게 안전하다.
+- **localStorage 상태는 "없으면 원본 유지"로 설계해야 한다** — 처음 방문한 기기에서 초기 상태를 덮어쓰면 마크다운 `[x]`가 unchecked로 보이는 버그가 생긴다. 사용자 인터랙션이 있을 때만 override하는 패턴이 맞다.
+
+### 설계 결정
+
+- **package 변경 금지 원칙 확정** — 개발자가 추가한 구현/contract/token은 디자인 동기화 목적으로 임의 수정 금지. Figma와 차이가 보이면 먼저 Figma 문제인지, Storybook QA surface 문제인지, package 문제인지 분류 후 명시적 승인이 있을 때만 package 변경.
+- **사이트 구조는 단일 파일보다 그룹 페이지 분리가 낫다** — `ai-workflow-guide.html` 단일 파일은 콘텐츠가 쌓일수록 로딩·탐색이 무거워진다. 주제별 그룹 페이지로 나누면 scrollspy·검색·prev/next 네비게이션이 훨씬 자연스럽다.
 </script>
 
 <script type="text/plain" id="entry-2026-06-02">
