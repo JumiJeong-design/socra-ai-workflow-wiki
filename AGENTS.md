@@ -21,16 +21,17 @@
 
 버전을 올릴 때 아래 4개 파일을 모두 수정한다:
 
-1. `sidebar.html` — 버전 텍스트 (`v0.X`)
-2. `ai-workflow-guide.html` — 상단 버전 배지 + 인라인 changelog 항목
-3. `changelog.html` — 버전 섹션 신규 추가
-4. 필요 시 `index.html` — 신규 카드 추가
+1. `site/sidebar.html` — 버전 텍스트 (`v0.X`)
+2. `site/ai-workflow-guide.html` — 상단 버전 배지 + 인라인 changelog 항목
+3. `site/changelog.html` — 버전 섹션 신규 추가
+4. 필요 시 `site/index.html` — 신규 카드 추가
 
-## 공통 스킬
+## jumi-worklog 연동
 
-프로젝트 무관 공통 스킬은 `JumiJeong-design/jumi-worklog/skills/` 에 있다.
-사용자가 아래 트리거를 입력하면 해당 SKILL.md를 읽어서 실행한다.
+`jumi-worklog`는 날짜별 작업 로그, 작업별 plan, 반복 패턴 후보를 관리하는 운영 저장소입니다.
 
-| 트리거 | 스킬 | 위치 |
-|--------|------|------|
-| `워크로그 써줘`, `오늘 정리해줘`, `/write-worklog` | write-worklog | `jumi-worklog/skills/write-worklog/SKILL.md` |
+- 날짜별 작업 기록: `jumi-worklog/YYYY-MM-DD.md`
+- 진행 중 작업 계획: `jumi-worklog/plans/YYYY-MM-DD-topic-plan.md`
+- 승격 전 반복 패턴 후보: `jumi-worklog/patterns/`
+
+검증되고 정제된 guide/playbook/case만 이 repo의 `wiki/`로 승격합니다. `jumi-worklog/patterns/`는 최종 가이드가 아니라 승격 전 후보 저장소입니다.

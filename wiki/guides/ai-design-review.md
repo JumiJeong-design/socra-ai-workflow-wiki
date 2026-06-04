@@ -28,7 +28,7 @@ AI 리뷰는 다음 순서로 작성한다.
 2. Product/design risks
 3. Suggested fixes
 4. Questions for designer judgment
-5. Links to related worklog or component spec
+5. Links to related worklog or product-design source-of-truth doc
 
 ## Source Worklog
 

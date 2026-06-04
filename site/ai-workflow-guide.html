@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>프로덕트 디자이너를 위한 AI Workflow / 운영 문서 구축 가이드</title>
+  <title>AI 운영 문서 구축 가이드 — Socra AI Workflow Wiki</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
   <link rel="stylesheet" href="ai-workflow-guide.css" />
@@ -16,7 +16,7 @@
   <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
     <span></span><span></span><span></span>
   </button>
-  <span class="mobile-topbar-title">AI Workflow 구축 가이드</span>
+  <span class="mobile-topbar-title">AI 운영 문서 구축 가이드</span>
 </header>
 
 <!-- Sidebar overlay -->
@@ -41,10 +41,10 @@
         </div>
         <div id="version-badge" style="display:inline-flex; align-items:center; gap:5px; background:var(--bg-card); border:1px solid var(--border); border-radius:20px; padding:4px 10px; font-size:11px; font-weight:600; color:var(--text-muted); cursor:pointer;" onclick="document.getElementById('changelog').style.display = document.getElementById('changelog').style.display === 'none' ? 'block' : 'none'" title="버전 히스토리 보기">
           <span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;"></span>
-          v0.13
+          v0.14
         </div>
       </div>
-      <h1>프로덕트 디자이너를 위한<br>AI Workflow / 운영 문서 구축 가이드</h1>
+      <h1>프로덕트 디자이너를 위한<br>AI 운영 문서 구축 가이드</h1>
       <p>AI가 디자인 시스템, 제품 맥락, UX 의도, 컴포넌트 사용 기준을 이해하고 일관된 결과물을 만들 수 있도록 작업 기준과 운영 구조를 문서화하는 방법을 안내합니다.</p>
 
       <!-- Changelog -->
@@ -54,6 +54,19 @@
           <span onclick="document.getElementById('changelog').style.display='none'" style="cursor:pointer; font-size:14px; color:var(--text-muted);">✕</span>
         </div>
         <div style="padding:16px 18px;">
+          <div style="display:flex; gap:14px; padding:10px 0; border-bottom:1px solid var(--border-light);">
+            <div style="min-width:44px;">
+              <span style="display:inline-flex; align-items:center; gap:4px; font-size:10.5px; font-weight:700; color:var(--accent); background:var(--accent-dim); border:1px solid var(--accent-border2); border-radius:4px; padding:2px 7px;">v0.14</span>
+            </div>
+            <div>
+              <div style="font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:4px;">2026-06-02 — AI 워크플로우 시각화 · 역할 구분 명확화</div>
+              <ul style="list-style:none; padding:0; margin:0; font-size:12px; color:var(--text-secondary); line-height:1.8;">
+                <li>· 워크플로우 시각화 페이지를 추가해 전체 운영 파이프라인을 분리</li>
+                <li>· Figma, Git, Storybook, Worklog의 작성·리뷰 주체를 명확히 정리</li>
+                <li>· 공통 sidebar 캐시 버전을 v0.14로 갱신</li>
+              </ul>
+            </div>
+          </div>
           <div style="display:flex; gap:14px; padding:10px 0; border-bottom:1px solid var(--border-light);">
             <div style="min-width:44px;">
               <span style="display:inline-flex; align-items:center; gap:4px; font-size:10.5px; font-weight:700; color:var(--accent); background:var(--accent-dim); border:1px solid var(--accent-border2); border-radius:4px; padding:2px 7px;">v0.13</span>
@@ -2427,7 +2440,7 @@ docs/
     "confirm": "확인"
   },
   "home": {
-    "title": "AI Workflow 가이드",
+    "title": "AI Workflow Wiki",
     "cta": "시작하기"
   }
 }</code></pre>
@@ -2726,7 +2739,7 @@ docs/
   </main>
 </div>
 
-<script src="ai-workflow-guide.js"></script>
+<script src="ai-workflow-guide.js?v=0.14-wiki"></script>
 
 </body>
 </html>

@@ -227,6 +227,6 @@ Storybook 검수
 
 ## 참고 링크
 
-- Worklog: https://jumijeong-design.github.io/socra-ai-workflow-guide/worklog.html
-- AI Workflow Guide v0.13: https://jumijeong-design.github.io/socra-ai-workflow-guide/ai-workflow-guide.html
-- Changelog v0.13: https://jumijeong-design.github.io/socra-ai-workflow-guide/changelog.html
+- Worklog: https://jumijeong-design.github.io/socra-ai-workflow-guide/site/worklog.html
+- AI Workflow Guide v0.13: https://jumijeong-design.github.io/socra-ai-workflow-guide/site/ai-workflow-guide.html
+- Changelog v0.13: https://jumijeong-design.github.io/socra-ai-workflow-guide/site/changelog.html

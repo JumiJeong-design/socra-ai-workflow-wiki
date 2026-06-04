@@ -3,9 +3,9 @@ set -euo pipefail
 
 missing_source=0
 
-for file in guides/*.md playbooks/*.md cases/*.md; do
+for file in wiki/guides/*.md wiki/playbooks/*.md wiki/cases/*.md; do
   [ -e "$file" ] || continue
-  if [ "$file" = "cases/README.md" ]; then
+  if [ "$file" = "wiki/cases/README.md" ]; then
     continue
   fi
 

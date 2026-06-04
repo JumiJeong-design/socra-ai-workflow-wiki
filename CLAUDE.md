@@ -6,10 +6,10 @@
 
 버전을 올릴 때 아래 4개 파일을 모두 수정한다:
 
-1. `sidebar.html` — 버전 텍스트 (`v0.X`)
-2. `ai-workflow-guide.html` — 상단 버전 배지 + 인라인 changelog 항목
-3. `changelog.html` — 버전 섹션 신규 추가
-4. 필요 시 `index.html` — 신규 카드 추가
+1. `site/sidebar.html` — 버전 텍스트 (`v0.X`)
+2. `site/ai-workflow-guide.html` — 상단 버전 배지 + 인라인 changelog 항목
+3. `site/changelog.html` — 버전 섹션 신규 추가
+4. 필요 시 `site/index.html` — 신규 카드 추가
 
 ## 공통 스킬
 

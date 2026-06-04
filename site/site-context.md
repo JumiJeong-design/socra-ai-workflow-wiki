@@ -1,8 +1,8 @@
-# Product Context — AI Workflow 가이드 웹 서비스
+# Site Context — Socra AI Workflow Wiki
 
 ## 서비스 개요
-이 웹 서비스는 **프로덕트 디자이너를 위한 AI Workflow / 운영 문서 구축 가이드**다.
-디자이너가 AI와 협업할 때 필요한 문서 체계(product context, design system context, agent rules 등)를 어떻게 구축하고 운영할지 안내하는 단일 페이지 참고 문서다.
+이 웹 서비스는 **Socra AI Workflow Wiki**의 정적 사이트다.
+디자이너가 AI와 협업할 때 필요한 문서 체계(product context, design system context, agent rules 등)를 어떻게 구축하고 운영할지 안내하고, 반복 가능한 운영 지식을 탐색할 수 있게 한다.
 
 ## 타겟 사용자
 - 주 대상: Socra AI 팀 프로덕트 디자이너
