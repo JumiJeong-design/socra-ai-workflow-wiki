@@ -1603,7 +1603,8 @@ function initCheckboxes(date, panel) {
   if (!scope) return;
   scope.querySelectorAll('input[type="checkbox"]').forEach((cb, i) => {
     const key = `cb:${date}:${panel}:${i}`;
-    cb.checked = localStorage.getItem(key) === '1';
+    const stored = localStorage.getItem(key);
+    if (stored !== null) cb.checked = stored === '1';
     if (cb.checked) cb.closest('li')?.classList.add('cb-done');
   });
 }
