@@ -1,85 +1,85 @@
-# Agent Handoff Playbook
+# 에이전트 핸드오프 플레이북
 
-## When To Use
+## 언제 사용하나
 
-Use this when work may continue in another AI tool or another session, especially between Codex and Claude Code.
+작업을 다른 AI 도구나 새 세션에서 이어갈 가능성이 있을 때 사용한다. 특히 Codex와 Claude Code 사이에서 작업을 넘길 때 필요하다.
 
-This playbook is not for recording every chat detail. It is for making sure the next agent can start from the right source document without repeating finished work or moving tasks to the wrong date.
+이 플레이북은 대화 내용을 전부 기록하기 위한 문서가 아니다. 다음 에이전트가 이미 끝난 일을 반복하거나, 작업 날짜를 잘못 옮기지 않고, 올바른 문서에서 바로 시작하게 만드는 절차다.
 
-## Core Rule
+## 핵심 규칙
 
-Handoff is complete only when the next agent can answer three questions from repo documents:
+핸드오프는 다음 에이전트가 repo 문서만 보고 아래 세 질문에 답할 수 있을 때 완료다.
 
-1. What was already completed?
-2. What should be done next?
-3. Which tasks require Jumi's review instead of agent execution?
+1. 이미 완료된 작업은 무엇인가?
+2. 다음에 해야 할 작업은 무엇인가?
+3. 에이전트가 할 일이 아니라 주미님 확인이 필요한 작업은 무엇인가?
 
-If any answer exists only in chat, the handoff is not complete.
+답이 채팅 안에만 있고 repo 문서에 없으면 핸드오프가 완료된 것이 아니다.
 
-## Entry Documents
+## 진입 문서
 
-| Surface | Role |
+| 표면 | 역할 |
 | --- | --- |
-| Product repo `CLAUDE.md` or `AGENTS.md` | First file an AI agent reads in the working repo |
-| Product plan / follow-up doc | Current source for the next technical action |
-| `jumi-worklog/CONTEXT.md` | Cross-repo session snapshot and next-work split |
-| `jumi-worklog/logs/YYYY/MM/YYYY-MM-DD.md` | Date-specific work record and checklist state |
-| Public `site/worklog.html` | What Jumi can verify in the browser |
+| product repo `CLAUDE.md` 또는 `AGENTS.md` | 작업 repo에서 AI 에이전트가 처음 읽는 파일 |
+| product plan / follow-up 문서 | 다음 기술 작업의 현재 기준 문서 |
+| `jumi-worklog/CONTEXT.md` | 여러 repo를 가로지르는 세션 스냅샷과 다음 작업 분리 |
+| `jumi-worklog/logs/YYYY/MM/YYYY-MM-DD.md` | 날짜별 작업 기록과 체크리스트 상태 |
+| 공개 `site/worklog.html` | 주미님이 브라우저에서 직접 확인하는 화면 |
 
-## Required Split
+## 반드시 분리할 것
 
-Every handoff should separate:
+모든 핸드오프는 아래를 분리해야 한다.
 
-| Type | Meaning |
+| 유형 | 의미 |
 | --- | --- |
-| Agent work | Tasks Codex or Claude Code can continue from documented evidence |
-| Jumi review | Visual judgment, logged-in QA, product direction, or approval decisions |
-| Deferred work | Tasks intentionally moved to a future date or later scope |
+| 에이전트 작업 | Codex나 Claude Code가 문서화된 근거를 보고 이어갈 수 있는 작업 |
+| 주미님 확인 | 시각 판단, 로그인 세션이 필요한 QA, 제품 방향, 승인 결정 |
+| 이월 작업 | 의도적으로 다음 날짜나 후속 범위로 넘긴 작업 |
 
-Do not put next-day tasks under a completed work section. Put them in that date's `Next` block or in the future date's worklog.
+다음날 할 일을 완료된 작업 섹션 안에 넣지 않는다. 해당 날짜의 `Next` 또는 다음 날짜 worklog에 둔다.
 
-## Workflow
+## 진행 순서
 
-1. Read the latest worklog and current product plan.
-2. Find any completed work that is still unchecked and check it immediately.
-3. If work was completed but not in the checklist, add a new checklist item and mark it `[x]`.
-4. Update the product repo entry document so the next agent starts from the right doc and section.
-5. Update the product follow-up doc so it says what to do next, not what was already done.
-6. Update `CONTEXT.md` with current status and a split between agent work and Jumi review.
-7. Update public `site/worklog.html` with the same worklog content.
-8. Fetch the public URL and verify the visible page, not only local files.
+1. 최신 worklog와 현재 product plan을 읽는다.
+2. 완료됐지만 아직 unchecked인 항목을 찾아 즉시 체크한다.
+3. 체크리스트에 없던 일을 완료했다면 새 체크 항목을 추가하고 `[x]`로 표시한다.
+4. 다음 에이전트가 올바른 문서와 섹션에서 시작하도록 product repo 진입 문서를 갱신한다.
+5. product follow-up 문서는 이미 끝난 일이 아니라 다음에 할 일을 말하도록 갱신한다.
+6. `CONTEXT.md`에는 현재 상태와 에이전트 작업 / 주미님 확인 분리를 반영한다.
+7. 공개 `site/worklog.html`에도 같은 worklog 내용을 반영한다.
+8. 로컬 파일만 보지 말고 공개 URL을 직접 받아 화면에 보이는 내용을 확인한다.
 
-## Public Verification
+## 공개 검증
 
-For worklog changes, local markdown is not enough.
+worklog를 바꿨다면 로컬 markdown만으로는 완료가 아니다.
 
-Required checks:
+필수 확인:
 
-- The original `jumi-worklog` markdown is updated.
-- Public `site/worklog.html` is updated.
-- Both repos are committed and pushed.
-- The public URL shows the new content.
-- The month-level worklog verification passes.
+- 원본 `jumi-worklog` markdown이 갱신되어 있다.
+- 공개 `site/worklog.html`이 갱신되어 있다.
+- 두 repo가 모두 commit/push되어 있다.
+- 공개 URL에서 새 내용이 보인다.
+- 월 단위 worklog 검증이 통과한다.
 
-Use month-level verification because stale `plan-*` blocks or old unchecked items can remain even when today's entry looks correct.
+오늘 entry만 맞아 보여도 오래된 `plan-*` 블록이나 과거 unchecked 항목이 공개 화면에 남을 수 있으므로 월 단위 검증을 사용한다.
 
-## What Not To Do
+## 하지 말 것
 
-- Do not create a new H2 just to record a commit, retrospective, or next action.
-- Do not create a separate tab when a `###` note inside the date is enough.
-- Do not leave completed work unchecked because it was not in the original plan.
-- Do not repeat an audit table that already exists; link to the table and continue from the next action.
-- Do not say "deployed" until the public page has been fetched and checked.
+- 커밋, 회고, 다음 액션을 기록하려고 새 H2를 만들지 않는다.
+- 날짜 안의 `###` 메모로 충분한 내용을 별도 탭으로 만들지 않는다.
+- 원래 계획에 없던 일이라는 이유로 완료 작업을 unchecked 상태로 두지 않는다.
+- 이미 존재하는 audit 표를 다시 만들지 않는다. 표를 링크하고 다음 액션부터 이어간다.
+- 공개 페이지를 직접 받아 확인하기 전에는 "배포 완료"라고 말하지 않는다.
 
-## Done Criteria
+## 완료 기준
 
-- The next agent entry file points to the right current document.
-- The current product plan has an explicit next-action handoff.
-- Worklog checkboxes reflect the real state.
-- Agent tasks and Jumi review tasks are separated.
-- Public worklog URL contains the same content.
-- Month-level public worklog verification passes.
+- 다음 에이전트 진입 파일이 현재 기준 문서를 가리킨다.
+- 현재 product plan에 명확한 다음 액션 handoff가 있다.
+- worklog 체크박스가 실제 상태와 맞다.
+- 에이전트 작업과 주미님 확인 작업이 분리되어 있다.
+- 공개 worklog URL에 같은 내용이 보인다.
+- 월 단위 공개 worklog 검증이 통과한다.
 
-## Source Worklog
+## 원본 워크로그 (Source Worklog)
 
-- `jumi-worklog/logs/2026/06/2026-06-06.md`
+- `jumi-worklog/logs/2026/06/2026-06-05.md`
