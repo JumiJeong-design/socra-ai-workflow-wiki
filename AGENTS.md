@@ -28,5 +28,6 @@
 - 날짜별 작업 기록: `jumi-worklog/logs/YYYY/MM/YYYY-MM-DD.md`
 - 세션 간 현재 상태: `jumi-worklog/CONTEXT.md`
 - 공통 스킬: `jumi-worklog/skills/`
+- `site/worklog.html`을 수정하면 공개 URL 문구 확인만으로 끝내지 않습니다. `jumi-worklog/scripts/verify-public-worklog-month.mjs --html site/worklog.html --month YYYY-MM --forbid-plan --allow-unchecked entry-YYYY-MM-DD`로 사용자가 보는 월 전체의 unchecked 수와 stale `plan-*` 블록을 검증합니다.
 
 검증되고 정제된 guide/playbook/case만 이 repo의 `wiki/`로 승격합니다. 제품/컴포넌트/package 계약은 `riiid/prism`을 우선합니다.
