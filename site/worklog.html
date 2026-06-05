@@ -620,16 +620,14 @@ body{
   <div id="entry-area"></div>
 </div>
 
-<script type="text/plain" id="entry-2026-06-06">
-# 2026-06-06 Worklog
+<script type="text/plain" id="plan-2026-06-06">
+# 2026-06-06 Plan
 
-## Next
-
-### Codex 작업
+## Codex 작업
 
 - [ ] Figma Foundation/Components sync audit 수정 — 6월 5일에 만든 표를 기준으로 source-of-truth가 명확한 항목만 수정하고, 판단이 필요한 항목은 주미님 확인으로 남김.
 
-### 주미님 확인
+## 주미님 확인
 
 - [ ] Chromatic Storybook matrix 육안 QA — 발행 URL이 Codex 비로그인 접근에서는 `loginUrl`만 반환되므로 사용자 Chromatic 세션에서 Button `InteractiveAction`, matrix stories, light/dark 상태 확인.
 - [ ] Component guide wrapper 구조 — 실제 component 1개에만 `Docs / ComponentName` wrapper 시범 적용할 대상과 배치 확인.
@@ -639,7 +637,46 @@ body{
 - [ ] Figma 현행 component와 package contract next-batch 후보 최종 결정 — `ActionBar`와 `Chat History Panel`은 현행 node 확인됨. `ThumbnailItem`, `GNB`는 문서상 node ID가 현재 direct lookup에서 미확인이라 사용자 source review 필요.
 </script>
 
+<script type="text/plain" id="entry-2026-06-06">
+# 2026-06-06 Worklog
 
+### 진행 기록
+
+- [x] 공개 worklog Plan/Log 탭 복구:
+  - 삭제됐던 `plan-2026-06-04`, `plan-2026-06-05`, `plan-2026-06-06` 블록 복구.
+  - 6월 6일 남은 할 일은 기록 탭이 아니라 계획 탭으로 이동.
+  - 월 단위 검증은 plan 블록을 무조건 금지하지 않고 허용한 plan 블록만 통과하도록 수정.
+</script>
+
+
+
+<script type="text/plain" id="plan-2026-06-05">
+# 2026-06-05 Plan
+
+## Socra Design System
+
+- [x] Lucide icon stroke `1.7` vs `1.8` 비교 샘플 후 결정 → `1.8` 확정.
+- [x] `Markdown Block / Table` head/column/body cell 구조 점검.
+- [x] opacity/alpha semantic token audit.
+- [x] Foundation/Components sync audit 표 작성.
+- [x] component guide wrapper 1개 시범 적용은 6월 6일 사용자 확인 항목으로 이월.
+- [x] Pretendard JP 실제 Figma runtime 확인은 6월 6일 사용자 확인 항목으로 이월.
+- [x] 기존 모바일 source frame 확인 후 web responsive 확장은 6월 6일 사용자 확인 항목으로 이월.
+
+## riiid/prism
+
+- [x] Storybook `InteractiveAction` story 추가.
+- [x] `pnpm check` 및 GitHub `check` job 통과 확인.
+- [x] Chromatic Build 32 발행 확인.
+- [x] `version-pr` 권한 실패는 package check/Chromatic 실패가 아님을 기록.
+
+## Worklog / Handoff
+
+- [x] 6월 5일 완료 항목 체크.
+- [x] 6월 6일 Codex 작업과 주미님 확인 항목 분리.
+- [x] Claude Code handoff 문서 보강.
+- [x] 에이전트 핸드오프 플레이북 한국어화.
+</script>
 
 <script type="text/plain" id="entry-2026-06-05">
 # 2026-06-05 Worklog
@@ -978,6 +1015,39 @@ body{
 | `f692263` | fix: use dirname with fileURLToPath in storybook main.ts |
 | `dd5e103` | fix: use prismIndex variable in storybook alias |
 | `3692b42` | fix: add explicit CSS subpath aliases in storybook to avoid ENOTDIR |
+</script>
+
+<script type="text/plain" id="plan-2026-06-04">
+## 목표
+
+Button 기준으로 Figma evidence → package contract → Storybook QA → 발견사항 회수 루트가 실제로 작동하는지 확인한다.
+socra-ai-workflow-wiki 사이트 구조를 개편하고 worklog 뷰어를 개선한다.
+
+## riiid/prism 체크리스트
+
+- [x] `riiid/prism` README / AGENTS 확인
+- [x] `docs/agent-rules.md` 확인
+- [x] `design-system/rules.md` 확인
+- [x] Button Figma evidence 확인
+- [x] Button package contract 확인
+- [x] Button Storybook stories 확인
+- [x] `pnpm check` 실행 결과 기록
+- [x] `pnpm visual` 실행 결과 또는 중단 사유 기록
+- [x] 발견사항을 contract / token / story / rules / worklog / workflow-guide 중 어디로 회수할지 분류
+- [x] 다음 액션 정리
+
+## socra-ai-workflow-wiki 체크리스트
+
+- [x] wiki 히어라키 구조 + SOT 경계 문서화
+- [x] wiki.html 뷰어 추가 (마크다운 → 사이트 렌더링)
+- [x] 디자이너-개발자 용어 가이드 추가
+- [x] 사이트 5개 그룹 페이지로 분리 (guide-basics/setup/build/ops/extensions)
+- [x] wiki 문서 전체 한국어 번역
+- [x] scrollspy + 검색 하이라이트 + 페이지 간 네비게이션
+- [x] v0.15 버전업
+- [x] GitHub Pages URL 수정 + 검색 인덱스 정리 + orphaned 페이지 제거
+- [x] 워크로그 뷰어 인터랙티브 체크박스 (localStorage)
+- [x] Plan/Log 탭 분리 + 캘린더 점 표시
 </script>
 
 <script type="text/plain" id="entry-2026-06-04">
