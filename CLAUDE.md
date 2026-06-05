@@ -24,3 +24,4 @@
 | `버전 올려줘`, `배포할게`, `/bump-version` | bump-version | `jumi-worklog/skills/bump-version/SKILL.md` |
 | `미팅 준비해줘`, `이번주 요약해줘`, `/prep-meeting` | prep-meeting | `jumi-worklog/skills/prep-meeting/SKILL.md` |
 | `이거 기억해줘`, `규칙 추가해줘`, `/record-trap` | record-trap | `jumi-worklog/skills/record-trap/SKILL.md` |
+| `아이데이션 저장해줘`, `피그잼에 저장해줘`, `/save-ideation` | save-ideation | `jumi-worklog/skills/save-ideation/SKILL.md` |
