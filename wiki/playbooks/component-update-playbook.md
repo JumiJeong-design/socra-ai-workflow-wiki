@@ -50,3 +50,7 @@ Figma 컴포넌트, product-design 계약, 코드 컴포넌트, Storybook 스토
 - 구현된 시각 값 검증은 `riiid/prism`의 기준을 따른다.
 - 이 wiki에는 재사용 가능한 판단 기준만 남았다.
 - 디자이너 판단이 필요한 항목은 미결 질문으로 남았다.
+
+## Source Worklog
+
+- Historical wiki seed; original source worklog was not backfilled.

@@ -78,3 +78,7 @@ product-design 계약 문서, 코드, 프리뷰, Storybook을 수정하기 전 A
 - 이 wiki 문서는 재사용 가능한 경계와 교훈을 설명한다.
 - 워크로그 항목은 원본 기록으로 남기고, wiki 문서에는 승격된 패턴만 담는다.
 - product-design이 확인하지 않은 컴포넌트/토큰/패키지 계약을 현행 기준으로 취급하지 않는다.
+
+## Source Worklog
+
+- Historical wiki seed; original source worklog was not backfilled.

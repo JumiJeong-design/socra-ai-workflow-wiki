@@ -29,3 +29,7 @@ AI 리뷰는 다음 순서로 작성한다.
 3. 수정 제안
 4. 디자이너 판단이 필요한 질문
 5. 관련 워크로그 또는 `riiid/prism` 출처 문서 링크
+
+## Source Worklog
+
+- Historical wiki seed; original source worklog was not backfilled.

@@ -36,3 +36,7 @@ Socra 제품의 새 화면이나 주요 화면 개편을 AI와 함께 설계할 
 - 새 컴포넌트 후보와 one-off UI가 구분된다.
 - open question과 designer judgment가 분리되어 있다.
 - 구현된 화면 또는 컴포넌트는 Storybook/product preview 검증 경로가 있다.
+
+## Source Worklog
+
+- Historical wiki seed; original source worklog was not backfilled.

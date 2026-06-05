@@ -25,6 +25,7 @@ GROUPS = [
         'docs': [
             {'id': 'component-update-playbook', 'src': 'wiki/playbooks/component-update-playbook.md', 'label': '컴포넌트 업데이트'},
             {'id': 'screen-design-playbook',    'src': 'wiki/playbooks/screen-design-playbook.md',   'label': '화면 디자인'},
+            {'id': 'agent-handoff-playbook',    'src': 'wiki/playbooks/agent-handoff-playbook.md',   'label': '에이전트 핸드오프'},
         ]
     },
 ]

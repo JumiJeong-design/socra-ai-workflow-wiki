@@ -89,6 +89,10 @@
       <li>이 wiki에는 재사용 가능한 판단 기준만 남았다.</li>
       <li>디자이너 판단이 필요한 항목은 미결 질문으로 남았다.</li>
       </ul>
+      <h2>Source Worklog</h2>
+      <ul>
+      <li>Historical wiki seed; original source worklog was not backfilled.</li>
+      </ul>
     </section>
 
     <hr class="divider" />
@@ -150,6 +154,126 @@
       <li>새 컴포넌트 후보와 one-off UI가 구분된다.</li>
       <li>open question과 designer judgment가 분리되어 있다.</li>
       <li>구현된 화면 또는 컴포넌트는 Storybook/product preview 검증 경로가 있다.</li>
+      </ul>
+      <h2>Source Worklog</h2>
+      <ul>
+      <li>Historical wiki seed; original source worklog was not backfilled.</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <section class="wiki-doc" id="agent-handoff-playbook">
+      <h1>Agent Handoff Playbook</h1>
+      <h2>When To Use</h2>
+      <p>Use this when work may continue in another AI tool or another session, especially between Codex and Claude Code.</p>
+      <p>This playbook is not for recording every chat detail. It is for making sure the next agent can start from the right source document without repeating finished work or moving tasks to the wrong date.</p>
+      <h2>Core Rule</h2>
+      <p>Handoff is complete only when the next agent can answer three questions from repo documents:</p>
+      <ol>
+      <li>What was already completed?</li>
+      <li>What should be done next?</li>
+      <li>Which tasks require Jumi's review instead of agent execution?</li>
+      </ol>
+      <p>If any answer exists only in chat, the handoff is not complete.</p>
+      <h2>Entry Documents</h2>
+      <table>
+      <thead>
+      <tr>
+      <th>Surface</th>
+      <th>Role</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Product repo <code>CLAUDE.md</code> or <code>AGENTS.md</code></td>
+      <td>First file an AI agent reads in the working repo</td>
+      </tr>
+      <tr>
+      <td>Product plan / follow-up doc</td>
+      <td>Current source for the next technical action</td>
+      </tr>
+      <tr>
+      <td><code>jumi-worklog/CONTEXT.md</code></td>
+      <td>Cross-repo session snapshot and next-work split</td>
+      </tr>
+      <tr>
+      <td><code>jumi-worklog/logs/YYYY/MM/YYYY-MM-DD.md</code></td>
+      <td>Date-specific work record and checklist state</td>
+      </tr>
+      <tr>
+      <td>Public <code>site/worklog.html</code></td>
+      <td>What Jumi can verify in the browser</td>
+      </tr>
+      </tbody>
+      </table>
+      <h2>Required Split</h2>
+      <p>Every handoff should separate:</p>
+      <table>
+      <thead>
+      <tr>
+      <th>Type</th>
+      <th>Meaning</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Agent work</td>
+      <td>Tasks Codex or Claude Code can continue from documented evidence</td>
+      </tr>
+      <tr>
+      <td>Jumi review</td>
+      <td>Visual judgment, logged-in QA, product direction, or approval decisions</td>
+      </tr>
+      <tr>
+      <td>Deferred work</td>
+      <td>Tasks intentionally moved to a future date or later scope</td>
+      </tr>
+      </tbody>
+      </table>
+      <p>Do not put next-day tasks under a completed work section. Put them in that date's <code>Next</code> block or in the future date's worklog.</p>
+      <h2>Workflow</h2>
+      <ol>
+      <li>Read the latest worklog and current product plan.</li>
+      <li>Find any completed work that is still unchecked and check it immediately.</li>
+      <li>If work was completed but not in the checklist, add a new checklist item and mark it <code>[x]</code>.</li>
+      <li>Update the product repo entry document so the next agent starts from the right doc and section.</li>
+      <li>Update the product follow-up doc so it says what to do next, not what was already done.</li>
+      <li>Update <code>CONTEXT.md</code> with current status and a split between agent work and Jumi review.</li>
+      <li>Update public <code>site/worklog.html</code> with the same worklog content.</li>
+      <li>Fetch the public URL and verify the visible page, not only local files.</li>
+      </ol>
+      <h2>Public Verification</h2>
+      <p>For worklog changes, local markdown is not enough.</p>
+      <p>Required checks:</p>
+      <ul>
+      <li>The original <code>jumi-worklog</code> markdown is updated.</li>
+      <li>Public <code>site/worklog.html</code> is updated.</li>
+      <li>Both repos are committed and pushed.</li>
+      <li>The public URL shows the new content.</li>
+      <li>The month-level worklog verification passes.</li>
+      </ul>
+      <p>Use month-level verification because stale <code>plan-*</code> blocks or old unchecked items can remain even when today's entry looks correct.</p>
+      <h2>What Not To Do</h2>
+      <ul>
+      <li>Do not create a new H2 just to record a commit, retrospective, or next action.</li>
+      <li>Do not create a separate tab when a <code>###</code> note inside the date is enough.</li>
+      <li>Do not leave completed work unchecked because it was not in the original plan.</li>
+      <li>Do not repeat an audit table that already exists; link to the table and continue from the next action.</li>
+      <li>Do not say "deployed" until the public page has been fetched and checked.</li>
+      </ul>
+      <h2>Done Criteria</h2>
+      <ul>
+      <li>The next agent entry file points to the right current document.</li>
+      <li>The current product plan has an explicit next-action handoff.</li>
+      <li>Worklog checkboxes reflect the real state.</li>
+      <li>Agent tasks and Jumi review tasks are separated.</li>
+      <li>Public worklog URL contains the same content.</li>
+      <li>Month-level public worklog verification passes.</li>
+      </ul>
+      <h2>Source Worklog</h2>
+      <ul>
+      <li><code>jumi-worklog/logs/2026/06/2026-06-06.md</code></li>
       </ul>
     </section>
 
