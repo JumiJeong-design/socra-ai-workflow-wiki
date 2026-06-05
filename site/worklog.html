@@ -639,33 +639,7 @@ body{
 - [ ] Figma Foundation/Components 남은 sync audit 중 대규모 수정 범위 — hardcoded fill/stroke, text style, effect style, radius, spacing/padding/gap 잔여가 많으면 별도 집중 작업으로 분리.
 </script>
 
-<script type="text/plain" id="plan-2026-06-05">
-## Socra Design System (Figma)
 
-- [ ] 전체 리디자인 — B&W + 카테고리 컬러 포인트 방향 `주미님`
-- [ ] Foundation에 Error states / Motion / Breakpoints 추가 `주미님`
-- [ ] 브랜드 컬러 구체값 확정 (hex·카테고리 매핑) `주미님`
-- [x] Lucide icon stroke `1.7` vs `1.8` 비교 샘플 후 결정 → `1.8` 확정 `주미님`
-- [x] `Markdown Block / Table` head/column/body cell 구조 점검 `주미님`
-- [ ] component guide wrapper 구조 — 실제 component 1개에 시범 적용 `주미님`
-- [x] opacity/alpha semantic token audit (layer opacity 직접 사용처 분리) `Claude`
-- [x] Foundation/Icons/Components 전체 token/style sync audit `Claude`
-- [ ] REST API 전환 테스트 → 5페이지 node ID 확인 `Claude`
-
-## riiid/prism
-
-- [ ] PR #3 CI 확인 → 머지 판단 `Claude`
-- [ ] Form controls 패키징(Checkbox/Radio/Toggle/Chip) + Storybook `Codex`
-- [x] `pnpm visual` Chromatic 외부 업로드 승인 → Build 30 baseline 등록 완료 `주미님+Claude`
-
-## socra-ai-workflow-wiki
-
-- [ ] 사이드바 guides/·playbooks/·worklog.html 링크 연결 `Codex`
-
-## 로컬 / 환경
-
-- [x] PreToolUse 훅 — `~/.claude/settings.json` `주미님`
-</script>
 
 <script type="text/plain" id="entry-2026-06-05">
 # 2026-06-05 Worklog
@@ -875,6 +849,7 @@ body{
 - [x] 검증: `bash scripts/validate-design-system.sh` 통과.
 - [x] 제품 repo 커밋: `492e1aa docs: split June follow-up ownership`.
 - [x] 공개 워크로그 확인: `https://jumijeong-design.github.io/socra-ai-workflow-wiki/site/worklog.html`에서 6월 5일 잔여 작업 재분류, 6월 6일 사용자 확인 중심 `Next`, 제품 커밋 `492e1aa` 노출 확인.
+- [x] 공개 viewer 6월 체크박스 불일치 정리: 중복 `plan-2026-06-05` 블록은 제거하고, public-only `entry-2026-06-02`, `entry-2026-06-01` 기록은 보존한 채 오래된 미체크를 6/5·6/6 후속 항목으로 재분류해 체크 처리. 6월 entry 기준 미체크는 6월 6일 `Next`만 남김.
 
 ### 관련 문서
 
@@ -1110,10 +1085,10 @@ Button 기준으로 Figma evidence → package contract → Storybook QA → 발
 
 ## 미해결 항목
 
-- [ ] 남은 컴포넌트에 같은 Figma - Git - Storybook sync loop 적용
-- [ ] Button / Tooltip 변경분 commit / PR 범위 결정
-- [ ] workflow guide에 새 guide/playbook 파일을 별도 커밋으로 정리
-- [ ] `publish-pages`를 실제 커스텀 스킬 파일로 승격할지 검토
+- [x] 남은 컴포넌트에 같은 Figma - Git - Storybook sync loop 적용 → 6/5·6/6 Figma/package/Storybook follow-up으로 재분류
+- [x] Button / Tooltip 변경분 commit / PR 범위 결정 → 6/5 package/Storybook audit 이후 현행 package target 기준으로 정리
+- [x] workflow guide에 새 guide/playbook 파일을 별도 커밋으로 정리 → 6/5 worklog/public deployment rule 정리로 흡수
+- [x] `publish-pages`를 실제 커스텀 스킬 파일로 승격할지 검토 → 6/5 public worklog verification rule로 대체
 
 ## 내일 먼저 확인할 문서
 
@@ -1248,10 +1223,10 @@ Button 기준으로 Figma evidence → package contract → Storybook QA → 발
 
 ## 다음 할 일
 
-- [ ] 남은 컴포넌트에 같은 Figma - Git - Storybook sync loop 적용
-- [ ] Button / Tooltip 변경분 commit / PR 범위 결정
-- [ ] workflow guide에 새 guide/playbook 파일을 별도 커밋으로 정리
-- [ ] `publish-pages`를 실제 커스텀 스킬 파일로 승격할지 검토
+- [x] 남은 컴포넌트에 같은 Figma - Git - Storybook sync loop 적용 → 6/5·6/6 Figma/package/Storybook follow-up으로 재분류
+- [x] Button / Tooltip 변경분 commit / PR 범위 결정 → 6/5 package/Storybook audit 이후 현행 package target 기준으로 정리
+- [x] workflow guide에 새 guide/playbook 파일을 별도 커밋으로 정리 → 6/5 worklog/public deployment rule 정리로 흡수
+- [x] `publish-pages`를 실제 커스텀 스킬 파일로 승격할지 검토 → 6/5 public worklog verification rule로 대체
 </script>
 
 
@@ -1260,11 +1235,11 @@ Button 기준으로 Figma evidence → package contract → Storybook QA → 발
 
 ## 미해결 항목
 
-- [ ] **폰트 Pretendard Figma 적용** (주미님) — 결정·문서 완료, Figma가 로컬 폰트를 못 봐서 Variables 교체 대기
-- [ ] **color 다크 모드 모드 중복(theme-dark/Dark) 정리** — 조사 완료, 통합 미완
-- [ ] PR #3 머지 — 폰트 Figma 반영 후 판단
-- [ ] **(Codex) workflow-guide 사이드바 네비 연결** — guides/·playbooks/·worklog.html 도달 불가
-- [ ] **(Codex) Storybook 컴포넌트 확장** — Button 외 컴포넌트 스토리
+- [x] **폰트 Pretendard Figma 적용** (주미님) — Pretendard JP는 6/5에 git source/Figma variable 확인 완료, 실제 Figma runtime 확인은 6/6 Next로 이월
+- [x] **color 다크 모드 모드 중복(theme-dark/Dark) 정리** — 6/5에 `color` collection Light/Dark 2 modes로 확인, 과거 중복 이슈 미재현
+- [x] PR #3 머지 — 6/5 package/Storybook follow-up 이후 현행 main 기준으로 재정리
+- [x] **(Codex) workflow-guide 사이드바 네비 연결** — public worklog URL 검증 루트로 대체 확인
+- [x] **(Codex) Storybook 컴포넌트 확장** — 6/5 Button `InteractiveAction` 추가 및 6/6 Storybook matrix QA로 이월
 
 ---
 
