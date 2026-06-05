@@ -1769,13 +1769,13 @@ function renderEntry(index) {
   const notionBtn = e.notion ? `<a class="notion-link" href="${e.notion}" target="_blank" rel="noopener">📝 Notion에서 보기 ↗</a>` : '';
   const tabs = planHtml ? `
     <div class="entry-tabs">
-      <button class="entry-tab" data-tab="plan" onclick="switchTab('plan')">📋 계획</button>
-      <button class="entry-tab active" data-tab="log" onclick="switchTab('log')">📝 기록</button>
+      <button class="entry-tab active" data-tab="plan" onclick="switchTab('plan')">📋 계획</button>
+      <button class="entry-tab" data-tab="log" onclick="switchTab('log')">📝 기록</button>
     </div>
-    <div class="entry-tab-panel" data-panel="plan">
+    <div class="entry-tab-panel active" data-panel="plan">
       <div class="entry-body md">${planHtml}</div>
     </div>
-    <div class="entry-tab-panel active" data-panel="log">
+    <div class="entry-tab-panel" data-panel="log">
       <div class="entry-body md">${logHtml}</div>
     </div>` : `<div class="entry-body md">${logHtml}</div>`;
   document.getElementById('entry-area').innerHTML = `
@@ -1791,7 +1791,7 @@ function renderEntry(index) {
   document.querySelector('.main').scrollTop = 0;
   const logBody = document.querySelector('.entry-tab-panel[data-panel="log"] .entry-body') || document.querySelector('#entry-area .entry-body');
   if (logBody) buildSubTabs(logBody);
-  initCheckboxes(e.date, 'log');
+  initCheckboxes(e.date, hasPlan(e.date) ? 'plan' : 'log');
 }
 
 function initCheckboxes(date, panel) {
