@@ -620,6 +620,23 @@ body{
   <div id="entry-area"></div>
 </div>
 
+<script type="text/plain" id="entry-2026-06-06">
+# 2026-06-06 Worklog
+
+### 함정 모음
+
+- **Worklog H2 탭 과밀** — `##`가 뷰어 서브탭이 되는 구조에서 커밋·회고·다음 액션 같은 보조 기록까지 H2로 만들면 사용자가 후속 작업을 찾기 어렵다. 새 H2를 만들기 전에는 독립 탭으로 볼 만큼 큰 작업 흐름인지 확인하고, 보조 기록은 `###` 이하에 둔다.
+- **후속 체크리스트가 이전 작업 탭에 묻힘** — 다음 주/다음 날 할 일이 완료된 작업 섹션 안에 있으면 이월 작업을 놓치기 쉽다. 후속 체크리스트는 해당 날짜의 `Next`나 다음 날짜 로그로 옮긴다.
+
+## Next
+
+- [x] 2026-06-05 `Prism CI 빌드 복구 + Chromatic baseline 등록` 섹션 안에 있던 다음 작업 체크박스를 2026-06-06 로그로 이월.
+- [x] Worklog H2 탭 과밀 정리: 커밋·회고·미해결·함정 같은 보조 기록은 `###` 이하로 낮추고, `write-worklog`/관련 스킬/CONTEXT에 H2는 큰 작업 흐름 전용이라고 기록.
+- [x] Worklog H2/후속 체크리스트 운영 규칙을 `AGENTS.md`와 오늘 `### 함정 모음`에 재발 방지 규칙으로 기록.
+- [ ] Storybook 스토리에 동적 액션(interaction) 추가 — actions addon / play function으로 클릭·입력 등 인터랙션을 시연·검증 가능하게.
+- [ ] 아직 패키지·Storybook에 반영 안 된 남은 컴포넌트 리스트업 — 구현/마이그레이션 대상 정리.
+</script>
+
 <script type="text/plain" id="plan-2026-06-05">
 ## Socra Design System (Figma)
 
@@ -649,7 +666,7 @@ body{
 </script>
 
 <script type="text/plain" id="entry-2026-06-05">
-# 2026-06-05
+# 2026-06-05 Worklog
 
 ## 워크로그 시스템 개선 — Claude Code Web 세션
 
@@ -667,44 +684,233 @@ body{
 - **CONTEXT.md 갱신**: 6개 스킬 테이블 + PreToolUse 훅 미완료 항목 추가
 - **2026-06-04 워크로그 보완**: wiki 구조 개편 작업 누락 섹션 추가
 
-## 회고 및 인사이트
+### 회고 및 인사이트
 
 - 웹 세션은 로컬 파일 접근 불가 — settings.json 같은 로컬 설정은 별도 TODO로 남겨야 함
-- 서브탭 구조가 긴 로그를 영역별로 읽기 좋게 만들어줌 — 앞으로도 영역마다 `##` 분리 유지
+- 서브탭 구조는 긴 로그를 읽기 좋게 만들지만, `##`는 탭으로 볼 만큼 큰 작업 흐름에만 쓴다. 커밋·회고·다음 액션은 `###` 이하로 둔다.
 - 스킬 추가 후 CONTEXT.md 즉시 반영하는 패턴 정착됨
 
+---
+
+---
+
+## Socra Design System — Figma Foundation cleanup + 내일 계획
+
+### 사용자 요청
+
+```text
+그럼 이 내용들 푸시해주고 내가 앞에서 말했던 내용들 계획해가지고 정리하고 내일 해야 할 작업들 계획 문서로 정리하고 또 어떤 것들을 해야 하는지 너가 또 제안해서 정리하고 그 내용들 워크로그랑 그런 데다가 올리고 오늘은 마무리하는 게 어떨까?
+```
+
+```text
+오키 일단 푸시해봐 거기에 그 내용도 덧붙여줘 마크다운 컴포넌트에 테이블 컬럼이랑 헤드 구분해야한다는거
+```
+
+### 오늘의 작업 맥락
+
+- Socra Figma design system을 계속 정리했다.
+- 카테고리 컬러, 다크모드 shadow, Markdown rendering, component guide, responsive frame, opacity token 운영 방식이 한 세션 안에서 얽혀 있었다.
+- 사용자는 "그럴듯한 임시 화면/가이드"가 아니라 실제 디자인 시스템 기준으로 쓸 수 있는 문서와 Figma 구조를 원했다.
+- Codex가 자체 판단으로 만든 임시 component guide와 responsive screen은 잘못된 방향으로 확인되어 삭제되었다.
+- 그 실수를 다시 반복하지 않도록 실제 프로젝트 문서에 규칙을 추가했다.
+
+### Figma에서 완료한 정리
+
+- `category/*` color variables/styles 제거.
+  - 이유: 고민 카테고리 taxonomy가 확정되지 않았고, category semantic이 active foundation처럼 보이면 오히려 잘못된 선택지를 늘림.
+  - 기존 Page design test의 category binding은 neutral scale로 되돌림.
+- `Shadow`와 `Foundation / Dark Shadow Tokens`를 `Shadow / Elevation`으로 병합.
+  - light/dark shadow를 따로 섹션화하지 않고 같은 elevation row에서 비교하도록 정리.
+  - dark sample은 `color` 컬렉션의 Dark mode를 명시하고 `neutral/50`, `neutral/100`, `neutral/200`에 바인딩.
+- Markdown 영역 정리.
+  - `Markdown Guide`와 `Markdown Components` 중복을 `Markdown Rendering` 안으로 통합.
+  - `Markdown Block / Table` component 추가.
+  - 이후 table은 head, column, body cell 구조를 구분해야 한다는 기준을 추가로 반영.
+- 잘못 만든 임시 component guide cards 삭제.
+  - 이유: 실제 component별 docs wrapper가 아니라 흩어진 guide card라 사용자가 보기에도 중구난방.
+- 자체 제작 responsive web/mobile frames 삭제.
+  - 이유: 사용자가 이미 만들어둔 모바일 디자인을 기준으로 web 확장을 해야 하는데, 기존 source screen을 확인하지 않고 새 화면을 만들었음.
+
+### Git 문서에 반영한 내용
+
+- `design-system/foundation/color.md`
+  - category color removal 결정 기록.
+  - 재도입 조건: taxonomy, 사용처, 접근성 기준이 확정된 뒤 최소 semantic set으로 검토.
+- `design-system/tokens/color.md`
+  - `category/*` semantic token 제거 기준 기록.
+- `design-system/foundation/shadow.md`
+  - `Shadow / Elevation Foundation`으로 정리.
+  - dark mode shadow는 alpha만 키우지 말고 surface, stroke, shadow/dark effect를 함께 본다는 기준 기록.
+- `design-system/rules.md`
+  - 실제 프로젝트 문서에 룰을 남기는 기준 추가.
+  - component guide는 `Docs / ComponentName` wrapper가 실제 component를 감싸는 구조로 만들도록 추가.
+  - 문서용 Auto Layout row의 height Hug 검증 기준 추가.
+  - responsive 화면은 기존 기준 화면 확인 후 만들도록 추가.
+  - Foundation 중복 섹션 금지 기준 추가.
+  - Markdown table component는 head와 column 구조를 구분하도록 추가.
+- `design-system/sync/sync-log.md`
+  - 2026-06-05 Figma/Git evidence 기록 추가.
+- `docs/plans/2026-06-06-socra-design-system-followup.md`
+  - 내일 이어갈 작업 계획 작성.
+  - opacity/alpha token audit, sync audit, Markdown table, component guide, foundation exposure, icon stroke, typography language까지 확장.
+
+### 주요 판단
+
+- category color는 지금 active foundation에 둘 단계가 아니다.
+  - 고민 카테고리 자체가 아직 제품적으로 확정되지 않았기 때문.
+  - 금융/법률/관계 같은 category 방향은 가능성이 있지만, 지금 token으로 고정하면 UI tone이 흔들릴 수 있음.
+- dark mode opacity는 black/white alpha를 1:1로 뒤집으면 안 된다.
+  - 다크모드에서 같은 alpha라도 surface, overlay, disabled, shadow의 의미가 다름.
+  - `overlay/scrim`, `state/disabled`, `state/pressed`, `focus`, `shadow/dark/*`처럼 role semantic token으로 분리해야 함.
+- dark shadow는 "잘 보이는 그림자"가 아니라 elevation context를 보여주는 구조로 봐야 한다.
+  - surface/background 차이, subtle stroke, dark shadow, inner highlight를 함께 본다.
+- component guide는 설명 카드가 아니라 docs wrapper 구조로 만든다.
+  - 실제 component set/instance와 usage/variant/light-dark/token notes가 같은 wrapper 안에 있어야 한다.
+- responsive design은 기존 source frame 확인이 먼저다.
+  - iPhone 16 기준이라면 safe area/dead space까지 포함해야 함.
+- Markdown table은 일반 block component와 다르게 구조가 중요하다.
+  - header row, column, body cell이 같은 스타일로 뭉개지면 table로 읽히지 않는다.
+
+### 실수 / 재발 방지
+
+- 임시 Codex 작업 폴더에 룰을 써놓고 실제 프로젝트 문서에 반영하지 않는 판단은 잘못이다.
+  - 재발 방지: `AGENTS.md`, `docs/agent-rules.md`, `design-system/rules.md`, 관련 foundation 문서를 먼저 찾는다.
+- component guide를 component마다 붙였지만 실제로는 통짜이거나 흩어진 card 형태였다.
+  - 재발 방지: component guide는 `Docs / ComponentName` wrapper 구조로 만든다.
+- responsive web/mobile 화면을 기존 모바일 source frame 확인 없이 자체 제작했다.
+  - 재발 방지: 기준 node를 먼저 찾고, 불명확하면 사용자에게 확인한다.
+- Shadow와 Dark Shadow를 별도 섹션으로 두면 Foundation에서 같은 주제가 중복된다.
+  - 재발 방지: 같은 token family는 하나의 top-level section에서 light/dark를 함께 보여준다.
+- Markdown table은 table component를 만들었다는 사실만으로 충분하지 않다.
+  - 재발 방지: head, column, body cell 역할이 실제 preview에서 구분되어야 한다.
+
+### 검증
+
+- Figma `Shadow / Elevation` 검증:
+  - 기존 `Shadow`, `Foundation / Dark Shadow Tokens` top-level section 없음.
+  - `Shadow / Elevation` 1개만 남음.
+  - `Blur`, `Markdown Rendering`과 overlap 없음.
+  - `shadow/xs-xl`, `shadow/dark/xs-xl` effect styles 존재 확인.
+  - dark sample fill/stroke는 Dark mode neutral variables에 바인딩됨.
+- Git 문서 검증:
+  - `scripts/validate-design-system.sh` 통과.
+  - rebase 충돌 후에도 다시 검증 통과.
+- Worklog 검증:
+  - `scripts/validate-worklogs.sh` 통과.
+
+### 추가 진행 — Semantic Alpha 실제 반영
+
+- Figma `color` collection에 semantic alpha/state token 5개를 추가했다.
+  - `state/disabled/fg`
+  - `state/disabled/bg`
+  - `state/disabled/border`
+  - `state/pressed/surface`
+  - `overlay/scrim`
+- 같은 이름의 Paint Styles를 추가했다.
+- Foundation에 `Opacity / Semantic Alpha` 섹션(`1247:2`)을 만들고 Light/Dark preview와 사용 규칙을 넣었다.
+- Button disabled/loading, History Item disabled, Checkbox/Radio disabled, Bottom Navigation dot tint에서 direct layer opacity를 제거하고 semantic token으로 재바인딩했다.
+- 남은 opacity 32개는 모두 `Reference / Exception — Keyboard` 안의 Samsung keyboard 원본 재현용으로 분류했다.
+- Icons, Page design test, Image reference는 layer opacity 0, paint alpha 0으로 확인했다.
+- Foundation은 layer opacity 0이고, paint alpha는 alpha material swatch와 blur sample에만 남아 있다.
+
+### Semantic Alpha 검증 결과
+
+- Figma screenshot 확인: `Opacity / Semantic Alpha` 섹션 preview가 잘리지 않고 Light/Dark swatch가 보임.
+- Components page: app component-state opacity 0.
+- Bottom Navigation: 24px tint는 `state/pressed/surface`, 4px placeholder는 fill 없이 opacity 1.
+- Git 문서 검증: `bash scripts/validate-design-system.sh` 통과.
+
+### 완료 / 다음 작업
+
+- [x] Figma 전체 페이지에서 layer opacity와 paint alpha 사용처 감사. 상태 컴포넌트 opacity 정리 완료.
+- [x] opacity/alpha semantic token 최소 세트 제안 및 Figma 반영.
+- [x] `color` 컬렉션은 현재 Light/Dark 2 modes로 확인. `theme-dark` 중복 이슈는 현 상태에서 재현되지 않음.
+- [x] fill/stroke binding, text style, effect style, radius, spacing, padding sync 깨짐 감사.
+  - Foundation 전체 token/style sync audit 완료 및 즉시 수정.
+  - `radius/2xl(16px)`, `radius/3xl(24px)`, `radius/full(9999px)` 변수값 미설정 → 설정 + 데모 박스 rebind.
+  - Shadow/Elevation, Opacity/Semantic Alpha 섹션 텍스트 132개: `font/family/base` 바인딩 누락 → 연결.
+  - 같은 두 섹션 fill/stroke: `neutral/*` raw palette → `fg/default`, `fg/subtle`, `fg/muted`, `bg/default`, `bg/subtle`, `stroke/default` semantic token으로 교체 (단, Dark Sample 배경 neutral/50·150은 의도적 유지).
+  - Spacing 스케일 누락 3개(`spacing/48`, `spacing/60`, `spacing/80`) 문서 프레임에 행 추가.
+  - px-suffix 특수 토큰 13개 Special Tokens 주석 프레임으로 문서화.
+- [x] `Markdown Block / Table`에서 head, column, body cell 구분을 Figma component 구조로 점검.
+- [x] Lucide icon stroke `1.7` vs `1.8` 비교 샘플 후 결정. → `1.8` 확정, `PrismIcon` default 적용 완료
+- [ ] component guide wrapper 구조는 적용 대상 component를 정한 뒤 1개만 시범 적용.
+- [ ] `font/family/japanese` variable과 Pretendard JP 적용 가능 여부 확인.
+- [ ] 기존 모바일 source frame을 확인한 뒤에만 web responsive 확장 진행.
+
+### 관련 문서
+
+- `socra-ai-product-design/docs/plans/2026-06-06-socra-design-system-followup.md`
+- `socra-ai-product-design/design-system/rules.md`
+- `socra-ai-product-design/design-system/foundation/shadow.md`
+- `socra-ai-product-design/design-system/foundation/color.md`
+- `socra-ai-product-design/design-system/tokens/color.md`
+- `socra-ai-product-design/design-system/tokens/tokens.json`
+- `socra-ai-product-design/design-system/sync/sync-log.md`
+
+### 커밋
+
+| 프로젝트 | 커밋 | 설명 |
+|----------|------|------|
+| socra-ai-product-design | `6ee8c65` | docs: 정리 Socra foundation 후속 계획 |
+| socra-ai-product-design | `b69a034` | docs: add markdown table structure rule |
+| socra-ai-product-design | `db12ca1` | docs: expand Socra follow-up plan detail |
+| socra-ai-product-design | `8f3a427` | docs: document semantic alpha tokens |
+| jumi-worklog | `a72b242` | docs: add Socra design system 2026-06-05 worklog |
+| jumi-worklog | `61d0266` | docs: update Socra worklog with markdown table rule |
+| jumi-worklog | `0e9cd67` | docs: expand Socra design system 2026-06-05 log |
+| jumi-worklog | `c6a8983` | docs: record semantic alpha pass |
+
+---
+
 ## Prism CI 빌드 복구 + Chromatic baseline 등록
+
+### 사용자 요청
+
+```text
+여기에 스토리와 컴포넌트 커밋이 안되어있던게 이슈였음
+```
+
+```text
+일단 등록해 나중에 수정할수있자나 그치?
+```
 
 ### 작업 내역
 
 - ModelProfile 브랜드 아이콘 색상을 component token으로 이동 — 하드코딩 SVG `fill` hex 제거, `currentColor` + `model-profile.*.icon` 토큰 추가(token lint 통과).
-- 삭제된 `Badge`, `TextField` 잔여 export 정리 — `index.ts`, demo `page.tsx`에서 import/사용 제거.
-- Storybook `.storybook/main.ts` ESM 빌드 오류 연쇄 수정 — `__dirname` → `import.meta.url`, `dirname(fileURLToPath())`, 미정의 `prismSrc` → `prismIndex`, CSS subpath(`theme.css`/`styles.css`) `ENOTDIR` 해결용 전용 alias 추가.
-- `pnpm check` CI green 확인.
+- 삭제된 `Badge`, `TextField` 잔여 export 정리 — `packages/prism/src/index.ts`, `apps/demo/src/app/page.tsx`에서 import/사용 제거.
+- Storybook `apps/storybook/.storybook/main.ts` ESM 빌드 오류 연쇄 수정:
+  - `__dirname` → `import.meta.url` 기반으로 교체.
+  - `fileURLToPath` 결과를 `dirname()`으로 감싸 디렉토리 경로 산출.
+  - alias가 미정의 변수 `prismSrc`를 참조하던 버그 → `prismIndex`로 수정.
+  - `@riiid/prism`를 파일(`index.ts`)로 alias 걸면서 CSS subpath(`theme.css`, `styles.css`) 해석 시 `ENOTDIR` 발생 → CSS subpath 전용 alias 추가.
+- `pnpm check`(typecheck/lint/build/storybook build) CI green 확인.
 - 사용자 승인 후 Chromatic 외부 업로드 — Build 30, **14 components × 29 stories** baseline 등록(`--auto-accept-changes`).
-- 로컬에 `corepack`으로 pnpm shim 설치(`/opt/homebrew/bin/pnpm`).
+- 로컬 환경에 `pnpm`이 없어 `corepack enable`로 shim 설치(`/opt/homebrew/bin/pnpm`, pnpm 11.3.0).
 
-### 회고 / 인사이트
+### 회고 및 인사이트
+
+#### AI 도구 활용
 
 - Chromatic 첫 빌드는 baseline이 없어 모든 스토리가 "변경"으로 잡힌다. exit 1은 실패가 아니라 검토 신호 — `--auto-accept-changes`로 baseline 확정.
+- Chromatic project token은 코드/환경에 안 남기는 게 정상. 프로젝트 멤버는 대시보드 Manage → Configure에서 재확인 가능.
+
+#### 설계 결정
+
 - 브랜드 아이콘 색상도 하드코딩 hex 대신 component token으로 — token lint 정책 일관성 유지.
-
-### 다음주 할 일
-
-- [ ] Storybook 스토리에 동적 액션(interaction) 추가 — actions addon / play function으로 클릭·입력 등 인터랙션을 시연·검증 가능하게.
-- [ ] 아직 패키지·Storybook에 반영 안 된 남은 컴포넌트 리스트업 — 구현/마이그레이션 대상 정리.
+- nested `pnpm` 스크립트 호출 때문에 PATH에 pnpm shim이 있어야 함 → corepack으로 영구 설치.
 
 ### 커밋 (riiid/prism)
 
 | 커밋 | 설명 |
 |------|------|
-| `b693bc1` | move ModelProfile brand icon colors to component tokens |
-| `2d29c09` | remove Badge and TextField exports from index.ts |
-| `8712328` | remove Badge and TextField from demo page |
-| `4389441` | replace __dirname with import.meta.url in storybook main.ts |
-| `f692263` | use dirname with fileURLToPath in storybook main.ts |
-| `dd5e103` | use prismIndex variable in storybook alias |
-| `3692b42` | add explicit CSS subpath aliases in storybook to avoid ENOTDIR |
+| `b693bc1` | fix: move ModelProfile brand icon colors to component tokens |
+| `2d29c09` | fix: remove Badge and TextField exports from index.ts |
+| `8712328` | fix: remove Badge and TextField from demo page |
+| `4389441` | fix: replace __dirname with import.meta.url in storybook main.ts |
+| `f692263` | fix: use dirname with fileURLToPath in storybook main.ts |
+| `dd5e103` | fix: use prismIndex variable in storybook alias |
+| `3692b42` | fix: add explicit CSS subpath aliases in storybook to avoid ENOTDIR |
 </script>
 
 <script type="text/plain" id="plan-2026-06-04">
@@ -1635,6 +1841,7 @@ marked.use({
 
 // tags/notion은 날짜별로 덮어쓸 메타만 여기에 기록, 나머지는 DOM에서 자동 추출
 const ENTRY_META = {
+  '2026-06-06': { tags: ['worklog-ux', 'storybook', 'follow-up'] },
   '2026-06-05': { tags: ['worklog-viewer', 'skills', 'automation', 'prism', 'chromatic', 'storybook', 'ci'] },
   '2026-06-04': { tags: ['prism', 'storybook', 'button', 'figma', 'token'] },
   '2026-06-02': { tags: ['prism', 'storybook', 'tooltip', 'typography', 'meeting'] },
