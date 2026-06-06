@@ -644,14 +644,51 @@ body{
 </script>
 
 <script type="text/plain" id="entry-2026-06-06">
-# 2026-06-06 Worklog
+# 2026-06-06
 
-### 진행 기록
+## Figma Workstream 2 바인딩 마무리
 
-- [x] 공개 worklog Plan/Log 탭 복구:
-  - 삭제됐던 `plan-2026-06-04`, `plan-2026-06-05`, `plan-2026-06-06` 블록 복구.
-  - 6월 6일 남은 할 일은 기록 탭이 아니라 계획 탭으로 이동.
-  - 월 단위 검증은 plan 블록을 무조건 금지하지 않고 허용한 plan 블록만 통과하도록 수정.
+### 작업 내역
+
+- Shadow/Elevation text style 34개 바인딩
+- Icon strokeWeight override 79개 수정 (Header Nav Bar, Chat Input Bar, Answer Card, Dropdown Menu 4개 컴포넌트)
+- Markdown Block/Table fill/stroke/text 47개 바인딩
+- Opacity/Semantic Alpha text 33개 바인딩
+- Bottom Navigation 고아 Frame 16개 제거
+- Spacing Foundation 32개 바인딩
+- Workstream 2 체크리스트 전 항목 완료 표기
+
+### 주미님 확인 항목 정리 — 닫음
+
+- [x] Pretendard JP — git source + Figma variable 이미 확정. 별도 확인 불필요
+- [x] Bottom Navigation radius — orphan Frame 제거로 해소
+- [x] Markdown Table column count — cell/header 구분이 이미 구조적으로 됨
+- [x] Chromatic Storybook matrix QA — 사용자 직접 확인 완료
+- [x] Component guide wrapper — Button Usage Guide (774:693) 860px + Preview 섹션 인스턴스 추가
+
+## Storybook MDX docs + Chromatic CI
+
+### 작업 내역
+
+- `Button.mdx` 신규 작성 — Variant/Size 테이블, Matrix Canvas, 규칙, 접근성 섹션
+- Chromatic GitHub Actions CI 추가 (`chromatic.yml`) — push: main, `claude/**` + PR
+- MDX pipe tables → HTML `<table>` 수정 (remark-gfm 없는 환경에서 미렌더링)
+- Storybook docs 다크모드 Canvas 배경 수정
+  - `addons.getChannel()` module-level listener: `setGlobals` / `globalsUpdated` 구독
+  - `.sbdocs-preview` background override CSS 추가
+- 나머지 12개 컴포넌트 MDX docs 작성 (UX 기준)
+  - Chip, Checkbox, Radio, Toggle, TabItem, Toast, Spinner, UserProfile, ModelProfile, HistoryItem, HeaderNavBar, ChatInputBar
+
+### 함정
+
+- **Chromatic 원격 환경 IP 차단** — 원격 컨테이너 IP가 Chromatic에서 401/403. GitHub Actions로 우회.
+- **MDX pipe tables 미렌더링** — MDX 3은 remark-gfm 없이 GFM 파이프 테이블 미지원. HTML table 직접 작성.
+- **Storybook docs 다크모드 배경 흰색** — decorator는 story 렌더 안에서만 실행. docs shell에는 channel listener 필요.
+
+### 회고 및 인사이트
+
+- component docs를 Figma guide card → Storybook MDX로 전환. Button 먼저, 12개 동시 적용.
+- 개별 stories (Default, Matrix, Interactive)는 Docs와 다른 목적 — Chromatic 스냅샷·play() 테스트용으로 유지.
 </script>
 
 
