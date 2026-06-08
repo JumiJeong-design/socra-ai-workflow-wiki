@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>휴일 근무 증빙 로그</title>
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --paper: #ffffff;
+      --ink: #222222;
+      --muted: #6f737a;
+      --line: #dedede;
+      --soft: #f1f2f4;
+      --accent: #2854c8;
+      --accent-soft: #eef3ff;
+      --ok: #187044;
+      --code: #f5f5f5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+      line-height: 1.65;
+      font-size: 15px;
+    }
+    main {
+      width: min(1120px, calc(100% - 40px));
+      margin: 32px auto 56px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, .06);
+      overflow: hidden;
+    }
+    header {
+      padding: 32px 36px 28px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: 0;
+      line-height: 1.25;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding: 22px 36px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfbfb;
+    }
+    .stat {
+      padding: 16px 18px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .stat-label {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    .stat-value {
+      font-weight: 700;
+      font-size: 20px;
+    }
+    section {
+      padding: 28px 36px;
+      border-bottom: 1px solid var(--line);
+    }
+    section:last-child { border-bottom: none; }
+    h2 {
+      margin: 0 0 14px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+    p { margin: 0 0 12px; }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(40, 84, 200, .25);
+    }
+    a:hover { border-bottom-color: var(--accent); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: var(--soft);
+      color: #3c4046;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    tr:last-child td { border-bottom: none; }
+    .total-row td {
+      font-weight: 700;
+      background: var(--accent-soft);
+    }
+    .note {
+      padding: 14px 16px;
+      border: 1px solid #d7e1ff;
+      background: var(--accent-soft);
+      border-radius: 8px;
+      color: #273b72;
+      font-size: 14px;
+    }
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .link-card {
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .link-label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+    details {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      margin-top: 12px;
+      overflow: hidden;
+    }
+    summary {
+      cursor: pointer;
+      padding: 14px 16px;
+      background: #fbfbfb;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "펼치기";
+      color: var(--accent);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    details[open] summary::after { content: "접기"; }
+    .day-total {
+      color: var(--ok);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .entry {
+      padding: 16px;
+      border-top: 1px solid var(--line);
+    }
+    .entry:first-of-type { border-top: none; }
+    .entry-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 8px;
+      align-items: baseline;
+    }
+    .time {
+      font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace;
+      font-weight: 700;
+    }
+    .duration {
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .work-list {
+      margin: 8px 0 10px 20px;
+      padding: 0;
+    }
+    .work-list li { margin-bottom: 3px; }
+    .evidence {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--line);
+    }
+    .evidence-title {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .evidence ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    code {
+      background: var(--code);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace;
+      font-size: 12px;
+    }
+    .screen-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin-top: 8px;
+    }
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    @media (max-width: 780px) {
+      main { width: 100%; margin: 0; border-radius: 0; border-left: none; border-right: none; }
+      header, section { padding: 22px 18px; }
+      .summary-strip { grid-template-columns: 1fr; padding: 18px; }
+      .link-grid { grid-template-columns: 1fr; }
+      .entry-head { display: block; }
+      .duration { display: block; margin-top: 2px; }
+      table { font-size: 13px; }
+      th, td { padding: 8px; }
+    }
+    @media print {
+      body { background: #fff; }
+      main { width: 100%; margin: 0; border: none; box-shadow: none; }
+      details { break-inside: avoid; }
+      a { color: #000; border-bottom: none; }
+      summary::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>휴일 근무 증빙 로그</h1>
+    <div class="meta">
+      <span>작성일: 2026.06.08</span>
+      <span>기준 시간대: KST (Asia/Seoul)</span>
+      <span>용도: 사후 휴일근무 신청 증빙 보관</span>
+    </div>
+  </header>
+
+  <div class="summary-strip">
+    <div class="stat">
+      <div class="stat-label">총 신청 산정 시간</div>
+      <div class="stat-value">17시간 59분</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">근무일</div>
+      <div class="stat-value">4일</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">근거 종류</div>
+      <div class="stat-value">Git · Figma · Worklog</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>요약</h2>
+    <p>
+      AX/Socra AI 서비스의 디자인 시스템 구축 및 AI 협업 운영 체계 정리를 위해 휴일에 분산 근무한 기록입니다.
+      시간은 GitHub 커밋 기록, Figma 히스토리 캡처, jumi-worklog 기록을 대조하여 확인 가능한 활동 구간 기준으로 산정했습니다.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>날짜</th>
+          <th>확인 근무 구간</th>
+          <th>산정 시간</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2026.05.30</td>
+          <td>01:36-02:00, 10:06-10:10, 17:14-18:30, 21:37-22:10</td>
+          <td>2시간 17분</td>
+        </tr>
+        <tr>
+          <td>2026.05.31</td>
+          <td>00:16-02:11, 09:15-10:17, 23:02-23:53</td>
+          <td>3시간 48분</td>
+        </tr>
+        <tr>
+          <td>2026.06.06</td>
+          <td>00:02-01:21, 14:54-16:58, 21:02-23:29</td>
+          <td>5시간 50분</td>
+        </tr>
+        <tr>
+          <td>2026.06.07</td>
+          <td>03:11-03:43, 10:21-14:56, 23:02-23:59</td>
+          <td>6시간 04분</td>
+        </tr>
+        <tr class="total-row">
+          <td>합계</td>
+          <td></td>
+          <td>17시간 59분</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>증거 링크 모음</h2>
+    <div class="link-grid">
+      <div class="link-card">
+        <span class="link-label">Figma</span>
+        <a href="https://www.figma.com/design/DcYgJjGAfObOIM4IyrQjgj/Socra-Design-system-test" target="_blank" rel="noopener">Socra Design system test</a>
+      </div>
+      <div class="link-card">
+        <span class="link-label">FigJam</span>
+        <a href="https://www.figma.com/file/8CWsofQlE65slaKh7COrbe" target="_blank" rel="noopener">Socra character ideation board</a>
+      </div>
+      <div class="link-card">
+        <span class="link-label">GitHub</span>
+        <a href="https://github.com/JumiJeong-design/jumi-worklog" target="_blank" rel="noopener">JumiJeong-design/jumi-worklog</a>
+      </div>
+      <div class="link-card">
+        <span class="link-label">GitHub</span>
+        <a href="https://github.com/JumiJeong-design/socra-ai-product-design" target="_blank" rel="noopener">JumiJeong-design/socra-ai-product-design</a>
+      </div>
+      <div class="link-card">
+        <span class="link-label">GitHub</span>
+        <a href="https://github.com/JumiJeong-design/socra-ai-workflow-guide" target="_blank" rel="noopener">JumiJeong-design/socra-ai-workflow-guide</a>
+      </div>
+      <div class="link-card">
+        <span class="link-label">GitHub</span>
+        <a href="https://github.com/riiid/prism" target="_blank" rel="noopener">riiid/prism</a>
+      </div>
+    </div>
+    <p class="small" style="margin-top: 14px;">로컬 worklog 파일도 함께 보관되어 있습니다.</p>
+    <div class="screen-links">
+      <a href="file:///Users/jeongjumi/Desktop/jumi-worklog/logs/2026/05/2026-05-30.md">2026-05-30 worklog</a>
+      <a href="file:///Users/jeongjumi/Desktop/jumi-worklog/logs/2026/05/2026-05-31.md">2026-05-31 worklog</a>
+      <a href="file:///Users/jeongjumi/Desktop/jumi-worklog/logs/2026/06/2026-06-05.md">2026-06-05 worklog</a>
+      <a href="file:///Users/jeongjumi/Desktop/jumi-worklog/logs/2026/06/2026-06-06.md">2026-06-06 worklog</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>날짜별 상세</h2>
+
+    <details open>
+      <summary>
+        <h3>2026.05.30</h3>
+        <span class="day-total">2시간 17분</span>
+      </summary>
+      <div class="entry">
+        <div class="entry-head">
+          <span class="time">01:36-02:00</span>
+          <span class="duration">24분</span>
+        </div>
+        <ul class="work-list">
+          <li>공통 AI 작업 스킬 추가</li>
+          <li>worklog 뷰어의 스킬 탭 및 상세 펼치기 UI 추가</li>
+          <li>write-worklog에 Notion 동기화 단계 추가</li>
+        </ul>
+        <div class="evidence">
+          <div class="evidence-title">근거</div>
+          <ul>
+            <li><a href="https://github.com/JumiJeong-design/jumi-worklog/commit/477f25a" target="_blank" rel="noopener">jumi-worklog <code>477f25a</code></a> 공통 스킬 4개 추가</li>
+            <li><a href="https://github.com/JumiJeong-design/jumi-worklog/commit/5086377" target="_blank" rel="noopener">jumi-worklog <code>5086377</code></a> write-worklog Notion 동기화 단계 추가</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-workflow-guide/commit/50cb296" target="_blank" rel="noopener">workflow-guide <code>50cb296</code></a> worklog 뷰어 스킬 탭 추가</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-workflow-guide/commit/47d5eb2" target="_blank" rel="noopener">workflow-guide <code>47d5eb2</code></a> 스킬 카드 상세 펼치기/접기 추가</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="time">10:06-10:10</span>
+          <span class="duration">4분</span>
+        </div>
+        <ul class="work-list">
+          <li>AI guide의 스킬 탭 카테고리 구조화</li>
+          <li>Figma MCP 관련 스킬 추가 및 누락 스킬 보완</li>
+        </ul>
+        <div class="evidence">
+          <div class="evidence-title">근거</div>
+          <ul>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-workflow-guide/commit/bdf01c9" target="_blank" rel="noopener">workflow-guide <code>bdf01c9</code></a> Figma MCP 스킬 5개 추가</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-workflow-guide/commit/c8dbd9f" target="_blank" rel="noopener">workflow-guide <code>c8dbd9f</code></a> figma-use-figjam 스킬 누락 추가</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="time">17:14-18:30</span>
+          <span class="duration">1시간 16분</span>
+        </div>
+        <ul class="work-list">
+          <li>jumi-worklog의 CONTEXT/AGENTS/README 정비</li>
+          <li>AI 도구별 진입점 정리</li>
+          <li>Figma 파일 링크 및 Code Connect 파이프라인 가이드 반영</li>
+          <li>Socra 디자인 시스템 components.md 35개 컴포넌트 현황 동기화</li>
+        </ul>
+        <div class="evidence">
+          <div class="evidence-title">근거</div>
+          <ul>
+            <li><a href="https://github.com/JumiJeong-design/jumi-worklog/commit/c84dc2a" target="_blank" rel="noopener">jumi-worklog <code>c84dc2a</code></a> CONTEXT.md 추가</li>
+            <li><a href="https://github.com/JumiJeong-design/jumi-worklog/commit/2c48445" target="_blank" rel="noopener">jumi-worklog <code>2c48445</code></a> AI 도구별 진입점 테이블 추가</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/641d835" target="_blank" rel="noopener">product-design <code>641d835</code></a> Figma 파일 링크 및 Code Connect 가이드</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/c31916d" target="_blank" rel="noopener">product-design <code>c31916d</code></a> components.md 35개 컴포넌트 싱크</li>
+            <li><a href="https://github.com/JumiJeong-design/jumi-worklog/commit/f12f71d" target="_blank" rel="noopener">jumi-worklog <code>f12f71d</code></a> Figma 싱크 완료 기록</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="time">21:37-22:10</span>
+          <span class="duration">33분</span>
+        </div>
+        <ul class="work-list">
+          <li>Figma 파일 5페이지 구조 확인</li>
+          <li>Foundation/Page/Image reference 구조 정리</li>
+          <li>Foundation 페이지에 Markdown design spec 반영</li>
+          <li>AI-native operations architecture plan 작성</li>
+        </ul>
+        <div class="evidence">
+          <div class="evidence-title">근거</div>
+          <ul>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/9582750" target="_blank" rel="noopener">product-design <code>9582750</code></a> Foundation page 확인</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/b5d1a4e" target="_blank" rel="noopener">product-design <code>b5d1a4e</code></a> Figma 5페이지 구조 업데이트</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/5d648df" target="_blank" rel="noopener">product-design <code>5d648df</code></a> Markdown design 추가</li>
+            <li><a href="https://github.com/JumiJeong-design/jumi-worklog/commit/f107050" target="_blank" rel="noopener">jumi-worklog <code>f107050</code></a> AI-native operations architecture plan</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <h3>2026.05.31</h3>
+        <span class="day-total">3시간 48분</span>
+      </summary>
+      <div class="entry">
+        <div class="entry-head">
+          <span class="time">00:16-02:11</span>
+          <span class="duration">1시간 55분</span>
+        </div>
+        <ul class="work-list">
+          <li>ops-plan 전면 재작성</li>
+          <li>2026-05-30 worklog 추가 및 뷰어 동기화</li>
+          <li>worklog 검증 스크립트/PR 템플릿/이슈 템플릿 추가</li>
+          <li>Figma-Git sync map, 디자인 토큰 계약, 컴포넌트 스펙, Code Connect 준비 문서 작성</li>
+          <li>Figma-first Storybook 검증 모델 정리</li>
+        </ul>
+        <div class="note">
+          신청 산정 구간은 작업 착수/구조 검토 및 커밋 전 정리 시간을 포함하여 00:16-02:11로 잡았습니다.
+          Git 커밋 근거는 00:35 이후부터 집중적으로 남아 있습니다.
+        </div>
+        <div class="evidence">
+          <div class="evidence-title">근거</div>
+          <ul>
+            <li><a href="https://github.com/JumiJeong-design/jumi-worklog/commit/11dc466" target="_blank" rel="noopener">jumi-worklog <code>11dc466</code></a> ops-plan 전면 재작성</li>
+            <li><a href="https://github.com/JumiJeong-design/jumi-worklog/commit/46b4274" target="_blank" rel="noopener">jumi-worklog <code>46b4274</code></a> 2026-05-30 worklog 추가</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/df83ff9" target="_blank" rel="noopener">product-design <code>df83ff9</code></a> product design channel role 정리</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/25772e9" target="_blank" rel="noopener">product-design <code>25772e9</code></a> Button component spec 추가</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/d77de25" target="_blank" rel="noopener">product-design <code>d77de25</code></a> Figma sync map 확장</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-workflow-guide/commit/8170ea0" target="_blank" rel="noopener">workflow-guide <code>8170ea0</code></a> workflow guide README 추가</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/bf38a14" target="_blank" rel="noopener">product-design <code>bf38a14</code></a> expanded sync map validation 업데이트</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="time">09:15-10:17</span>
+          <span class="duration">1시간 02분</span>
+        </div>
+        <ul class="work-list">
+          <li>Rule 18 Auto Layout 필수 규칙 추가</li>
+          <li>Figma/Storybook sync checklist 및 validation grep 수정</li>
+          <li>디자인 시스템 preview scaffold와 Button preview 구현</li>
+          <li>jumi-worklog 계층 구조 마이그레이션 및 경로 수정</li>
+        </ul>
+        <div class="evidence">
+          <div class="evidence-title">근거</div>
+          <ul>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/f972867" target="_blank" rel="noopener">product-design <code>f972867</code></a> Storybook sync fields 추가</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/1726b16" target="_blank" rel="noopener">product-design <code>1726b16</code></a> Rule 18 Auto Layout 추가</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/b757722" target="_blank" rel="noopener">product-design <code>b757722</code></a> design system preview scaffold</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/6663deb" target="_blank" rel="noopener">product-design <code>6663deb</code></a> first Button preview loop 기록</li>
+            <li><a href="https://github.com/JumiJeong-design/jumi-worklog/commit/8f0e5df" target="_blank" rel="noopener">jumi-worklog <code>8f0e5df</code></a> worklog 계층 마이그레이션</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="time">23:02-23:53</span>
+          <span class="duration">51분</span>
+        </div>
+        <ul class="work-list">
+          <li>Figma neutral color token 정합성 정리</li>
+          <li>Button preview 상태와 Figma token align</li>
+          <li>Button Figma extraction audit 추가</li>
+          <li>Figma variant 값 기준으로 Button CSS/preview 정리</li>
+        </ul>
+        <div class="evidence">
+          <div class="evidence-title">근거</div>
+          <ul>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/311363e" target="_blank" rel="noopener">product-design <code>311363e</code></a> preview colors Figma neutral token align</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/e18ed1d" target="_blank" rel="noopener">product-design <code>e18ed1d</code></a> tokens with Figma neutral variables</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/bd3390d" target="_blank" rel="noopener">product-design <code>bd3390d</code></a> Figma neutral color correction 기록</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/a615426" target="_blank" rel="noopener">product-design <code>a615426</code></a> Button CSS to extracted Figma values</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/092c96d" target="_blank" rel="noopener">product-design <code>092c96d</code></a> Button Figma extraction audit</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <h3>2026.06.06</h3>
+        <span class="day-total">5시간 50분</span>
+      </summary>
+      <div class="entry">
+        <div class="entry-head">
+          <span class="time">00:02-01:21</span>
+          <span class="duration">1시간 19분</span>
+        </div>
+        <ul class="work-list">
+          <li>공개 worklog 검증 및 월별 검증 규칙 정리</li>
+          <li>Foundation/Components sync audit table 추가</li>
+          <li>FigJam 브랜드 캐릭터 아이데이션 정리</li>
+          <li>save-ideation 스킬 추가</li>
+          <li>handoff 문서 및 plan/log 탭 복구</li>
+        </ul>
+        <div class="evidence">
+          <div class="evidence-title">근거</div>
+          <ul>
+            <li><a href="https://github.com/JumiJeong-design/jumi-worklog/commit/d2b73e2" target="_blank" rel="noopener">jumi-worklog <code>d2b73e2</code></a> public checklist 정리</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-product-design/commit/9309dae" target="_blank" rel="noopener">product-design <code>9309dae</code></a> foundation components sync audit table</li>
+            <li><a href="https://github.com/JumiJeong-design/jumi-worklog/commit/7985de8" target="_blank" rel="noopener">jumi-worklog <code>7985de8</code></a> save-ideation skill 추가</li>
+            <li><a href="https://github.com/JumiJeong-design/jumi-worklog/commit/0e015c0" target="_blank" rel="noopener">jumi-worklog <code>0e015c0</code></a> Socra character ideation session 기록</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-workflow-guide/commit/14b682f" target="_blank" rel="noopener">workflow-guide <code>14b682f</code></a> save-ideation trigger 추가</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="time">14:54-16:58</span>
+          <span class="duration">2시간 04분</span>
+        </div>
+        <ul class="work-list">
+          <li>Figma Workstream 2 바인딩 작업 정리</li>
+          <li>Figma Foundation text/style 바인딩</li>
+          <li>icon strokeWeight override 수정</li>
+          <li>모든 2026-06-06 Figma binding task 완료 표시</li>
+          <li>Figma 히스토리상 Socra DS 자동저장 확인</li>
+        </ul>
+        <div class="evidence">
+          <div class="evidence-title">근거</div>
+          <ul>
+            <li><a href="https://github.com/riiid/prism/commit/3edcfaf" target="_blank" rel="noopener">riiid/prism <code>3edcfaf</code></a> Workstream 2 체크리스트 완료</li>
+            <li><a href="https://github.com/riiid/prism/commit/f9582cd" target="_blank" rel="noopener">riiid/prism <code>f9582cd</code></a> icon strokeWeight override 수정 기록</li>
+            <li><a href="https://github.com/riiid/prism/commit/fc265e4" target="_blank" rel="noopener">riiid/prism <code>fc265e4</code></a> Figma Foundation text/style 바인딩 기록</li>
+            <li><a href="https://github.com/riiid/prism/commit/67c064a" target="_blank" rel="noopener">riiid/prism <code>67c064a</code></a> Figma binding tasks 완료 표시</li>
+            <li>Figma 히스토리 캡처: <code>Socra DS - 자동저장</code> 15:21, 15:56, 16:55</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="time">21:02-23:29</span>
+          <span class="duration">2시간 27분</span>
+        </div>
+        <ul class="work-list">
+          <li>Storybook MDX 문서 작성</li>
+          <li>Chromatic CI 설정</li>
+          <li>MDX table 렌더링 문제 수정</li>
+          <li>Storybook docs dark mode shell 수정</li>
+          <li>12개 컴포넌트 MDX docs 작성</li>
+          <li>worklog 뷰어 동기화 및 6/6 작업로그 업데이트</li>
+        </ul>
+        <div class="evidence">
+          <div class="evidence-title">근거</div>
+          <ul>
+            <li><a href="https://github.com/riiid/prism/commit/19eee7c" target="_blank" rel="noopener">riiid/prism <code>19eee7c</code></a> Button MDX docs page</li>
+            <li><a href="https://github.com/riiid/prism/commit/8afda4e" target="_blank" rel="noopener">riiid/prism <code>8afda4e</code></a> Chromatic publish workflow</li>
+            <li><a href="https://github.com/riiid/prism/commit/c99dfbb" target="_blank" rel="noopener">riiid/prism <code>c99dfbb</code></a> HTML tables in Button MDX docs</li>
+            <li><a href="https://github.com/riiid/prism/commit/103aa89" target="_blank" rel="noopener">riiid/prism <code>103aa89</code></a> dark class to docs page shell</li>
+            <li><a href="https://github.com/riiid/prism/commit/3206bf0" target="_blank" rel="noopener">riiid/prism <code>3206bf0</code></a> MDX docs pages for 12 components</li>
+            <li><a href="https://github.com/JumiJeong-design/jumi-worklog/commit/704409f" target="_blank" rel="noopener">jumi-worklog <code>704409f</code></a> 2026-06-06 worklog 업데이트</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-workflow-guide/commit/5cee803" target="_blank" rel="noopener">workflow-guide <code>5cee803</code></a> 2026-06-06 worklog 뷰어 동기화</li>
+            <li>Figma 히스토리 캡처: <code>Socra DS - 자동저장</code> 22:39, 23:29</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <h3>2026.06.07</h3>
+        <span class="day-total">6시간 04분</span>
+      </summary>
+      <div class="entry">
+        <div class="entry-head">
+          <span class="time">03:11-03:43</span>
+          <span class="duration">32분</span>
+        </div>
+        <ul class="work-list">
+          <li>Figma DS 자동저장 및 전일 작업 상태 확인</li>
+          <li>design-system rule에 원자 단위 컴포넌트 조합 원칙 추가</li>
+        </ul>
+        <div class="evidence">
+          <div class="evidence-title">근거</div>
+          <ul>
+            <li>Figma 히스토리 캡처: <code>Socra DS - 자동저장</code> 03:11, 03:43</li>
+            <li><a href="https://github.com/riiid/prism/commit/834d63e" target="_blank" rel="noopener">riiid/prism <code>834d63e</code></a> Rule 27 원자 단위 컴포넌트 조합 원칙</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="time">10:21-14:56</span>
+          <span class="duration">4시간 35분</span>
+        </div>
+        <ul class="work-list">
+          <li>Figma DS 컴포넌트/토큰/다크모드 관련 정리 및 자동저장</li>
+          <li>worklog 6/7 엔트리 추가</li>
+          <li>ENTRY_META 누락 수정</li>
+          <li>다크모드 명도 대비 및 사이드바/본문 계층 정리</li>
+          <li>token 즉시 바인딩 및 surface elevation 규칙 추가</li>
+        </ul>
+        <div class="evidence">
+          <div class="evidence-title">근거</div>
+          <ul>
+            <li>Figma 히스토리 캡처: <code>Socra DS - 자동저장</code> 10:21, 11:27, 12:38, 13:15, 13:45, 14:56</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-workflow-guide/commit/15267f7" target="_blank" rel="noopener">workflow-guide <code>15267f7</code></a> 2026-06-07 worklog 엔트리 추가</li>
+            <li><a href="https://github.com/riiid/prism/commit/cc440bd" target="_blank" rel="noopener">riiid/prism <code>cc440bd</code></a> Rule 28/29 토큰 바인딩 및 surface elevation 규칙</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-workflow-guide/commit/8efd5da" target="_blank" rel="noopener">workflow-guide <code>8efd5da</code></a> ENTRY_META 6/7, 6/8 항목 추가</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-workflow-guide/commit/43f546c" target="_blank" rel="noopener">workflow-guide <code>43f546c</code></a> 사이드바/본문 명도 계층 반전</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-workflow-guide/commit/185c7cc" target="_blank" rel="noopener">workflow-guide <code>185c7cc</code></a> 다크모드 명도 대비 강화</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="time">23:02-23:59</span>
+          <span class="duration">57분</span>
+        </div>
+        <ul class="work-list">
+          <li>Figma DS 후속 정리 및 자동저장</li>
+          <li>6/7 현재 plan 작성</li>
+          <li>component guide section을 spec-first 기준으로 업데이트</li>
+          <li>다음날 작업 및 worklog 반영</li>
+          <li>workflow-guide PR merge</li>
+        </ul>
+        <div class="evidence">
+          <div class="evidence-title">근거</div>
+          <ul>
+            <li>Figma 히스토리 캡처: <code>Socra DS - 자동저장</code> 23:02, 23:52</li>
+            <li><a href="https://github.com/riiid/prism/commit/15d0977" target="_blank" rel="noopener">riiid/prism <code>15d0977</code></a> 2026-06-07 current plan</li>
+            <li><a href="https://github.com/riiid/prism/commit/a7944b1" target="_blank" rel="noopener">riiid/prism <code>a7944b1</code></a> component guide section spec-first 업데이트</li>
+            <li><a href="https://github.com/riiid/prism/commit/fd6fa35" target="_blank" rel="noopener">riiid/prism <code>fd6fa35</code></a> tomorrow tasks and worklog</li>
+            <li><a href="https://github.com/JumiJeong-design/socra-ai-workflow-guide/pull/5" target="_blank" rel="noopener">workflow-guide PR #5</a> continuation branch merge</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section>
+    <h2>참고 및 주의사항</h2>
+    <ul>
+      <li>Figma 히스토리 캡처는 사용자가 보유한 화면 캡처 파일을 1차 근거로 둡니다.</li>
+      <li>Figma MCP로 <code>Socra Design system test</code> 파일 접근은 확인했지만, 현재 MCP는 top-level page 일부만 반환하며 Figma 버전 히스토리 전체 API 조회는 별도 토큰이 필요합니다.</li>
+      <li>2026.05.31 새벽 구간은 신청 산정 기준에 맞춰 <code>00:16-02:11</code>로 표기했습니다. Git 커밋은 00:35 이후부터 집중적으로 남아 있으므로, 필요 시 "작업 착수/검토 및 커밋 전 정리 시간을 포함한 산정"으로 설명합니다.</li>
+      <li>휴게시간을 임의로 넣어 총합을 맞추기보다, 같은 날짜를 여러 행으로 나누어 실제 확인 구간을 입력하는 방식이 가장 설명이 쉽습니다.</li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>
