@@ -11,11 +11,11 @@ GROUPS = [
         'title': '실무 가이드',
         'nav_title': '실무 가이드',
         'docs': [
-            {'id': 'figma-git-sync',                'src': 'wiki/guides/figma-git-sync.md',                'label': 'Figma-Git Sync'},
-            {'id': 'figma-first-storybook-verified', 'src': 'wiki/guides/figma-first-storybook-verified.md','label': 'Historical Figma / Storybook 교훈'},
-            {'id': 'ai-design-review',              'src': 'wiki/guides/ai-design-review.md',              'label': 'AI 디자인 리뷰'},
-            {'id': 'daily-worklog-to-wiki',         'src': 'wiki/guides/daily-worklog-to-wiki.md',         'label': 'Daily Worklog → Wiki'},
-            {'id': 'designer-dev-terms',            'src': 'wiki/guides/designer-dev-terms.md',            'label': '개발 협업 용어'},
+            {'id': 'figma-git-sync',                'src': 'wiki/guides/30-figma-git-sync.md',                'label': 'Figma-Git Sync'},
+            {'id': 'figma-first-storybook-verified', 'src': 'wiki/guides/90-figma-first-storybook-verified.md','label': 'Historical Figma / Storybook 교훈'},
+            {'id': 'ai-design-review',              'src': 'wiki/guides/40-ai-design-review.md',              'label': 'AI 디자인 리뷰'},
+            {'id': 'daily-worklog-to-wiki',         'src': 'wiki/guides/31-daily-worklog-to-wiki.md',         'label': 'Daily Worklog → Wiki'},
+            {'id': 'designer-dev-terms',            'src': 'wiki/guides/80-designer-dev-terms.md',            'label': '개발 협업 용어'},
         ]
     },
     {
@@ -23,9 +23,9 @@ GROUPS = [
         'title': '플레이북 / 기록',
         'nav_title': '플레이북 / 기록',
         'docs': [
-            {'id': 'component-update-playbook', 'src': 'wiki/playbooks/component-update-playbook.md', 'label': '컴포넌트 업데이트'},
-            {'id': 'screen-design-playbook',    'src': 'wiki/playbooks/screen-design-playbook.md',   'label': '화면 디자인'},
-            {'id': 'agent-handoff-playbook',    'src': 'wiki/playbooks/agent-handoff-playbook.md',   'label': '에이전트 핸드오프'},
+            {'id': 'component-update-playbook', 'src': 'wiki/playbooks/31-component-update-playbook.md', 'label': '컴포넌트 업데이트'},
+            {'id': 'screen-design-playbook',    'src': 'wiki/playbooks/32-screen-design-playbook.md',   'label': '화면 디자인'},
+            {'id': 'agent-handoff-playbook',    'src': 'wiki/playbooks/30-agent-handoff-playbook.md',   'label': '에이전트 핸드오프'},
         ]
     },
 ]

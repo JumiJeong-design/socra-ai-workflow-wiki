@@ -25,6 +25,8 @@ Figma, `riiid/prism`, 코드 구현, Storybook이 서로 다른 기준을 말하
 - 이 wiki와 product-design 문서가 충돌하면 구현 기준은 product-design 문서가 우선한다.
 - 이 wiki에는 경계가 생긴 이유와 실수를 반복하지 않는 방법만 기록한다.
 
+계획은 승인과 다르다. worklog나 plan에 "피그마 변경" 항목이 있어도, 에이전트는 read-only 감사와 변경안 보고 전까지 피그마 파일을 수정하지 않는다. 시각 방향, 공통 컴포넌트 스타일, 화면 톤 변경은 주미님이 명시적으로 승인한 뒤에만 write한다.
+
 ## Storybook 경계
 
 Storybook이 Figma 디자인 파일을 페이지 단위로 시각적으로 복사할 필요는 없다.
@@ -68,6 +70,7 @@ product-design 계약 문서, 코드, 프리뷰, Storybook을 수정하기 전 A
 
 - 이 결정을 소유하는 저장소는 `jumi-worklog`, `riiid/prism`, 이 wiki 중 어디인가?
 - 이것은 현재 Prism 계약인가, 아니면 재사용 가능한 운영 교훈인가?
+- plan/worklog 항목을 실행 승인으로 오해하고 있지 않은가?
 - product-design README/AGENTS와 관련 계약 문서를 확인했는가?
 - product-design에 있어야 할 컴포넌트/토큰/패키지 내용을 중복하고 있지 않은가?
 - 이 내용은 먼저 워크로그에 기록하고, 반복된 이후에 wiki로 승격해야 하는가?

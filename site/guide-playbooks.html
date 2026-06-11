@@ -176,6 +176,8 @@
       <li>에이전트가 할 일이 아니라 주미님 확인이 필요한 작업은 무엇인가?</li>
       </ol>
       <p>답이 채팅 안에만 있고 repo 문서에 없으면 핸드오프가 완료된 것이 아니다.</p>
+      <p>계획과 승인은 분리한다. worklog, plan, backlog에 적힌 항목은 다음에 볼 후보이지, 피그마나 코드에 바로 write해도 된다는 뜻이 아니다. 특히 시각 방향, 화면 톤, 공통 컴포넌트 스타일처럼 주미님 판단이 필요한 변경은 read-only 감사와 명시 승인을 거친 뒤 실행한다.</p>
+      <p><code>CONTEXT.md</code>는 세션 스냅샷이다. 최신 worklog나 원격 git 상태보다 오래됐으면 현재 상태로 믿지 않고, 최신 worklog, 공개 viewer, 관련 repo의 <code>git status -sb</code>와 최근 커밋을 먼저 확인한다.</p>
       <h2>진입 문서</h2>
       <table>
       <thead>
@@ -235,6 +237,8 @@
       <h2>진행 순서</h2>
       <ol>
       <li>최신 worklog와 현재 product plan을 읽는다.</li>
+      <li><code>CONTEXT.md</code>가 최신 worklog보다 오래됐는지 확인한다. 오래됐으면 stale snapshot으로 표시하고 최신 git 상태를 우선한다.</li>
+      <li>계획 항목 중 실행 승인 없이 write하면 안 되는 항목을 분리한다.</li>
       <li>완료됐지만 아직 unchecked인 항목을 찾아 즉시 체크한다.</li>
       <li>체크리스트에 없던 일을 완료했다면 새 체크 항목을 추가하고 <code>[x]</code>로 표시한다.</li>
       <li>다음 에이전트가 올바른 문서와 섹션에서 시작하도록 product repo 진입 문서를 갱신한다.</li>
@@ -261,6 +265,8 @@
       <li>원래 계획에 없던 일이라는 이유로 완료 작업을 unchecked 상태로 두지 않는다.</li>
       <li>이미 존재하는 audit 표를 다시 만들지 않는다. 표를 링크하고 다음 액션부터 이어간다.</li>
       <li>공개 페이지를 직접 받아 확인하기 전에는 "배포 완료"라고 말하지 않는다.</li>
+      <li>plan/worklog 항목을 피그마 write 승인으로 해석하지 않는다.</li>
+      <li>stale <code>CONTEXT.md</code>만 믿고 현재 상태를 보고하지 않는다.</li>
       </ul>
       <h2>완료 기준</h2>
       <ul>
@@ -268,6 +274,8 @@
       <li>현재 product plan에 명확한 다음 액션 handoff가 있다.</li>
       <li>worklog 체크박스가 실제 상태와 맞다.</li>
       <li>에이전트 작업과 주미님 확인 작업이 분리되어 있다.</li>
+      <li>실행 승인 없이 write하면 안 되는 피그마/코드 작업이 분리되어 있다.</li>
+      <li><code>CONTEXT.md</code> 최신성 또는 stale 여부가 확인되어 있다.</li>
       <li>공개 worklog URL에 같은 내용이 보인다.</li>
       <li>월 단위 공개 worklog 검증이 통과한다.</li>
       </ul>
