@@ -1968,3 +1968,217 @@ mark.search-inline-hit--active {
 }
 
 .search-nav-close:hover { color: var(--text-primary); }
+
+/* ─── Role map reference sheet ──────────────────────────── */
+.role-map-page {
+  max-width: 1040px;
+}
+
+.role-hero {
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+}
+
+.role-jump-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 0 18px;
+  margin-bottom: 24px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.role-jump-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  font-size: 12px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.role-jump-nav a:hover {
+  color: var(--accent);
+  border-color: var(--accent-border-hover);
+}
+
+.role-section {
+  margin-bottom: 44px;
+  scroll-margin-top: 84px;
+}
+
+.role-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.role-section-kicker {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.role-section h2 {
+  color: var(--text-primary);
+  font-size: 20px;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.role-summary {
+  margin-bottom: 36px;
+}
+
+.role-summary-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.role-summary-line strong {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.role-summary-label {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.role-table {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.role-row {
+  display: grid;
+  gap: 18px;
+  align-items: start;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.role-row:last-child {
+  border-bottom: 0;
+}
+
+.role-row--header {
+  padding: 9px 0;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.role-table--numbers .role-row {
+  grid-template-columns: 88px minmax(220px, 1fr) minmax(240px, 1fr);
+}
+
+.role-table--repo .role-row {
+  grid-template-columns: 150px minmax(180px, 0.75fr) minmax(320px, 1.4fr);
+}
+
+.role-table--plans .role-row {
+  grid-template-columns: 72px minmax(320px, 1.3fr) minmax(220px, 0.9fr);
+}
+
+.role-code {
+  color: var(--accent);
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Menlo, monospace;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.role-row strong {
+  display: block;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.role-row span {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-muted);
+}
+
+.role-note {
+  margin: 0;
+  padding: 4px 0 4px 16px;
+  border-left: 3px solid var(--accent);
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.role-review-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: role-review;
+  border-top: 1px solid var(--border);
+}
+
+.role-review-list li {
+  counter-increment: role-review;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.role-review-list li::before {
+  content: counter(role-review);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 760px) {
+  .role-jump-nav {
+    position: static;
+  }
+
+  .role-row,
+  .role-table--numbers .role-row,
+  .role-table--repo .role-row,
+  .role-table--plans .role-row {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .role-row--header {
+    display: none;
+  }
+}
