@@ -1,5 +1,7 @@
 # Socra AI Workflow Wiki
 
+**🌐 공개 사이트 → https://jumijeong-design.github.io/socra-ai-workflow-wiki/site/**
+
 AI와 함께 Socra 제품을 설계하고 구현하면서 반복 가능한 협업 방식, 시행착오, 의사결정 흐름을 정제해서 쌓는 위키 채널입니다.
 
 이 repo는 제품·디자인 시스템 작업에서 반복해서 쓸 수 있는 **운영 패턴과 판단 기준**을 정제합니다. 현재 Prism의 실제 컴포넌트/토큰/package 계약과 배포 기준은 `riiid/prism`이 source of truth입니다.
