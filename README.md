@@ -1,6 +1,6 @@
 # Socra AI Workflow Wiki
 
-**🌐 공개 사이트 → https://jumijeong-design.github.io/socra-ai-workflow-wiki/site/**
+**🌐 공개 사이트 → https://jumijeong-design.github.io/socra-ai-workflow-wiki/**
 
 AI와 함께 Socra 제품을 설계하고 구현하면서 반복 가능한 협업 방식, 시행착오, 의사결정 흐름을 정제해서 쌓는 위키 채널입니다.
 
