@@ -2145,10 +2145,9 @@ mark.search-inline-hit--active {
 
 .role-review-list li {
   counter-increment: role-review;
-  display: grid;
-  grid-template-columns: 34px minmax(0, 1fr);
-  gap: 12px;
-  padding: 12px 0;
+  position: relative;
+  display: block;
+  padding: 12px 0 12px 46px;
   border-bottom: 1px solid var(--border-light);
   color: var(--text-secondary);
   font-size: 14px;
@@ -2157,10 +2156,28 @@ mark.search-inline-hit--active {
 
 .role-review-list li::before {
   content: counter(role-review);
+  position: absolute;
+  top: 12px;
+  left: 0;
   color: var(--text-muted);
   font-size: 12px;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
+}
+
+.role-review-text {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+  line-break: anywhere;
+}
+
+.role-review-text code {
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
 }
 
 @media (max-width: 760px) {

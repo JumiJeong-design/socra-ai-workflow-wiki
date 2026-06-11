@@ -74,7 +74,7 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.22-role-map')
+fetch('sidebar.html?v=0.27-role-map')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;

@@ -6,7 +6,7 @@
   <title>문서 역할맵과 번호 체계 — Socra AI Workflow</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.22-role-map" />
+  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.27-role-map" />
   <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
@@ -42,9 +42,22 @@
       </div>
     </section>
 
-    <section class="role-section" id="number-system">
+    <section class="role-section" id="review-order">
       <div class="role-section-head">
         <span class="role-section-kicker">01</span>
+        <h2>git 문서 검토 순서</h2>
+      </div>
+      <ol class="role-review-list">
+        <li><span class="role-review-text">먼저 아래 번호 체계에서 문서 번호의 의미를 확인한다.</span></li>
+        <li><span class="role-review-text">repo의 <code>README.md</code> 또는 <code>AGENTS.md</code>로 들어간다.</span></li>
+        <li><span class="role-review-text">현재 상태는 <code>10</code>, 규칙은 <code>20</code>, 절차는 <code>30</code>, 검증은 <code>40</code>, 계약은 <code>50</code> 문서에서 찾는다.</span></li>
+        <li><span class="role-review-text"><code>70</code>이나 <code>90</code> 문서는 원본 기록/과거 참고로만 보고, 현재 기준으로 바로 실행하지 않는다.</span></li>
+      </ol>
+    </section>
+
+    <section class="role-section" id="number-system">
+      <div class="role-section-head">
+        <span class="role-section-kicker">02</span>
         <h2>번호 체계</h2>
       </div>
       <div class="role-table role-table--numbers">
@@ -108,7 +121,7 @@
 
     <section class="role-section" id="repo-map">
       <div class="role-section-head">
-        <span class="role-section-kicker">02</span>
+        <span class="role-section-kicker">03</span>
         <h2>repo별 적용</h2>
       </div>
       <div class="role-table role-table--repo">
@@ -137,7 +150,7 @@
 
     <section class="role-section" id="prism-plans">
       <div class="role-section-head">
-        <span class="role-section-kicker">03</span>
+        <span class="role-section-kicker">04</span>
         <h2>Prism plan 번호화 결과</h2>
       </div>
       <div class="role-table role-table--plans">
@@ -166,27 +179,14 @@
 
     <section class="role-section" id="stable-names">
       <div class="role-section-head">
-        <span class="role-section-kicker">04</span>
+        <span class="role-section-kicker">05</span>
         <h2>이름을 유지하는 문서</h2>
       </div>
       <p class="role-note">도구가 자동으로 찾는 파일은 번호를 붙이지 않는다. <code>README.md</code>, <code>AGENTS.md</code>, <code>CLAUDE.md</code>는 root entry라 파일명을 유지한다. <code>skills/**</code>도 discovery 경로와 연결될 수 있어 rename하지 않는다.</p>
     </section>
-
-    <section class="role-section" id="review-order">
-      <div class="role-section-head">
-        <span class="role-section-kicker">05</span>
-        <h2>git 문서 검토 순서</h2>
-      </div>
-      <ol class="role-review-list">
-        <li>먼저 이 페이지에서 번호 의미를 확인한다.</li>
-        <li>repo의 <code>README.md</code> 또는 <code>AGENTS.md</code>로 들어간다.</li>
-        <li>현재 상태는 <code>10</code>, 규칙은 <code>20</code>, 절차는 <code>30</code>, 검증은 <code>40</code>, 계약은 <code>50</code> 문서에서 찾는다.</li>
-        <li><code>70</code>이나 <code>90</code> 문서는 원본 기록/과거 참고로만 보고, 현재 기준으로 바로 실행하지 않는다.</li>
-      </ol>
-    </section>
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.22-role-map"></script>
+<script src="ai-workflow-guide.js?v=0.27-role-map"></script>
 </body>
 </html>
