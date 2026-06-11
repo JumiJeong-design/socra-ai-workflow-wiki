@@ -668,6 +668,73 @@ body{
 - [x] 3종 비교 후 방향 결정 → **캐릭터보다 UI 고도화 먼저로 결정**
 </script>
 
+<script type="text/plain" id="entry-2026-06-11">
+# 2026-06-11
+
+## Today
+
+- [x] UI/UX 디자인 퀄리티 고도화 1차 실행
+  - 6/10에 캐릭터/브랜딩보다 UI 고도화를 먼저 하기로 결정한 뒤, 오늘은 Figma Page design test의 컬러 계층, glassmorphism, bottom/header/input 구조, 다국어/타이포 토큰 복구를 먼저 진행.
+  - 이후 계획은 가입/탈퇴 플로우 설계, 남은 다크모드 컬러 반전 버그 점검, 글래스모피즘 추가 영역, Storybook QA, POC 페이지 기반 컴포넌트 승격으로 이어짐.
+- [x] 하네스/문서 운영 최적화
+  - Notion `하네스 엔지니어링 관점 → 지금 운영 코드 기반으로 재점검` 내용을 기준으로 3개 repo 상태와 운영 문서 구조를 재점검.
+  - `jumi-worklog/CONTEXT.md`를 current snapshot 중심으로 축소하고, 하드 룰·repo 역할·6/11 후보 작업·피그마 write 승인 게이트를 빠르게 보이게 정리.
+  - `docs/00-document-role-map.md` 추가: `00-99` 문서 역할 체계, Entry/Current/Rules/Playbooks/QA/Contracts/Templates/Logs/External/Archive 구분.
+  - `docs/80-external-prompt-architecture-notes.md` 추가: Every Compound Engineering과 비공식 prompt architecture 자료는 구조 참고로만 사용하도록 기준화.
+  - `scripts/check-context-freshness.sh` 추가, `validate-worklogs.sh`에서 함께 실행하도록 연결.
+  - Prism 쪽은 Figma 시각 변경 승인 게이트를 canonical rule로 두고, `AGENTS.md` / `docs/workflows.md`는 상세 반복 대신 해당 rule을 참조하도록 정리.
+  - workflow wiki playbook/guide 번호화, local markdown link check, role prefix check, public HTML 검토 표면까지 정리.
+- [x] Socra Figma 디자인 시스템 고도화
+  - KR/JP 폰트 토큰 복구: fontFamily 변수 바인딩 끊긴 219개 노드 복구.
+  - 다크 모드 컬러 반전 버그 전수 점검: raw hex / 비반전 토큰 스캔 후 semantic token 교체.
+  - Gray 레이어 분리, barely-cool neutral, red/error scale, green scale 등 컬러 팔레트 채도·명도 일관성 보정.
+  - Chat Input Bar glass, Header Nav Bar glass, Bottom Bar 컴포넌트와 6개 채팅 프레임 배치.
+  - Header 콘텐츠 레이아웃과 Chat History Panel glass는 사용자 직접 완료.
+- [x] textStyleId 복구
+  - Page design test 직접 텍스트 노드 44개 대상.
+  - `loadFontAsync(Pretendard Regular/Medium/SemiBold)` 선행 후 `setTextStyleIdAsync` 적용.
+  - 32px Regular → `display/4-r`, 17px Regular → `body/lg-r`, 16px Regular → `body/base-r`, 14px Regular → `body/sm-r`, 13px Regular → `body/xs-r`.
+  - 최종 직접 텍스트 노드 style 누락 0개로 확인.
+- [x] KR/JP 스트링 변수 컬렉션 신설 + 텍스트 노드 characters 바인딩
+  - Collection `Strings` 생성 (`VariableCollectionId:1966:2300`), 모드 KR / JP.
+  - 6개 변수: `home/hero-tagline`, `settings/title`, `settings/nav/account`, `settings/nav/app`, `settings/nav/info`, `settings/version`.
+  - 34개 텍스트 노드 `characters`를 문자열 변수에 바인딩.
+  - JP 값: `設定`, `アカウント`, `アプリ`, `情報`, `バージョン 0.1.0`, `判断が必要な瞬間に、Socra AI`.
+- [x] Socra Storybook 확장 계획 로컬 협업 컨텍스트화
+  - 원문 30개를 `jumi-worklog/docs/70-socra-storybook-docs/`에 보존.
+  - `docs/10-socra-storybook-collaboration-context.md` 압축 진입점 생성.
+  - shadcn/ui radial chart는 `radialGauge` / score형 metric 후보로만 반영하고, 기본 Chart MVP는 `ChartContainer`, `MetricCard`, `ScoreBar`, `ComparisonBarChart`로 유지.
+  - ChatGPT share `AI 서비스 컴포넌트 설계`는 AgentAnswerCard, Source/Citation, Chart fallback, event properties, performance 참고 자료로 명시.
+- [x] Medium / 외부 공유 글감 아카이브 정리
+  - `jumi-worklog/writing/`을 글감 원본 위치로 생성.
+  - AX 5편 사례 연재, Compound Engineering 3편 방법론 연재 초안 분리.
+  - `VOICE_GUIDE.md`, Notion source map, wiki source map, 제품/운영 실험 백로그 추가.
+  - workflow wiki 사이트에는 공개 확인용 `site/writing.html` 글감 대시보드 추가.
+- [x] `socraAI_product design` 남은 로드맵 정리
+  - 가입/탈퇴 플로우, 다크 모드 컬러 반전 버그, 글래스모피즘 직접 적용 영역, Storybook QA, POC 페이지 기반 컴포넌트 추가를 plan 문서에 명시.
+  - POC 페이지 기반 컴포넌트 추가는 기존 누락 컴포넌트 inventory와 next-batch 후보를 POC 페이지 맥락에서 검증해 `피그마 근거 → 패키지 계약 → Storybook QA` 순서로 승격하는 작업으로 정의.
+  - Bottom Bar package contract와 Figma evidence 문서 보강.
+
+## Decisions
+
+- plan/worklog/backlog 항목은 승인과 다르다. 피그마/코드 write는 read-only 감사와 영향 범위 보고 뒤 명시 승인으로만 진행한다.
+- worklog와 wiki는 마지막에 웹에서 볼 수 있는 `site/*.html`까지 갱신되어야 완료로 본다.
+- Storybook 확장 계획은 공개 위키로 바로 승격하지 않고 `jumi-worklog`의 로컬 협업 컨텍스트로 관리한다.
+- 다음 AI 협업에서는 원문 30개를 전부 읽기 전에 `docs/10-socra-storybook-collaboration-context.md`를 먼저 읽는 방식으로 토큰을 절약한다.
+- Compound Engineering 관점에서 작업 완료는 산출물 생성이 아니라 다음 작업 비용을 줄이는 기준·검증·진입점까지 남기는 것으로 본다.
+
+## Next
+
+- red 스케일 hue 전체 정규화.
+- 가입/탈퇴 플로우 설계: 설계 먼저 → 확인 → 빌드.
+- 다크 모드 컬러 반전 버그 점검: 가입/탈퇴 이후, 작업 전 노드 재확인.
+- 글래스모피즘 추가 예정 영역: Modal / Bottom Sheet, Settings 카드, Web 헤더, Notification / Toast.
+- AI 워크플로우 Medium 업로드.
+- Storybook → QA: 컴포넌트 디자인 일치화.
+- POC 페이지 기반 컴포넌트 추가.
+- 전체 git 최신 반영 시 `.DS_Store` 제외, 변경 범위 확인, public viewer 검증 후 한 번에 push.
+</script>
+
 <script type="text/plain" id="entry-2026-06-10">
 # 2026-06-10
 
@@ -2825,7 +2892,7 @@ marked.use({
 
 // tags/notion은 날짜별로 덮어쓸 메타만 여기에 기록, 나머지는 DOM에서 자동 추출
 const ENTRY_META = {
-  '2026-06-11': { tags: ['glassmorphism', 'kr-jp-변수화', '가입탈퇴-플로우', 'dark-mode'] },
+  '2026-06-11': { tags: ['harness', 'figma', 'prism', 'glassmorphism', 'writing', 'dark-mode'], notion: 'https://app.notion.com/p/37b5bc5f630780968b5de735c3fc82b0' },
   '2026-06-10': { tags: ['figma', 'iphone16', '한국어화', 'dark-mode', 'tokens'] },
   '2026-06-08': { tags: ['prism-spirit', 'branding', 'concept', 'vercel'], notion: 'https://app.notion.com/p/3795bc5f6307812a8eb2d445ab0465a9' },
   '2026-06-07': { tags: ['figma', 'components', 'tokens', 'dark-mode'] },
