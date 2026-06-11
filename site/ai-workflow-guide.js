@@ -122,7 +122,7 @@ const SEARCH_PAGES = [
   { path: 'guide-extensions.html',  label: '제품 유형별 확장' },
   { path: 'guide-wiki.html',        label: '실무 가이드' },
   { path: 'guide-playbooks.html',   label: '플레이북' },
-  { path: 'harness-review.html',    label: '하네스 최적화 리뷰' },
+  { path: 'harness-review.html',    label: '문서 역할맵' },
   { path: 'changelog.html',         label: 'Changelog' },
 ];
 

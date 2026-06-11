@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>하네스 최적화 리뷰 — Socra AI Workflow</title>
+  <title>문서 역할맵과 번호 체계 — Socra AI Workflow</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
   <link rel="stylesheet" href="ai-workflow-guide.css" />
@@ -15,7 +15,7 @@
   <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
     <span></span><span></span><span></span>
   </button>
-  <span class="mobile-topbar-title">하네스 최적화 리뷰</span>
+  <span class="mobile-topbar-title">문서 역할맵</span>
 </header>
 
 <div class="sidebar-overlay" id="sidebar-overlay"></div>
@@ -25,104 +25,109 @@
 
   <main class="main">
     <div class="hero home-hero">
-      <div class="home-eyebrow">2026-06-11 · Review Surface</div>
-      <h1>하네스 최적화 결과를<br>웹에서 바로 확인하기</h1>
-      <p>이번 정리는 문서를 더 늘리는 작업이 아니라, 사람이 봐야 하는 표면은 HTML로 열고 에이전트가 따라야 하는 기준은 repo 안 검증으로 고정하는 작업입니다.</p>
+      <div class="home-eyebrow">Document Role Map · 2026-06-11</div>
+      <h1>문서 역할맵과<br>plan 번호화 기준</h1>
+      <p>git 문서를 볼 때 “이 문서가 현재 기준인지, 규칙인지, 실행 절차인지, 과거 기록인지” 빠르게 구분하기 위한 번호 체계입니다.</p>
     </div>
 
-    <section class="home-group" id="what-to-review">
-      <div class="home-group-title">지금 확인할 것</div>
+    <section class="home-group" id="remember">
+      <div class="home-group-title">이것만 기억</div>
       <div class="home-cards col-3">
-        <a href="https://app.notion.com/p/37b5bc5f630780968b5de735c3fc82b0" class="home-card">
-          <div class="home-card-num">Notion</div>
-          <div class="home-card-title">진행 기록 확인</div>
-          <div class="home-card-desc">어떤 이슈를 발견했고, 어떤 기준으로 개선했는지 정리한 작업 로그입니다.</div>
-        </a>
-        <a href="guide-wiki.html#figma-git-sync" class="home-card">
-          <div class="home-card-num">운영 기준</div>
-          <div class="home-card-title">Figma / Git 경계</div>
-          <div class="home-card-desc">계획, worklog, backlog가 피그마 write 승인이 아니라는 기준을 확인합니다.</div>
-        </a>
-        <a href="guide-playbooks.html#agent-handoff-playbook" class="home-card">
-          <div class="home-card-num">Handoff</div>
-          <div class="home-card-title">에이전트 이어받기</div>
-          <div class="home-card-desc">다음 에이전트가 오래된 CONTEXT나 계획 문서를 현재 기준으로 오해하지 않게 하는 흐름입니다.</div>
-        </a>
+        <div class="home-card">
+          <div class="home-card-num">00 / 10</div>
+          <div class="home-card-title">처음 보는 문서와 현재 상태</div>
+          <div class="home-card-desc">`00`은 입구, `10`은 현재 진행 중인 상태입니다. 지금 뭘 봐야 하는지는 이 두 번호에서 시작합니다.</div>
+        </div>
+        <div class="home-card">
+          <div class="home-card-num">20 / 30 / 40</div>
+          <div class="home-card-title">규칙, 절차, 검증</div>
+          <div class="home-card-desc">`20`은 반드시 지킬 규칙, `30`은 반복 워크플로, `40`은 테스트와 리뷰 기준입니다.</div>
+        </div>
+        <div class="home-card">
+          <div class="home-card-num">50 / 60 / 70 / 80 / 90</div>
+          <div class="home-card-title">계약, 템플릿, 기록, 공유, 아카이브</div>
+          <div class="home-card-desc">`50`은 source of truth, `60`은 prompt/skill, `70`은 raw log, `80`은 외부 공유, `90`은 과거 자료입니다.</div>
+        </div>
       </div>
     </section>
 
-    <section class="home-group" id="changed">
-      <div class="home-group-title">이번에 바뀐 구조</div>
+    <section class="home-group" id="number-system">
+      <div class="home-group-title">번호 체계</div>
+      <div class="home-steps">
+        <div class="home-step"><div class="home-step-num">00-09</div><div class="home-step-text">Entry / Index: README, AGENTS, 문서 역할맵처럼 처음 들어오는 문서</div></div>
+        <div class="home-step"><div class="home-step-num">10-19</div><div class="home-step-text">Current State: 현재 상태, active plan, 이번 주 기준</div></div>
+        <div class="home-step"><div class="home-step-num">20-29</div><div class="home-step-text">Rules / Guardrails: 반드시 지켜야 하는 canonical rule</div></div>
+        <div class="home-step"><div class="home-step-num">30-39</div><div class="home-step-text">Playbooks / Workflows: 특정 상황에서 실행하는 절차</div></div>
+        <div class="home-step"><div class="home-step-num">40-49</div><div class="home-step-text">QA / Eval / Harness Checks: 자동 검증, 회귀 케이스, 리뷰 기준</div></div>
+        <div class="home-step"><div class="home-step-num">50-59</div><div class="home-step-text">Source of Truth / Contracts: 토큰, 컴포넌트, 제품 판단 계약</div></div>
+        <div class="home-step"><div class="home-step-num">60-69</div><div class="home-step-text">Templates / Prompts / Skill Entrypoints: 사람이 기억할 진입 스킬과 요청 템플릿</div></div>
+        <div class="home-step"><div class="home-step-num">70-79</div><div class="home-step-text">Logs / Raw Records: 날짜별 원본 기록. 현재 판단 기준으로 바로 쓰지 않음</div></div>
+        <div class="home-step"><div class="home-step-num">80-89</div><div class="home-step-text">External / Shareable: 외부 공유용으로 정제한 문서</div></div>
+        <div class="home-step"><div class="home-step-num">90-99</div><div class="home-step-text">Archive / Deprecated: 과거 방향, 보류 메모, 참고 이력</div></div>
+      </div>
+    </section>
+
+    <section class="home-group" id="repo-map">
+      <div class="home-group-title">repo별로 이렇게 읽기</div>
       <div class="home-cards col-3">
         <div class="home-card">
           <div class="home-card-num">jumi-worklog</div>
-          <div class="home-card-title">현재 상태 스냅샷과 freshness check</div>
-          <div class="home-card-desc">CONTEXT를 짧은 현재 기준으로 줄이고, 최신 worklog보다 오래되면 검증에서 경고하도록 했습니다.</div>
+          <div class="home-card-title">raw 기록과 현재 스냅샷</div>
+          <div class="home-card-desc">`CONTEXT.md`는 10번대 current snapshot 역할입니다. `logs/YYYY/MM`은 70번대 raw log입니다. 여기서는 원본 맥락을 확인합니다.</div>
         </div>
         <div class="home-card">
           <div class="home-card-num">Prism</div>
-          <div class="home-card-title">문서 역할맵 + plan 번호화</div>
-          <div class="home-card-desc">active plan은 10번대, 과거 방향/후순위 메모는 90번대로 나누고, plan 파일명 검증을 추가했습니다.</div>
+          <div class="home-card-title">제품/디자인 시스템 계약</div>
+          <div class="home-card-desc">`design-system/rules.md`는 20번대 규칙, `packages/prism/*contract*`는 50번대 SOT입니다. `docs/plans`는 번호 prefix로 현재/과거를 나눕니다.</div>
         </div>
         <div class="home-card">
-          <div class="home-card-num">Workflow Wiki</div>
-          <div class="home-card-title">HTML로 읽는 guide/playbook</div>
-          <div class="home-card-desc">guide/playbook을 번호화하고, local link check와 role prefix check를 검증에 연결했습니다.</div>
+          <div class="home-card-num">workflow-wiki</div>
+          <div class="home-card-title">정제된 운영 지식과 HTML 표면</div>
+          <div class="home-card-desc">guide/playbook은 30/40/80/90 번호로 읽고, 주미님이 직접 보는 표면은 `site/*.html` 웹 페이지로 둡니다.</div>
         </div>
       </div>
     </section>
 
-    <section class="home-group" id="validation">
-      <div class="home-group-title">검증 상태</div>
+    <section class="home-group" id="prism-plans">
+      <div class="home-group-title">Prism plan 번호화 결과</div>
       <div class="home-steps">
         <div class="home-step">
-          <div class="home-step-num">OK</div>
-          <div class="home-step-text">jumi-worklog: validate-worklogs 통과, CONTEXT freshness 확인</div>
+          <div class="home-step-num">10</div>
+          <div class="home-step-text">`docs/plans/10-design-system-followup-2026-06-06.md` — 현재 인수인계 기준 active plan</div>
         </div>
         <div class="home-step">
-          <div class="home-step-num">OK</div>
-          <div class="home-step-text">Prism: validate-design-system 통과, docs/plans 번호 prefix 검증 포함</div>
+          <div class="home-step-num">90</div>
+          <div class="home-step-text">`docs/plans/90-direction-2026-05-27.md` — 과거 MVP 방향 메모</div>
         </div>
         <div class="home-step">
-          <div class="home-step-num">OK</div>
-          <div class="home-step-text">Workflow wiki: validate-docs 통과, local link check와 role prefix check 포함</div>
+          <div class="home-step-num">90</div>
+          <div class="home-step-text">`docs/plans/90-figma-mcp-deferred-2026-05-27.md` — 피그마 MCP 후순위 메모</div>
         </div>
       </div>
     </section>
 
-    <section class="home-group" id="remaining">
-      <div class="home-group-title">남은 결정</div>
-      <div class="home-cards col-3">
-        <div class="home-card">
-          <div class="home-card-num">1</div>
-          <div class="home-card-title">commit / push 여부</div>
-          <div class="home-card-desc">세 repo 변경이 모두 local 상태입니다. 검토 후 repo별로 commit/push하면 됩니다.</div>
-        </div>
-        <div class="home-card">
-          <div class="home-card-num">2</div>
-          <div class="home-card-title">.DS_Store 처리</div>
-          <div class="home-card-desc">jumi-worklog에 남은 미추적 .DS_Store 계열 파일을 삭제하거나 .gitignore에 추가할지 결정하면 됩니다.</div>
-        </div>
-        <div class="home-card">
-          <div class="home-card-num">3</div>
-          <div class="home-card-title">다음 최적화 범위</div>
-          <div class="home-card-desc">Prism sync 문서와 ADR을 현재 기준/과거 이력으로 더 나눌지 다음 배치에서 판단합니다.</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-group" id="principles">
-      <div class="home-group-title">적용한 원칙</div>
+    <section class="home-group" id="what-not-to-rename">
+      <div class="home-group-title">이름을 유지하는 문서</div>
       <div class="home-flow">
         <div class="home-flow-intro">
-          <h2>더 많은 규칙보다, 더 적은 진입점과 자동 검증을 우선한다.</h2>
-          <p>Every의 Compound Engineering 글에서는 작업 결과가 다음 작업을 더 쉽게 만들어야 한다는 기준을 참고했습니다. 비공식 prompt 자료는 공식 기준으로 쓰지 않고, 문서 구조와 entrypoint 분리 방식만 참고 대상으로 남겼습니다.</p>
+          <h2>도구가 자동으로 찾는 파일은 번호를 붙이지 않는다.</h2>
+          <p>`README.md`, `AGENTS.md`, `CLAUDE.md`는 root entry라 파일명을 유지합니다. `skills/**`도 discovery 경로와 연결될 수 있어서 rename하지 않습니다. 대신 내부에서 역할맵이나 canonical rule로 링크합니다.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="home-group" id="how-to-review">
+      <div class="home-group-title">주미님이 git 문서를 볼 때 순서</div>
+      <div class="home-steps">
+        <div class="home-step"><div class="home-step-num">1</div><div class="home-step-text">먼저 이 페이지에서 번호 의미를 확인한다.</div></div>
+        <div class="home-step"><div class="home-step-num">2</div><div class="home-step-text">repo의 `README.md` 또는 `AGENTS.md`로 들어간다.</div></div>
+        <div class="home-step"><div class="home-step-num">3</div><div class="home-step-text">현재 상태는 `10`, 규칙은 `20`, 절차는 `30`, 검증은 `40`, 계약은 `50` 문서에서 찾는다.</div></div>
+        <div class="home-step"><div class="home-step-num">4</div><div class="home-step-text">`70`이나 `90` 문서는 원본 기록/과거 참고로만 보고, 현재 기준으로 바로 실행하지 않는다.</div></div>
       </div>
     </section>
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.16-harness"></script>
+<script src="ai-workflow-guide.js?v=0.17-role-map"></script>
 </body>
 </html>
