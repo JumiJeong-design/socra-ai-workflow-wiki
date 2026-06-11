@@ -123,7 +123,6 @@ const SEARCH_PAGES = [
   { path: 'guide-wiki.html',        label: '실무 가이드' },
   { path: 'guide-playbooks.html',   label: '플레이북' },
   { path: 'harness-review.html',    label: '문서 역할맵' },
-  { path: 'writing.html',           label: '글감 대시보드' },
   { path: 'changelog.html',         label: 'Changelog' },
 ];
 
