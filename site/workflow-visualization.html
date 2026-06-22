@@ -146,7 +146,7 @@
   /* ─── 파이프라인 ─── */
   .pipeline {
     display: grid;
-    grid-template-columns: 28px 1fr;
+    grid-template-columns: 28px minmax(0, 1fr);
     gap: 0;
   }
 
@@ -405,11 +405,61 @@
     white-space: nowrap;
   }
 
+  /* ── 02.5 중간 점검 콜아웃 ── */
+  .checkpoint {
+    margin: 6px 0 6px 18px;
+    padding: 14px 16px;
+    background: #f5f9ff;
+    border: 1px solid #d4e2f4;
+    border-left: 3px solid #9cb8e0;
+    border-radius: 8px;
+  }
+  .checkpoint-head {
+    display: flex; align-items: center; flex-wrap: wrap;
+    gap: 6px 8px; margin-bottom: 8px;
+  }
+  .checkpoint-eyebrow {
+    font-size: 9px; font-weight: 800; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #7a93b8;
+  }
+  .checkpoint-title { font-size: 13px; font-weight: 700; color: #305880; }
+  .checkpoint-who {
+    margin-left: auto;
+    font-size: 10px; font-weight: 600;
+    padding: 2px 9px; border-radius: 20px;
+    background: #eef6ff; color: #386890; border: 1px solid #c8d8ec;
+    white-space: nowrap;
+  }
+  .checkpoint-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.06em;
+    padding: 2px 8px; border-radius: 20px;
+    background: #eef6ff; color: #386890; border: 1px solid #c8d8ec;
+    white-space: nowrap;
+  }
+  .checkpoint .step-desc { margin-bottom: 0; color: #6f88a6; }
+
   @media (max-width: 760px) {
     body { padding: 36px 20px 72px; }
     .comparison-grid { grid-template-columns: 1fr; }
     .default-flow-steps { align-items: flex-start; }
     .default-flow-arrow { display: none; }
+
+    .parallel-row { flex-direction: column; }
+    .parallel-divider { padding: 2px 0; justify-content: center; }
+
+    .chain { flex-direction: column; align-items: stretch; }
+    .chain-item { width: 100%; }
+    .chain-item-body { width: 100%; }
+    .chain-arrow { align-self: center; padding: 2px 0; transform: rotate(90deg); }
+
+    .checkpoint { margin-left: 8px; }
+    .checkpoint-who { margin-left: 0; }
+
+    /* 모바일에선 우측으로 삐져나가는 루프 호를 숨겨 가로 오버플로우 제거 */
+    .loop-arc, .loop-arc-label { display: none; }
+
+    /* 좁은 폭(360px)에서 분기 칩이 넘치지 않게 줄바꿈 허용 */
+    .branch-row { flex-wrap: wrap; }
   }
 </style>
 </head>
@@ -430,10 +480,10 @@
 
   <section class="default-flow">
     <div class="default-flow-label">Default Operating Flow</div>
-    <div class="default-flow-title">기본값은 신규 플로우다. 비교는 필요할 때만 연다.</div>
+    <div class="default-flow-title">기본은 신규 플로우. 비교는 필요할 때만 펼친다.</div>
     <p class="default-flow-desc">
-      레거시 방식은 설명용 비교 기준으로 남기고, 실제 운영은 탐색 → 확정 기준 → 제품 반영 → QA → 기록/보강 루프로 본다.
-      각 단계의 산출물은 Figma, Prism contract, Storybook, Worklog에 역할별로 남기고, 화면 조합은 page-first story와 QA Harness로 검증한다.
+      레거시 방식은 비교용 기준으로만 남겨 두고, 실제 운영은 탐색 → 확정 기준 → 제품 반영 → QA → 기록·보강 순으로 돈다.
+      각 단계의 산출물은 Figma · Prism contract · Storybook · Worklog에 역할별로 쌓이고, 화면 조합은 page-first story와 QA Harness로 검증한다.
     </p>
     <div class="default-flow-steps">
       <span class="default-flow-chip">01 탐색</span>
@@ -687,27 +737,19 @@
         </div>
       </div>
 
-      <!-- 02.5 화면 조합 검증 -->
-      <div class="step" style="
-        background: #f7fbff;
-        border-radius: 8px;
-        padding: 16px;
-        margin: 0 0 0 -4px;
-        border: 1px solid #cfe0f4;
-      ">
-        <div class="step-header">
-          <span class="step-num" style="color:#8aa0c0;">02.5</span>
-          <span class="step-title" style="color:#305880;">화면 조합 검증</span>
-          <span class="step-who" style="background:#eef6ff; color:#386890; border:1px solid #c8d8ec;">디자이너 + 개발자</span>
-          <span class="step-badge" style="background:#eef6ff; color:#386890; border-color:#c8d8ec;">Page-first</span>
+      <!-- 02.5 화면 조합 검증 (중간 점검 콜아웃) -->
+      <div class="checkpoint">
+        <div class="checkpoint-head">
+          <span class="checkpoint-eyebrow">중간 점검</span>
+          <span class="checkpoint-title">화면 조합 검증</span>
+          <span class="checkpoint-who">디자이너 + 개발자</span>
+          <span class="checkpoint-badge">Page-first</span>
         </div>
-        <div class="step-content">
-          <ul class="step-desc" style="color:#7890a8;">
-            <li>컴포넌트 기준이 잡히면 <strong style="color:#406890;">page shell story</strong>로 mobile/web · light/dark · locale 조합을 먼저 본다</li>
-            <li>아직 구현 전인 영역은 placeholder로 두고, 승인 전 컴포넌트 계약으로 승격하지 않는다</li>
-            <li>대표 화면·대표 상태부터 Storybook에 올리고 QA Harness로 렌더·접근성·viewport 회귀를 확인한다</li>
-          </ul>
-        </div>
+        <ul class="step-desc">
+          <li>컴포넌트 기준이 잡히면 <strong style="color:#406890;">page shell story</strong>로 mobile/web · light/dark · locale 조합부터 확인</li>
+          <li>아직 구현 전인 영역은 placeholder로 두고, 승인 전까지 컴포넌트 계약으로 승격하지 않음</li>
+          <li>대표 화면·대표 상태부터 Storybook에 올리고, QA Harness로 렌더·접근성·viewport 회귀 확인</li>
+        </ul>
       </div>
 
       <!-- 03 제품 반영 -->
