@@ -74,7 +74,7 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.18-storybook-harness')
+fetch('sidebar.html?v=0.19-flow-default')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;

@@ -34,6 +34,29 @@
       <p>Socra AI Workflow Wiki의 변경 사항을 버전별로 기록합니다.</p>
     </div>
 
+    <!-- v0.19 -->
+    <section class="section" id="v0-19">
+      <div class="section-header">
+        <div class="section-num">0.19</div>
+        <h2>운영 흐름 기본값 정리 · 비교 접기 <span class="section-tag">2026.06.22</span></h2>
+      </div>
+
+      <div class="highlight">
+        <p>워크플로우 시각화에서 신규 운영 흐름을 기본값으로 먼저 보여주고, 레거시/신규 비교는 필요할 때 펼쳐보는 보조 정보로 낮췄습니다.</p>
+      </div>
+
+      <h3>반영 내용</h3>
+      <ul class="styled">
+        <li><strong>신규 플로우 기본값화</strong> — 탐색 → 확정 기준 → 제품 반영 → Product QA → 기록 & 보강 루프를 기본 운영 흐름 카드로 먼저 노출</li>
+        <li><strong>비교표 접기</strong> — 레거시 플로우와 신규 플로우 장단점 비교를 접힌 보조 섹션으로 전환</li>
+        <li><strong>운영 기준 정렬</strong> — 화면 설계 미결 표기를 page-first 화면 조합 검증으로 정리하고, QA 회수 경로를 Prism contract · Storybook · Wiki 승격 루프로 보강</li>
+        <li><strong>모바일 대응</strong> — 비교표가 작은 화면에서 한 열로 떨어지도록 보정</li>
+        <li><strong>LNB 캐시 갱신</strong> — 공통 sidebar 로딩 버전을 v0.19로 올려 최신 버전 텍스트가 바로 반영되도록 수정</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
     <!-- v0.18 -->
     <section class="section" id="v0-18">
       <div class="section-header">
@@ -502,6 +525,6 @@
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.28-worklog"></script>
+<script src="ai-workflow-guide.js?v=0.19-flow-default"></script>
 </body>
 </html>
