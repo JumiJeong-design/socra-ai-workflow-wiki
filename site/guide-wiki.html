@@ -51,7 +51,7 @@
       </tr>
       <tr>
       <td>디자인 탐색 / 시각 근거</td>
-      <td>Figma / product-design 근거 문서</td>
+      <td>Figma / Prism design-system 근거 문서</td>
       <td>교훈 보존 (계약 아님)</td>
       </tr>
       <tr>
@@ -70,8 +70,8 @@
       <p>코드, 프리뷰, Storybook에서 시각 값을 AI가 임의로 만들어 sync라고 부르면 안 된다.</p>
       <ul>
       <li>이 가이드를 적용하기 전에 <code>riiid/prism</code>의 현재 운영 모델을 확인한다.</li>
-      <li>product-design 문서가 패키지/컴포넌트 계약을 정의한다면 여기서 반복하지 않는다.</li>
-      <li>이 wiki와 product-design 문서가 충돌하면 구현 기준은 product-design 문서가 우선한다.</li>
+      <li><code>riiid/prism</code> 문서가 패키지/컴포넌트 계약을 정의한다면 여기서 반복하지 않는다.</li>
+      <li>이 wiki와 <code>riiid/prism</code> 문서가 충돌하면 구현 기준은 <code>riiid/prism</code> 문서가 우선한다.</li>
       <li>이 wiki에는 경계가 생긴 이유와 실수를 반복하지 않는 방법만 기록한다.</li>
       </ul>
       <p>계획은 승인과 다르다. worklog나 plan에 "피그마 변경" 항목이 있어도, 에이전트는 read-only 감사와 변경안 보고 전까지 피그마 파일을 수정하지 않는다. 시각 방향, 공통 컴포넌트 스타일, 화면 톤 변경은 주미님이 명시적으로 승인한 뒤에만 write한다.</p>
@@ -123,19 +123,19 @@
       <h2>Sync 흐름</h2>
       <pre><code class="language-text">워크로그 / Figma / 프로토타입 신호
       -&gt; riiid/prism 출처 확인
-      -&gt; 필요 시 product-design 계약 업데이트
+      -&gt; 필요 시 Prism 계약 업데이트
       -&gt; 코드 구현 / Storybook 검증
       -&gt; 재사용 가능한 교훈을 이 wiki에 기록
       </code></pre>
       <p>컴포넌트 시각 계약이 변경될 경우, 흐름은 이 wiki가 아니라 <code>riiid/prism</code>의 최신 문서에서 시작해야 한다.</p>
       <h2>AI 체크리스트</h2>
-      <p>product-design 계약 문서, 코드, 프리뷰, Storybook을 수정하기 전 AI는 다음을 확인해야 한다.</p>
+      <p><code>riiid/prism</code> 계약 문서, 코드, 프리뷰, Storybook을 수정하기 전 AI는 다음을 확인해야 한다.</p>
       <ul>
       <li>이 결정을 소유하는 저장소는 <code>jumi-worklog</code>, <code>riiid/prism</code>, 이 wiki 중 어디인가?</li>
       <li>이것은 현재 Prism 계약인가, 아니면 재사용 가능한 운영 교훈인가?</li>
       <li>plan/worklog 항목을 실행 승인으로 오해하고 있지 않은가?</li>
-      <li>product-design README/AGENTS와 관련 계약 문서를 확인했는가?</li>
-      <li>product-design에 있어야 할 컴포넌트/토큰/패키지 내용을 중복하고 있지 않은가?</li>
+      <li><code>riiid/prism</code> README/AGENTS와 관련 계약 문서를 확인했는가?</li>
+      <li><code>riiid/prism</code>에 있어야 할 컴포넌트/토큰/패키지 내용을 중복하고 있지 않은가?</li>
       <li>이 내용은 먼저 워크로그에 기록하고, 반복된 이후에 wiki로 승격해야 하는가?</li>
       </ul>
       <h2>검수 기준</h2>
@@ -143,7 +143,7 @@
       <li>현재 구현 규칙은 직접 기술하지 않고 <code>riiid/prism</code> 출처 문서를 링크한다.</li>
       <li>이 wiki 문서는 재사용 가능한 경계와 교훈을 설명한다.</li>
       <li>워크로그 항목은 원본 기록으로 남기고, wiki 문서에는 승격된 패턴만 담는다.</li>
-      <li>product-design이 확인하지 않은 컴포넌트/토큰/패키지 계약을 현행 기준으로 취급하지 않는다.</li>
+      <li><code>riiid/prism</code>이 확인하지 않은 컴포넌트/토큰/패키지 계약을 현행 기준으로 취급하지 않는다.</li>
       </ul>
       <h2>Source Worklog</h2>
       <ul>
@@ -213,12 +213,12 @@
       <tr>
       <td>컴포넌트</td>
       <td>승인된 디자인 시스템 컴포넌트</td>
-      <td>sync 전 현재 product-design 계약 확인</td>
+      <td>sync 전 현재 <code>riiid/prism</code> 계약 확인</td>
       </tr>
       <tr>
       <td>화면</td>
       <td>승인된 제품 화면 기준</td>
-      <td>구현 전 현재 product-design 계약 확인</td>
+      <td>구현 전 현재 <code>riiid/prism</code> 계약 확인</td>
       </tr>
       <tr>
       <td>아카이브</td>
@@ -244,12 +244,12 @@
       -&gt; 재사용 가능한 교훈을 이 wiki에 승격
       </code></pre>
       <h2>충돌 시 판단 순서</h2>
-      <p>Figma, product-design 계약, 코드, Storybook이 서로 다른 기준을 말할 때:</p>
+      <p>Figma, <code>riiid/prism</code> 계약, 코드, Storybook이 서로 다른 기준을 말할 때:</p>
       <ol>
       <li><code>riiid/prism</code>의 현재 README/AGENTS를 먼저 확인한다.</li>
       <li>관련 토큰/컴포넌트/패키지 계약을 확인한다.</li>
       <li>이 wiki는 계약이 아니라 맥락으로 취급한다.</li>
-      <li>product-design 문서가 요구할 때 Storybook에서 구현을 검증한다.</li>
+      <li><code>riiid/prism</code> 문서가 요구할 때 Storybook에서 구현을 검증한다.</li>
       <li>재사용 가능한 교훈만 이 wiki에 승격한다.</li>
       </ol>
       <h2>Source Worklog</h2>

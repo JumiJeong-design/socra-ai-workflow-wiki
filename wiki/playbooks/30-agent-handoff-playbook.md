@@ -42,6 +42,21 @@
 
 다음날 할 일을 완료된 작업 섹션 안에 넣지 않는다. 해당 날짜의 `Next` 또는 다음 날짜 worklog에 둔다.
 
+## 병렬 작업 핸드오프
+
+Codex와 Claude Code처럼 여러 에이전트가 같은 repo를 나눠 작업할 때는 다음 항목이 문서에 없으면 병렬 작업으로 시작하지 않는다.
+
+| 항목 | 기록할 내용 |
+| --- | --- |
+| worktree / branch | 각 트랙이 사용하는 로컬 경로와 브랜치 |
+| 소유 범위 | 디렉터리, 컴포넌트, 토큰, Storybook 영역 중 무엇을 누가 만지는지 |
+| 생성물 owner | `theme.css`, `public.manifest.json`, 정적 Storybook 산출물처럼 빌드로 갱신되는 파일의 단일 소유자 |
+| 머지 순서 | foundation/token, component, Storybook/QA 중 어떤 트랙이 먼저 머지되어야 하는지 |
+| 재생성 금지 파일 | owner가 아닌 트랙이 검증 중 생성해도 커밋하면 안 되는 파일 |
+| 완료 정의 | source 변경, 생성물 반영, Storybook/Chromatic 확인, worklog/plan 반영 여부 |
+
+source만 바뀐 상태는 완료가 아니다. 특히 토큰이나 공개 CSS 변수 변경은 생성물과 정적 Storybook에 반영됐는지 확인해야 다음 에이전트가 같은 문제를 다시 추적하지 않는다.
+
 ## 진행 순서
 
 1. 최신 worklog와 현재 product plan을 읽는다.
@@ -93,3 +108,4 @@ worklog를 바꿨다면 로컬 markdown만으로는 완료가 아니다.
 ## 원본 워크로그 (Source Worklog)
 
 - `jumi-worklog/logs/2026/06/2026-06-05.md`
+- `jumi-worklog/logs/2026/06/2026-06-22.md`

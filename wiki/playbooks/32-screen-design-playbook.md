@@ -6,7 +6,7 @@ Socra 제품의 새 화면이나 주요 화면 개편을 AI와 함께 설계할 
 
 ## Principle
 
-화면 설계는 Figma에서 자유롭게 탐색하되, approved screen이 되기 전까지 product-design contract, code, Storybook의 구현 계약으로 보지 않는다.
+화면 설계는 Figma에서 자유롭게 탐색하되, approved screen이 되기 전까지 `riiid/prism` contract, code, Storybook의 구현 계약으로 보지 않는다.
 
 ## Figma Screen States
 
@@ -14,14 +14,24 @@ Socra 제품의 새 화면이나 주요 화면 개편을 AI와 함께 설계할 
 | --- | --- | --- |
 | `exploration` | 구조, 톤, layout을 자유롭게 실험 | worklog/context only |
 | `candidate` | 제품 방향으로 가능성 있는 안 | compare and review |
-| `approved screen` | 구현 기준으로 합의된 화면 | product-design contract / Storybook 기준 확인 |
+| `approved screen` | 구현 기준으로 합의된 화면 | `riiid/prism` contract / Storybook 기준 확인 |
 | `archived` | 버린 안 또는 과거 실험 | keep only as rationale |
+
+## Page-First Validation
+
+신규 컴포넌트가 여러 개 필요한 화면은 컴포넌트를 모두 구현하기 전에 page shell story로 먼저 검증한다.
+
+1. 승인된 기존 컴포넌트만 사용해 화면의 큰 구조를 만든다.
+2. 아직 구현 전인 컴포넌트 자리는 placeholder로 명시한다.
+3. mobile/web, light/dark, locale, long content 같은 큰 축에서 화면이 성립하는지 확인한다.
+4. 새 컴포넌트가 준비되면 placeholder를 실제 컴포넌트로 교체한다.
+5. placeholder와 page shell 스타일은 구현 계약이 아니며, 컴포넌트 contract로 승격하지 않는다.
 
 ## Steps
 
 1. 화면의 핵심 사용자 목적을 한 문장으로 적는다.
 2. Figma screen status를 `exploration`, `candidate`, `approved screen`, `archived` 중 하나로 표시한다.
-3. Exploration 단계에서는 빠른 조합과 시각 실험을 우선하고 product-design contract로 옮기지 않는다.
+3. Exploration 단계에서는 빠른 조합과 시각 실험을 우선하고 `riiid/prism` contract로 옮기지 않는다.
 4. Candidate 단계에서는 AI design review로 정보 구조, 상태, 접근성, 컴포넌트 gap을 비교한다.
 5. Approved screen이 되면 필요한 기존 design system component를 확정한다.
 6. 반복 가능한 gap이 실제 구현 계약으로 이어지면 `riiid/prism`의 최신 source-of-truth 문서에서 spec/contract 반영 범위를 확인한다.
@@ -34,9 +44,12 @@ Socra 제품의 새 화면이나 주요 화면 개편을 AI와 함께 설계할 
 - Exploration/Candidate 화면이 실수로 구현 기준이 되지 않았다.
 - Approved screen은 디자인 시스템 컴포넌트 기반으로 설명된다.
 - 새 컴포넌트 후보와 one-off UI가 구분된다.
+- 구현 전 page-first 검증이 필요한 경우 shell story와 placeholder 범위가 구분되어 있다.
 - open question과 designer judgment가 분리되어 있다.
 - 구현된 화면 또는 컴포넌트는 Storybook/product preview 검증 경로가 있다.
 
 ## Source Worklog
 
 - Historical wiki seed; original source worklog was not backfilled.
+- `jumi-worklog/logs/2026/06/2026-06-19.md`
+- `jumi-worklog/logs/2026/06/2026-06-22.md`

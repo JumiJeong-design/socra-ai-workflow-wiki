@@ -24,6 +24,7 @@ GROUPS = [
         'nav_title': '플레이북 / 기록',
         'docs': [
             {'id': 'component-update-playbook', 'src': 'wiki/playbooks/31-component-update-playbook.md', 'label': '컴포넌트 업데이트'},
+            {'id': 'storybook-qa-harness',      'src': 'wiki/playbooks/33-storybook-qa-harness.md',      'label': 'Storybook QA 하네스'},
             {'id': 'screen-design-playbook',    'src': 'wiki/playbooks/32-screen-design-playbook.md',   'label': '화면 디자인'},
             {'id': 'agent-handoff-playbook',    'src': 'wiki/playbooks/30-agent-handoff-playbook.md',   'label': '에이전트 핸드오프'},
         ]
@@ -75,7 +76,7 @@ for group in GROUPS:
   <title>{group["title"]} — Socra AI Workflow Wiki</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <link rel="stylesheet" href="ai-workflow-guide.css" />
+  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.28-worklog" />
   <script>(function(){{var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}})();</script>
 </head>
 <body>
@@ -98,7 +99,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.14-wiki"></script>
+<script src="ai-workflow-guide.js?v=0.28-worklog"></script>
 </body>
 </html>
 '''

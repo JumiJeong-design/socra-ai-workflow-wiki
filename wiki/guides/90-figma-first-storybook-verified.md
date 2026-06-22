@@ -24,8 +24,8 @@ Figma 전체를 sync 대상으로 보지 않는다는 교훈은 여전히 유효
 | --- | --- | --- |
 | 탐색(Exploration) | 자유 실험, 시각 방향 테스트, 버려질 수 있는 아이디어 | Git/Storybook에 sync 금지 |
 | 후보(Candidates) | 제품 방향으로 가능성 있는 안 | 맥락 기록, 구현 계약으로 취급 금지 |
-| 컴포넌트 | 승인된 디자인 시스템 컴포넌트 | sync 전 현재 product-design 계약 확인 |
-| 화면 | 승인된 제품 화면 기준 | 구현 전 현재 product-design 계약 확인 |
+| 컴포넌트 | 승인된 디자인 시스템 컴포넌트 | sync 전 현재 `riiid/prism` 계약 확인 |
+| 화면 | 승인된 제품 화면 기준 | 구현 전 현재 `riiid/prism` 계약 확인 |
 | 아카이브 | 버린 안, 과거 실험, 비교용 히스토리 | 근거로 참조되는 경우만 sync |
 
 ## AI 작업 규칙
@@ -49,12 +49,12 @@ Figma 전체를 sync 대상으로 보지 않는다는 교훈은 여전히 유효
 
 ## 충돌 시 판단 순서
 
-Figma, product-design 계약, 코드, Storybook이 서로 다른 기준을 말할 때:
+Figma, `riiid/prism` 계약, 코드, Storybook이 서로 다른 기준을 말할 때:
 
 1. `riiid/prism`의 현재 README/AGENTS를 먼저 확인한다.
 2. 관련 토큰/컴포넌트/패키지 계약을 확인한다.
 3. 이 wiki는 계약이 아니라 맥락으로 취급한다.
-4. product-design 문서가 요구할 때 Storybook에서 구현을 검증한다.
+4. `riiid/prism` 문서가 요구할 때 Storybook에서 구현을 검증한다.
 5. 재사용 가능한 교훈만 이 wiki에 승격한다.
 
 ## Source Worklog
