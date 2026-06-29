@@ -13,7 +13,7 @@ with open(os.path.join(ROOT, 'site', 'ai-workflow-guide.html'), 'r') as f:
     src = f.read()
 
 SHELL_HEAD = src[:src.index('  <!-- Main -->') + len('  <!-- Main -->\n')]
-SHELL_FOOT = '\n<script src="ai-workflow-guide.js?v=0.19-flow-default"></script>\n</body>\n</html>'
+SHELL_FOOT = '\n<script src="ai-workflow-guide.js?v=0.20-build-pilot"></script>\n</body>\n</html>'
 
 # main 내부 전체 추출
 main_body = src[src.index('  <main class="main">') + len('  <main class="main">'):

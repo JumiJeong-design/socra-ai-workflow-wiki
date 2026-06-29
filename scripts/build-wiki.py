@@ -27,6 +27,7 @@ GROUPS = [
             {'id': 'storybook-qa-harness',      'src': 'wiki/playbooks/33-storybook-qa-harness.md',      'label': 'Storybook QA 하네스'},
             {'id': 'screen-design-playbook',    'src': 'wiki/playbooks/32-screen-design-playbook.md',   'label': '화면 디자인'},
             {'id': 'agent-handoff-playbook',    'src': 'wiki/playbooks/30-agent-handoff-playbook.md',   'label': '에이전트 핸드오프'},
+            {'id': 'design-build-workflow',     'src': 'wiki/playbooks/34-design-build-workflow.md',    'label': '디자인 구축·전달 워크플로'},
         ]
     },
 ]
@@ -99,7 +100,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.19-flow-default"></script>
+<script src="ai-workflow-guide.js?v=0.20-build-pilot"></script>
 </body>
 </html>
 '''
