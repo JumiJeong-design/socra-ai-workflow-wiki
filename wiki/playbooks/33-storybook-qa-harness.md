@@ -32,9 +32,11 @@ Storybook은 갤러리가 아니라 검증 장치다.
 | Type | 역할 |
 | --- | --- |
 | `Components/*` | 개별 컴포넌트의 Variant, state, content stress 검증 |
+| `Foundations/*` | Theme, Glass, Locale, Shadow 같은 횡단 foundation 검증 |
 | `Pages/*` | 승인된 컴포넌트 조합이 실제 화면 폭과 테마에서 맞물리는지 확인 |
-| `QA/*` | Theme, Viewport, Locale 같은 횡단 검증 축 |
 | `Flows/*` | 여러 화면이나 깊은 인터랙션이 이어지는 대표 흐름 검증 |
+| `Patterns/*` | public API 승격 전 fixture 기반 조합 검증 |
+| `Explorations/*` | 채택 전 모션/시각 탐색용 예외 표면 |
 
 Storybook의 페이지 shell, docs chrome, 배경 설명은 검수 가독성을 위해 Figma와 달라도 된다. 단, 렌더링되는 컴포넌트 내부의 토큰, 치수, variant, 상태, 타이포그래피, spacing, radius, shadow, 아이콘 크기, 접근성 동작은 `riiid/prism` 계약을 따라야 한다.
 
@@ -63,7 +65,7 @@ Storybook 검수 완료는 source 파일 변경만으로 말하지 않는다.
 ## Do Not
 
 - Storybook에서 먼저 새 컴포넌트 구조를 발명하지 않는다.
-- `QA/Viewport`나 `Pages/*`에서 만든 shell 스타일을 컴포넌트 API로 취급하지 않는다.
+- `Foundations/*`, `Pages/*`, `Flows/*`, `Patterns/*`, `Explorations/*`에서 만든 shell 스타일을 컴포넌트 API로 취급하지 않는다.
 - Chromatic URL이나 build 번호 같은 일회성 상태를 이 wiki에 장기 기준으로 남기지 않는다.
 - 특정 컴포넌트의 세부 prop 계약을 이 wiki에 복사하지 않는다. 그 내용은 `riiid/prism`의 `component-contracts/*.md`가 소유한다.
 
