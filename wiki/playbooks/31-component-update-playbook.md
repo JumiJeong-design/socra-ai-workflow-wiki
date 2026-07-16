@@ -52,7 +52,9 @@ Figma 컴포넌트, `riiid/prism` 계약, 코드 컴포넌트, Storybook 스토�
 | Review Surface | Storybook dev/static build 또는 Chromatic에서 새 값이 실제 렌더되는가 |
 | Record | worklog/plan에는 source, generated, review 상태가 따로 기록됐는가 |
 
-`source에 적용됨`과 `라이브 검수 표면에 보임`은 같은 말이 아니다. 생성물 owner가 따로 있는 병렬 작업에서는 owner가 아닌 트랙이 `pnpm token:build`를 실행해도 그 diff를 커밋하지 않고 owner 트랙으로 넘기거나 rebase로 받아야 한다.
+`source에 적용됨`과 `라이브 검수 표면에 보임`은 같은 말이 아니다. 단일 에이전트 운영(2026-07-13~)에서는 생성물(`theme.css`, `public.manifest.json` 등)을 같은 트랙에서 재생성해 함께 커밋한다.
+
+(휴면 — 제2 에이전트를 다시 병행할 때만) 생성물 owner가 따로 있는 병렬 작업에서는 owner가 아닌 트랙이 `pnpm token:build`를 실행해도 그 diff를 커밋하지 않고 owner 트랙으로 넘기거나 rebase로 받아야 한다.
 
 ## 완료 기준
 
