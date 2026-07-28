@@ -21,15 +21,10 @@
 
 ## 버전 업데이트
 
-`/bump-version` 스킬 실행 — 상세 절차는 `jumi-worklog/skills/bump-version/SKILL.md` 참고.
+`jumi-worklog/skills/bump-version/SKILL.md` 절차를 따릅니다.
+콘텐츠 4파일만 고치면 캐시 때문에 라이브에 반영되지 않습니다.
 
-## jumi-worklog 연동
+## 승격 규칙
 
-`jumi-worklog`는 날짜별 작업 로그, 세션 맥락, 반복 패턴 후보를 관리하는 운영 저장소입니다.
-
-- 날짜별 작업 기록: `jumi-worklog/logs/YYYY/MM/YYYY-MM-DD.md`
-- 세션 간 현재 상태: `jumi-worklog/CONTEXT.md`
-- 공통 스킬: `jumi-worklog/skills/`
-- `site/worklog.html`을 수정하면 공개 URL 문구 확인만으로 끝내지 않습니다. `jumi-worklog/scripts/verify-public-worklog-month.mjs --html site/worklog.html --month YYYY-MM --forbid-plan --allow-unchecked entry-YYYY-MM-DD`로 사용자가 보는 월 전체의 unchecked 수와 stale `plan-*` 블록을 검증합니다.
-
-검증되고 정제된 guide/playbook/case만 이 repo의 `wiki/`로 승격합니다. 제품/컴포넌트/package 계약은 `riiid/prism`을 우선합니다.
+검증되고 정제된 guide/playbook/case만 이 레포의 `wiki/`로 승격합니다.
+제품·컴포넌트·package 계약은 `riiid/prism`을 우선합니다.

@@ -1,27 +1,18 @@
-# Claude Entry — AI Workflow 가이드
+# socra-ai-workflow-wiki
 
-이 폴더는 `socra-ai-workflow-wiki` 정적 사이트 소스입니다.
+AI 워크플로우·프로세스·시행착오를 정제해 쌓는 위키의 정적 사이트 소스.
+공개 URL: https://jumijeong-design.github.io/socra-ai-workflow-wiki/
 
-## 버전 업데이트 시 체크리스트
+## 이 레포의 함정
 
-버전을 올릴 때 아래 4개 파일을 모두 수정한다:
+- **캐시 토큰.** 콘텐츠만 고치면 라이브에 안 보인다. 사이드바는 `ai-workflow-guide.js`가
+  `fetch('sidebar.html?v=<토큰>')`로 불러오고, 그 js도 전 페이지에서 토큰으로 로드된다.
+  버전 bump는 `/bump-version` 스킬로 하고 손으로 하지 않는다.
+- **`?v=` 일괄 치환 주의.** `guide-*.html`의 Notion URL에도 `?v=`가 있다. 치환할 때는
+  `ai-workflow-guide.js?v=`처럼 자산명을 포함한다.
+- **배포 상태.** GitHub Actions(`.github/workflows/deploy.yml`)로 배포한다. Pages API의
+  `status`는 옛 "errored"를 계속 보여주니 무시하고 `gh run list`로 확인한다.
 
-1. `site/sidebar.html` — 버전 텍스트 (`v0.X`)
-2. `site/ai-workflow-guide.html` — 상단 버전 배지 + 인라인 changelog 항목
-3. `site/changelog.html` — 버전 섹션 신규 추가
-4. 필요 시 `site/index.html` — 신규 카드 추가
+## 문서 톤
 
-## 공통 스킬
-
-프로젝트 무관 공통 스킬은 `JumiJeong-design/jumi-worklog/skills/` 에 있다.
-사용자가 아래 트리거를 입력하면 해당 SKILL.md를 읽어서 실행한다.
-
-| 트리거 | 스킬 | 위치 |
-|--------|------|------|
-| `워크로그 써줘`, `오늘 정리해줘`, `/write-worklog` | write-worklog | `jumi-worklog/skills/write-worklog/SKILL.md` |
-| `지금까지 뭐했어?`, `중간 정리`, `/session-snapshot` | session-snapshot | `jumi-worklog/skills/session-snapshot/SKILL.md` |
-| `동기화 확인해줘`, `뷰어랑 맞아?`, `/sync-entry` | sync-entry | `jumi-worklog/skills/sync-entry/SKILL.md` |
-| `버전 올려줘`, `배포할게`, `/bump-version` | bump-version | `jumi-worklog/skills/bump-version/SKILL.md` |
-| `미팅 준비해줘`, `이번주 요약해줘`, `/prep-meeting` | prep-meeting | `jumi-worklog/skills/prep-meeting/SKILL.md` |
-| `이거 기억해줘`, `규칙 추가해줘`, `/record-trap` | record-trap | `jumi-worklog/skills/record-trap/SKILL.md` |
-| `아이데이션 저장해줘`, `피그잼에 저장해줘`, `/save-ideation` | save-ideation | `jumi-worklog/skills/save-ideation/SKILL.md` |
+새 문서는 핵심만 짧게. 섹션·표를 많이 쌓지 않는다.
