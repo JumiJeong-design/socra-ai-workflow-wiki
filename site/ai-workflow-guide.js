@@ -74,7 +74,7 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.21-mcp-traps')
+fetch('sidebar.html?v=0.22-ops-principles')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;
