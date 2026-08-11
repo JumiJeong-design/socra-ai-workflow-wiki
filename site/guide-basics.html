@@ -42,7 +42,7 @@
         </div>
         <div id="version-badge" style="display:inline-flex; align-items:center; gap:5px; background:var(--bg-card); border:1px solid var(--border); border-radius:20px; padding:4px 10px; font-size:11px; font-weight:600; color:var(--text-muted); cursor:pointer;" onclick="document.getElementById('changelog').style.display = document.getElementById('changelog').style.display === 'none' ? 'block' : 'none'" title="버전 히스토리 보기">
           <span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;"></span>
-          v0.20
+          v0.21
         </div>
       </div>
       <h1>프로덕트 디자이너를 위한<br>AI 운영 문서 구축 가이드</h1>
@@ -55,6 +55,19 @@
           <span onclick="document.getElementById('changelog').style.display='none'" style="cursor:pointer; font-size:14px; color:var(--text-muted);">✕</span>
         </div>
         <div style="padding:16px 18px;">
+          <div style="display:flex; gap:14px; padding:10px 0; border-bottom:1px solid var(--border-light);">
+            <div style="min-width:44px;">
+              <span style="display:inline-flex; align-items:center; gap:4px; font-size:10.5px; font-weight:700; color:var(--accent); background:var(--accent-dim); border:1px solid var(--accent-border2); border-radius:4px; padding:2px 7px;">v0.21</span>
+            </div>
+            <div>
+              <div style="font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:4px;">2026-08-11 — Figma MCP 함정 5건 추가 (인스턴스·게시 정합)</div>
+              <ul style="list-style:none; padding:0; margin:0; font-size:12px; color:var(--text-secondary); line-height:1.8;">
+                <li>· T10–T14: 인스턴스 지오메트리 무시 · paint opacity 소실 · 스테일 vs 미게시 · swapComponent 오버라이드 · write 기본값 위생</li>
+                <li>· 라이브러리 게시·소비 운영에서 반복 확인된 함정을 새 섹션으로 정리</li>
+                <li>· 공통 sidebar 로딩 캐시를 v0.21로 갱신</li>
+              </ul>
+            </div>
+          </div>
           <div style="display:flex; gap:14px; padding:10px 0; border-bottom:1px solid var(--border-light);">
             <div style="min-width:44px;">
               <span style="display:inline-flex; align-items:center; gap:4px; font-size:10.5px; font-weight:700; color:var(--accent); background:var(--accent-dim); border:1px solid var(--accent-border2); border-radius:4px; padding:2px 7px;">v0.20</span>
@@ -789,6 +802,6 @@
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.20-build-pilot"></script>
+<script src="ai-workflow-guide.js?v=0.21-mcp-traps"></script>
 </body>
 </html>

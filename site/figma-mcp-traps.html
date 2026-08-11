@@ -48,6 +48,10 @@
           <svg fill="none" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h8M2 12h10"/></svg>
           운영/환경 함정 4개
         </div>
+        <div class="hero-meta-item">
+          <svg fill="none" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.5"><path d="M3 13V8M8 13V3M13 13v-7"/></svg>
+          인스턴스·게시 함정 5개
+        </div>
       </div>
     </div>
 
@@ -292,6 +296,89 @@
     </section>
 
     <!-- ───────────────────────────────── -->
+    <!-- 섹션 5: 인스턴스 · 게시 정합 함정 -->
+    <!-- ───────────────────────────────── -->
+    <section class="section" id="publish-traps">
+      <h2>인스턴스 · 게시 정합 함정</h2>
+      <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">디자인 시스템을 라이브러리로 게시하고 제품 파일에서 소비하는 단계에서 만난 함정들.</p>
+
+      <!-- 함정 10 -->
+      <div id="trap-instance-geometry" style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:20px;">
+        <div style="padding:16px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
+          <span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:var(--orange-dim); border:1px solid var(--orange-border); font-size:13px; font-weight:700; color:var(--orange); flex-shrink:0;">T10</span>
+          <strong style="font-size:15px;">인스턴스 내부 크기·위치는 조용히 무시된다</strong>
+        </div>
+        <div style="padding:20px;">
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">컴포넌트 인스턴스의 자식에는 <strong>텍스트·fill·variant·swap</strong> 네 가지만 오버라이드된다. 자식의 폭·위치·제약은 <code>resize()</code>를 불러도 <strong>에러 없이 무시</strong>된다(silent no-op). 그래서 "값이 곧 데이터"인 요소(가변 폭 바, 이미지 치수 등)를 컴포넌트로 만들면, 인스턴스로 치환하는 순간 전부 마스터 기본값으로 굳어 회귀가 난다. 치환 후에야 발견하면 수십 곳을 detach로 되돌리게 된다.</p>
+          <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
+            <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:6px;">✅ 규칙</div>
+            <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">컴포넌트화 전에 "인스턴스마다 달라질 속성"이 텍스트·fill·variant·swap 안에 드는지 먼저 검사한다. 벗어나면 그 요소는 코드가 정본이고, Figma는 토큰 바인딩된 규격 참조로 남긴다. 사이징 축 전환(FIXED→FILL/HUG)이 우회로가 되는 경우도 있다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 함정 11 -->
+      <div id="trap-paint-opacity" style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:20px;">
+        <div style="padding:16px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
+          <span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:var(--orange-dim); border:1px solid var(--orange-border); font-size:13px; font-weight:700; color:var(--orange); flex-shrink:0;">T11</span>
+          <strong style="font-size:15px;">변수 바인딩된 paint의 opacity는 세 지점에서 소실된다</strong>
+        </div>
+        <div style="padding:20px;">
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;"><code>setBoundVariableForPaint</code>가 반환한 paint는 opacity가 1로 리셋되고, 라이브러리 게시 스냅샷에서도 소실되며, 마스터가 8%여도 거기서 만든 인스턴스는 100%로 나온다. 스크림이 새까맣게, 틴트가 원색으로 나오는 식으로 반복 재발한다. 마스터 렌더만 보고 "고쳤다"고 판단하면 소비 파일에서 터진다.</p>
+          <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
+            <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:6px;">✅ 규칙</div>
+            <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">틴트는 알파로 표현하지 말고 <strong>그 값을 가진 색 토큰</strong>을 바인딩한다(다크 모드 값도 토큰이 스스로 갖는다). 알파가 불가피하면 fills 대입 후 read-modify-write로 opacity를 재지정한다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 함정 12 -->
+      <div id="trap-stale-vs-unpublished" style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:20px;">
+        <div style="padding:16px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
+          <span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:var(--orange-dim); border:1px solid var(--orange-border); font-size:13px; font-weight:700; color:var(--orange); flex-shrink:0;">T12</span>
+          <strong style="font-size:15px;">"스테일"과 "미게시"는 다른 병 — 게시 반복으로는 안 풀린다</strong>
+        </div>
+        <div style="padding:20px;">
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">소비 파일의 인스턴스는 <strong>게시 시점의 remote 스냅샷</strong>을 계속 참조한다. 마스터를 바꾸고 게시해도 기존 인스턴스는 구판으로 렌더된다(스테일). 게다가 이름·색은 바로 내려오지만 자식 auto-layout 사이징과 프로퍼티 바인딩은 한 박자 늦는다. 이 둘을 구분 못 하면 게시만 반복 요청하게 된다.</p>
+          <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
+            <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:6px;">✅ 규칙</div>
+            <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">확인은 게시 반복이 아니라 실측으로 한다 — DS 파일에서 <code>getPublishStatusAsync</code>(CURRENT/CHANGED)로 미게시를 가리고, 소비 파일에서 <code>importComponentByKeyAsync</code>로 마스터를 받아 속성을 직접 읽는다. 스테일은 <code>swapComponent</code>로 풀리고, 미게시는 재게시 말고는 안 풀린다. 구조 변경은 게시 전에 확정한다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 함정 13 -->
+      <div id="trap-swap-overrides" style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:20px;">
+        <div style="padding:16px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
+          <span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:var(--orange-dim); border:1px solid var(--orange-border); font-size:13px; font-weight:700; color:var(--orange); flex-shrink:0;">T13</span>
+          <strong style="font-size:15px;">swapComponent — 오버라이드를 조용히 먹고, 숨어 있던 오버라이드를 드러낸다</strong>
+        </div>
+        <div style="padding:20px;">
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">대량 스왑에서 대부분의 오버라이드는 보존되지만, variant 축이 개편된 컴포넌트에서는 텍스트가 신판 기본값으로 덮인다. 반대 방향도 있다 — 스트로크 없는 변형에서 있는 변형으로 스왑하자 보이지 않던 strokeWeight 오버라이드가 갑자기 드러났다. 어느 쪽이든 <strong>스왑 카운트만 보면 성공으로 집계</strong>된다.</p>
+          <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
+            <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:6px;">✅ 규칙</div>
+            <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">스왑은 <strong>전후 텍스트 diff + 기준 인스턴스와 수치 대조</strong>를 게이트로 건다(스냅샷 → swap → 복원). 상속을 정리할 땐 <code>resetOverrides()</code>를 쓰되 텍스트 백업이 선행이다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 함정 14 -->
+      <div id="trap-write-hygiene" style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:20px;">
+        <div style="padding:16px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
+          <span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:var(--orange-dim); border:1px solid var(--orange-border); font-size:13px; font-weight:700; color:var(--orange); flex-shrink:0;">T14</span>
+          <strong style="font-size:15px;">write 스크립트 기본값 함정 — 오버레이 밀림 · 흰 fill</strong>
+        </div>
+        <div style="padding:20px;">
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">auto-layout 프레임에 <code>appendChild</code>한 오버레이는 레이아웃 자식으로 끼어들어 화면을 통째로 밀어버린다. <code>createFrame</code>의 기본 흰 fill은 하드코딩으로 남아 라이트에선 안 보이다가 다크 모드에서 흰 밴드로 드러난다. 둘 다 만든 직후에는 멀쩡해 보인다.</p>
+          <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
+            <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:6px;">✅ 규칙</div>
+            <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">오버레이는 붙인 직후 <code>layoutPositioning = 'ABSOLUTE'</code>, 컨테이너는 생성 직후 <code>fills = []</code>. 참고로 write 스크립트는 원자적이라 실패해도 파일은 무변경 — "에러 읽고 고쳐 재시도" 루프가 안전한 근거다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────────── -->
     <!-- 빠른 체크리스트 -->
     <!-- ───────────────────────────────── -->
     <section class="section" id="checklist">
@@ -343,6 +430,6 @@
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.20-build-pilot"></script>
+<script src="ai-workflow-guide.js?v=0.21-mcp-traps"></script>
 </body>
 </html>

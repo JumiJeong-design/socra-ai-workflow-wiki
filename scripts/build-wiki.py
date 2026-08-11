@@ -100,7 +100,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.20-build-pilot"></script>
+<script src="ai-workflow-guide.js?v=0.21-mcp-traps"></script>
 </body>
 </html>
 '''
