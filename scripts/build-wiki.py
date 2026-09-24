@@ -29,6 +29,7 @@ GROUPS = [
             {'id': 'agent-handoff-playbook',    'src': 'wiki/playbooks/30-agent-handoff-playbook.md',   'label': '에이전트 핸드오프'},
             {'id': 'design-build-workflow',     'src': 'wiki/playbooks/34-design-build-workflow.md',    'label': '디자인 구축·전달 워크플로'},
             {'id': 'audit-ops-principles',      'src': 'wiki/playbooks/35-audit-ops-principles.md',     'label': '대량 작업·재발 방지'},
+            {'id': 'completion-stages',         'src': 'wiki/playbooks/36-completion-stages.md',        'label': '완료 기준 3단계'},
         ]
     },
 ]
@@ -101,7 +102,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.22-ops-principles"></script>
+<script src="ai-workflow-guide.js?v=0.23-completion-stages"></script>
 </body>
 </html>
 '''

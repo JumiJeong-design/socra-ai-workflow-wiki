@@ -41,7 +41,7 @@
         </div>
         <div id="version-badge" style="display:inline-flex; align-items:center; gap:5px; background:var(--bg-card); border:1px solid var(--border); border-radius:20px; padding:4px 10px; font-size:11px; font-weight:600; color:var(--text-muted); cursor:pointer;" onclick="document.getElementById('changelog').style.display = document.getElementById('changelog').style.display === 'none' ? 'block' : 'none'" title="버전 히스토리 보기">
           <span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;"></span>
-          v0.22
+          v0.23
         </div>
       </div>
       <h1>프로덕트 디자이너를 위한<br>AI 운영 문서 구축 가이드</h1>
@@ -54,6 +54,20 @@
           <span onclick="document.getElementById('changelog').style.display='none'" style="cursor:pointer; font-size:14px; color:var(--text-muted);">✕</span>
         </div>
         <div style="padding:16px 18px;">
+          <div style="display:flex; gap:14px; padding:10px 0; border-bottom:1px solid var(--border-light);">
+            <div style="min-width:44px;">
+              <span style="display:inline-flex; align-items:center; gap:4px; font-size:10.5px; font-weight:700; color:var(--accent); background:var(--accent-dim); border:1px solid var(--accent-border2); border-radius:4px; padding:2px 7px;">v0.23</span>
+            </div>
+            <div>
+              <div style="font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:4px;">2026-09-24 — 완료 기준 3단계 플레이북 추가</div>
+              <ul style="list-style:none; padding:0; margin:0; font-size:12px; color:var(--text-secondary); line-height:1.8;">
+                <li>· 1차 / 공유 가능 / 픽스 3단계, 공유 가능 기준 7항목, 일정은 두 날짜로</li>
+                <li>· 대량 작업·재발 방지에 대기 사유 재측 규칙과 규칙 색인 패턴 보강</li>
+                <li>· 에이전트 핸드오프에 이슈 전달 완결 형태(네 칸) 추가</li>
+                <li>· 홈 함정 모음 개수 정정(9 → 14), 공통 sidebar 로딩 캐시를 v0.23으로 갱신</li>
+              </ul>
+            </div>
+          </div>
           <div style="display:flex; gap:14px; padding:10px 0; border-bottom:1px solid var(--border-light);">
             <div style="min-width:44px;">
               <span style="display:inline-flex; align-items:center; gap:4px; font-size:10.5px; font-weight:700; color:var(--accent); background:var(--accent-dim); border:1px solid var(--accent-border2); border-radius:4px; padding:2px 7px;">v0.22</span>
@@ -1723,6 +1737,7 @@ AI는 반복 수정, 시안 확장, 컴포넌트 적용, 문서화, QA 보조 �
       </div>
 
       <p>Agent Rules는 AI가 반드시 지켜야 하는 규칙입니다. AI는 요청을 잘 수행하지만, 문맥이 없으면 쉽게 기준을 벗어납니다.</p>
+      <p>규칙은 늘어나기만 하면 읽히지 않습니다. 수백 줄이 되면 통독은 낭비이고, 통독해도 작업 순간에는 떠오르지 않습니다. 규칙 본문은 제목이 내용을 말하는 자리에 두고, 세션마다 자동으로 읽히는 진입 파일에는 "이런 상황이면 규칙 몇 번" 색인만 둡니다. 자세한 근거는 <a href="guide-playbooks.html#audit-ops-principles">대량 작업·재발 방지 플레이북</a>에 있습니다.</p>
 
       <h3>agent-rules.md 예시</h3>
       <div class="code-label">agent-rules.md</div>
@@ -3113,7 +3128,7 @@ docs/
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.22-ops-principles"></script>
+<script src="ai-workflow-guide.js?v=0.23-completion-stages"></script>
 
 </body>
 </html>
