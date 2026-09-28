@@ -74,7 +74,7 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.24-home-restructure')
+fetch('sidebar.html?v=0.25-public-ready')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;
@@ -157,7 +157,6 @@ const SEARCH_PAGES = [
   { path: 'guide-extensions.html',  label: '제품 유형별 확장' },
   { path: 'guide-wiki.html',        label: '실무 가이드' },
   { path: 'guide-playbooks.html',   label: '플레이북' },
-  { path: 'harness-review.html',    label: '문서 역할맵' },
   { path: 'changelog.html',         label: 'Changelog' },
 ];
 

@@ -2,7 +2,7 @@
 
 디자인 시스템이나 제품 UI를 AI/개발자와 함께 다루다 보면 PR, CI, Storybook, Token 같은 개발 용어를 자주 만나게 된다. 이 문서는 디자이너가 작업 흐름을 이해하고, 변경사항을 안전하게 확인하기 위해 필요한 기본 용어를 정리한다.
 
-이 문서는 제품/package 계약 문서가 아니다. 실제 Prism 컴포넌트, 토큰, Storybook, 배포 기준의 source of truth는 `riiid/prism`이다.
+이 문서는 제품/package 계약 문서가 아니다. 실제 Prism(소크라의 디자인 시스템 패키지) 컴포넌트, 토큰, Storybook, 배포 기준의 source of truth는 Prism이다.
 
 ## PR
 
@@ -67,7 +67,7 @@ CI는 예를 들어 다음을 확인한다.
 
 PR 화면에서 checks가 모두 통과했다는 말은, 자동 검사들이 실패하지 않았다는 뜻이다.
 
-Prism에서는 `pnpm check`라는 명령이 여러 검사를 한 번에 실행한다. 디자이너는 세부 명령어를 모두 외울 필요는 없고, "변경 전반을 확인하는 종합 검사"라고 이해하면 된다.
+Prism에서는 명령 하나가 여러 검사를 한 번에 실행한다. 디자이너는 세부 명령어를 모두 외울 필요는 없고, "변경 전반을 확인하는 종합 검사"라고 이해하면 된다.
 
 ## Build
 
@@ -166,8 +166,8 @@ Token을 쓰면 색상이나 간격이 바뀌어도 여러 곳을 한 번에 안
 
 Prism에서는 다음 문서가 중요하다.
 
-- `component-contracts/*.md`
-- `token-contract.md`
+- 컴포넌트 계약 문서
+- 토큰 계약 문서
 
 디자이너 입장에서는 contract를 "구현 기준을 정리한 약속 문서"로 보면 된다.
 
@@ -175,15 +175,15 @@ Prism에서는 다음 문서가 중요하다.
 
 **Source of Truth는 여러 문서가 다르게 말할 때 최종으로 믿어야 하는 기준이다.**
 
-지금 구조에서는 실제 제품/package 계약의 Source of Truth는 `riiid/prism`이다.
+지금 구조에서는 실제 제품/package 계약의 Source of Truth는 Prism이다.
 
-즉, Figma나 Worklog에 다른 내용이 있더라도 실제 컴포넌트, token, Storybook, 배포 기준은 `riiid/prism`의 문서를 우선한다.
+즉, Figma나 Worklog에 다른 내용이 있더라도 실제 컴포넌트, token, Storybook, 배포 기준은 Prism의 문서를 우선한다.
 
 ## Figma Evidence
 
 **Figma Evidence는 Figma에서 확인한 시각적 근거다.**
 
-Figma는 중요한 디자인 근거를 제공하지만, 현재 구조에서는 package 계약 그 자체는 아니다. Figma에서 확인한 값이나 상태는 `riiid/prism`의 contract, token, Storybook 기준으로 정리되어야 실제 구현 기준이 된다.
+Figma는 중요한 디자인 근거를 제공하지만, 현재 구조에서는 package 계약 그 자체는 아니다. Figma에서 확인한 값이나 상태는 Prism의 contract, token, Storybook 기준으로 정리되어야 실제 구현 기준이 된다.
 
 ## Sync
 

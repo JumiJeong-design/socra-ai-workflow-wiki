@@ -27,4 +27,4 @@
 ## 승격 규칙
 
 검증되고 정제된 guide/playbook/case만 이 레포의 `wiki/`로 승격합니다.
-제품·컴포넌트·package 계약은 `riiid/prism`을 우선합니다.
+제품·컴포넌트·package 계약은 Prism(소크라 디자인 시스템 패키지, 비공개 레포)을 우선합니다.

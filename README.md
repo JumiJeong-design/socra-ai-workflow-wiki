@@ -4,7 +4,7 @@
 
 AI와 함께 Socra 제품을 설계하고 구현하면서 반복 가능한 협업 방식, 시행착오, 의사결정 흐름을 정제해서 쌓는 위키 채널입니다.
 
-이 repo는 제품·디자인 시스템 작업에서 반복해서 쓸 수 있는 **운영 패턴과 판단 기준**을 정제합니다. 현재 Prism의 실제 컴포넌트/토큰/package 계약과 배포 기준은 `riiid/prism`이 source of truth입니다.
+이 repo는 제품·디자인 시스템 작업에서 반복해서 쓸 수 있는 **운영 패턴과 판단 기준**을 정제합니다. 현재 Prism의 실제 컴포넌트/토큰/package 계약과 배포 기준은 Prism(소크라 디자인 시스템 패키지, 비공개 레포)이 source of truth입니다.
 
 ## What Belongs Here
 
@@ -16,7 +16,7 @@ AI와 함께 Socra 제품을 설계하고 구현하면서 반복 가능한 협�
 ## What Does Not Belong Here
 
 - 하루 단위의 생생한 작업 로그: `jumi-worklog`에 기록
-- 디자인 시스템 원본 스펙, 토큰, 컴포넌트 문서: `riiid/prism`에 관리
+- 디자인 시스템 원본 스펙, 토큰, 컴포넌트 문서: Prism에 관리
 - Figma 컴포넌트의 시각적 원본과 자유 실험: `Socra Design system test`에서 관리
 
 ## Channel Map
@@ -24,7 +24,7 @@ AI와 함께 Socra 제품을 설계하고 구현하면서 반복 가능한 협�
 | Channel | Role |
 | --- | --- |
 | Figma `Socra Design system test` | 디자인 탐색, 시각 판단, visual evidence |
-| `riiid/prism` | Prism package, component/token contracts, Storybook, release workflow |
+| Prism | Prism package, component/token contracts, Storybook, release workflow |
 | Code implementation | 실제 구현 source |
 | Storybook | 디자이너 QA와 구현 검수 표면 |
 | `jumi-worklog` | 날짜별 작업 로그와 AI 세션 기록 |
@@ -33,7 +33,7 @@ AI와 함께 Socra 제품을 설계하고 구현하면서 반복 가능한 협�
 ## Core Workflow
 
 1. 작업 중 생긴 생각과 시행착오는 `jumi-worklog`에 날짜별로 남긴다.
-2. 구체적인 컴포넌트/토큰/package 판단은 먼저 `riiid/prism`의 README, AGENTS, contract 문서, `docs/agent-rules.md`, `design-system/rules.md`를 확인한다.
+2. 구체적인 컴포넌트/토큰/package 판단은 먼저 Prism의 README, AGENTS, contract 문서, `docs/agent-rules.md`, `design-system/rules.md`를 확인한다.
 3. 작업 중 반복되는 판단 기준과 실수 방지 패턴만 이 repo의 `wiki/guides/`, `wiki/playbooks/`, `wiki/cases/`로 승격한다.
 4. 하루 단위 맥락과 진행도는 `jumi-worklog`에 남기고, 이 repo에는 재사용 가능한 결론만 남긴다.
 5. 과거 Figma-first 모델에서 얻은 교훈은 참고하되, 현재 Prism 운영 모델을 대체하지 않는다.
@@ -70,5 +70,5 @@ AI와 함께 Socra 제품을 설계하고 구현하면서 반복 가능한 협�
 ## Source Of Truth
 
 - `jumi-worklog`: 날짜별 원본 기록, 진행 중 plan, 반복 패턴 후보
-- `riiid/prism`: Prism의 실제 package/component/token/Storybook 계약
+- Prism: Prism의 실제 package/component/token/Storybook 계약
 - `socra-ai-workflow-wiki`: 위 두 저장소에서 반복 가능하다고 확인된 운영 지식

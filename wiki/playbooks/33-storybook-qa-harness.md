@@ -2,9 +2,9 @@
 
 ## When To Use
 
-Prism 컴포넌트, 패턴, 대표 화면을 Storybook에서 검수 기준으로 운영할 때 사용한다.
+Prism(소크라의 디자인 시스템 패키지) 컴포넌트, 패턴, 대표 화면을 Storybook에서 검수 기준으로 운영할 때 사용한다.
 
-이 플레이북은 Storybook을 새 디자인을 발명하는 공간으로 쓰기 위한 문서가 아니다. 승인된 Figma 근거와 `riiid/prism` 패키지 계약이 코드에 반영된 뒤, 반복 검수 축을 저장하고 다시 실행하는 QA 하네스로 쓰기 위한 절차다.
+이 플레이북은 Storybook을 새 디자인을 발명하는 공간으로 쓰기 위한 문서가 아니다. 승인된 Figma 근거와 Prism 패키지 계약이 코드에 반영된 뒤, 반복 검수 축을 저장하고 다시 실행하는 QA 하네스로 쓰기 위한 절차다.
 
 ## Principle
 
@@ -38,7 +38,7 @@ Storybook은 갤러리가 아니라 검증 장치다.
 | `Patterns/*` | public API 승격 전 fixture 기반 조합 검증 |
 | `Explorations/*` | 채택 전 모션/시각 탐색용 예외 표면 |
 
-Storybook의 페이지 shell, docs chrome, 배경 설명은 검수 가독성을 위해 Figma와 달라도 된다. 단, 렌더링되는 컴포넌트 내부의 토큰, 치수, variant, 상태, 타이포그래피, spacing, radius, shadow, 아이콘 크기, 접근성 동작은 `riiid/prism` 계약을 따라야 한다.
+Storybook의 페이지 shell, docs chrome, 배경 설명은 검수 가독성을 위해 Figma와 달라도 된다. 단, 렌더링되는 컴포넌트 내부의 토큰, 치수, variant, 상태, 타이포그래피, spacing, radius, shadow, 아이콘 크기, 접근성 동작은 Prism 계약을 따라야 한다.
 
 ## Page-First Harness
 
@@ -56,8 +56,8 @@ Storybook의 페이지 shell, docs chrome, 배경 설명은 검수 가독성을 
 
 Storybook 검수 완료는 source 파일 변경만으로 말하지 않는다.
 
-- `riiid/prism`의 컴포넌트/토큰 계약이 갱신되어 있다.
-- 필요한 경우 `pnpm token:build` 산출물(`theme.css`, `public.manifest.json` 등)이 단일 owner에 의해 반영되어 있다.
+- Prism의 컴포넌트/토큰 계약이 갱신되어 있다.
+- 필요한 경우 토큰 빌드 산출물(테마 CSS, 매니페스트 등)이 단일 owner에 의해 반영되어 있다.
 - Storybook 정적 빌드나 Chromatic에서 실제 story가 렌더된다.
 - visual approval이 필요한 변경은 승인 대기와 승인 완료를 분리해 기록한다.
 - Storybook에서 발견한 문제는 Figma, package contract, code, story 중 어느 층을 고쳐야 하는지 분류한다.
@@ -67,12 +67,12 @@ Storybook 검수 완료는 source 파일 변경만으로 말하지 않는다.
 - Storybook에서 먼저 새 컴포넌트 구조를 발명하지 않는다.
 - `Foundations/*`, `Pages/*`, `Flows/*`, `Patterns/*`, `Explorations/*`에서 만든 shell 스타일을 컴포넌트 API로 취급하지 않는다.
 - Chromatic URL이나 build 번호 같은 일회성 상태를 이 wiki에 장기 기준으로 남기지 않는다.
-- 특정 컴포넌트의 세부 prop 계약을 이 wiki에 복사하지 않는다. 그 내용은 `riiid/prism`의 `component-contracts/*.md`가 소유한다.
+- 특정 컴포넌트의 세부 prop 계약을 이 wiki에 복사하지 않는다. 그 내용은 Prism의 컴포넌트 계약 문서가 소유한다.
 
 ## Done Criteria
 
 - Storybook story가 어떤 검증 축을 담당하는지 명확하다.
-- Figma 근거, `riiid/prism` 계약, Storybook 검수 표면의 역할이 섞이지 않았다.
+- Figma 근거, Prism 계약, Storybook 검수 표면의 역할이 섞이지 않았다.
 - source 변경, 생성물 반영, 정적 Storybook/Chromatic 확인이 분리되어 기록됐다.
 - 디자이너 시각 승인이 필요한 변경은 승인 전/후 상태가 구분되어 있다.
 - 반복 검수에 필요한 축만 위키에 남고, 컴포넌트 스펙 중복은 없다.
