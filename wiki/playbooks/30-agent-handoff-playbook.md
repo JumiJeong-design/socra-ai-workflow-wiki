@@ -18,7 +18,7 @@
 
 계획과 승인은 분리한다. worklog, plan, backlog에 적힌 항목은 다음에 볼 후보이지, 피그마나 코드에 바로 write해도 된다는 뜻이 아니다. 특히 시각 방향, 화면 톤, 공통 컴포넌트 스타일처럼 디자이너 판단이 필요한 변경은 read-only 감사와 명시 승인을 거친 뒤 실행한다.
 
-`CONTEXT.md`는 세션 스냅샷이다. 최신 worklog나 원격 git 상태보다 오래됐으면 현재 상태로 믿지 않고 최신 worklog, 공개 viewer, 관련 repo의 `git status -sb`와 최근 커밋을 먼저 확인한다.
+`CONTEXT.md`는 세션 스냅샷이다. 최신 worklog나 원격 git 상태보다 오래됐으면 현재 상태로 믿지 않고 최신 worklog, 워크로그 뷰어, 관련 repo의 `git status -sb`와 최근 커밋을 먼저 확인한다.
 
 ## 진입 문서
 
@@ -28,7 +28,7 @@
 | product plan / follow-up 문서 | 다음 기술 작업의 현재 기준 문서 |
 | `jumi-worklog/CONTEXT.md` | 여러 repo를 가로지르는 세션 스냅샷과 다음 작업 분리 |
 | `jumi-worklog/logs/YYYY/MM/YYYY-MM-DD.md` | 날짜별 작업 기록과 체크리스트 상태 |
-| 공개 `site/worklog.html` | 디자이너가 브라우저에서 직접 확인하는 화면 |
+| `site/worklog.html` 뷰어 | 디자이너가 브라우저에서 직접 확인하는 화면. 워크로그 레포는 비공개라 로컬에서 연다 |
 
 ## 반드시 분리할 것
 
@@ -93,22 +93,22 @@ source만 바뀐 상태는 완료가 아니다. 특히 토큰이나 공개 CSS �
 6. 다음 에이전트가 올바른 문서와 섹션에서 시작하도록 product repo 진입 문서를 갱신한다.
 7. product follow-up 문서는 이미 끝난 일이 아니라 다음에 할 일을 말하도록 갱신한다.
 8. `CONTEXT.md`에는 현재 상태와 에이전트 작업 / 디자이너 확인 분리를 반영한다.
-9. 공개 `site/worklog.html`에도 같은 worklog 내용을 반영한다.
-10. 로컬 파일만 보지 말고 공개 URL을 직접 받아 화면에 보이는 내용을 확인한다.
+9. `site/worklog.html` 뷰어에도 같은 worklog 내용을 반영한다.
+10. 마크다운만 보지 말고 뷰어를 직접 열어 화면에 보이는 내용을 확인한다.
 
-## 공개 검증
+## 뷰어 검증
 
 worklog를 바꿨다면 로컬 markdown만으로는 완료가 아니다.
 
 필수 확인:
 
 - 원본 `jumi-worklog` markdown이 갱신되어 있다.
-- 공개 `site/worklog.html`이 갱신되어 있다.
+- `site/worklog.html` 뷰어가 갱신되어 있다.
 - 두 repo가 모두 commit/push되어 있다.
-- 공개 URL에서 새 내용이 보인다.
+- 뷰어에서 새 내용이 보인다.
 - 월 단위 worklog 검증이 통과한다.
 
-오늘 entry만 맞아 보여도 오래된 `plan-*` 블록이나 과거 unchecked 항목이 공개 화면에 남을 수 있으므로 월 단위 검증을 사용한다.
+오늘 entry만 맞아 보여도 오래된 `plan-*` 블록이나 과거 unchecked 항목이 뷰어 화면에 남을 수 있으므로 월 단위 검증을 사용한다.
 
 ## 하지 말 것
 
@@ -116,7 +116,7 @@ worklog를 바꿨다면 로컬 markdown만으로는 완료가 아니다.
 - 날짜 안의 `###` 메모로 충분한 내용을 별도 탭으로 만들지 않는다.
 - 원래 계획에 없던 일이라는 이유로 완료 작업을 unchecked 상태로 두지 않는다.
 - 이미 존재하는 audit 표를 다시 만들지 않는다. 표를 링크하고 다음 액션부터 이어간다.
-- 공개 페이지를 직접 받아 확인하기 전에는 "배포 완료"라고 말하지 않는다.
+- 뷰어 페이지를 직접 열어 확인하기 전에는 "반영 완료"라고 말하지 않는다.
 - plan/worklog 항목을 피그마 write 승인으로 해석하지 않는다.
 - stale `CONTEXT.md`만 믿고 현재 상태를 보고하지 않는다.
 
@@ -128,8 +128,8 @@ worklog를 바꿨다면 로컬 markdown만으로는 완료가 아니다.
 - 에이전트 작업과 디자이너 확인 작업이 분리되어 있다.
 - 실행 승인 없이 write하면 안 되는 피그마/코드 작업이 분리되어 있다.
 - `CONTEXT.md` 최신성 또는 stale 여부가 확인되어 있다.
-- 공개 worklog URL에 같은 내용이 보인다.
-- 월 단위 공개 worklog 검증이 통과한다.
+- 워크로그 뷰어에 같은 내용이 보인다.
+- 월 단위 worklog 검증이 통과한다.
 
 ## 원본 워크로그 (Source Worklog)
 
