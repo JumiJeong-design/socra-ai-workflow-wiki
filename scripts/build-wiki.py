@@ -61,7 +61,7 @@ for group in GROUPS:
         with open(src_path, 'r') as f:
             raw = f.read()
         # Source Worklog 절은 원본 추적용이라 사이트에는 싣지 않는다 (검증 스크립트는 md 원본을 본다)
-        raw = re.split(r'\n## Source Worklog\b', raw, maxsplit=1)[0].rstrip() + '\n'
+        raw = re.split(r'\n## [^\n]*Source Worklog', raw, maxsplit=1)[0].rstrip() + '\n'
         md_parser.reset()
         body_html = md_parser.convert(raw)
         sections.append(
@@ -78,7 +78,7 @@ for group in GROUPS:
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>{group["title"]} — Socra AI Workflow Wiki</title>
+  <title>{group["title"]} · Socra AI Workflow Wiki</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
   <link rel="stylesheet" href="ai-workflow-guide.css?v=0.29-home-restructure" />
