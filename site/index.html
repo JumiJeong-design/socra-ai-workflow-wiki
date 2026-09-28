@@ -6,7 +6,7 @@
   <title>Socra AI Workflow Wiki — 홈</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.28-worklog" />
+  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.29-home-restructure" />
   <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
@@ -28,204 +28,129 @@
   <nav class="sidebar" id="sidebar"></nav>
 
   <!-- Main -->
-  <main class="main">
+  <main class="main home-main">
 
-    <!-- Hero -->
-    <div class="hero home-hero">
-      <div class="home-eyebrow">Socra AI Workflow Wiki · 홈</div>
-      <h1>프로덕트 디자이너를 위한<br>AI 워크플로우 위키</h1>
-      <p>AI와 함께 Socra 제품을 설계하고 구현하면서 반복 가능한 협업 방식, 시행착오, 의사결정 흐름을 정제해서 쌓는 지식 베이스입니다.</p>
-      <a href="guide-basics.html" class="home-cta">
-        전체 가이드 보기
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-          <path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-
+    <div class="home-head">
+      <div class="home-eyebrow">Socra AI Workflow Wiki</div>
+      <h1>프로덕트 디자이너를 위한 AI 워크플로우 위키</h1>
+      <p>AI와 함께 제품을 설계하고 구현하면서 반복 가능한 협업 방식과 시행착오를 정제해서 쌓습니다. 한 번 읽는 <b>원칙</b>, 하면서 따라가는 <b>절차</b>, 막혔을 때 찾아보는 <b>함정</b> 세 묶음입니다.</p>
     </div>
 
-    <!-- 대표 운영 흐름 -->
-    <div class="home-group home-flow-group">
-      <div class="home-group-title">대표 운영 흐름</div>
-      <div class="home-flow">
-        <div class="home-flow-intro">
-          <h2>탐색은 빠른 도구에서 하고, 확정 기준은 팀이 다시 찾을 수 있는 표면에 남긴다.</h2>
-          <p>탐색 · 확정 기준 · 제품 반영 · QA · 기록&amp;보강으로 이어지는 루프와 역할별 운영 기준을 정리했습니다.</p>
+    <!-- 읽기 경로 -->
+    <div class="home-group">
+      <div class="home-group-title">읽기 경로</div>
+      <div class="home-paths">
+        <div class="home-path">
+          <div class="home-path-title">처음 세팅하는 디자이너 <span class="home-path-count">5단계</span></div>
+          <ol>
+            <li><a href="guide-basics.html#quickstart">빠른 시작</a></li>
+            <li><a href="guide-setup.html#connect">AI 에디터 연결 설정</a></li>
+            <li><a href="guide-setup.html#figma-mcp-setup">Figma MCP 연결 설정</a></li>
+            <li><a href="guide-basics.html#intro">문서 목적과 레이어 구조</a></li>
+            <li><a href="guide-ops.html#mvp">MVP 문서 4개</a></li>
+          </ol>
         </div>
-        <a href="workflow-visualization.html" class="home-flow-link">
-          워크플로우 시각화 보기 →
-        </a>
+        <div class="home-path">
+          <div class="home-path-title">화면 하나를 끝까지 <span class="home-path-count">5단계</span></div>
+          <ol>
+            <li><a href="guide-playbooks.html#screen-design-playbook">화면 디자인</a></li>
+            <li><a href="guide-playbooks.html#design-build-workflow">디자인 구축·전달 워크플로</a></li>
+            <li><a href="guide-playbooks.html#storybook-qa-harness">Storybook QA 하네스</a></li>
+            <li><a href="guide-playbooks.html#completion-stages">완료 기준 3단계</a></li>
+            <li><a href="guide-playbooks.html#component-update-playbook">컴포넌트 업데이트</a></li>
+          </ol>
+        </div>
+        <div class="home-path">
+          <div class="home-path-title">에이전트 보고를 받을 때 <span class="home-path-count">4단계</span></div>
+          <ol>
+            <li><a href="guide-playbooks.html#completion-stages">완료 기준 3단계</a></li>
+            <li><a href="guide-playbooks.html#audit-ops-principles">대량 작업·재발 방지</a></li>
+            <li><a href="guide-playbooks.html#agent-handoff-playbook">에이전트 핸드오프</a></li>
+            <li><a href="guide-ops.html#drift-signals">방향 이탈 감지</a></li>
+          </ol>
+        </div>
       </div>
     </div>
 
-    <!-- 시작 위치 -->
+    <!-- 문서 목록 -->
     <div class="home-group">
-      <div class="home-group-title">지금 필요한 곳으로 바로 이동</div>
-      <div class="home-cards col-3">
-        <a href="guide-basics.html#quickstart" class="home-card">
-          <div class="home-card-num">처음 세팅</div>
-          <div class="home-card-title">25분 빠른 시작</div>
-          <div class="home-card-desc">docs 폴더, product-context, agent-rules, 진입점 연결까지 최소 구성으로 시작합니다.</div>
-        </a>
-        <a href="guide-setup.html#connect" class="home-card">
-          <div class="home-card-num">도구 연결</div>
-          <div class="home-card-title">AI 에디터 / Figma MCP 연결</div>
-          <div class="home-card-desc">Claude Code, Cursor, Codex 진입점과 Figma MCP 첫 연결 테스트를 확인합니다.</div>
-        </a>
-        <a href="guide-ops.html#mvp" class="home-card">
-          <div class="home-card-num">문서 구축</div>
-          <div class="home-card-title">MVP 문서 4개부터 만들기</div>
-          <div class="home-card-desc">product-context, ux-principles, component-usage, review-checklist를 먼저 만듭니다.</div>
-        </a>
-        <a href="harness-review.html" class="home-card">
-          <div class="home-card-num">문서 역할맵</div>
-          <div class="home-card-title">번호 체계와 plan 구분 보기</div>
-          <div class="home-card-desc">00-99 역할 번호, Prism plan 번호화, repo별 문서 읽는 순서를 웹 화면에서 확인합니다.</div>
-        </a>
+      <div class="home-tabs" role="tablist">
+        <button class="home-tab active" data-cat="all" type="button">전체</button>
+        <button class="home-tab" data-cat="principles" type="button">원칙</button>
+        <button class="home-tab" data-cat="procedure" type="button">절차</button>
+        <button class="home-tab" data-cat="stuck" type="button">막혔을 때</button>
       </div>
-    </div>
+      <div class="home-list">
 
-    <!-- 상황별 찾기 -->
-    <div class="home-group">
-      <div class="home-group-title">상황별 빠른 참조</div>
-      <div class="home-cards col-3">
-        <a href="guide-basics.html#problem-space" class="home-card">
-          <div class="home-card-num">도입 전</div>
-          <div class="home-card-title">AI로 해결 가능한 업무 구분하기</div>
-          <div class="home-card-desc">내 업무에서 반복·구조화 가능한 구간을 먼저 파악합니다. AI 도입은 전체 프로세스가 아닌 적용 가능한 지점부터.</div>
-        </a>
-        <a href="guide-ops.html#figma-ai-skills" class="home-card">
-          <div class="home-card-num">작업 중</div>
-          <div class="home-card-title">도구 / 작업 선택 기준 보기</div>
-          <div class="home-card-desc">탐색, 정리, 검증, 전달 중 지금 일이 어디에 가까운지 판단하고 다음 행동을 고릅니다.</div>
-        </a>
-        <a href="guide-ops.html#drift-signals" class="home-card">
-          <div class="home-card-num">리뷰 중</div>
-          <div class="home-card-title">방향 이탈 감지하기</div>
-          <div class="home-card-desc">피드백이 반복되거나 구현이 원래 의도에서 멀어질 때 점검할 신호와 대응 액션을 봅니다.</div>
-        </a>
-        <a href="guide-playbooks.html#storybook-qa-harness" class="home-card">
-          <div class="home-card-num">QA 하네스</div>
-          <div class="home-card-title">Storybook 검증축 운영하기</div>
-          <div class="home-card-desc">Theme, Viewport, Locale, Long Content, Empty/Error/Fallback을 반복 검증 기준으로 정리합니다.</div>
-        </a>
-      </div>
-    </div>
+        <div class="home-stage" data-cat="principles">원칙 · 한 번 읽는다</div>
+        <a class="home-row" data-cat="principles" href="guide-basics.html#perspective"><span class="home-row-title">핵심 관점</span><span class="home-row-tag">원칙</span><span class="home-row-sub">현장 이슈에서 AI가 맡을 일과 사람이 판단할 일을 먼저 가르고, 제품 단계별로 전략을 다르게 잡는다.</span></a>
+        <a class="home-row" data-cat="principles" href="guide-ops.html#principles"><span class="home-row-title">핵심 원칙</span><span class="home-row-tag">원칙</span><span class="home-row-sub">탐색은 빠른 도구에서 하고, 확정 기준은 팀이 다시 찾을 수 있는 표면에 남긴다.</span></a>
+        <a class="home-row" data-cat="principles" href="guide-playbooks.html#completion-stages"><span class="home-row-title">완료 기준 3단계 <span class="nav-new">NEW</span></span><span class="home-row-tag">원칙</span><span class="home-row-sub">1차 / 공유 가능 / 픽스. 에이전트의 "완료"와 디자이너의 "완료"를 가르고, 일정은 두 날짜로 말한다.</span></a>
+        <a class="home-row" data-cat="principles" href="guide-ops.html#schedule-template"><span class="home-row-title">AI 도입 시 일정 산정 가이드</span><span class="home-row-tag">원칙</span><span class="home-row-sub">처음 2~4주는 학습 곡선을 감안하고, 어떤 업무가 실제로 단축되는지 기준을 잡는다.</span></a>
+        <a class="home-row" data-cat="principles" href="guide-wiki.html#designer-dev-terms"><span class="home-row-title">개발 협업 용어</span><span class="home-row-tag">원칙</span><span class="home-row-sub">디자이너가 FE와 이야기할 때 자주 어긋나는 용어를 같은 뜻으로 맞춘다.</span></a>
 
-    <!-- 연결 / 환경 -->
-    <div class="home-group">
-      <div class="home-group-title">연결 / 환경 설정</div>
-      <div class="home-cards col-3">
-        <a href="guide-setup.html#figma-mcp-setup" class="home-card">
-          <div class="home-card-num">Figma MCP</div>
-          <div class="home-card-title">Figma MCP 연결 시작하기</div>
-          <div class="home-card-desc">Remote/Desktop MCP 차이, OAuth 계정 권한, Dev Mode, 첫 읽기 테스트까지 연결 전 확인할 항목을 정리합니다.</div>
-        </a>
-        <a href="figma-mcp-traps.html" class="home-card">
-          <div class="home-card-num">⚠ 함정 모음</div>
-          <div class="home-card-title">Figma MCP 작업 함정 모음</div>
-          <div class="home-card-desc">실제 운영 중 마주친 컴포넌트·API·운영·환경 함정 14개. 작업 시작 전 훑어보면 같은 실수를 피할 수 있습니다.</div>
-        </a>
-        <a href="guide-ops.html#experiment" class="home-card">
-          <div class="home-card-num">Notion 기록</div>
-          <div class="home-card-title">AI 활용 실험 기록 남기기</div>
-          <div class="home-card-desc">2주 실험 계획과 노션 실험 기록 DB로 과정, 효과, 리스크, 다음 룰을 남깁니다.</div>
-        </a>
-      </div>
-    </div>
+        <div class="home-stage" data-cat="procedure">절차 · 세팅</div>
+        <a class="home-row" data-cat="procedure" href="guide-basics.html#quickstart"><span class="home-row-title">빠른 시작</span><span class="home-row-tag">세팅</span><span class="home-row-sub">25분. docs 폴더, product-context, agent-rules, 진입점 연결까지 최소 구성으로 시작한다.</span></a>
+        <a class="home-row" data-cat="procedure" href="guide-setup.html#connect"><span class="home-row-title">AI 에디터 연결 설정</span><span class="home-row-tag">세팅</span><span class="home-row-sub">MCP를 지원하는 도구에서 진입 파일과 규칙 문서를 연결한다.</span></a>
+        <a class="home-row" data-cat="procedure" href="guide-setup.html#figma-mcp-setup"><span class="home-row-title">Figma MCP 연결 설정</span><span class="home-row-tag">세팅</span><span class="home-row-sub">Remote/Desktop 차이, 계정 권한, Dev Mode, 첫 읽기 테스트까지 연결 전에 확인한다.</span></a>
 
-    <!-- 실무 운영 -->
-    <div class="home-group">
-      <div class="home-group-title">실무 운영 레퍼런스</div>
-      <div class="home-cards col-3">
-        <a href="guide-ops.html#usage" class="home-card">
-          <div class="home-card-num">반복 업무</div>
-          <div class="home-card-title">실제 업무에서 쓰는 방식</div>
-          <div class="home-card-desc">신규 화면, 기존 화면 개선, 개발 핸드오프에서 어떤 문서와 체크리스트를 붙일지 봅니다.</div>
-        </a>
-        <a href="guide-ops.html#motion-ai-workflow" class="home-card">
-          <div class="home-card-num">인터랙션</div>
-          <div class="home-card-title">AI 모션 제작 워크플로</div>
-          <div class="home-card-desc">레퍼런스 녹화, 조정 가능한 미리보기, CSS 코드와 FE 전달 패키지까지 정리합니다.</div>
-        </a>
-        <a href="guide-ops.html#schedule-template" class="home-card">
-          <div class="home-card-num">일정 산정</div>
-          <div class="home-card-title">AI 도입 시 일정 산정 가이드</div>
-          <div class="home-card-desc">처음 2~4주는 학습 곡선을 감안하고, 어떤 업무가 실제로 단축되는지 기준을 잡습니다.</div>
-        </a>
+        <div class="home-stage" data-cat="procedure">절차 · 프로세스 구축</div>
+        <a class="home-row" data-cat="procedure" href="guide-basics.html#intro"><span class="home-row-title">문서 목적과 레이어 구조</span><span class="home-row-tag">프로세스 구축</span><span class="home-row-sub">무엇을 어디에 적을지 정한다. 역할 번호 체계는 <u>문서 역할맵</u>에 있다.</span></a>
+        <a class="home-row" data-cat="procedure" href="guide-ops.html#priority"><span class="home-row-title">구축 우선순위와 MVP 문서 4개</span><span class="home-row-tag">프로세스 구축</span><span class="home-row-sub">product-context, ux-principles, component-usage, review-checklist부터 만든다.</span></a>
+        <a class="home-row" data-cat="procedure" href="guide-build.html#step0"><span class="home-row-title">문서 구축 가이드 0~8</span><span class="home-row-tag">프로세스 구축</span><span class="home-row-sub">디자인 탐색 구체화부터 Release / Operation까지 문서 아홉 개를 순서대로 세운다.</span></a>
+        <a class="home-row" data-cat="procedure" href="guide-ops.html#experiment"><span class="home-row-title">2주 실험 계획</span><span class="home-row-tag">프로세스 구축</span><span class="home-row-sub">실험 기록으로 과정, 효과, 리스크, 다음 룰을 남긴다.</span></a>
+        <a class="home-row" data-cat="procedure" href="guide-wiki.html#daily-worklog-to-wiki"><span class="home-row-title">Daily Worklog → Wiki</span><span class="home-row-tag">프로세스 구축</span><span class="home-row-sub">날짜별 기록에서 검증된 패턴만 위키로 올린다.</span></a>
+        <a class="home-row" data-cat="procedure" href="guide-playbooks.html#agent-handoff-playbook"><span class="home-row-title">에이전트 핸드오프</span><span class="home-row-tag">프로세스 구축</span><span class="home-row-sub">세션이 바뀌어도 다음 에이전트가 같은 자리에서 시작하게 한다. 전달의 완결 형태는 네 칸.</span></a>
+
+        <div class="home-stage" data-cat="procedure">절차 · 제품 구축</div>
+        <a class="home-row" data-cat="procedure" href="guide-playbooks.html#screen-design-playbook"><span class="home-row-title">화면 디자인</span><span class="home-row-tag">제품 구축</span><span class="home-row-sub">새 화면을 디자인 시스템 인스턴스로 그리고 정합까지 가는 순서.</span></a>
+        <a class="home-row" data-cat="procedure" href="guide-playbooks.html#design-build-workflow"><span class="home-row-title">디자인 구축·전달 워크플로</span><span class="home-row-tag">제품 구축</span><span class="home-row-sub">Figma 의도 → Git Draft PR → 같은 브랜치의 Storybook 프리뷰로 도는 구축단계 파일럿.</span></a>
+        <a class="home-row" data-cat="procedure" href="guide-wiki.html#figma-git-sync"><span class="home-row-title">Figma-Git Sync</span><span class="home-row-tag">제품 구축</span><span class="home-row-sub">피그마와 깃 중 무엇이 정본인지 경계를 긋는다.</span></a>
+        <a class="home-row" data-cat="procedure" href="guide-ops.html#motion-ai-workflow"><span class="home-row-title">AI 모션 제작 워크플로</span><span class="home-row-tag">제품 구축</span><span class="home-row-sub">레퍼런스 녹화, 조정 가능한 미리보기, CSS 코드와 FE 전달 패키지까지.</span></a>
+        <a class="home-row" data-cat="procedure" href="guide-extensions.html#product-type"><span class="home-row-title">제품 유형별 확장</span><span class="home-row-tag">제품 구축</span><span class="home-row-sub">다크모드, 다국어, 반응형, 모션, 브랜드 중 내 제품에 필요한 것을 네 질문으로 고른다.</span></a>
+
+        <div class="home-stage" data-cat="procedure">절차 · 제품 운영</div>
+        <a class="home-row" data-cat="procedure" href="guide-playbooks.html#component-update-playbook"><span class="home-row-title">컴포넌트 업데이트</span><span class="home-row-tag">제품 운영</span><span class="home-row-sub">디자이너와 개발자가 같은 컴포넌트를 고칠 때의 순서와 공동 수정 규칙.</span></a>
+        <a class="home-row" data-cat="procedure" href="guide-playbooks.html#storybook-qa-harness"><span class="home-row-title">Storybook QA 하네스</span><span class="home-row-tag">제품 운영</span><span class="home-row-sub">Theme, Viewport, Locale, Long Content, Empty/Error/Fallback을 반복 검증축으로 둔다.</span></a>
+        <a class="home-row" data-cat="procedure" href="guide-wiki.html#ai-design-review"><span class="home-row-title">AI 디자인 리뷰</span><span class="home-row-tag">제품 운영</span><span class="home-row-sub">AI에게 리뷰를 맡길 때의 기준과 사람이 남겨야 하는 판단.</span></a>
+        <a class="home-row" data-cat="procedure" href="guide-playbooks.html#audit-ops-principles"><span class="home-row-title">대량 작업·재발 방지</span><span class="home-row-tag">제품 운영</span><span class="home-row-sub">감사 → 승인 → 실행, 파일럿 1건 → 배치, 그리고 같은 실수를 끊는 재발 방지 규칙.</span></a>
+        <a class="home-row" data-cat="procedure" href="guide-ops.html#usage"><span class="home-row-title">실제 업무 활용</span><span class="home-row-tag">제품 운영</span><span class="home-row-sub">신규 화면, 기존 화면 개선, 개발 핸드오프에 어떤 문서와 체크리스트를 붙일지.</span></a>
+        <a class="home-row" data-cat="procedure" href="https://jumijeong-design.github.io/Jumi-Worklog/worklog.html" target="_blank" rel="noopener"><span class="home-row-title">작업 로그 뷰어 ↗</span><span class="home-row-tag">제품 운영</span><span class="home-row-sub">날짜별 워크로그 공개 뷰어. 위키 문서의 원본 기록이 여기 있다.</span></a>
+
+        <div class="home-stage" data-cat="stuck">막혔을 때 · 찾아본다</div>
+        <a class="home-row" data-cat="stuck" href="figma-mcp-traps.html"><span class="home-row-title">Figma MCP 작업 함정 모음</span><span class="home-row-tag">Figma</span><span class="home-row-sub">컴포넌트, API, 운영, 환경, 인스턴스·게시 정합 함정 14개. "값이 안 바뀐다", "0건이 나왔다"일 때 연다.</span></a>
+        <a class="home-row" data-cat="stuck" href="guide-wiki.html#figma-first-storybook-verified"><span class="home-row-title">Figma / Storybook 시행착오 정리</span><span class="home-row-tag">Storybook</span><span class="home-row-sub">Figma-first 시절에 얻은 역할 교훈. 지금 운영 모델을 대체하지는 않는다.</span></a>
+        <a class="home-row" data-cat="stuck" href="guide-ops.html#drift-signals"><span class="home-row-title">방향 이탈 감지</span><span class="home-row-tag">에이전트</span><span class="home-row-sub">피드백이 반복되거나 구현이 의도에서 멀어질 때 점검할 신호와 대응.</span></a>
+        <a class="home-row" data-cat="stuck" href="guide-ops.html#figma-ai-skills"><span class="home-row-title">도구 / 작업 선택 가이드</span><span class="home-row-tag">에이전트</span><span class="home-row-sub">탐색, 정리, 검증, 전달 중 지금 일이 어디에 가까운지 판단하고 다음 행동을 고른다.</span></a>
 
       </div>
     </div>
 
-    <!-- 빠른 참조 -->
-    <div class="home-group">
-      <div class="home-group-title">단계별 가이드 — 빠른 참조</div>
-      <div class="home-steps">
-        <a href="guide-build.html#step0" class="home-step">
-          <div class="home-step-num">0</div>
-          <div class="home-step-text">디자인 탐색 단계에서 구체화하기</div>
-        </a>
-        <a href="guide-build.html#step1" class="home-step">
-          <div class="home-step-num">1</div>
-          <div class="home-step-text">Product / UX Context</div>
-        </a>
-        <a href="guide-build.html#step2" class="home-step">
-          <div class="home-step-num">2</div>
-          <div class="home-step-text">Design System Context</div>
-        </a>
-        <a href="guide-build.html#step3" class="home-step">
-          <div class="home-step-num">3</div>
-          <div class="home-step-text">AI Workflow</div>
-        </a>
-        <a href="guide-build.html#step4" class="home-step">
-          <div class="home-step-num">4</div>
-          <div class="home-step-text">Agent Rules</div>
-        </a>
-        <a href="guide-build.html#step5" class="home-step">
-          <div class="home-step-num">5</div>
-          <div class="home-step-text">Prompts</div>
-        </a>
-        <a href="guide-build.html#step6" class="home-step">
-          <div class="home-step-num">6</div>
-          <div class="home-step-text">Review / QA</div>
-        </a>
-        <a href="guide-build.html#step7" class="home-step">
-          <div class="home-step-num">7</div>
-          <div class="home-step-text">Handoff</div>
-        </a>
-        <a href="guide-build.html#step8" class="home-step">
-          <div class="home-step-num">8</div>
-          <div class="home-step-text">Release / Operation</div>
-        </a>
-      </div>
-    </div>
-
-    <!-- 제품 유형별 확장 -->
-    <div class="home-group">
-      <div class="home-group-title">제품 유형별 확장</div>
-      <div class="home-cards col-3">
-        <a href="guide-extensions.html#product-type" class="home-card">
-          <div class="home-card-num">자가진단</div>
-          <div class="home-card-title">내 제품에 필요한 확장 섹션 확인</div>
-          <div class="home-card-desc">B2C, 다국어, 다크모드, 웹 기반 여부에 따라 어떤 가이드가 필요한지 4가지 질문으로 확인합니다.</div>
-        </a>
-        <a href="guide-extensions.html#ext-darkmode" class="home-card">
-          <div class="home-card-num">다크모드 · i18n</div>
-          <div class="home-card-title">테마 토큰 설계 + 다국어 구조</div>
-          <div class="home-card-desc">시맨틱 토큰 레이어, FOUC 방지, locale 파일 구조, AI 작업 규칙.</div>
-        </a>
-        <a href="guide-extensions.html#ext-brand" class="home-card">
-          <div class="home-card-num">브랜드</div>
-          <div class="home-card-title">브랜드 시각 언어 점검</div>
-          <div class="home-card-desc">AI 결과물이 브랜드에서 이탈하는 패턴과 체크리스트를 확인합니다.</div>
-        </a>
-      </div>
+    <!-- 최근 갱신 -->
+    <div class="home-group home-recent">
+      <div class="home-group-title">최근 갱신 · <a href="changelog.html" style="color:inherit;">전체 이력</a></div>
+      <div class="home-recent-item"><time>2026.09.28</time><a href="changelog.html#v0-24">v0.24 홈과 사이드바를 원칙 · 절차 · 막혔을 때 세 묶음으로 재편</a></div>
+      <div class="home-recent-item"><time>2026.09.24</time><a href="guide-playbooks.html#completion-stages">v0.23 완료 기준 3단계 플레이북 추가, 대기 사유 재측 · 규칙 색인 · 전달 네 칸 보강</a></div>
+      <div class="home-recent-item"><time>2026.08.11</time><a href="guide-playbooks.html#audit-ops-principles">v0.22 대량 작업·재발 방지 플레이북 추가</a></div>
     </div>
 
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.23-completion-stages"></script>
+<script src="ai-workflow-guide.js?v=0.24-home-restructure"></script>
+<script>
+(function () {
+  var tabs = document.querySelectorAll('.home-tab');
+  var rows = document.querySelectorAll('.home-row, .home-stage');
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      var cat = tab.getAttribute('data-cat');
+      tabs.forEach(function (t) { t.classList.toggle('active', t === tab); });
+      rows.forEach(function (row) { row.hidden = cat !== 'all' && row.getAttribute('data-cat') !== cat; });
+    });
+  });
+})();
+</script>
 
 </body>
 </html>

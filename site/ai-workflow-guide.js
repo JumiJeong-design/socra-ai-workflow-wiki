@@ -74,14 +74,49 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.23-completion-stages')
+fetch('sidebar.html?v=0.24-home-restructure')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;
     initSidebarInteractions();
     initSiteSearch();
     markActivePage();
+    initNavGroups();
   });
+
+// ─── 접이식 묶음: 현재 페이지가 속한 묶음만 펼친다 ────────
+function initNavGroups() {
+  const currentFile = location.pathname.split('/').pop() || 'index.html';
+  sidebarEl.querySelectorAll('.nav-group').forEach(group => {
+    const key = 'navgroup:' + group.dataset.group;
+    const head = group.querySelector('.nav-group-head');
+    const hasCurrent = [...group.querySelectorAll('a.nav-item')].some(a =>
+      (a.getAttribute('href') || '').split('#')[0] === currentFile
+    );
+    if (hasCurrent) group.classList.add('has-current');
+    const saved = localStorage.getItem(key);
+    const open = hasCurrent || saved === 'open';
+    group.classList.toggle('collapsed', !open);
+    head.setAttribute('aria-expanded', String(open));
+    head.addEventListener('click', () => {
+      const willOpen = group.classList.contains('collapsed');
+      group.classList.toggle('collapsed', !willOpen);
+      head.setAttribute('aria-expanded', String(willOpen));
+      localStorage.setItem(key, willOpen ? 'open' : 'closed');
+    });
+  });
+}
+
+// ─── ⌘K / Ctrl+K: 검색창 포커스 ──────────────────────────
+document.addEventListener('keydown', event => {
+  if (!(event.metaKey || event.ctrlKey) || event.key.toLowerCase() !== 'k') return;
+  const input = sidebarEl.querySelector('#site-search-input');
+  if (!input) return;
+  event.preventDefault();
+  if (window.innerWidth <= 900) openSidebar();
+  input.focus();
+  input.select();
+});
 
 function markActivePage() {
   const currentFile = location.pathname.split('/').pop() || 'index.html';
