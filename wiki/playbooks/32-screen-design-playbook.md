@@ -25,7 +25,7 @@ Socra 제품의 새 화면이나 주요 화면 개편을 AI와 함께 설계할 
 2. 아직 구현 전인 컴포넌트 자리는 placeholder로 명시한다.
 3. mobile/web, light/dark, locale, long content 같은 큰 축에서 화면이 성립하는지 확인한다.
 4. 새 컴포넌트가 준비되면 placeholder를 실제 컴포넌트로 교체한다.
-5. placeholder와 page shell 스타일은 구현 계약이 아니며, 컴포넌트 contract로 승격하지 않는다.
+5. placeholder와 page shell 스타일은 구현 계약이 아니며 컴포넌트 contract로 승격하지 않는다.
 
 ## Steps
 

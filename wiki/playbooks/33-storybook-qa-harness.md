@@ -57,7 +57,7 @@ Storybook의 페이지 shell, docs chrome, 배경 설명은 검수 가독성을 
 Storybook 검수 완료는 source 파일 변경만으로 말하지 않는다.
 
 - Prism의 컴포넌트/토큰 계약이 갱신되어 있다.
-- 필요한 경우 토큰 빌드 산출물(테마 CSS, 매니페스트 등)이 단일 owner에 의해 반영되어 있다.
+- 필요한 경우 토큰 빌드 산출물(테마 CSS, 매니페스트 등)을 단일 owner가 반영해 두었다.
 - Storybook 정적 빌드나 Chromatic에서 실제 story가 렌더된다.
 - visual approval이 필요한 변경은 승인 대기와 승인 완료를 분리해 기록한다.
 - Storybook에서 발견한 문제는 Figma, package contract, code, story 중 어느 층을 고쳐야 하는지 분류한다.
@@ -75,7 +75,7 @@ Storybook 검수 완료는 source 파일 변경만으로 말하지 않는다.
 - Figma 근거, Prism 계약, Storybook 검수 표면의 역할이 섞이지 않았다.
 - source 변경, 생성물 반영, 정적 Storybook/Chromatic 확인이 분리되어 기록됐다.
 - 디자이너 시각 승인이 필요한 변경은 승인 전/후 상태가 구분되어 있다.
-- 반복 검수에 필요한 축만 위키에 남고, 컴포넌트 스펙 중복은 없다.
+- 반복 검수에 필요한 축만 위키에 남고 컴포넌트 스펙 중복은 없다.
 
 ## Source Worklog
 

@@ -95,7 +95,7 @@
       </tr>
       <tr>
       <td>Generated</td>
-      <td><code>theme.css</code>, <code>public.manifest.json</code>, release manifest 같은 산출물이 단일 owner에 의해 갱신됐는가</td>
+      <td><code>theme.css</code>, <code>public.manifest.json</code>, release manifest 같은 산출물을 단일 owner가 갱신했는가</td>
       </tr>
       <tr>
       <td>Review Surface</td>
@@ -108,13 +108,13 @@
       </tbody>
       </table>
       <p><code>source에 적용됨</code>과 <code>라이브 검수 표면에 보임</code>은 같은 말이 아니다. 단일 에이전트 운영(2026-07-13~)에서는 생성물(<code>theme.css</code>, <code>public.manifest.json</code> 등)을 같은 트랙에서 재생성해 함께 커밋한다.</p>
-      <p>(휴면 — 제2 에이전트를 다시 병행할 때만) 생성물 owner가 따로 있는 병렬 작업에서는 owner가 아닌 트랙이 토큰 빌드를 실행해도 그 diff를 커밋하지 않고 owner 트랙으로 넘기거나 rebase로 받아야 한다.</p>
+      <p>(휴면. 제2 에이전트를 다시 병행할 때만) 생성물 owner가 따로 있는 병렬 작업에서는 owner가 아닌 트랙이 토큰 빌드를 실행해도 그 diff를 커밋하지 않고 owner 트랙으로 넘기거나 rebase로 받아야 한다.</p>
       <h2>디자이너·개발자 공동 수정 규칙</h2>
       <p>Prism처럼 디자이너와 프론트 개발자가 같은 패키지를 함께 수정할 때의 합의다 (2026-08 프론트 개발자 싱크).</p>
       <ul>
-      <li><strong>수정 주체는 양쪽 다.</strong> 충돌을 미리 막는 강제 장치(CODEOWNERS 등)는 불편해서 지양하고, 실제 충돌이 나는지 관찰하며 가드레일을 보완한다. 충돌 가능성을 모두 인지하고, 났을 때 에이전트가 잘 해결하는지 확인한다.</li>
+      <li><strong>수정 주체는 양쪽 다.</strong> 충돌을 미리 막는 강제 장치(CODEOWNERS 등)는 불편해서 지양하고 실제 충돌이 나는지 관찰하며 가드레일을 보완한다. 충돌 가능성을 모두 인지하고 충돌이 났을 때 에이전트가 잘 해결하는지 확인한다.</li>
       <li><strong>문서를 독자 기준으로 나눈다.</strong> 패키지 안 문서는 대부분 에이전트 대상이라 사람이 다 읽기 어렵다. 사람이 읽는 문서(디자인 문서 등)와 에이전트 대상 문서를 폴더 단위로 구분한다.</li>
-      <li><strong>건드리면 안 되는 경로를 목록으로 전달한다.</strong> 디자이너가 적극 관리하는 핵심 문서 목록을 개발자에게 공유하고, 그 외는 개발자가 자유롭게 수정한다.</li>
+      <li><strong>건드리면 안 되는 경로를 목록으로 전달한다.</strong> 디자이너가 적극 관리하는 핵심 문서 목록을 개발자에게 공유하고 그 외는 개발자가 자유롭게 수정한다.</li>
       <li><strong>기능 로직이 디자인 컴포넌트에 들어가면 개발자가 가드레일을 추가한다.</strong> 이미 들어가 있는 컴포넌트도 정리 대상이다.</li>
       </ul>
       <h2>완료 기준</h2>
@@ -126,13 +126,6 @@
       <li>구현된 시각 값 검증은 Prism의 기준을 따른다.</li>
       <li>이 wiki에는 재사용 가능한 판단 기준만 남았다.</li>
       <li>디자이너 판단이 필요한 항목은 미결 질문으로 남았다.</li>
-      </ul>
-      <h2>Source Worklog</h2>
-      <ul>
-      <li>Historical wiki seed; original source worklog was not backfilled.</li>
-      <li><code>jumi-worklog/logs/2026/06/2026-06-19.md</code></li>
-      <li><code>jumi-worklog/logs/2026/06/2026-06-22.md</code></li>
-      <li>Notion 「PRISM 패키지 싱크」 (2026-08, 프론트 개발자 합의)</li>
       </ul>
     </section>
 
@@ -240,7 +233,7 @@
       <p>Storybook 검수 완료는 source 파일 변경만으로 말하지 않는다.</p>
       <ul>
       <li>Prism의 컴포넌트/토큰 계약이 갱신되어 있다.</li>
-      <li>필요한 경우 토큰 빌드 산출물(테마 CSS, 매니페스트 등)이 단일 owner에 의해 반영되어 있다.</li>
+      <li>필요한 경우 토큰 빌드 산출물(테마 CSS, 매니페스트 등)을 단일 owner가 반영해 두었다.</li>
       <li>Storybook 정적 빌드나 Chromatic에서 실제 story가 렌더된다.</li>
       <li>visual approval이 필요한 변경은 승인 대기와 승인 완료를 분리해 기록한다.</li>
       <li>Storybook에서 발견한 문제는 Figma, package contract, code, story 중 어느 층을 고쳐야 하는지 분류한다.</li>
@@ -258,12 +251,7 @@
       <li>Figma 근거, Prism 계약, Storybook 검수 표면의 역할이 섞이지 않았다.</li>
       <li>source 변경, 생성물 반영, 정적 Storybook/Chromatic 확인이 분리되어 기록됐다.</li>
       <li>디자이너 시각 승인이 필요한 변경은 승인 전/후 상태가 구분되어 있다.</li>
-      <li>반복 검수에 필요한 축만 위키에 남고, 컴포넌트 스펙 중복은 없다.</li>
-      </ul>
-      <h2>Source Worklog</h2>
-      <ul>
-      <li><code>jumi-worklog/logs/2026/06/2026-06-19.md</code></li>
-      <li><code>jumi-worklog/logs/2026/06/2026-06-22.md</code></li>
+      <li>반복 검수에 필요한 축만 위키에 남고 컴포넌트 스펙 중복은 없다.</li>
       </ul>
     </section>
 
@@ -314,7 +302,7 @@
       <li>아직 구현 전인 컴포넌트 자리는 placeholder로 명시한다.</li>
       <li>mobile/web, light/dark, locale, long content 같은 큰 축에서 화면이 성립하는지 확인한다.</li>
       <li>새 컴포넌트가 준비되면 placeholder를 실제 컴포넌트로 교체한다.</li>
-      <li>placeholder와 page shell 스타일은 구현 계약이 아니며, 컴포넌트 contract로 승격하지 않는다.</li>
+      <li>placeholder와 page shell 스타일은 구현 계약이 아니며 컴포넌트 contract로 승격하지 않는다.</li>
       </ol>
       <h2>Steps</h2>
       <ol>
@@ -337,12 +325,6 @@
       <li>open question과 designer judgment가 분리되어 있다.</li>
       <li>구현된 화면 또는 컴포넌트는 Storybook/product preview 검증 경로가 있다.</li>
       </ul>
-      <h2>Source Worklog</h2>
-      <ul>
-      <li>Historical wiki seed; original source worklog was not backfilled.</li>
-      <li><code>jumi-worklog/logs/2026/06/2026-06-19.md</code></li>
-      <li><code>jumi-worklog/logs/2026/06/2026-06-22.md</code></li>
-      </ul>
     </section>
 
     <hr class="divider" />
@@ -361,7 +343,7 @@
       </ol>
       <p>답이 채팅 안에만 있고 repo 문서에 없으면 핸드오프가 완료된 것이 아니다.</p>
       <p>계획과 승인은 분리한다. worklog, plan, backlog에 적힌 항목은 다음에 볼 후보이지, 피그마나 코드에 바로 write해도 된다는 뜻이 아니다. 특히 시각 방향, 화면 톤, 공통 컴포넌트 스타일처럼 디자이너 판단이 필요한 변경은 read-only 감사와 명시 승인을 거친 뒤 실행한다.</p>
-      <p><code>CONTEXT.md</code>는 세션 스냅샷이다. 최신 worklog나 원격 git 상태보다 오래됐으면 현재 상태로 믿지 않고, 최신 worklog, 공개 viewer, 관련 repo의 <code>git status -sb</code>와 최근 커밋을 먼저 확인한다.</p>
+      <p><code>CONTEXT.md</code>는 세션 스냅샷이다. 최신 worklog나 원격 git 상태보다 오래됐으면 현재 상태로 믿지 않고 최신 worklog, 공개 viewer, 관련 repo의 <code>git status -sb</code>와 최근 커밋을 먼저 확인한다.</p>
       <h2>진입 문서</h2>
       <table>
       <thead>
@@ -421,8 +403,8 @@
       <h2>완료 정의</h2>
       <p>source만 바뀐 상태는 완료가 아니다. 특히 토큰이나 공개 CSS 변수 변경은 생성물과 정적 Storybook에 반영됐는지 확인해야 다음 세션이 같은 문제를 다시 추적하지 않는다.</p>
       <p>완료는 source 변경, 생성물 반영, Storybook/Chromatic 확인, worklog/plan 반영을 모두 포함한다.</p>
-      <p>다른 팀에 이슈로 넘기는 전달의 완결 형태는 네 칸이다 — 본문, 담당자, 보드 카드, 카드 상태. 본문은 이슈를 여는 사람이 가장 먼저 읽는 자리라, 발행 여부 같은 사실이 바뀌면 코멘트가 아니라 본문을 고친다. 같은 종류의 전달이 이틀에 걸쳐 있으면 앞의 것을 끝난 일로 치지 말고 같은 눈금으로 한 번 더 잰다.</p>
-      <h2>(휴면) 병렬 작업 핸드오프 — 두 에이전트 동시 진행 시</h2>
+      <p>다른 팀에 이슈로 넘기는 전달의 완결 형태는 네 칸이다. 본문, 담당자, 보드 카드, 카드 상태다. 본문은 이슈를 여는 사람이 가장 먼저 읽는 자리라, 발행 여부 같은 사실이 바뀌면 코멘트가 아니라 본문을 고친다. 같은 종류의 전달이 이틀에 걸쳐 있으면 앞의 것을 끝난 일로 치지 말고 같은 눈금으로 한 번 더 잰다.</p>
+      <h2>(휴면) 병렬 작업 핸드오프: 두 에이전트 동시 진행 시</h2>
       <p>제2 에이전트(Codex 등)를 다시 병행할 때만 적용하는 휴면 규율이다. 현재 운영 모드는 Claude Code 단일 에이전트이므로 이 절은 활성이 아니다. 같은 세션 안에서 병렬이 필요하면 별도 에이전트 구독이 아니라 <strong>Claude Code 서브에이전트 + <code>git worktree</code> 격리</strong>를 사용한다(팬아웃 3~4개 소규모 기본).</p>
       <p>여러 에이전트가 같은 repo를 나눠 작업할 때는 다음 항목이 문서에 없으면 병렬 작업으로 시작하지 않는다.</p>
       <table>
@@ -459,21 +441,21 @@
       </tr>
       </tbody>
       </table>
-      <h2>팬아웃 소유권 규칙 — 서브에이전트 병렬 시</h2>
+      <h2>팬아웃 소유권 규칙: 서브에이전트 병렬 시</h2>
       <p>병렬은 "무엇을 나누냐"가 아니라 "소유권을 어떻게 자르냐"의 문제다. 네 트랙 모두를 같은 불안정한 외부 의존(MCP 연결)에 걸어 뒀다가 3시간 반을 통째로 잃은 날과, 소유권 경계를 프롬프트에 박아 트리 충돌 0으로 끝난 날의 차이는 분할 설계였다.</p>
       <ul>
       <li>갈래마다 쓰기 대상(트리·파일·파일 영역)을 배타적으로 지정한다. 예: ① 배포 스파인(메인 트리 소유) ② 코드 작업(worktree 격리) ③ read-only 감사.</li>
-      <li>불안정한 외부 의존(MCP 등)을 타지 않는 트랙을 최소 하나 둔다 — 의존이 죽어도 세션 전체가 헛돌지 않는다.</li>
-      <li>착수 시 각 세션이 자기 트랙명을 1회 선언한다 — 실제로 샌 곳은 코드가 아니라 세션 호칭이었다.</li>
+      <li>불안정한 외부 의존(MCP 등)을 타지 않는 트랙을 최소 하나 둔다. 그래야 의존이 죽어도 세션 전체가 헛돌지 않는다.</li>
+      <li>착수 시 각 세션이 자기 트랙명을 1회 선언한다. 실제로 샌 곳은 코드가 아니라 세션 호칭이었다.</li>
       </ul>
       <h2>공유 워킹트리 규율</h2>
-      <p>같은 폴더에 두 세션이 붙으면 반드시 사고가 난다 — 다른 세션이 브랜치를 갈아타 체크아웃이 통째로 바뀐 사건이 네 번 반복됐다. 소유권을 물어봐도 무응답이 기본이므로, 기다리지 말고 <code>git worktree</code>로 격리한다.</p>
+      <p>같은 폴더에 두 세션이 붙으면 반드시 사고가 난다. 다른 세션이 브랜치를 갈아타 체크아웃이 통째로 바뀐 사건이 네 번 반복됐다. 소유권을 물어봐도 무응답이 기본이므로, 기다리지 말고 <code>git worktree</code>로 격리한다.</p>
       <ul>
       <li>커밋 전 <code>git status -sb</code>로 현재 브랜치를 확인한다.</li>
-      <li>파일을 명시해 스테이징한다. <code>git add -A</code> 금지 — 남의 미커밋 파일이 내 커밋에 딸려 들어온다.</li>
-      <li>되돌릴 땐 <code>git checkout -- &lt;file&gt;</code>이 아니라 내가 넣은 텍스트만 역치환한다 — checkout은 남의 미커밋 작업을 날린다.</li>
+      <li>파일을 명시해 스테이징한다. <code>git add -A</code>는 쓰지 않는다. 남의 미커밋 파일이 내 커밋에 딸려 들어온다.</li>
+      <li>되돌릴 땐 <code>git checkout -- &lt;file&gt;</code>이 아니라 내가 넣은 텍스트만 역치환한다. checkout은 남의 미커밋 작업을 날린다.</li>
       <li>머지는 로컬 체크아웃이 아니라 서버 쪽(<code>gh</code>)에서 한다.</li>
-      <li>착수 전 최근 머지 이력을 먼저 조회한다 — "미착수"로 보고된 항목이 이미 피어에게 머지돼 있던 적이 있다.</li>
+      <li>착수 전 최근 머지 이력을 먼저 조회한다. "미착수"로 보고된 항목이 이미 피어에게 머지돼 있던 적이 있다.</li>
       </ul>
       <h2>진행 순서</h2>
       <ol>
@@ -533,17 +515,17 @@
     <section class="wiki-doc" id="design-build-workflow">
       <h1>디자인 구축·전달 워크플로 (구축단계 파일럿)</h1>
       <blockquote>
-      <p>출시 전 <strong>구축단계</strong>에서, 디자이너가 Figma에서 잡은 의도를 <em>실제 도는 화면</em>으로 빠르게 확인하고 넘기기 위한 흐름입니다. 낯선 개발 용어(PR·CI·Storybook·merge 등)는 '개발 협업 용어' 가이드에서 쉬운 말로 풀어 두었습니다.</p>
+      <p>출시 전 <strong>구축단계</strong>에서, 디자이너가 Figma에서 잡은 의도를 <em>실제 도는 화면</em>으로 빠르게 확인하고 넘기기 위한 흐름이다. 낯선 개발 용어(PR·CI·Storybook·merge 등)는 '개발 협업 용어' 가이드에서 쉬운 말로 풀어 두었다.</p>
       </blockquote>
       <h2>When To Use</h2>
-      <p>출시 전 <strong>구축단계</strong>에서 AI·개발자와 함께 화면·기능을 설계하고 코드로 넘길 때, 기능 1~2개를 가볍게 검증하는 파일럿으로 씁니다.</p>
-      <p>2026-06-25에 채택한 <strong>파일럿 v0.1</strong>이고, 꼭 지켜야 하는 규칙은 아닙니다. 목적은 도구를 늘리는 게 아니라, Figma 시안을 사람이 일일이 코드로 옮기는 수고와 다 만든 뒤 몰아서 고치는 뒷단 QA 재작업을 줄이는 것입니다.</p>
-      <p>이 문서는 <strong>출시 후 운영 루프와는 다릅니다.</strong> 출시 뒤 반복해서 도는 운영 흐름(Figma 반영·토큰·컴포넌트·릴리즈)은 'Prism(소크라의 디자인 시스템 패키지) 운영 흐름' 시각화와 Storybook QA Harness·Component Update 플레이북이 담당합니다. 이 파일럿은 그 <strong>앞단, 출시 전 구축단계</strong>만 다룹니다.</p>
+      <p>출시 전 <strong>구축단계</strong>에서 AI·개발자와 함께 화면·기능을 설계하고 코드로 넘길 때, 기능 1~2개를 가볍게 검증하는 파일럿으로 쓴다.</p>
+      <p>2026-06-25에 채택한 <strong>파일럿 v0.1</strong>이고 꼭 지켜야 하는 규칙은 아니다. 목적은 도구를 늘리는 게 아니라, Figma 시안을 사람이 일일이 코드로 옮기는 수고와 다 만든 뒤 몰아서 고치는 뒷단 QA 재작업을 줄이는 것이다.</p>
+      <p>이 문서는 <strong>출시 후 운영 루프와는 다르다.</strong> 출시 뒤 반복해서 도는 운영 흐름(Figma 반영·토큰·컴포넌트·릴리즈)은 'Prism(소크라의 디자인 시스템 패키지) 운영 흐름' 시각화와 Storybook QA Harness·Component Update 플레이북이 담당한다. 이 파일럿은 그 <strong>앞단, 출시 전 구축단계</strong>만 다룬다.</p>
       <h2>Principle</h2>
-      <p>작업은 한 방향으로 흐릅니다.</p>
+      <p>작업은 한 방향으로 흐른다.</p>
       <figure style="margin:1.25rem 0; padding:0;">
       <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:stretch;">
-      <div style="flex:1 1 132px; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:10px 12px;"><div style="font-size:10.5px; font-weight:700; letter-spacing:0.04em; color:var(--accent);">STEP 1 · 디자이너</div><div style="font-size:13px; font-weight:700; color:var(--text-primary); margin-top:3px;">Figma — 의도 잡기</div><div style="font-size:11.5px; color:var(--text-secondary); margin-top:3px;">IA · 핵심 흐름 · 기준 화면 · 분기</div></div>
+      <div style="flex:1 1 132px; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:10px 12px;"><div style="font-size:10.5px; font-weight:700; letter-spacing:0.04em; color:var(--accent);">STEP 1 · 디자이너</div><div style="font-size:13px; font-weight:700; color:var(--text-primary); margin-top:3px;">Figma: 의도 잡기</div><div style="font-size:11.5px; color:var(--text-secondary); margin-top:3px;">IA · 핵심 흐름 · 기준 화면 · 분기</div></div>
       <div style="display:flex; align-items:center; color:var(--text-muted); font-weight:700; padding:0 2px;">→</div>
       <div style="flex:1 1 132px; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:10px 12px;"><div style="font-size:10.5px; font-weight:700; letter-spacing:0.04em; color:var(--accent);">STEP 2 · 디자이너·개발</div><div style="font-size:13px; font-weight:700; color:var(--text-primary); margin-top:3px;">브랜치 + 초안 PR</div><div style="font-size:11.5px; color:var(--text-secondary); margin-top:3px;">작업 가지에 올려 검토 요청</div></div>
       <div style="display:flex; align-items:center; color:var(--text-muted); font-weight:700; padding:0 2px;">→</div>
@@ -553,10 +535,10 @@
       <div style="display:flex; align-items:center; color:var(--text-muted); font-weight:700; padding:0 2px;">→</div>
       <div style="flex:1 1 132px; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:10px 12px;"><div style="font-size:10.5px; font-weight:700; letter-spacing:0.04em; color:var(--accent);">STEP 5 · 제품</div><div style="font-size:13px; font-weight:700; color:var(--text-primary); margin-top:3px;">제품에서 통합 확인</div><div style="font-size:11.5px; color:var(--text-secondary); margin-top:3px;">여정 · 화면 이동 · 데이터</div></div>
       </div>
-      <figcaption style="margin-top:9px; font-size:11.5px; color:var(--text-muted); line-height:1.6;">컴포넌트 <strong>안</strong>에서 끝나는 건 ③ Storybook에서, 화면을 <strong>넘나드는</strong> 건 ⑤ 앱에서 확인합니다.</figcaption>
+      <figcaption style="margin-top:9px; font-size:11.5px; color:var(--text-muted); line-height:1.6;">컴포넌트 <strong>안</strong>에서 끝나는 건 ③ Storybook에서, 화면을 <strong>넘나드는</strong> 건 ⑤ 앱에서 확인한다.</figcaption>
       </figure>
       
-      <p>검토를 위해 <strong>따로 실험용 공간이나 두 번째 Storybook을 새로 만들지 않습니다.</strong> 작업 가지(브랜치) 자체가 잠깐 쓰는 실험실이고, 그 브랜치의 Storybook 미리보기가 검토 화면입니다.</p>
+      <p>검토를 위해 <strong>따로 실험용 공간이나 두 번째 Storybook을 새로 만들지 않는다.</strong> 작업 가지(브랜치) 자체가 잠깐 쓰는 실험실이고 그 브랜치의 Storybook 미리보기가 검토 화면이다.</p>
       <h2>4단계</h2>
       <table>
       <thead>
@@ -567,25 +549,25 @@
       </thead>
       <tbody>
       <tr>
-      <td>1. Design Intent — 의도 잡기</td>
-      <td>Figma에서 화면의 정보 구조(IA), 핵심 흐름, 기준이 되는 대표 화면, 사용자 분기를 "이렇게 가자"고 의도로 확정합니다. 시각을 바꿀 땐 바로 손대지 않고, 먼저 읽기 전용으로 점검한 뒤 명시적으로 승인받고 반영합니다(디자인 시스템 규칙 문서의 첫 규칙).</td>
+      <td>1. Design Intent: 의도 잡기</td>
+      <td>Figma에서 화면의 정보 구조(IA), 핵심 흐름, 기준이 되는 대표 화면, 사용자 분기를 "이렇게 가자"고 의도로 확정한다. 시각을 바꿀 땐 바로 손대지 않고 먼저 읽기 전용으로 점검한 뒤 명시적으로 승인받고 반영한다(디자인 시스템 규칙 문서의 첫 규칙).</td>
       </tr>
       <tr>
-      <td>2. Executable UI Review — 실제 도는 UI로 검토</td>
-      <td>그 화면을 Git 작업 가지에 올리고 초안 PR(검토용 변경 제안)을 엽니다. 그 브랜치에 연결된 Storybook 미리보기에서, 멈춰 있는 시안이 아니라 <strong>실제로 눌리고 입력되는</strong> 컴포넌트로 상태와 마이크로 인터랙션을 확인합니다. 새 실험 공간/두 번째 Storybook은 만들지 않습니다 — 작업 가지가 곧 임시 실험실입니다.</td>
+      <td>2. Executable UI Review: 실제 도는 UI로 검토</td>
+      <td>그 화면을 Git 작업 가지에 올리고 초안 PR(검토용 변경 제안)을 연다. 그 브랜치에 연결된 Storybook 미리보기에서, 멈춰 있는 시안이 아니라 <strong>실제로 눌리고 입력되는</strong> 컴포넌트로 상태와 마이크로 인터랙션을 확인한다. 새 실험 공간/두 번째 Storybook은 만들지 않는다. 작업 가지가 곧 임시 실험실이다.</td>
       </tr>
       <tr>
-      <td>3. Integrate &amp; QA — 반영하고 제품에서 확인</td>
-      <td>검토가 끝나 승인되면 정리해서 본 줄기(main)에 병합합니다. 화면과 화면 사이의 일(여정·화면 이동·데이터)은 Storybook이 아니라 <strong>실제 제품</strong>에서 확인합니다.</td>
+      <td>3. Integrate &amp; QA: 반영하고 제품에서 확인</td>
+      <td>검토가 끝나 승인되면 정리해서 본 줄기(main)에 병합한다. 화면과 화면 사이의 일(여정·화면 이동·데이터)은 Storybook이 아니라 <strong>실제 제품</strong>에서 확인한다.</td>
       </tr>
       <tr>
-      <td>4. Reinforce — 남길 것만 남기기</td>
-      <td>두고두고 다시 볼 가치가 있는 검토용 Story만 정식 Story로 남기고 나머지는 정리합니다(정리해도 근거는 PR에 남습니다). 결정과 교훈은 worklog·계약 문서로 회수합니다.</td>
+      <td>4. Reinforce: 남길 것만 남기기</td>
+      <td>두고두고 다시 볼 가치가 있는 검토용 Story만 정식 Story로 남기고 나머지는 정리한다(정리해도 근거는 PR에 남는다). 결정과 교훈은 worklog·계약 문서로 회수한다.</td>
       </tr>
       </tbody>
       </table>
-      <h2>Boundary — 컴포넌트 안 vs 화면 밖</h2>
-      <p>검증할 대상이 <strong>한 컴포넌트 안에서 끝나는 일</strong>인지, <strong>화면과 화면 사이에서 일어나는 일</strong>인지에 따라 어디서 확인할지가 갈립니다.</p>
+      <h2>Boundary: 컴포넌트 안 vs 화면 밖</h2>
+      <p>검증할 대상이 <strong>한 컴포넌트 안에서 끝나는 일</strong>인지, <strong>화면과 화면 사이에서 일어나는 일</strong>인지에 따라 어디서 확인할지가 갈린다.</p>
       <table>
       <thead>
       <tr>
@@ -598,7 +580,7 @@
       <tr>
       <td><strong>컴포넌트 안 (intrinsic)</strong></td>
       <td>타이핑·포커스·hover·눌림·상태 전환·로딩·긴 텍스트·다국어</td>
-      <td>실제 코드로 도는 Storybook. (Flows는 가짜 데이터(mock)로 안정적으로 재현되는 짧은 흐름만 남깁니다.)</td>
+      <td>실제 코드로 도는 Storybook. (Flows는 가짜 데이터(mock)로 안정적으로 재현되는 짧은 흐름만 남긴다.)</td>
       </tr>
       <tr>
       <td><strong>화면 밖 (extrinsic)</strong></td>
@@ -607,7 +589,7 @@
       </tr>
       </tbody>
       </table>
-      <h2>Surface Roles — 표면별 역할</h2>
+      <h2>Surface Roles: 표면별 역할</h2>
       <table>
       <thead>
       <tr>
@@ -635,29 +617,29 @@
       </tbody>
       </table>
       <h2>Prerequisite</h2>
-      <p>이 방식은 <strong>브랜치 미리보기(Storybook)가 문서 검사 통과 여부와 상관없이 항상 게시</strong>돼야 성립합니다. prism은 CI(자동 검사)를 그렇게 분리해 두어 이 조건을 만족합니다. 자세한 CI 구성은 prism을 따릅니다.</p>
+      <p>이 방식은 <strong>브랜치 미리보기(Storybook)가 문서 검사 통과 여부와 상관없이 항상 게시</strong>돼야 성립한다. Prism은 CI(자동 검사)를 그렇게 분리해 두어 이 조건을 만족한다. 자세한 CI 구성은 Prism을 따른다.</p>
       <h2>Do Not</h2>
       <ul>
-      <li>검토용으로 새 실험 공간이나 두 번째 Storybook을 만들지 않습니다. 작업 가지가 곧 임시 실험실입니다.</li>
-      <li>시각 변경을 읽기 전용 점검·명시적 승인 없이 Figma나 코드에 바로 반영하지 않습니다.</li>
-      <li>이 구축 파일럿을 출시 후 운영 루프와 섞지 않습니다.</li>
-      <li>다시 볼 가치가 없는 검토용 Story를 정식 Story로 남기지 않습니다(근거는 PR에 보존).</li>
-      <li>화면을 넘나드는 일(여정·라우팅·데이터)을 Storybook만으로 끝내지 않습니다. 실제 제품에서 확인합니다.</li>
+      <li>검토용으로 새 실험 공간이나 두 번째 Storybook을 만들지 않는다. 작업 가지가 곧 임시 실험실이다.</li>
+      <li>시각 변경을 읽기 전용 점검·명시적 승인 없이 Figma나 코드에 바로 반영하지 않는다.</li>
+      <li>이 구축 파일럿을 출시 후 운영 루프와 섞지 않는다.</li>
+      <li>다시 볼 가치가 없는 검토용 Story를 정식 Story로 남기지 않는다(근거는 PR에 보존).</li>
+      <li>화면을 넘나드는 일(여정·라우팅·데이터)을 Storybook만으로 끝내지 않는다. 실제 제품에서 확인한다.</li>
       </ul>
       <h2>Done Criteria</h2>
       <ul>
-      <li>검증 대상이 "컴포넌트 안"인지 "화면 밖"인지 나뉘어 있고, 각각 맞는 곳(Storybook / 앱)에서 확인됐습니다.</li>
-      <li>Figma 의도 → 브랜치 초안 PR → 브랜치 Storybook 미리보기 → 병합으로 이어지는 길이 끊기지 않았습니다.</li>
-      <li>시각 변경에 읽기 전용 점검과 명시적 승인 단계가 기록돼 있습니다.</li>
-      <li>정식으로 남길 검토용 Story와 정리할 Story가 구분됐고, 정리한 Story의 근거는 PR에 남아 있습니다.</li>
-      <li>이 파일럿이 다룬 범위(구축단계)와 출시 후 운영 루프가 섞이지 않았습니다.</li>
+      <li>검증 대상이 "컴포넌트 안"인지 "화면 밖"인지 나뉘어 있고 각각 맞는 곳(Storybook / 앱)에서 확인됐다.</li>
+      <li>Figma 의도 → 브랜치 초안 PR → 브랜치 Storybook 미리보기 → 병합으로 이어지는 길이 끊기지 않았다.</li>
+      <li>시각 변경에 읽기 전용 점검과 명시적 승인 단계가 기록돼 있다.</li>
+      <li>정식으로 남길 검토용 Story와 정리할 Story가 구분됐고 정리한 Story의 근거는 PR에 남아 있다.</li>
+      <li>이 파일럿이 다룬 범위(구축단계)와 출시 후 운영 루프가 섞이지 않았다.</li>
       </ul>
-      <h2>Source Worklog</h2>
+      <h2>출처</h2>
       <ul>
-      <li>출처: Prism 레포의 워크플로 문서 — "구축단계 워크플로 (파일럿 v0.1)" 섹션</li>
-      <li>채택: 2026-06-25, 파일럿 v0.1 (출시 전 구축단계 한정, 기능 1~2개 검증용)</li>
-      <li>파일럿 대상: ChatInputBar 전송 피드백, AnswerCard 로딩→스트리밍→완료 전환</li>
-      <li>위키 이관: 2026-06-29</li>
+      <li>Prism 레포의 워크플로 문서에서 "구축단계 워크플로 (파일럿 v0.1)" 절을 옮겼다.</li>
+      <li>2026-06-25 채택. 출시 전 구축단계 한정, 기능 1~2개 검증용 파일럿 v0.1.</li>
+      <li>파일럿 대상: ChatInputBar 전송 피드백, AnswerCard 로딩→스트리밍→완료 전환.</li>
+      <li>위키 이관: 2026-06-29.</li>
       </ul>
     </section>
 
@@ -670,9 +652,9 @@
       <h2>감사 → 승인 → 실행</h2>
       <p>공유 디자인 파일에 대한 write는 되돌리기가 비싸다. 순서를 분리한다.</p>
       <ol>
-      <li><strong>read-only 감사</strong> — 대상을 전수로 세고 목록을 만든다. 이 단계에서 "지시받은 대상 일부가 이미 아무도 안 쓰는 고아"라는 사실이 먼저 드러난다.</li>
-      <li><strong>변경안 보고</strong> — 파괴적 작업(삭제, variant 제거) 전에는 역참조를 전수로 세어 목록을 사람에게 먼저 보인다. 셌으니 지우는 것이고, 안 셌으면 깨진다.</li>
-      <li><strong>승인 후 write</strong> — 승인된 범위만 실행한다.</li>
+      <li><strong>read-only 감사</strong>: 대상을 전수로 세고 목록을 만든다. 이 단계에서 "지시받은 대상 일부가 이미 아무도 안 쓰는 고아"라는 사실이 먼저 드러난다.</li>
+      <li><strong>변경안 보고</strong>: 파괴적 작업(삭제, variant 제거) 전에는 역참조를 전수로 세어 목록을 사람에게 먼저 보인다. 셌으니 지우는 것이고 안 셌으면 깨진다.</li>
+      <li><strong>승인 후 write</strong>: 승인된 범위만 실행한다.</li>
       </ol>
       <p>되돌리기 쉬운 일은 반대로 묻지 않고 그냥 한다. 확인 요청이 잦으면 진행 자체가 멈춘다.</p>
       <h2>파일럿 1건 → 배치</h2>
@@ -687,47 +669,33 @@
       <p>같은 대상이 집계 단위에 따라 846개 → 44개 → 16개로 줄어든 적이 있다. 아무것도 안 고쳤는데 계획이 계속 틀렸던 셈이다.</p>
       <ul>
       <li>감사 보고에는 <strong>집계 단위</strong>(톱레벨/중첩 포함), <strong>스캔 범위</strong>(전 페이지, hidden 포함 여부, 타입 커버리지), <strong>제외군</strong>을 항상 명시한다. "전수"라고 말하려면 범위를 함께 적는다.</li>
-      <li>개수보다 <strong>분포의 모양</strong>을 본다. 값이 축별로 깔끔하게 갈리면 인스턴스 오버라이드가 아니라 상위 마스터 내부값이 뿌리다 — 마스터 24개를 고쳐 인스턴스 236개가 자동 정합된 사례가 있다.</li>
+      <li>개수보다 <strong>분포의 모양</strong>을 본다. 값이 축별로 깔끔하게 갈리면 인스턴스 오버라이드가 아니라 상위 마스터 내부값이 뿌리다. 마스터 24개를 고쳐 인스턴스 236개가 자동 정합된 사례가 있다.</li>
       </ul>
       <h2>재발 방지 규칙</h2>
       <h3>자동화는 조용히 썩는다</h3>
-      <p>스킬·프롬프트 절차는 참조 대상이 바뀌어도 문법 오류 없이 결과만 틀리게 나온다. 고친 스킬은 반드시 한 번 실행해야 검증된 것이다 — "고쳤다"와 "돈다"는 다르다. 오탐(없는 문제 보고)은 즉시 걸리지만, 안 해도 될 일을 계속 하는 쪽은 아무도 안 걸어 훨씬 오래 남는다.</p>
+      <p>스킬·프롬프트 절차는 참조 대상이 바뀌어도 문법 오류 없이 결과만 틀리게 나온다. 고친 스킬은 반드시 한 번 실행해야 검증된 것이다. "고쳤다"와 "돈다"는 다르다. 오탐(없는 문제 보고)은 즉시 걸리지만 안 해도 될 일을 계속 하는 쪽은 아무도 안 걸어 훨씬 오래 남는다.</p>
       <h3>낡은 문서는 사람의 결정을 뒤집는다</h3>
-      <p>에이전트가 몇 주 전 문서에 남은 "배포하지 않는다" 한 줄을 근거로, 이미 합의된 배포를 스스로 취소한 일이 있다. 방침을 폐기하면 그 문장을 <strong>같은 턴에</strong> 지운다. 결정 문서에는 무엇을 폐기했는지 함께 적는다 — 세션이 갈리면 앞 결정을 안 읽어, 서로 배타적인 두 결정이 각각 승인된 채 공존한다.</p>
+      <p>에이전트가 몇 주 전 문서에 남은 "배포하지 않는다" 한 줄을 근거로, 이미 합의된 배포를 스스로 취소한 일이 있다. 방침을 폐기하면 그 문장을 <strong>같은 턴에</strong> 지운다. 결정 문서에는 무엇을 폐기했는지 함께 적는다. 세션이 갈리면 앞 결정을 안 읽어 서로 배타적인 두 결정이 각각 승인된 채 공존한다.</p>
       <h3>목록을 믿지 말고 실물을 조회한다</h3>
-      <p>미결 목록의 항목이 이미 확정돼 있고, "확정"으로 적힌 항목이 실은 자체 승인이었던 일이 양방향으로 반복됐다. 착수 전 재실측을 0단계로 둔다 — 브리핑의 파일·줄번호·노드가 이미 사라졌거나 이름이 바뀐 사례가 잦다. 잔무 목록은 순서가 아니라 후보다. 집기 전에 "지금 이게 뭘 사주나"를 먼저 답한다.</p>
-      <p>"A 때문에 대기"로 적힌 항목은 재측 전까지 열린 항목이 아니라 낡은 항목으로 본다. 2026년 9월 한 달 동안 대기 사유를 다시 재니 이미 풀려 있던 일이 여섯 번 있었다 — 기획 회신이 이미 왔거나, 권한이 이미 열렸거나, 선행 PR이 이미 머지돼 있었다. 대기 사유에는 무엇이 오면 풀리는지와 마지막으로 잰 날짜를 같이 적는다.</p>
+      <p>미결 목록의 항목이 이미 확정돼 있고 "확정"으로 적힌 항목이 실은 자체 승인이었던 일이 양방향으로 반복됐다. 착수 전 재실측을 0단계로 둔다. 브리핑의 파일·줄번호·노드가 이미 사라졌거나 이름이 바뀐 사례가 잦다. 잔무 목록은 순서가 아니라 후보다. 집기 전에 "지금 이게 뭘 사주나"를 먼저 답한다.</p>
+      <p>"A 때문에 대기"로 적힌 항목은 재측 전까지 열린 항목이 아니라 낡은 항목으로 본다. 2026년 9월 한 달 동안 대기 사유를 다시 재니 이미 풀려 있던 일이 여섯 번 있었다. 기획 회신이 이미 왔거나, 권한이 이미 열렸거나, 선행 PR이 이미 머지돼 있었다. 대기 사유에는 무엇이 오면 풀리는지와 마지막으로 잰 날짜를 같이 적는다.</p>
       <h3>근거 없는 요소를 만들지 않는다</h3>
-      <p>스펙에 없는 A를 넣으면 A를 설명할 B가 필요해지고, B가 A를 정당화하는 순환이 생긴다. 새 요소는 스펙 원문에 근거가 있는지 확인하고, 없으면 "확정"이 아니라 "디자인 제안"으로 표기한다. 철회는 아래로 번진다 — 결정을 되돌릴 땐 그 결정을 참조하던 주석·표·변수·후속 항목을 같이 훑는다.</p>
+      <p>스펙에 없는 A를 넣으면 A를 설명할 B가 필요해지고 B가 A를 정당화하는 순환이 생긴다. 새 요소는 스펙 원문에 근거가 있는지 확인하고 없으면 "확정"이 아니라 "디자인 제안"으로 표기한다. 철회는 아래로 번진다. 결정을 되돌릴 땐 그 결정을 참조하던 주석·표·변수·후속 항목을 같이 훑는다.</p>
       <h3>증상을 원인으로 옮겨 적지 않는다</h3>
-      <p>"여백 8px 어긋남" 두 건 중 하나는 패딩, 하나는 컨테이너 폭 문제였다. 판정 전에 실측한다 — 헤드리스 캡처·계측 한 번이 추측 세 번보다 빠르고 정확하다. 위반처럼 보이면 소속 프레임/맥락부터 확인한다 — 참고용·아카이브 영역의 더미가 위반으로 집계되는 일이 반복됐다.</p>
+      <p>"여백 8px 어긋남" 두 건 중 하나는 패딩, 하나는 컨테이너 폭 문제였다. 판정 전에 실측한다. 헤드리스 캡처·계측 한 번이 추측 세 번보다 빠르고 정확하다. 위반처럼 보이면 소속 프레임/맥락부터 확인한다. 참고용·아카이브 영역의 더미가 위반으로 집계되는 일이 반복됐다.</p>
       <h3>규칙을 늘리지 말고 색인을 둔다</h3>
-      <p>규칙 문서가 수백 줄이 되면 통독은 낭비이고, 통독해도 작업 순간에는 떠오르지 않는다. 워크로그 61일·함정 503건을 전수로 훑어 규칙에 없는데 반복되는 것만 골랐더니, 가장 많이 반복된 규칙은 이미 있었다 — 제목과 무관한 규칙의 하위 불릿에 묻혀 있어서 훑어도 안 나왔을 뿐이다. 새 규칙은 제목이 내용을 말하는 자리에 두고, 세션마다 자동 주입되는 진입 파일에는 "상황 → 규칙 번호" 색인만 둔다. 체크리스트가 아니라 색인이다 — 절차를 강요하지 않고 판단은 남긴다.</p>
-      <h2>Source Worklog</h2>
-      <ul>
-      <li><code>jumi-worklog/logs/2026/07/2026-07-29.md</code></li>
-      <li><code>jumi-worklog/logs/2026/07/2026-07-30.md</code></li>
-      <li><code>jumi-worklog/logs/2026/08/2026-08-03.md</code></li>
-      <li><code>jumi-worklog/logs/2026/08/2026-08-06.md</code></li>
-      <li><code>jumi-worklog/logs/2026/08/2026-08-07.md</code></li>
-      <li><code>jumi-worklog/logs/2026/08/2026-08-09.md</code></li>
-      <li><code>jumi-worklog/logs/2026/08/2026-08-10.md</code></li>
-      <li><code>jumi-worklog/logs/2026/08/2026-08-25.md</code></li>
-      <li><code>jumi-worklog/logs/2026/09/2026-09-03.md</code></li>
-      <li><code>jumi-worklog/logs/2026/09/2026-09-11.md</code></li>
-      <li><code>jumi-worklog/logs/2026/09/2026-09-15.md</code></li>
-      </ul>
+      <p>규칙 문서가 수백 줄이 되면 통독은 낭비이고 통독해도 작업 순간에는 떠오르지 않는다. 워크로그 61일·함정 503건을 전수로 훑어 규칙에 없는데 반복되는 것만 골랐더니, 가장 많이 반복된 규칙은 이미 있었다. 제목과 무관한 규칙의 하위 불릿에 묻혀 있어서 훑어도 안 나왔을 뿐이다. 새 규칙은 제목이 내용을 말하는 자리에 두고 세션마다 자동 주입되는 진입 파일에는 "상황 → 규칙 번호" 색인만 둔다. 체크리스트가 아니라 색인이다. 절차를 강요하지 않고 판단은 남긴다.</p>
     </section>
 
     <hr class="divider" />
 
     <section class="wiki-doc" id="completion-stages">
-      <h1>완료 기준 플레이북 — 1차 / 공유 가능 / 픽스</h1>
+      <h1>완료 기준 플레이북: 1차 / 공유 가능 / 픽스</h1>
       <h2>언제 사용하나</h2>
-      <p>에이전트가 "완료"라고 보고했는데 디자이너 눈에는 남은 일이 보일 때, 그리고 팀에 화면 일정을 말해야 할 때 사용한다. 2026년 8월에 규칙으로 정했고, 이후 에이전트 보고 형식으로 쓰고 있다.</p>
+      <p>에이전트가 "완료"라고 보고했는데 디자이너 눈에는 남은 일이 보일 때, 그리고 팀에 화면 일정을 말해야 할 때 사용한다. 2026년 8월에 규칙으로 정했고 이후 에이전트 보고 형식으로 쓰고 있다.</p>
       <h2>왜 완료를 나누나</h2>
-      <p>에이전트의 "완료"와 디자이너의 "완료"가 다르다. 에이전트는 기획과 구조가 그려지면 끝났다고 보고, 디자이너 기준으로는 시각 품질과 UX 검토가 남아 있다. 이 간극은 남은 일을 어디에도 기록되지 않은 채 사람 머릿속에만 쌓는다.</p>
-      <p>일이 도착하는 모양도 바뀌었다. 기획→디자인→개발→QA로 한 번에 하나씩 오던 구조에서, 화면 설계·컴포넌트·문서·QA 준비가 에이전트 완료 시점에 동시에 도착하는 구조가 됐다. 검수 1명 앞에 큐가 생기고, 열어보기 전에는 10분짜리 확인인지 2시간짜리 재작업인지 모른다. "이 화면 2.5일" 같은 점 추정은 순차 전제에서만 성립한다.</p>
+      <p>에이전트의 "완료"와 디자이너의 "완료"가 다르다. 에이전트는 기획과 구조가 그려지면 끝났다고 보고 디자이너 기준으로는 시각 품질과 UX 검토가 남아 있다. 이 간극 때문에 남은 일이 어디에도 기록되지 않은 채 사람 머릿속에만 쌓인다.</p>
+      <p>일이 도착하는 모양도 바뀌었다. 기획→디자인→개발→QA로 한 번에 하나씩 오던 구조에서, 화면 설계·컴포넌트·문서·QA 준비가 에이전트 완료 시점에 동시에 도착하는 구조가 됐다. 검수 1명 앞에 큐가 생기고 열어보기 전에는 10분짜리 확인인지 2시간짜리 재작업인지 모른다. "이 화면 2.5일" 같은 점 추정은 순차 전제에서만 성립한다.</p>
       <h2>3단계</h2>
       <table>
       <thead>
@@ -763,43 +731,38 @@
       <h2>에이전트 보고 규칙</h2>
       <ul>
       <li>"완료"를 단독으로 쓰지 않는다. 항상 단계명으로 보고한다.</li>
-      <li><code>1차 완료 — 남은 것: 시각 품질, UX 흐름</code>처럼 남은 단계를 문장으로 남긴다.</li>
+      <li><code>1차 완료. 남은 것: 시각 품질, UX 흐름</code>처럼 남은 단계를 문장으로 남긴다.</li>
       <li><code>공유 가능</code>은 아래 기준을 자가 검사하고 결과를 보고에 붙였을 때만 선언한다.</li>
       <li><code>픽스</code>는 에이전트가 선언할 수 없다. 준비만 한다.</li>
       </ul>
       <h2>공유 가능 기준</h2>
       <p>하나라도 빠지면 <code>공유 가능</code>으로 부르지 않는다.</p>
       <ol>
-      <li><strong>목적 한 문장</strong> — 이 화면이 해결하는 사용자 목적</li>
-      <li><strong>핵심 흐름·분기</strong> — IA와 사용자 분기가 정의됨</li>
-      <li><strong>DS 준수</strong> — 승인된 컴포넌트·인스턴스만 사용. 손코딩 0</li>
-      <li><strong>핵심 상태</strong> — 그 화면에 필요한 상태가 있음 (empty/loading/error 전체 강제는 아님)</li>
-      <li><strong>출처 근거</strong> — Figma node id·variables 또는 패키지 계약. 없으면 <code>pending</code>으로 두고 추측하지 않는다</li>
-      <li><strong>미결 질문 분리</strong> — 디자이너 판단이 필요한 항목이 목록으로 뽑혀 있음</li>
-      <li><strong>공유 라벨</strong> — <code>구조·플로우 픽스 / 비주얼·디테일 미픽스</code>처럼 무엇이 픽스인지 명시</li>
+      <li><strong>목적 한 문장</strong>: 이 화면이 해결하는 사용자 목적</li>
+      <li><strong>핵심 흐름·분기</strong>: IA와 사용자 분기가 정의됨</li>
+      <li><strong>DS 준수</strong>: 승인된 컴포넌트·인스턴스만 사용. 손코딩 0</li>
+      <li><strong>핵심 상태</strong>: 그 화면에 필요한 상태가 있음 (empty/loading/error 전체 강제는 아님)</li>
+      <li><strong>출처 근거</strong>: Figma node id·variables 또는 패키지 계약. 없으면 <code>pending</code>으로 두고 추측하지 않는다</li>
+      <li><strong>미결 질문 분리</strong>: 디자이너 판단이 필요한 항목이 목록으로 뽑혀 있음</li>
+      <li><strong>공유 라벨</strong>: <code>구조·플로우 픽스 / 비주얼·디테일 미픽스</code>처럼 무엇이 픽스인지 명시</li>
       </ol>
       <p>문구는 lorem만 아니면 된다. 확정 문구는 <code>픽스</code> 몫이다.</p>
       <h2>픽스 기준</h2>
       <p>디자이너 판단이다.</p>
       <ol>
-      <li><strong>UX 흐름</strong> — 사용자가 주요 행동을 바로 찾는가</li>
-      <li><strong>시각 품질</strong> — 위계·밸런스·브랜드 톤</li>
-      <li><strong>토큰 준수</strong> — spacing·typography·color 임의값 0</li>
-      <li><strong>QA 축</strong> — 전 축이 아니라 그 컴포넌트의 리스크 우선 축만. 축 정의는 <a href="33-storybook-qa-harness.md">Storybook QA 하네스</a>가 소유한다</li>
-      <li><strong>실제 도는 표면에서 확인</strong> — 컴포넌트 안은 Storybook, 화면 밖은 앱</li>
-      <li><strong>승인 기록</strong> — 승인 대기와 승인 완료를 구분해 기록</li>
+      <li><strong>UX 흐름</strong>: 사용자가 주요 행동을 바로 찾는가</li>
+      <li><strong>시각 품질</strong>: 위계·밸런스·브랜드 톤</li>
+      <li><strong>토큰 준수</strong>: spacing·typography·color 임의값 0</li>
+      <li><strong>QA 축</strong>: 전 축이 아니라 그 컴포넌트의 리스크 우선 축만. 축 정의는 <a href="33-storybook-qa-harness.md">Storybook QA 하네스</a>가 소유한다</li>
+      <li><strong>실제 도는 표면에서 확인</strong>: 컴포넌트 안은 Storybook, 화면 밖은 앱</li>
+      <li><strong>승인 기록</strong>: 승인 대기와 승인 완료를 구분해 기록</li>
       </ol>
       <h2>일정은 두 날짜로 말한다</h2>
       <ul>
-      <li><strong>공유 가능일</strong>은 예측 가능하니 팀에 약속한다. 이 날 FE 착수와 리뷰가 시작되고, 디자이너 품질 검토는 그 뒤로 병렬 진행한다.</li>
+      <li><strong>공유 가능일</strong>은 예측 가능하니 팀에 약속한다. 이 날 FE 착수와 리뷰가 시작되고 디자이너 품질 검토는 그 뒤로 병렬 진행한다.</li>
       <li><strong>픽스일</strong>은 AI 품질 편차와 진행 중 발견되는 범위 때문에 구간으로만 말하고 진행하며 갱신한다.</li>
       <li>날짜가 박힌 일은 처음부터 병렬 밖으로 빼서 순차로 처리한다.</li>
       <li>공유할 때 라벨을 빼면 미픽스 디테일에 피드백이 쏟아져 부하가 오히려 늘어난다.</li>
-      </ul>
-      <h2>Source Worklog</h2>
-      <ul>
-      <li><code>jumi-worklog/docs/20-completion-criteria.md</code></li>
-      <li><code>jumi-worklog/logs/2026/08/2026-08-19.md</code></li>
       </ul>
     </section>
 
@@ -811,6 +774,6 @@
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.25-public-ready"></script>
+<script src="ai-workflow-guide.js?v=0.26-tone-unified"></script>
 </body>
 </html>

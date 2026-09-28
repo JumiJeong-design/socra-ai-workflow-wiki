@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """wiki MD 파일 → 그룹별 site/HTML 변환 빌드 스크립트"""
 
-import markdown, os
+import markdown, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -60,6 +60,8 @@ for group in GROUPS:
         src_path = os.path.join(ROOT, doc['src'])
         with open(src_path, 'r') as f:
             raw = f.read()
+        # Source Worklog 절은 원본 추적용이라 사이트에는 싣지 않는다 (검증 스크립트는 md 원본을 본다)
+        raw = re.split(r'\n## Source Worklog\b', raw, maxsplit=1)[0].rstrip() + '\n'
         md_parser.reset()
         body_html = md_parser.convert(raw)
         sections.append(
@@ -102,7 +104,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.25-public-ready"></script>
+<script src="ai-workflow-guide.js?v=0.26-tone-unified"></script>
 </body>
 </html>
 '''
