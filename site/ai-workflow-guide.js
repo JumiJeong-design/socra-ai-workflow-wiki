@@ -74,7 +74,7 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.26-tone-unified')
+fetch('sidebar.html?v=0.27-plain-style')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;

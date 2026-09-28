@@ -4,10 +4,7 @@ Date: 2026-06-11
 
 이 문서는 아직 확정된 가이드가 아니라 연구 후보 목록이다. 실제 실험이나 사례가 생기면 `wiki/guides/`, `wiki/playbooks/`, `wiki/cases/`로 승격한다.
 
-원본 정리 위치:
-
-- `/Users/jeongjumi/Desktop/jumi-worklog/writing/_sources/product_research_backlog.md`
-- `/Users/jeongjumi/Desktop/jumi-worklog/writing/_sources/notion_source_map.md`
+원본은 jumi-worklog 레포의 `writing/_sources` 폴더에 있다.
 
 Notion 링크를 추가로 받으면 각 주제 아래에 원본 링크를 붙이고, 공개 글에 쓸 수 있는 내용과 내부에만 남길 내용을 분리한다.
 

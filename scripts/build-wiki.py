@@ -79,9 +79,15 @@ for group in GROUPS:
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>{group["title"]} · Socra AI Workflow Wiki</title>
+  <meta name="description" content="프로덕트 디자이너를 위한 AI 워크플로우 위키. 한 번 읽는 원칙, 하면서 따라가는 절차, 막혔을 때 찾아보는 함정을 소크라 제품 디자인 운영 경험에서 정제해 쌓는다." />
+  <meta property="og:title" content="{group["title"]} · Socra AI Workflow Wiki" />
+  <meta property="og:description" content="프로덕트 디자이너를 위한 AI 워크플로우 위키. 한 번 읽는 원칙, 하면서 따라가는 절차, 막혔을 때 찾아보는 함정을 소크라 제품 디자인 운영 경험에서 정제해 쌓는다." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jumijeong-design.github.io/socra-ai-workflow-wiki/{group["file"]}" />
+  <link rel="canonical" href="https://jumijeong-design.github.io/socra-ai-workflow-wiki/{group["file"]}" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.29-home-restructure" />
+  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.30-plain-style" />
   <script>(function(){{var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}})();</script>
 </head>
 <body>
@@ -104,7 +110,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.26-tone-unified"></script>
+<script src="ai-workflow-guide.js?v=0.27-plain-style"></script>
 </body>
 </html>
 '''

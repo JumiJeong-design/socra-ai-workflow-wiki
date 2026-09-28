@@ -3,10 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Socra AI Workflow Wiki — 홈</title>
+  <title>Socra AI Workflow Wiki · 홈</title>
+  <meta name="description" content="프로덕트 디자이너를 위한 AI 워크플로우 위키. 한 번 읽는 원칙, 하면서 따라가는 절차, 막혔을 때 찾아보는 함정을 소크라 제품 디자인 운영 경험에서 정제해 쌓는다." />
+  <meta property="og:title" content="Socra AI Workflow Wiki · 홈" />
+  <meta property="og:description" content="프로덕트 디자이너를 위한 AI 워크플로우 위키. 한 번 읽는 원칙, 하면서 따라가는 절차, 막혔을 때 찾아보는 함정을 소크라 제품 디자인 운영 경험에서 정제해 쌓는다." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jumijeong-design.github.io/socra-ai-workflow-wiki/index.html" />
+  <link rel="canonical" href="https://jumijeong-design.github.io/socra-ai-workflow-wiki/index.html" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.29-home-restructure" />
+  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.30-plain-style" />
   <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
@@ -33,7 +39,7 @@
     <div class="home-head">
       <div class="home-eyebrow">Socra AI Workflow Wiki</div>
       <h1>프로덕트 디자이너를 위한 AI 워크플로우 위키</h1>
-      <p>AI와 함께 제품을 설계하고 구현하면서 반복 가능한 협업 방식과 시행착오를 정제해서 쌓습니다. 한 번 읽는 <b>원칙</b>, 하면서 따라가는 <b>절차</b>, 막혔을 때 찾아보는 <b>함정</b> 세 묶음입니다.</p>
+      <p>AI와 함께 제품을 설계하고 구현하면서 반복 가능한 협업 방식과 시행착오를 정제해서 쌓는다. 한 번 읽는 <b>원칙</b>, 하면서 따라가는 <b>절차</b>, 막혔을 때 찾아보는 <b>함정</b> 세 묶음이다.</p>
     </div>
 
     <!-- 읽기 경로 -->
@@ -85,6 +91,7 @@
         <div class="home-stage" data-cat="principles">원칙 · 한 번 읽는다</div>
         <a class="home-row" data-cat="principles" href="guide-basics.html#perspective"><span class="home-row-title">핵심 관점</span><span class="home-row-tag">원칙</span><span class="home-row-sub">현장 이슈에서 AI가 맡을 일과 사람이 판단할 일을 먼저 가르고, 제품 단계별로 전략을 다르게 잡는다.</span></a>
         <a class="home-row" data-cat="principles" href="guide-ops.html#principles"><span class="home-row-title">핵심 원칙</span><span class="home-row-tag">원칙</span><span class="home-row-sub">탐색은 빠른 도구에서 하고, 확정 기준은 팀이 다시 찾을 수 있는 표면에 남긴다.</span></a>
+        <a class="home-row" data-cat="principles" href="workflow-visualization.html"><span class="home-row-title">운영 루프 시각화</span><span class="home-row-tag">원칙</span><span class="home-row-sub">탐색 → 확정 기준 → 제품 반영 → QA → 기록·보강으로 도는 출시 후 운영 루프를 한 장으로 본다.</span></a>
         <a class="home-row" data-cat="principles" href="guide-playbooks.html#completion-stages"><span class="home-row-title">완료 기준 3단계 <span class="nav-new">NEW</span></span><span class="home-row-tag">원칙</span><span class="home-row-sub">1차 / 공유 가능 / 픽스. 에이전트의 "완료"와 디자이너의 "완료"를 가르고, 일정은 두 날짜로 말한다.</span></a>
         <a class="home-row" data-cat="principles" href="guide-ops.html#schedule-template"><span class="home-row-title">AI 도입 시 일정 산정 가이드</span><span class="home-row-tag">원칙</span><span class="home-row-sub">처음 2~4주는 학습 곡선을 감안하고, 어떤 업무가 실제로 단축되는지 기준을 잡는다.</span></a>
         <a class="home-row" data-cat="principles" href="guide-wiki.html#designer-dev-terms"><span class="home-row-title">개발 협업 용어</span><span class="home-row-tag">원칙</span><span class="home-row-sub">디자이너가 FE와 이야기할 때 자주 어긋나는 용어를 같은 뜻으로 맞춘다.</span></a>
@@ -128,15 +135,17 @@
     <!-- 최근 갱신 -->
     <div class="home-group home-recent">
       <div class="home-group-title">최근 갱신 · <a href="changelog.html" style="color:inherit;">전체 이력</a></div>
+      <div class="home-recent-item"><time>2026.09.28</time><a href="changelog.html#v0-27">v0.27 가이드 층까지 한다체로 통일, 엠대시 정리, 검색 노출 메타·sitemap 추가</a></div>
       <div class="home-recent-item"><time>2026.09.28</time><a href="changelog.html#v0-26">v0.26 위키 문서 12편 문체 통일(한다체·엠대시 정리·윤문), Source Worklog 절 비노출</a></div>
-      <div class="home-recent-item"><time>2026.09.28</time><a href="changelog.html#v0-25">v0.25 외부 공개 준비: 비공개 레포 링크·내부 경로·사내 Notion 링크 정리</a></div>
       <div class="home-recent-item"><time>2026.09.28</time><a href="changelog.html#v0-24">v0.24 홈과 사이드바를 원칙 · 절차 · 막혔을 때 세 묶음으로 재편</a></div>
     </div>
+
+    <p class="home-foot">오타나 제안은 <a href="https://github.com/JumiJeong-design/socra-ai-workflow-wiki/issues" target="_blank" rel="noopener">GitHub 저장소 이슈</a>로 보내 주면 된다.</p>
 
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.26-tone-unified"></script>
+<script src="ai-workflow-guide.js?v=0.27-plain-style"></script>
 <script>
 (function () {
   var tabs = document.querySelectorAll('.home-tab');
