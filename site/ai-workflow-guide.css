@@ -385,6 +385,11 @@ mark {
   color: var(--text-secondary);
 }
 
+/* 다른 페이지에 있을 때는 하위 앵커를 접는다(initNavSubs) */
+.nav-item-sub.nav-sub-hidden {
+  display: none;
+}
+
 /* ─── Main ─── */
 .main {
   flex: 1;

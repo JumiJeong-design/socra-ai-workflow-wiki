@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://jumijeong-design.github.io/socra-ai-workflow-wiki/changelog.html" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.30-plain-style" />
+  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.31-fold-subnav" />
   <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
@@ -39,6 +39,26 @@
       <h1>버전 히스토리</h1>
       <p>Socra AI Workflow Wiki의 변경 사항을 버전별로 기록한다.</p>
     </div>
+
+    <!-- v0.28 -->
+    <section class="section" id="v0-28">
+      <div class="section-header">
+        <div class="section-num">0.28</div>
+        <h2>사이드바 하위 항목을 현재 페이지에서만 펼침 <span class="section-tag">2026.09.29</span></h2>
+      </div>
+
+      <div class="highlight">
+        <p>절차 묶음이 전체 항목의 4분의 3을 차지해 네 단계 구분이 묻혔다. 원인은 절차가 많아서가 아니라, 페이지 안 목차가 없어 사이드바가 그 역할까지 맡고 있었기 때문이다. 페이지 안 앵커는 그 페이지에 있을 때만 보이게 바꿨다.</p>
+      </div>
+
+      <h3>사이드바</h3>
+      <ul class="styled">
+        <li><strong>하위 앵커 접기</strong>: 문서 구축 0~8단계, 확장 5개, 레이어 구조 같은 하위 항목은 그 페이지나 부모 항목의 페이지에 있을 때만 펼친다. 절차 묶음은 35개에서 18개로 줄었다.</li>
+        <li><strong>세 묶음 유지</strong>: 원칙·절차·막혔을 때 구조와 절차 안의 네 단계 라벨은 그대로다.</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
 
     <!-- v0.27 -->
     <section class="section" id="v0-27">
@@ -742,6 +762,6 @@
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.27-plain-style"></script>
+<script src="ai-workflow-guide.js?v=0.28-fold-subnav"></script>
 </body>
 </html>

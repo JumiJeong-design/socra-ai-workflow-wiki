@@ -74,7 +74,7 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.27-plain-style')
+fetch('sidebar.html?v=0.28-fold-subnav')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;
@@ -82,6 +82,7 @@ fetch('sidebar.html?v=0.27-plain-style')
     initSiteSearch();
     markActivePage();
     initNavGroups();
+    initNavSubs();
   });
 
 // ─── 접이식 묶음: 현재 페이지가 속한 묶음만 펼친다 ────────
@@ -104,6 +105,18 @@ function initNavGroups() {
       head.setAttribute('aria-expanded', String(willOpen));
       localStorage.setItem(key, willOpen ? 'open' : 'closed');
     });
+  });
+}
+
+// ─── 하위 앵커: 그 페이지(또는 부모 항목의 페이지)에 있을 때만 보인다 ─
+function initNavSubs() {
+  const currentFile = location.pathname.split('/').pop() || 'index.html';
+  let parentFile = '';
+  sidebarEl.querySelectorAll('a.nav-item').forEach(a => {
+    const file = (a.getAttribute('href') || '').split('#')[0];
+    if (!a.classList.contains('nav-item-sub')) { parentFile = file; return; }
+    const show = file === currentFile || parentFile === currentFile;
+    a.classList.toggle('nav-sub-hidden', !show);
   });
 }
 

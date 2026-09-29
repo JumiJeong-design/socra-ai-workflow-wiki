@@ -87,7 +87,7 @@ for group in GROUPS:
   <link rel="canonical" href="https://jumijeong-design.github.io/socra-ai-workflow-wiki/{group["file"]}" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.30-plain-style" />
+  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.31-fold-subnav" />
   <script>(function(){{var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}})();</script>
 </head>
 <body>
@@ -110,7 +110,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.27-plain-style"></script>
+<script src="ai-workflow-guide.js?v=0.28-fold-subnav"></script>
 </body>
 </html>
 '''
