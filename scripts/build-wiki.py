@@ -49,6 +49,20 @@ GROUPS = [
             {'id': 'manual-33', 'src': 'wiki/manual/33-principle-middle-ground.md', 'label': '의사결정자들 사이의 중간안'},
         ]
     },
+    {
+        'file': 'guide-cases.html',
+        'title': '사례',
+        'nav_title': '사례',
+        'docs': [
+            {'id': 'case-publish-not-the-cause', 'src': 'wiki/cases/publish-not-the-cause.md', 'label': '안 바뀌는 건 게시 때문이 아니었다'},
+            {'id': 'case-rules-not-read', 'src': 'wiki/cases/rules-not-read.md', 'label': '규칙이 있는데 같은 실수가 난다'},
+            {'id': 'case-audit-zero-and-false-defects', 'src': 'wiki/cases/audit-zero-and-false-defects.md', 'label': '0건과 결함 3곳'},
+            {'id': 'case-storybook-sketchpad', 'src': 'wiki/cases/storybook-sketchpad.md', 'label': '스토리북이 그림판이 될 때'},
+            {'id': 'case-two-builds-compare', 'src': 'wiki/cases/two-builds-compare.md', 'label': '게시본 두 개 직접 대조'},
+            {'id': 'case-color-ramp-generations', 'src': 'wiki/cases/color-ramp-generations.md', 'label': '이름은 같은데 값이 다를 때'},
+            {'id': 'case-copy-source-of-truth', 'src': 'wiki/cases/copy-source-of-truth.md', 'label': '문구의 정본이 세 군데일 때'},
+        ]
+    },
 ]
 
 ALL_PAGES = [
@@ -60,6 +74,7 @@ ALL_PAGES = [
     {'file': 'guide-wiki.html',        'title': '실무 가이드'},
     {'file': 'guide-playbooks.html',   'title': '플레이북 / 기록'},
     {'file': 'guide-manual.html',      'title': 'AX 매뉴얼'},
+    {'file': 'guide-cases.html',       'title': '사례'},
 ]
 
 def make_nav(file):
@@ -128,7 +143,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.30-merge-playbooks"></script>
+<script src="ai-workflow-guide.js?v=0.31-cases"></script>
 </body>
 </html>
 '''

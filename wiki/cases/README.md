@@ -1,12 +1,23 @@
 # Cases
 
-실제 작업에서 나온 사례를 보관합니다.
+실제 작업에서 나온 사례를 보관한다. 사례 하나는 비공개 경험 기록 한 편을 공개용으로 줄인 것이다.
 
-각 case는 아래 내용을 포함합니다.
+각 사례는 아래 순서로 쓴다.
 
-- Source worklog
-- Problem
-- Decision
-- What changed
-- Reusable lesson
-- Related guide or playbook
+- 머리말: 기간, 관련 매뉴얼 장, 어떤 상황의 사례인지 한 단락
+- 한눈에: 날짜 · 무슨 일 · 뒤집힌 것 · 그래서
+- 원인과 처방
+- 직접 해 보려면: 복사해서 쓰는 프롬프트
+- Source Worklog: 원본 편 (사이트에는 렌더되지 않는다)
+
+발화 인용, 내부 규칙 번호, 사람 이름, 페이지 이름, 도구 상품명은 싣지 않는다.
+
+| 사례 | 원본 |
+|---|---|
+| [안 바뀌는 건 게시 때문이 아니었다](publish-not-the-cause.md) | 18편 |
+| [규칙이 879줄 있는데 같은 실수가 났다](rules-not-read.md) | 19편 |
+| [「0건」에도 「결함 3곳」에도 되물어야 했다](audit-zero-and-false-defects.md) | 20편 |
+| [스토리북이 그림판이 되면 검수 표면이 아니다](storybook-sketchpad.md) | 21편 |
+| [시각 비교 도구가 막혔을 때 게시본 두 개를 직접 대조했다](two-builds-compare.md) | 22편 |
+| [이름은 같은데 값이 달랐다](color-ramp-generations.md) | 23편 |
+| [일본어 문구의 정본이 세 군데였다](copy-source-of-truth.md) | 24편 |

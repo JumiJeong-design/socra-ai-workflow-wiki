@@ -74,7 +74,7 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.30-merge-playbooks')
+fetch('sidebar.html?v=0.31-cases')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;
@@ -171,6 +171,7 @@ const SEARCH_PAGES = [
   { path: 'guide-wiki.html',        label: '실무 가이드' },
   { path: 'guide-playbooks.html',   label: '플레이북' },
   { path: 'guide-manual.html',      label: 'AX 매뉴얼' },
+  { path: 'guide-cases.html',       label: '사례' },
   { path: 'changelog.html',         label: 'Changelog' },
 ];
 
