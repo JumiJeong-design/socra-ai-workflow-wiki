@@ -52,12 +52,9 @@ AI와 함께 Socra 제품을 설계하고 구현하면서 반복 가능한 협�
 
 1. [AX 매뉴얼 읽는 순서](wiki/manual/00-reading-order.md)
 2. [Figma / Git Sync Boundary](wiki/guides/30-figma-git-sync.md)
-3. [Component Update Playbook](wiki/playbooks/31-component-update-playbook.md)
-4. [Storybook QA Harness Playbook](wiki/playbooks/33-storybook-qa-harness.md)
-5. [Screen Design Playbook](wiki/playbooks/32-screen-design-playbook.md)
-6. [에이전트 핸드오프 플레이북](wiki/playbooks/30-agent-handoff-playbook.md)
-7. [AI Design Review](wiki/guides/40-ai-design-review.md)
-8. [Daily Worklog to Wiki](wiki/guides/31-daily-worklog-to-wiki.md)
+3. [Screen Design Playbook](wiki/playbooks/32-screen-design-playbook.md)
+4. [AI Design Review](wiki/guides/40-ai-design-review.md)
+5. [Daily Worklog to Wiki](wiki/guides/31-daily-worklog-to-wiki.md)
 
 ## Reference Docs
 
