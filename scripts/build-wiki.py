@@ -12,7 +12,6 @@ GROUPS = [
         'nav_title': '실무 가이드',
         'docs': [
             {'id': 'figma-git-sync',                'src': 'wiki/guides/30-figma-git-sync.md',                'label': 'Figma-Git Sync'},
-            {'id': 'figma-first-storybook-verified', 'src': 'wiki/guides/90-figma-first-storybook-verified.md','label': 'Historical Figma / Storybook 교훈'},
             {'id': 'ai-design-review',              'src': 'wiki/guides/40-ai-design-review.md',              'label': 'AI 디자인 리뷰'},
             {'id': 'daily-worklog-to-wiki',         'src': 'wiki/guides/31-daily-worklog-to-wiki.md',         'label': 'Daily Worklog → Wiki'},
             {'id': 'designer-dev-terms',            'src': 'wiki/guides/80-designer-dev-terms.md',            'label': '개발 협업 용어'},
@@ -32,6 +31,28 @@ GROUPS = [
             {'id': 'completion-stages',         'src': 'wiki/playbooks/36-completion-stages.md',        'label': '완료 기준 3단계'},
         ]
     },
+    {
+        'file': 'guide-manual.html',
+        'title': 'AX 매뉴얼',
+        'nav_title': 'AX 매뉴얼',
+        'docs': [
+            {'id': 'manual-00', 'src': 'wiki/manual/00-reading-order.md', 'label': '읽는 순서'},
+            {'id': 'manual-10', 'src': 'wiki/manual/10-premise.md', 'label': '전제'},
+            {'id': 'manual-11', 'src': 'wiki/manual/11-five-channels-publish-gate.md', 'label': '채널 다섯과 게시 게이트'},
+            {'id': 'manual-12', 'src': 'wiki/manual/12-visual-baseline.md', 'label': '시각 기준'},
+            {'id': 'manual-13', 'src': 'wiki/manual/13-behavior-baseline.md', 'label': '행동 기준'},
+            {'id': 'manual-20', 'src': 'wiki/manual/20-harness.md', 'label': '하네스'},
+            {'id': 'manual-21', 'src': 'wiki/manual/21-prompt-ds-token-audit.md', 'label': 'DS 토큰 정합 검토'},
+            {'id': 'manual-22', 'src': 'wiki/manual/22-prompt-screen-ds-roundtrip.md', 'label': '화면 → DS → 화면 왕복'},
+            {'id': 'manual-23', 'src': 'wiki/manual/23-prompt-ds-storybook-contract.md', 'label': 'DS → 스토리북 계약 정리'},
+            {'id': 'manual-24', 'src': 'wiki/manual/24-prompt-release.md', 'label': '배포'},
+            {'id': 'manual-25', 'src': 'wiki/manual/25-prompt-session.md', 'label': '세션 시작 · 병렬 · 복구 · 마무리'},
+            {'id': 'manual-26', 'src': 'wiki/manual/26-prompt-judgement.md', 'label': '판단을 올릴 때'},
+            {'id': 'manual-31', 'src': 'wiki/manual/31-principle-costs.md', 'label': '이 방식의 단점'},
+            {'id': 'manual-32', 'src': 'wiki/manual/32-principle-ai-vs-human.md', 'label': 'AI가 잘하는 것과 사람이 판단할 것'},
+            {'id': 'manual-33', 'src': 'wiki/manual/33-principle-middle-ground.md', 'label': '의사결정자들 사이의 중간안'},
+        ]
+    },
 ]
 
 ALL_PAGES = [
@@ -42,6 +63,7 @@ ALL_PAGES = [
     {'file': 'guide-extensions.html',  'title': '제품 유형별 확장'},
     {'file': 'guide-wiki.html',        'title': '실무 가이드'},
     {'file': 'guide-playbooks.html',   'title': '플레이북 / 기록'},
+    {'file': 'guide-manual.html',      'title': 'AX 매뉴얼'},
 ]
 
 def make_nav(file):
@@ -110,7 +132,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.28-fold-subnav"></script>
+<script src="ai-workflow-guide.js?v=0.29-ax-manual"></script>
 </body>
 </html>
 '''

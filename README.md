@@ -50,7 +50,7 @@ AI와 함께 Socra 제품을 설계하고 구현하면서 반복 가능한 협�
 
 ## Read These First
 
-1. [Historical Lesson: Figma / Storybook Role Lessons](wiki/guides/90-figma-first-storybook-verified.md)
+1. [AX 매뉴얼 읽는 순서](wiki/manual/00-reading-order.md)
 2. [Figma / Git Sync Boundary](wiki/guides/30-figma-git-sync.md)
 3. [Component Update Playbook](wiki/playbooks/31-component-update-playbook.md)
 4. [Storybook QA Harness Playbook](wiki/playbooks/33-storybook-qa-harness.md)

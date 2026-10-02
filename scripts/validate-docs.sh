@@ -4,14 +4,14 @@ set -euo pipefail
 missing_source=0
 bad_role_prefix=0
 
-for file in wiki/guides/*.md wiki/playbooks/*.md wiki/cases/*.md; do
+for file in wiki/guides/*.md wiki/playbooks/*.md wiki/manual/*.md wiki/cases/*.md; do
   [ -e "$file" ] || continue
   if [ "$file" = "wiki/cases/README.md" ]; then
     continue
   fi
 
   case "$file" in
-    wiki/guides/*.md|wiki/playbooks/*.md)
+    wiki/guides/*.md|wiki/playbooks/*.md|wiki/manual/*.md)
       filename="$(basename "$file")"
       if ! [[ "$filename" =~ ^[0-9]{2}-.+\.md$ ]]; then
         echo "::error file=$file::Guide/playbook docs must use a role prefix like 30-name.md"
