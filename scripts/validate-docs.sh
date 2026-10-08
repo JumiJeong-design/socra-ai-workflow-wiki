@@ -32,5 +32,6 @@ if [ "$missing_source" -ne 0 ] || [ "$bad_role_prefix" -ne 0 ]; then
 fi
 
 python3 scripts/validate-links.py
+python3 scripts/validate-site.py
 
 echo "Workflow guide docs validated."
