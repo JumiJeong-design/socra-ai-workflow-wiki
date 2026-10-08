@@ -142,9 +142,15 @@
       </div>
     </div>
 
+    <!-- 최근 본 문서 (ai-workflow-guide.js가 localStorage에서 채운다) -->
+    <div class="home-group home-recent" id="home-viewed" hidden>
+      <div class="home-group-title">최근 본 문서</div>
+    </div>
+
     <!-- 최근 갱신 -->
     <div class="home-group home-recent">
       <div class="home-group-title">최근 갱신 · <a href="changelog.html" style="color:inherit;">전체 이력</a></div>
+      <div class="home-recent-item"><time>2026.10.08</time><a href="changelog.html#v0-33">v0.33 홈에 최근 본 문서 다섯 개를 보여 줌</a></div>
       <div class="home-recent-item"><time>2026.10.08</time><a href="changelog.html#v0-32">v0.32 가이드 다섯 페이지가 검색에서 각자 자기 주소로 잡히게 고침</a></div>
       <div class="home-recent-item"><time>2026.10.02</time><a href="changelog.html#v0-31">v0.31 사례 7건 공개. 막혔을 때 증상으로 찾는다</a></div>
       <div class="home-recent-item"><time>2026.10.02</time><a href="changelog.html#v0-30">v0.30 플레이북 넷을 AX 매뉴얼로 합쳐 같은 주제를 한 곳에 모음</a></div>
@@ -159,7 +165,7 @@
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.32-canonical"></script>
+<script src="ai-workflow-guide.js?v=0.33-viewed"></script>
 <script>
 (function () {
   var tabs = document.querySelectorAll('.home-tab');

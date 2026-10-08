@@ -74,7 +74,7 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.32-canonical')
+fetch('sidebar.html?v=0.33-viewed')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;
@@ -411,13 +411,60 @@ function initSiteSearch() {
 
 window.addEventListener('hashchange', () => {
   if (new URLSearchParams(location.search).has('q')) highlightTargetFromHash();
+  recordViewed();
 });
 
 window.addEventListener('DOMContentLoaded', () => {
   if (new URLSearchParams(location.search).has('q')) {
     setTimeout(() => highlightTargetFromHash(), 350);
   }
+  recordViewed();
+  renderViewed();
 });
+
+// ─── 최근 본 문서: 앵커로 연 섹션을 기억해 홈에 보여 준다 ─
+const VIEWED_KEY = 'viewed';
+const VIEWED_MAX = 5;
+
+function readViewed() {
+  try { return JSON.parse(localStorage.getItem(VIEWED_KEY)) || []; } catch { return []; }
+}
+
+function recordViewed() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  const target = id && document.getElementById(id);
+  if (!target) return;
+  const heading = target.querySelector('h1, .section-header h2, h2');
+  if (!heading) return;
+  const clone = heading.cloneNode(true);
+  clone.querySelectorAll('.section-tag').forEach(el => el.remove());
+  const title = clone.textContent.trim();
+  if (!title) return;
+  const href = (location.pathname.split('/').pop() || 'index.html') + '#' + id;
+  const list = readViewed().filter(item => item.href !== href);
+  list.unshift({ href, title, t: Date.now() });
+  localStorage.setItem(VIEWED_KEY, JSON.stringify(list.slice(0, VIEWED_MAX)));
+}
+
+function renderViewed() {
+  const box = document.getElementById('home-viewed');
+  const list = readViewed();
+  if (!box || !list.length) return;
+  const pad = n => String(n).padStart(2, '0');
+  list.forEach(item => {
+    const d = new Date(item.t);
+    const row = document.createElement('div');
+    row.className = 'home-recent-item';
+    const time = document.createElement('time');
+    time.textContent = `${d.getFullYear()}.${pad(d.getMonth() + 1)}.${pad(d.getDate())}`;
+    const link = document.createElement('a');
+    link.href = item.href;
+    link.textContent = item.title;
+    row.append(time, link);
+    box.append(row);
+  });
+  box.hidden = false;
+}
 
 function initSidebarInteractions() {
   // Sidebar theme toggle
