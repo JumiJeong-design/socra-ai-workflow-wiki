@@ -13,7 +13,7 @@ with open(os.path.join(ROOT, 'site', 'ai-workflow-guide.html'), 'r') as f:
     src = f.read()
 
 SHELL_HEAD = src[:src.index('  <!-- Main -->') + len('  <!-- Main -->\n')]
-SHELL_FOOT = '\n<script src="ai-workflow-guide.js?v=0.31-cases"></script>\n</body>\n</html>'
+SHELL_FOOT = '\n<script src="ai-workflow-guide.js?v=0.32-canonical"></script>\n</body>\n</html>'
 
 # main 내부 전체 추출
 main_body = src[src.index('  <main class="main">') + len('  <main class="main">'):
@@ -24,7 +24,6 @@ GROUPS = [
     {
         'id': 'basics',
         'file': 'guide-basics.html',
-        'title': '기본 이해 — AI Workflow 가이드',
         'nav_title': '기본 이해',
         'start': None,  # 처음부터
         'end': '    <!-- AI Editor Connect -->',
@@ -32,7 +31,6 @@ GROUPS = [
     {
         'id': 'setup',
         'file': 'guide-setup.html',
-        'title': '연결 / 환경 설정 — AI Workflow 가이드',
         'nav_title': '연결 / 환경 설정',
         'start': '    <!-- AI Editor Connect -->',
         'end': '    <!-- Step 0 -->',
@@ -40,7 +38,6 @@ GROUPS = [
     {
         'id': 'build',
         'file': 'guide-build.html',
-        'title': '문서 구축 가이드 — AI Workflow 가이드',
         'nav_title': '문서 구축 가이드',
         'start': '    <!-- Step 0 -->',
         'end': '    <section class="section" id="priority">',
@@ -48,7 +45,6 @@ GROUPS = [
     {
         'id': 'ops',
         'file': 'guide-ops.html',
-        'title': '실무 운영 — AI Workflow 가이드',
         'nav_title': '실무 운영',
         'start': '    <section class="section" id="priority">',
         'end': '    <!-- 제품 유형 자가진단 -->',
@@ -56,7 +52,6 @@ GROUPS = [
     {
         'id': 'extensions',
         'file': 'guide-extensions.html',
-        'title': '제품 유형별 확장 — AI Workflow 가이드',
         'nav_title': '제품 유형별 확장',
         'start': '    <!-- 제품 유형 자가진단 -->',
         'end': None,  # 끝까지
@@ -97,11 +92,12 @@ for i, g in enumerate(GROUPS):
 
     content = main_body[start:end].rstrip()
 
-    # title 교체
-    head = SHELL_HEAD.replace(
-        '<title>AI 운영 문서 구축 가이드 — Socra AI Workflow Wiki</title>',
-        f'<title>{g["title"]}</title>'
-    ).replace(
+    # title·og·canonical 교체 (원본 head를 그대로 복사하므로 페이지별 값으로 덮는다)
+    page_title = f'{g["nav_title"]} · Socra AI Workflow Wiki'
+    head = re.sub(r'<title>[^<]*</title>', f'<title>{page_title}</title>', SHELL_HEAD)
+    head = re.sub(r'(<meta property="og:title" content=")[^"]*', rf'\g<1>{page_title}', head)
+    head = head.replace('/ai-workflow-guide.html"', f'/{g["file"]}"')
+    head = head.replace(
         '<span class="mobile-topbar-title">AI 운영 문서 구축 가이드</span>',
         f'<span class="mobile-topbar-title">{g["nav_title"]}</span>'
     )
