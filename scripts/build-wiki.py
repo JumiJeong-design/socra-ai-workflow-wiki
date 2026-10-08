@@ -143,7 +143,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.35-surface"></script>
+<script src="ai-workflow-guide.js?v=0.36-entry-file"></script>
 </body>
 </html>
 '''

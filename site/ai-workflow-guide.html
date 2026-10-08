@@ -47,7 +47,7 @@
         </div>
         <div id="version-badge" style="display:inline-flex; align-items:center; gap:5px; background:var(--bg-card); border:1px solid var(--border); border-radius:20px; padding:4px 10px; font-size:11px; font-weight:600; color:var(--text-muted); cursor:pointer;" onclick="document.getElementById('changelog').style.display = document.getElementById('changelog').style.display === 'none' ? 'block' : 'none'" title="버전 히스토리 보기">
           <span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;"></span>
-          v0.35
+          v0.36
         </div>
       </div>
       <h1>프로덕트 디자이너를 위한<br>AI 운영 문서 구축 가이드</h1>
@@ -60,6 +60,18 @@
           <span onclick="document.getElementById('changelog').style.display='none'" style="cursor:pointer; font-size:14px; color:var(--text-muted);">✕</span>
         </div>
         <div style="padding:16px 18px;">
+          <div style="display:flex; gap:14px; padding:10px 0; border-bottom:1px solid var(--border-light);">
+            <div style="min-width:44px;">
+              <span style="display:inline-flex; align-items:center; gap:4px; font-size:10.5px; font-weight:700; color:var(--accent); background:var(--accent-dim); border:1px solid var(--accent-border2); border-radius:4px; padding:2px 7px;">v0.36</span>
+            </div>
+            <div>
+              <div style="font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:4px;">2026-10-08 · 남은 문서 세트 언급 정리</div>
+              <ul style="list-style:none; padding:0; margin:0; font-size:12px; color:var(--text-secondary); line-height:1.8;">
+                <li>· 연결 설정의 진입 파일 예시를 정본 순서, 세션 규칙, 규칙 색인으로 바꿨다</li>
+                <li>· 핵심 원칙: 반복 실수는 문서보다 게이트로 옮긴다</li>
+              </ul>
+            </div>
+          </div>
           <div style="display:flex; gap:14px; padding:10px 0; border-bottom:1px solid var(--border-light);">
             <div style="min-width:44px;">
               <span style="display:inline-flex; align-items:center; gap:4px; font-size:10.5px; font-weight:700; color:var(--accent); background:var(--accent-dim); border:1px solid var(--accent-border2); border-radius:4px; padding:2px 7px;">v0.35</span>
@@ -842,7 +854,7 @@
                 <li>디자인 시스템 + 컴포넌트 룰</li>
                 <li>디자인 토큰 + 상태값 정의</li>
                 <li>히스토리 관리</li>
-                <li>AI 생성 가드레일 (agent-rules.md)</li>
+                <li>AI 생성 가드레일 (진입 파일의 규칙 색인과 훅)</li>
               </ul>
             </div>
             <div class="grid-card">
@@ -897,7 +909,7 @@
     <section class="section" id="connect">
       <h2>AI 에디터 연결 설정</h2>
 
-      <p><code>docs/</code> 폴더를 만들었다면, 이제 AI가 실제로 이 문서들을 읽게 해야 한다. 문서가 아무리 잘 만들어져 있어도 AI 에디터에 연결되지 않으면 그냥 폴더 안의 파일이다.</p>
+      <p>빠른 시작에서 진입 파일을 만들었다면, 이제 쓰는 도구가 그 파일을 읽게 해야 한다. 아무리 잘 써 두어도 AI 에디터에 연결되지 않으면 그냥 폴더 안의 파일이다.</p>
 
       <div class="highlight">
         <p>모든 AI 에디터는 프로젝트 루트의 <strong>특정 파일을 자동으로 읽는다.</strong> 이 파일 하나가 "AI가 이 프로젝트를 어떻게 이해해야 하는지"를 담는 진입점이 된다.</p>
@@ -921,36 +933,27 @@
       </table>
 
       <h3>진입점 파일 구조</h3>
-      <p>12개 문서 전체를 복사하지 않는다. 핵심 규칙만 요약하고 나머지는 참조 경로로 연결한다.</p>
+      <p>진입 파일에는 매 세션 필요한 것만 둔다. 정본 순서, 세션 시작과 끝, 절대 하지 않는 것, 그리고 「이런 상황이면 이 규칙」 색인이다. 규칙 본문은 따로 두고 색인이 가리키게 한다.</p>
 
-      <div class="code-label">CLAUDE.md / .cursor/rules/design.mdc / .windsurfrules, 공통 구조</div>
-      <pre><code><span class="token-heading"># 이 프로젝트의 AI 작업 기준</span>
+      <div class="code-label">CLAUDE.md / AGENTS.md / .cursor/rules/design.mdc, 공통 구조</div>
+      <pre><code><span class="token-heading"># 이 프로젝트의 에이전트 작업 기준</span>
 
-<span class="token-heading">## 제품 맥락</span>
-→ docs/product-context.md 참고
+<span class="token-heading">## 정본 순서</span>
+<span class="token-item">- 피그마 &gt; 패키지 &gt; 스토리북. 다르면 피그마 기준으로 맞춘다.</span>
 
-<span class="token-heading">## 핵심 UX 원칙 (요약)</span>
-<span class="token-item">- primary action은 한 화면에서 하나만</span>
-<span class="token-item">- 정보 밀도는 사용자 레벨에 맞게 조정</span>
-<span class="token-item">- 설명할 수 없는 UI 요소는 추가하지 않는다</span>
-→ 전체 원칙: docs/ux-principles.md
+<span class="token-heading">## 세션 시작과 끝</span>
+<span class="token-item">- 시작: logs/오늘 날짜.md를 먼저 읽는다.</span>
+<span class="token-item">- 끝: 한 일과 남은 일을 같은 파일에 적는다.</span>
 
-<span class="token-heading">## 디자인 시스템</span>
-→ docs/design-system.md
-→ docs/component-usage.md
+<span class="token-heading">## 절대 하지 않는 것</span>
+<span class="token-item">- hardcoded color / spacing (token만 쓴다)</span>
+<span class="token-item">- 접근성 속성 임의 삭제</span>
+<span class="token-item">- 요청 범위 밖의 변경</span>
 
-<span class="token-heading">## 반드시 지켜야 할 규칙</span>
-<span class="token-item">- hardcoded color / spacing 금지 — 반드시 token 사용</span>
-<span class="token-item">- 기존 컴포넌트로 해결 가능한지 먼저 확인</span>
-<span class="token-item">- 접근성 속성 임의 삭제 금지</span>
-<span class="token-item">- 요청 범위 밖의 변경 금지</span>
-→ 전체 규칙: docs/agent-rules.md
-
-<span class="token-heading">## 작업 유형별 참조 문서</span>
-신규 화면 → product-context.md + component-usage.md
-기존 화면 개선 → ux-principles.md + component-usage.md
-핸드오프 준비 → handoff.md
-QA → review-checklist.md</code></pre>
+<span class="token-heading">## 이런 상황이면</span>
+피그마 값을 코드로 옮길 때 → docs/rules.md 「토큰 포팅」
+화면을 새로 그릴 때     → docs/rules.md 「인스턴스로 그리기」
+결과가 「0건」일 때      → docs/rules.md 「범위 다시 적기」</code></pre>
 
       <h3>도구별 세부 설정</h3>
 
@@ -960,7 +963,7 @@ QA → review-checklist.md</code></pre>
           <ul class="styled">
             <li>프로젝트 루트에 <code>CLAUDE.md</code> 파일 생성</li>
             <li>Claude Code 실행 시 자동으로 읽힘</li>
-            <li><code>docs/</code> 경로 참조를 쓰면 해당 파일도 자동 로드</li>
+            <li><code>@docs/rules.md</code>처럼 <code>@</code>로 적은 파일은 같이 읽힌다. 경로만 적은 파일은 필요할 때 연다</li>
           </ul>
         </div>
         <div class="card">
@@ -968,7 +971,7 @@ QA → review-checklist.md</code></pre>
           <ul class="styled">
             <li>Cursor Settings → Rules → Project Rules에 추가</li>
             <li>또는 <code>.cursor/rules/design.mdc</code> 파일로 직접 관리</li>
-            <li>채팅에서 <code>@docs/product-context.md</code>로 파일 직접 첨부 가능</li>
+            <li>채팅에서 <code>@파일 경로</code>로 파일 직접 첨부 가능</li>
           </ul>
         </div>
         <div class="card">
@@ -990,21 +993,18 @@ QA → review-checklist.md</code></pre>
       <h3>프로젝트 루트 구조 예시</h3>
       <div class="code-label">프로젝트 루트</div>
       <pre><code><span class="token-section">project-root/</span>
-  <span class="token-heading">CLAUDE.md</span>              <span class="token-comment"># Claude Code 진입점 (핵심 규칙 요약 + docs 참조)</span>
-  <span class="token-heading">.cursor/rules/</span>
-    <span class="token-item">design.mdc</span>           <span class="token-comment"># Cursor 진입점</span>
-  <span class="token-heading">.windsurfrules</span>         <span class="token-comment"># Windsurf 진입점</span>
+  <span class="token-heading">CLAUDE.md</span>              <span class="token-comment"># 진입 파일: 정본 순서, 세션 규칙, 규칙 색인</span>
+  <span class="token-heading">AGENTS.md</span>              <span class="token-comment"># 다른 도구용 진입 파일. 내용은 CLAUDE.md를 가리킨다</span>
   <span class="token-section">docs/</span>
-    <span class="token-item">product-context.md</span>
-    <span class="token-item">ux-principles.md</span>
-    <span class="token-item">design-system.md</span>
-    <span class="token-item">component-usage.md</span>
-    <span class="token-item">agent-rules.md</span>
-    <span class="token-item">...</span></code></pre>
+    <span class="token-item">rules.md</span>             <span class="token-comment"># 규칙 본문. 진입 파일 색인이 가리킨다</span>
+  <span class="token-section">logs/</span>
+    <span class="token-item">2026-10-08.md</span>        <span class="token-comment"># 워크로그: 시작할 때 읽고 끝날 때 적는다</span>
+  <span class="token-section">.claude/</span>
+    <span class="token-item">settings.json</span>        <span class="token-comment"># 훅: 규칙으로 안 지켜지는 것을 실행 직전에 막는다</span></code></pre>
 
       <div class="callout green">
         <div class="callout-icon">✅</div>
-        <p>진입점 파일을 만들고 나면 AI는 매번 설명하지 않아도 제품 맥락, 디자인 시스템 규칙, 금지 사항을 기본으로 인식하고 작업한다. <strong>프롬프트가 짧아지고 결과의 일관성이 올라간다.</strong></p>
+        <p>진입 파일은 세션마다 읽히지만, 길어지면 읽혀도 작업하는 순간에 떠오르지 않는다. <strong>진입 파일은 짧게 두고, 자주 어기는 규칙은 훅과 검사로 옮긴다.</strong> 자세한 내용은 <a href="guide-manual.html#manual-20" style="color:var(--accent);">AX 매뉴얼 20장 하네스</a>에 있다.</p>
       </div>
 
       <h3 id="figma-mcp-setup">Figma MCP 연결 설정</h3>
@@ -1352,7 +1352,7 @@ QA → review-checklist.md</code></pre>
                   </div>
                   <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
                     <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">✅ 올바른 방법</div>
-                    <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">작업 중 배운 규칙은 반드시 프로젝트 문서에 기록한다. 규칙 → <code>design-system/rules.md</code>, 결정 이유 → <code>design-system/decisions.md</code>, AI 작업 원칙 → <code>docs/agent-rules.md</code>.</p>
+                    <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">작업 중 배운 규칙은 반드시 프로젝트 문서에 기록한다. 규칙 → <code>design-system/rules.md</code>, 결정 이유 → <code>design-system/decisions.md</code>, AI 작업 원칙 → 진입 파일(<code>CLAUDE.md</code>, <code>AGENTS.md</code>).</p>
                   </div>
                 </div>
                 <div style="background:var(--accent-dim); border:1px solid var(--accent-border); border-radius:var(--radius-sm); padding:14px;">
@@ -1548,13 +1548,11 @@ QA → review-checklist.md</code></pre>
 
       <h3>신규 화면 만들 때</h3>
       <ol class="styled">
-        <li>product-context.md 확인</li>
-        <li>ux-principles.md 확인</li>
-        <li>component-usage.md 확인</li>
-        <li>AI에게 화면 초안 요청</li>
-        <li>review-checklist.md로 검토</li>
+        <li>피그마 출처가 승인 상태인지 확인한다. 탐색 중이면 루프를 돌리지 않는다</li>
+        <li>AI에게 디자인 시스템 인스턴스로 화면 초안을 요청한다</li>
+        <li><a href="guide-playbooks.html#completion-stages" style="color:var(--accent);">완료 기준 3단계</a>로 결과를 확인한다</li>
         <li>Figma에서 탐색/정리</li>
-        <li>확정된 패턴을 design-system.md에 반영</li>
+        <li>확정된 패턴은 피그마 디자인 시스템 파일에 반영하고 게시한다</li>
       </ol>
 
       <h3>기존 화면 개선할 때</h3>
@@ -1620,7 +1618,7 @@ QA → review-checklist.md</code></pre>
           <tr>
             <td>신규 기능 화면을 빠르게 구체화해야 한다</td>
             <td>제품 맥락과 UX 원칙 기준으로 초안 생성</td>
-            <td><code>product-context.md</code>, <code>ux-principles.md</code> 기준으로 초안을 만들고, Figma에서 방향성을 좁힌다.</td>
+            <td>제품 맥락과 UX 원칙을 짧게 주고 초안을 만든 뒤, Figma에서 방향성을 좁힌다.</td>
           </tr>
           <tr>
             <td>기존 화면이 디자인 시스템과 어긋나 보인다</td>
@@ -1650,15 +1648,15 @@ QA → review-checklist.md</code></pre>
         </tbody>
       </table>
 
-      <h3>ai-workflow.md에 남기면 좋은 운영 규칙</h3>
-      <div class="code-label">ai-workflow.md</div>
+      <h3>진입 파일에 남기면 좋은 운영 규칙</h3>
+      <div class="code-label">CLAUDE.md / AGENTS.md</div>
       <pre><code><span class="token-heading">## Figma / AI 작업 선택 기준</span>
 <span class="token-item">- 탐색 단계에서는 Figma 시안, FigJam 플로우, 코드 스파이크 중 가장 빠른 방식으로 방향을 본다.</span>
 <span class="token-item">- 확정 단계에서는 component, token, typography, spacing 기준을 확인한다.</span>
 <span class="token-item">- 컴포넌트 릴리즈 전에는 구조, 상태, 색상, 접근성 스펙을 남긴다.</span>
 <span class="token-item">- 토큰 변경은 Figma와 코드의 drift를 확인한 뒤 반영한다.</span>
 <span class="token-item">- 복잡한 정책과 상태 변화는 화면을 만들기 전에 다이어그램으로 먼저 시각화한다.</span>
-<span class="token-item">- 최종 산출물은 review-checklist.md와 handoff.md 기준으로 사람이 승인한다.</span></code></pre>
+<span class="token-item">- 최종 산출물은 완료 기준 3단계(1차, 공유 가능, 픽스)로 사람이 승인한다.</span></code></pre>
 
       <h3 id="drift-signals">방향 이탈(Drift) 감지 신호</h3>
       <p>AI를 쓰면 더 빨리 만들 수 있지만, 더 빨리 엉뚱한 방향으로 갈 수도 있다. 리뷰 막판에 품질을 고치는 것과 별개로, 작업 중간에 방향이 틀어지고 있는 신호를 먼저 잡아야 한다.</p>
@@ -1944,20 +1942,20 @@ QA → review-checklist.md</code></pre>
 
       <div class="card" style="margin-bottom: 12px;">
         <div class="card-title"><div class="card-title-dot"></div>원칙 1: AI에게 결과만 요청하지 말고 기준을 제공해야 한다</div>
-        <p style="font-size:13.5px; color: var(--text-secondary); margin:0;">프롬프트보다 context 문서가 먼저다. AI에게 기준 문서를 제공할 때 결과물의 일관성이 높아진다.</p>
+        <p style="font-size:13.5px; color: var(--text-secondary); margin:0;">프롬프트보다 기준이 먼저다. 다만 기준 문서를 미리 다 써 둘 필요는 없다. 정본 순서와 금지 사항처럼 매번 필요한 것만 진입 파일에 두고, 나머지는 작업하면서 채운다.</p>
       </div>
 
       <div class="card" style="margin-bottom: 12px;">
-        <div class="card-title"><div class="card-title-dot"></div>원칙 2: AI가 반복해서 실수하는 부분을 문서로 만든다</div>
-        <p style="font-size:13.5px; color: var(--text-secondary); margin:0 0 10px;">AI가 매번 틀리는 것을 매번 프롬프트로 설명하면 비효율적이다. 반복되는 기준은 문서로 빼야 한다.</p>
+        <div class="card-title"><div class="card-title-dot"></div>원칙 2: AI가 반복해서 실수하는 부분은 게이트로 옮긴다</div>
+        <p style="font-size:13.5px; color: var(--text-secondary); margin:0 0 10px;">같은 실수를 매번 프롬프트로 설명하면 비효율적이다. 그렇다고 규칙 문서에 한 줄씩 보태기만 하면, 규칙이 늘어날수록 읽히지 않는다. 기계로 잡히는 것은 검사와 훅으로 옮기고, 판단이 필요한 것만 규칙으로 적어 진입 파일 색인에서 가리킨다. 실제로 겪은 일은 <a href="guide-cases.html#case-rules-not-read" style="color:var(--accent);">규칙이 있는데 같은 실수가 난다</a>에 있다.</p>
         <pre style="margin:0"><code><span class="token-comment">AI가 primary button을 너무 많이 쓴다</span>
-  <span class="token-arrow">→</span> ux-principles.md에 hierarchy 원칙 추가
+  <span class="token-arrow">→</span> 판단이 필요하다: 규칙으로 적고, 색인에 「화면을 새로 그릴 때」로 건다
 
 <span class="token-comment">AI가 임의 색상을 만든다</span>
-  <span class="token-arrow">→</span> agent-rules.md에 hardcoded color 금지 추가
+  <span class="token-arrow">→</span> 기계로 잡힌다: hex 직접 입력을 커밋 전 검사로 막는다
 
 <span class="token-comment">AI가 접근성을 빼먹는다</span>
-  <span class="token-arrow">→</span> review-checklist.md에 accessibility 항목 추가</code></pre>
+  <span class="token-arrow">→</span> 렌더로 잡힌다: 스토리북 접근성 검사에 건다</code></pre>
       </div>
 
       <div class="card" style="">
@@ -1968,21 +1966,21 @@ QA → review-checklist.md</code></pre>
           <div class="flow-arrow">↓</div>
           <div class="flow-item">매번 프롬프트로 수정 요청 → 비효율 감지</div>
           <div class="flow-arrow">↓</div>
-          <div class="flow-item">패턴 파악 → 관련 문서에 기준으로 추가</div>
+          <div class="flow-item">패턴 파악 → 게이트로 막을 수 있는지 먼저 본다</div>
           <div class="flow-arrow">↓</div>
-          <div class="flow-item highlight-item">다음 요청부터 AI가 자동으로 지킴 → 프롬프트가 짧아짐</div>
+          <div class="flow-item highlight-item">기계로 잡히는 것은 게이트로, 나머지는 색인으로 → 규칙이 늘어도 읽을 양은 그대로</div>
         </div>
         <pre style="margin:0"><code><span class="token-comment">AI가 한 화면에 primary button을 3개 만들었다</span>
-  <span class="token-arrow">→</span> ux-principles.md: "primary action은 화면당 1개를 원칙으로 한다" 추가
-  <span class="token-arrow">→</span> 다음 요청부터 AI가 스스로 지킴
+  <span class="token-arrow">→</span> 규칙: "primary action은 화면당 1개" 추가, 색인에 「화면을 새로 그릴 때」로 건다
+  <span class="token-arrow">→</span> 그래도 어기면 리뷰 체크 항목으로 올린다
 
 <span class="token-comment">AI가 임의 색상 #3B82F6을 hardcoding했다</span>
-  <span class="token-arrow">→</span> agent-rules.md: "모든 color는 design token 사용, hex 직접 입력 금지" 추가
-  <span class="token-arrow">→</span> 같은 실수 재발 없음
+  <span class="token-arrow">→</span> 커밋 전 검사에 hex 직접 입력 금지를 넣는다
+  <span class="token-arrow">→</span> 규칙을 안 읽어도 커밋이 막힌다
 
 <span class="token-comment">AI가 생성한 컴포넌트에 focus 상태가 없다</span>
-  <span class="token-arrow">→</span> review-checklist.md: "focus ring 시각적 표시 여부 확인" 항목 추가
-  <span class="token-arrow">→</span> QA 체크리스트가 점점 촘촘해짐</code></pre>
+  <span class="token-arrow">→</span> 스토리북 상태 스토리와 접근성 검사에 focus를 넣는다
+  <span class="token-arrow">→</span> 렌더로 확인되니 체크리스트를 늘리지 않아도 된다</code></pre>
       </div>
     </section>
 
@@ -2340,7 +2338,7 @@ docs/
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.35-surface"></script>
+<script src="ai-workflow-guide.js?v=0.36-entry-file"></script>
 
 </body>
 </html>

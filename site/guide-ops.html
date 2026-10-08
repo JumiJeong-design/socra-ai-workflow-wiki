@@ -44,13 +44,11 @@
 
       <h3>신규 화면 만들 때</h3>
       <ol class="styled">
-        <li>product-context.md 확인</li>
-        <li>ux-principles.md 확인</li>
-        <li>component-usage.md 확인</li>
-        <li>AI에게 화면 초안 요청</li>
-        <li>review-checklist.md로 검토</li>
+        <li>피그마 출처가 승인 상태인지 확인한다. 탐색 중이면 루프를 돌리지 않는다</li>
+        <li>AI에게 디자인 시스템 인스턴스로 화면 초안을 요청한다</li>
+        <li><a href="guide-playbooks.html#completion-stages" style="color:var(--accent);">완료 기준 3단계</a>로 결과를 확인한다</li>
         <li>Figma에서 탐색/정리</li>
-        <li>확정된 패턴을 design-system.md에 반영</li>
+        <li>확정된 패턴은 피그마 디자인 시스템 파일에 반영하고 게시한다</li>
       </ol>
 
       <h3>기존 화면 개선할 때</h3>
@@ -116,7 +114,7 @@
           <tr>
             <td>신규 기능 화면을 빠르게 구체화해야 한다</td>
             <td>제품 맥락과 UX 원칙 기준으로 초안 생성</td>
-            <td><code>product-context.md</code>, <code>ux-principles.md</code> 기준으로 초안을 만들고, Figma에서 방향성을 좁힌다.</td>
+            <td>제품 맥락과 UX 원칙을 짧게 주고 초안을 만든 뒤, Figma에서 방향성을 좁힌다.</td>
           </tr>
           <tr>
             <td>기존 화면이 디자인 시스템과 어긋나 보인다</td>
@@ -146,15 +144,15 @@
         </tbody>
       </table>
 
-      <h3>ai-workflow.md에 남기면 좋은 운영 규칙</h3>
-      <div class="code-label">ai-workflow.md</div>
+      <h3>진입 파일에 남기면 좋은 운영 규칙</h3>
+      <div class="code-label">CLAUDE.md / AGENTS.md</div>
       <pre><code><span class="token-heading">## Figma / AI 작업 선택 기준</span>
 <span class="token-item">- 탐색 단계에서는 Figma 시안, FigJam 플로우, 코드 스파이크 중 가장 빠른 방식으로 방향을 본다.</span>
 <span class="token-item">- 확정 단계에서는 component, token, typography, spacing 기준을 확인한다.</span>
 <span class="token-item">- 컴포넌트 릴리즈 전에는 구조, 상태, 색상, 접근성 스펙을 남긴다.</span>
 <span class="token-item">- 토큰 변경은 Figma와 코드의 drift를 확인한 뒤 반영한다.</span>
 <span class="token-item">- 복잡한 정책과 상태 변화는 화면을 만들기 전에 다이어그램으로 먼저 시각화한다.</span>
-<span class="token-item">- 최종 산출물은 review-checklist.md와 handoff.md 기준으로 사람이 승인한다.</span></code></pre>
+<span class="token-item">- 최종 산출물은 완료 기준 3단계(1차, 공유 가능, 픽스)로 사람이 승인한다.</span></code></pre>
 
       <h3 id="drift-signals">방향 이탈(Drift) 감지 신호</h3>
       <p>AI를 쓰면 더 빨리 만들 수 있지만, 더 빨리 엉뚱한 방향으로 갈 수도 있다. 리뷰 막판에 품질을 고치는 것과 별개로, 작업 중간에 방향이 틀어지고 있는 신호를 먼저 잡아야 한다.</p>
@@ -440,20 +438,20 @@
 
       <div class="card" style="margin-bottom: 12px;">
         <div class="card-title"><div class="card-title-dot"></div>원칙 1: AI에게 결과만 요청하지 말고 기준을 제공해야 한다</div>
-        <p style="font-size:13.5px; color: var(--text-secondary); margin:0;">프롬프트보다 context 문서가 먼저다. AI에게 기준 문서를 제공할 때 결과물의 일관성이 높아진다.</p>
+        <p style="font-size:13.5px; color: var(--text-secondary); margin:0;">프롬프트보다 기준이 먼저다. 다만 기준 문서를 미리 다 써 둘 필요는 없다. 정본 순서와 금지 사항처럼 매번 필요한 것만 진입 파일에 두고, 나머지는 작업하면서 채운다.</p>
       </div>
 
       <div class="card" style="margin-bottom: 12px;">
-        <div class="card-title"><div class="card-title-dot"></div>원칙 2: AI가 반복해서 실수하는 부분을 문서로 만든다</div>
-        <p style="font-size:13.5px; color: var(--text-secondary); margin:0 0 10px;">AI가 매번 틀리는 것을 매번 프롬프트로 설명하면 비효율적이다. 반복되는 기준은 문서로 빼야 한다.</p>
+        <div class="card-title"><div class="card-title-dot"></div>원칙 2: AI가 반복해서 실수하는 부분은 게이트로 옮긴다</div>
+        <p style="font-size:13.5px; color: var(--text-secondary); margin:0 0 10px;">같은 실수를 매번 프롬프트로 설명하면 비효율적이다. 그렇다고 규칙 문서에 한 줄씩 보태기만 하면, 규칙이 늘어날수록 읽히지 않는다. 기계로 잡히는 것은 검사와 훅으로 옮기고, 판단이 필요한 것만 규칙으로 적어 진입 파일 색인에서 가리킨다. 실제로 겪은 일은 <a href="guide-cases.html#case-rules-not-read" style="color:var(--accent);">규칙이 있는데 같은 실수가 난다</a>에 있다.</p>
         <pre style="margin:0"><code><span class="token-comment">AI가 primary button을 너무 많이 쓴다</span>
-  <span class="token-arrow">→</span> ux-principles.md에 hierarchy 원칙 추가
+  <span class="token-arrow">→</span> 판단이 필요하다: 규칙으로 적고, 색인에 「화면을 새로 그릴 때」로 건다
 
 <span class="token-comment">AI가 임의 색상을 만든다</span>
-  <span class="token-arrow">→</span> agent-rules.md에 hardcoded color 금지 추가
+  <span class="token-arrow">→</span> 기계로 잡힌다: hex 직접 입력을 커밋 전 검사로 막는다
 
 <span class="token-comment">AI가 접근성을 빼먹는다</span>
-  <span class="token-arrow">→</span> review-checklist.md에 accessibility 항목 추가</code></pre>
+  <span class="token-arrow">→</span> 렌더로 잡힌다: 스토리북 접근성 검사에 건다</code></pre>
       </div>
 
       <div class="card" style="">
@@ -464,21 +462,21 @@
           <div class="flow-arrow">↓</div>
           <div class="flow-item">매번 프롬프트로 수정 요청 → 비효율 감지</div>
           <div class="flow-arrow">↓</div>
-          <div class="flow-item">패턴 파악 → 관련 문서에 기준으로 추가</div>
+          <div class="flow-item">패턴 파악 → 게이트로 막을 수 있는지 먼저 본다</div>
           <div class="flow-arrow">↓</div>
-          <div class="flow-item highlight-item">다음 요청부터 AI가 자동으로 지킴 → 프롬프트가 짧아짐</div>
+          <div class="flow-item highlight-item">기계로 잡히는 것은 게이트로, 나머지는 색인으로 → 규칙이 늘어도 읽을 양은 그대로</div>
         </div>
         <pre style="margin:0"><code><span class="token-comment">AI가 한 화면에 primary button을 3개 만들었다</span>
-  <span class="token-arrow">→</span> ux-principles.md: "primary action은 화면당 1개를 원칙으로 한다" 추가
-  <span class="token-arrow">→</span> 다음 요청부터 AI가 스스로 지킴
+  <span class="token-arrow">→</span> 규칙: "primary action은 화면당 1개" 추가, 색인에 「화면을 새로 그릴 때」로 건다
+  <span class="token-arrow">→</span> 그래도 어기면 리뷰 체크 항목으로 올린다
 
 <span class="token-comment">AI가 임의 색상 #3B82F6을 hardcoding했다</span>
-  <span class="token-arrow">→</span> agent-rules.md: "모든 color는 design token 사용, hex 직접 입력 금지" 추가
-  <span class="token-arrow">→</span> 같은 실수 재발 없음
+  <span class="token-arrow">→</span> 커밋 전 검사에 hex 직접 입력 금지를 넣는다
+  <span class="token-arrow">→</span> 규칙을 안 읽어도 커밋이 막힌다
 
 <span class="token-comment">AI가 생성한 컴포넌트에 focus 상태가 없다</span>
-  <span class="token-arrow">→</span> review-checklist.md: "focus ring 시각적 표시 여부 확인" 항목 추가
-  <span class="token-arrow">→</span> QA 체크리스트가 점점 촘촘해짐</code></pre>
+  <span class="token-arrow">→</span> 스토리북 상태 스토리와 접근성 검사에 focus를 넣는다
+  <span class="token-arrow">→</span> 렌더로 확인되니 체크리스트를 늘리지 않아도 된다</code></pre>
       </div>
     </section>
 
@@ -491,6 +489,6 @@
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.35-surface"></script>
+<script src="ai-workflow-guide.js?v=0.36-entry-file"></script>
 </body>
 </html>
