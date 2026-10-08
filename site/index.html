@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://jumijeong-design.github.io/socra-ai-workflow-wiki/index.html" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.31-fold-subnav" />
+  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.35-surface" />
   <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
@@ -87,54 +87,61 @@
         <button class="home-tab" data-cat="stuck" type="button">막혔을 때</button>
         <button class="home-tab" data-cat="manual" type="button">AX 매뉴얼</button>
       </div>
+      <div class="home-surfaces" aria-label="표면으로 거르기">
+        <span class="home-surfaces-label">표면</span>
+        <button class="home-surface" data-surface="figma" type="button" aria-pressed="false">피그마</button>
+        <button class="home-surface" data-surface="code" type="button" aria-pressed="false">코드</button>
+        <button class="home-surface" data-surface="storybook" type="button" aria-pressed="false">스토리북</button>
+        <button class="home-surface" data-surface="agent" type="button" aria-pressed="false">에이전트</button>
+      </div>
       <div class="home-list">
 
         <div class="home-stage" data-cat="principles">원칙 · 한 번 읽는다</div>
-        <a class="home-row" data-cat="principles" href="guide-basics.html#perspective"><span class="home-row-title">핵심 관점</span><span class="home-row-tag">원칙</span><span class="home-row-sub">현장 이슈에서 AI가 맡을 일과 사람이 판단할 일을 먼저 가르고, 제품 단계별로 전략을 다르게 잡는다.</span></a>
-        <a class="home-row" data-cat="principles" href="guide-ops.html#principles"><span class="home-row-title">핵심 원칙</span><span class="home-row-tag">원칙</span><span class="home-row-sub">탐색은 빠른 도구에서 하고, 확정 기준은 팀이 다시 찾을 수 있는 표면에 남긴다.</span></a>
-        <a class="home-row" data-cat="principles" href="workflow-visualization.html"><span class="home-row-title">운영 루프 시각화</span><span class="home-row-tag">원칙</span><span class="home-row-sub">탐색 → 확정 기준 → 제품 반영 → QA → 기록·보강으로 도는 출시 후 운영 루프를 한 장으로 본다.</span></a>
-        <a class="home-row" data-cat="principles" href="guide-playbooks.html#completion-stages"><span class="home-row-title">완료 기준 3단계</span><span class="home-row-tag">원칙</span><span class="home-row-sub">1차 / 공유 가능 / 픽스. 에이전트의 "완료"와 디자이너의 "완료"를 가르고, 일정은 두 날짜로 말한다.</span></a>
+        <a class="home-row" data-cat="principles" data-surface="agent" href="guide-basics.html#perspective"><span class="home-row-title">핵심 관점</span><span class="home-row-tag">원칙</span><span class="home-row-sub">현장 이슈에서 AI가 맡을 일과 사람이 판단할 일을 먼저 가르고, 제품 단계별로 전략을 다르게 잡는다.</span></a>
+        <a class="home-row" data-cat="principles" data-surface="figma code" href="guide-ops.html#principles"><span class="home-row-title">핵심 원칙</span><span class="home-row-tag">원칙</span><span class="home-row-sub">탐색은 빠른 도구에서 하고, 확정 기준은 팀이 다시 찾을 수 있는 표면에 남긴다.</span></a>
+        <a class="home-row" data-cat="principles" data-surface="figma code storybook" href="workflow-visualization.html"><span class="home-row-title">운영 루프 시각화</span><span class="home-row-tag">원칙</span><span class="home-row-sub">탐색 → 확정 기준 → 제품 반영 → QA → 기록·보강으로 도는 출시 후 운영 루프를 한 장으로 본다.</span></a>
+        <a class="home-row" data-cat="principles" data-surface="agent" href="guide-playbooks.html#completion-stages"><span class="home-row-title">완료 기준 3단계</span><span class="home-row-tag">원칙</span><span class="home-row-sub">1차 / 공유 가능 / 픽스. 에이전트의 "완료"와 디자이너의 "완료"를 가르고, 일정은 두 날짜로 말한다.</span></a>
         <a class="home-row" data-cat="principles" href="guide-ops.html#schedule-template"><span class="home-row-title">AI 도입 시 일정 산정 가이드</span><span class="home-row-tag">원칙</span><span class="home-row-sub">처음 2~4주는 학습 곡선을 감안하고, 어떤 업무가 실제로 단축되는지 기준을 잡는다.</span></a>
-        <a class="home-row" data-cat="principles" href="guide-wiki.html#designer-dev-terms"><span class="home-row-title">개발 협업 용어</span><span class="home-row-tag">원칙</span><span class="home-row-sub">디자이너가 FE와 이야기할 때 자주 어긋나는 용어를 같은 뜻으로 맞춘다.</span></a>
+        <a class="home-row" data-cat="principles" data-surface="code" href="guide-wiki.html#designer-dev-terms"><span class="home-row-title">개발 협업 용어</span><span class="home-row-tag">원칙</span><span class="home-row-sub">디자이너가 FE와 이야기할 때 자주 어긋나는 용어를 같은 뜻으로 맞춘다.</span></a>
 
         <div class="home-stage" data-cat="procedure">절차 · 세팅</div>
-        <a class="home-row" data-cat="procedure" href="guide-basics.html#quickstart"><span class="home-row-title">빠른 시작</span><span class="home-row-tag">세팅</span><span class="home-row-sub">25분. docs 폴더, product-context, agent-rules, 진입점 연결까지 최소 구성으로 시작한다.</span></a>
-        <a class="home-row" data-cat="procedure" href="guide-setup.html#connect"><span class="home-row-title">AI 에디터 연결 설정</span><span class="home-row-tag">세팅</span><span class="home-row-sub">MCP를 지원하는 도구에서 진입 파일과 규칙 문서를 연결한다.</span></a>
-        <a class="home-row" data-cat="procedure" href="guide-setup.html#figma-mcp-setup"><span class="home-row-title">Figma MCP 연결 설정</span><span class="home-row-tag">세팅</span><span class="home-row-sub">Remote/Desktop 차이, 계정 권한, Dev Mode, 첫 읽기 테스트까지 연결 전에 확인한다.</span></a>
+        <a class="home-row" data-cat="procedure" data-surface="agent" href="guide-basics.html#quickstart"><span class="home-row-title">빠른 시작</span><span class="home-row-tag">세팅</span><span class="home-row-sub">10분. 진입 파일, 정본 순서, 워크로그 자리만 만들고 첫 작업을 맡긴다.</span></a>
+        <a class="home-row" data-cat="procedure" data-surface="agent" href="guide-setup.html#connect"><span class="home-row-title">AI 에디터 연결 설정</span><span class="home-row-tag">세팅</span><span class="home-row-sub">MCP를 지원하는 도구에서 진입 파일과 규칙 문서를 연결한다.</span></a>
+        <a class="home-row" data-cat="procedure" data-surface="figma agent" href="guide-setup.html#figma-mcp-setup"><span class="home-row-title">Figma MCP 연결 설정</span><span class="home-row-tag">세팅</span><span class="home-row-sub">Remote/Desktop 차이, 계정 권한, Dev Mode, 첫 읽기 테스트까지 연결 전에 확인한다.</span></a>
 
         <div class="home-stage" data-cat="procedure">절차 · 프로세스 구축</div>
-        <a class="home-row" data-cat="procedure" href="guide-build.html#step0"><span class="home-row-title">탐색 단계에서 기준 찾기</span><span class="home-row-tag">프로세스 구축</span><span class="home-row-sub">방향이 정해지기 전에는 루프를 돌리지 않는다. 반복되는 패턴에서 기준 후보를 뽑는다.</span></a>
-        <a class="home-row" data-cat="procedure" href="guide-manual.html#manual-10"><span class="home-row-title">무엇을 갖추고 시작하나</span><span class="home-row-tag">프로세스 구축</span><span class="home-row-sub">기준 문서를 먼저 다 쓰지 않는다. 자리와 정본 순서만 정하고 루프를 돌리며 채운다.</span></a>
-        <a class="home-row" data-cat="procedure" href="guide-wiki.html#daily-worklog-to-wiki"><span class="home-row-title">기록을 위키로 올리기</span><span class="home-row-tag">프로세스 구축</span><span class="home-row-sub">날짜별 기록에서 경험 기록과 매뉴얼을 거쳐, 검증된 것만 공개 위키로 내린다.</span></a>
+        <a class="home-row" data-cat="procedure" data-surface="figma" href="guide-build.html#step0"><span class="home-row-title">탐색 단계에서 기준 찾기</span><span class="home-row-tag">프로세스 구축</span><span class="home-row-sub">방향이 정해지기 전에는 루프를 돌리지 않는다. 반복되는 패턴에서 기준 후보를 뽑는다.</span></a>
+        <a class="home-row" data-cat="procedure" data-surface="figma code storybook agent" href="guide-manual.html#manual-10"><span class="home-row-title">무엇을 갖추고 시작하나</span><span class="home-row-tag">프로세스 구축</span><span class="home-row-sub">기준 문서를 먼저 다 쓰지 않는다. 자리와 정본 순서만 정하고 루프를 돌리며 채운다.</span></a>
+        <a class="home-row" data-cat="procedure" data-surface="agent" href="guide-wiki.html#daily-worklog-to-wiki"><span class="home-row-title">기록을 위키로 올리기</span><span class="home-row-tag">프로세스 구축</span><span class="home-row-sub">날짜별 기록에서 경험 기록과 매뉴얼을 거쳐, 검증된 것만 공개 위키로 내린다.</span></a>
 
         <div class="home-stage" data-cat="procedure">절차 · 제품 구축</div>
-        <a class="home-row" data-cat="procedure" href="guide-playbooks.html#screen-design-playbook"><span class="home-row-title">화면 디자인</span><span class="home-row-tag">제품 구축</span><span class="home-row-sub">새 화면을 디자인 시스템 인스턴스로 그리고 정합까지 가는 순서.</span></a>
-        <a class="home-row" data-cat="procedure" href="guide-wiki.html#figma-git-sync"><span class="home-row-title">Figma-Git Sync</span><span class="home-row-tag">제품 구축</span><span class="home-row-sub">피그마와 깃 중 무엇이 정본인지 경계를 긋는다.</span></a>
-        <a class="home-row" data-cat="procedure" href="guide-ops.html#motion-ai-workflow"><span class="home-row-title">AI 모션 제작 워크플로</span><span class="home-row-tag">제품 구축</span><span class="home-row-sub">레퍼런스 녹화, 조정 가능한 미리보기, CSS 코드와 FE 전달 패키지까지.</span></a>
-        <a class="home-row" data-cat="procedure" href="guide-extensions.html#product-type"><span class="home-row-title">제품 유형별 확장</span><span class="home-row-tag">제품 구축</span><span class="home-row-sub">다크모드, 다국어, 반응형, 모션, 브랜드 중 내 제품에 필요한 것을 네 질문으로 고른다.</span></a>
+        <a class="home-row" data-cat="procedure" data-surface="figma" href="guide-playbooks.html#screen-design-playbook"><span class="home-row-title">화면 디자인</span><span class="home-row-tag">제품 구축</span><span class="home-row-sub">새 화면을 디자인 시스템 인스턴스로 그리고 정합까지 가는 순서.</span></a>
+        <a class="home-row" data-cat="procedure" data-surface="figma code" href="guide-wiki.html#figma-git-sync"><span class="home-row-title">Figma-Git Sync</span><span class="home-row-tag">제품 구축</span><span class="home-row-sub">피그마와 깃 중 무엇이 정본인지 경계를 긋는다.</span></a>
+        <a class="home-row" data-cat="procedure" data-surface="code" href="guide-ops.html#motion-ai-workflow"><span class="home-row-title">AI 모션 제작 워크플로</span><span class="home-row-tag">제품 구축</span><span class="home-row-sub">레퍼런스 녹화, 조정 가능한 미리보기, CSS 코드와 FE 전달 패키지까지.</span></a>
+        <a class="home-row" data-cat="procedure" data-surface="figma code" href="guide-extensions.html#product-type"><span class="home-row-title">제품 유형별 확장</span><span class="home-row-tag">제품 구축</span><span class="home-row-sub">다크모드, 다국어, 반응형, 모션, 브랜드 중 내 제품에 필요한 것을 네 질문으로 고른다.</span></a>
 
         <div class="home-stage" data-cat="procedure">절차 · 제품 운영</div>
-        <a class="home-row" data-cat="procedure" href="guide-wiki.html#ai-design-review"><span class="home-row-title">AI 디자인 리뷰</span><span class="home-row-tag">제품 운영</span><span class="home-row-sub">AI에게 리뷰를 맡길 때의 기준과 사람이 남겨야 하는 판단.</span></a>
-        <a class="home-row" data-cat="procedure" href="guide-playbooks.html#audit-ops-principles"><span class="home-row-title">대량 작업·재발 방지</span><span class="home-row-tag">제품 운영</span><span class="home-row-sub">감사 → 승인 → 실행, 파일럿 1건 → 배치, 그리고 같은 실수를 끊는 재발 방지 규칙.</span></a>
-        <a class="home-row" data-cat="procedure" href="guide-ops.html#usage"><span class="home-row-title">실제 업무 활용</span><span class="home-row-tag">제품 운영</span><span class="home-row-sub">신규 화면, 기존 화면 개선, 개발 핸드오프에 어떤 문서와 체크리스트를 붙일지.</span></a>
+        <a class="home-row" data-cat="procedure" data-surface="figma agent" href="guide-wiki.html#ai-design-review"><span class="home-row-title">AI 디자인 리뷰</span><span class="home-row-tag">제품 운영</span><span class="home-row-sub">AI에게 리뷰를 맡길 때의 기준과 사람이 남겨야 하는 판단.</span></a>
+        <a class="home-row" data-cat="procedure" data-surface="figma agent" href="guide-playbooks.html#audit-ops-principles"><span class="home-row-title">대량 작업·재발 방지</span><span class="home-row-tag">제품 운영</span><span class="home-row-sub">감사 → 승인 → 실행, 파일럿 1건 → 배치, 그리고 같은 실수를 끊는 재발 방지 규칙.</span></a>
+        <a class="home-row" data-cat="procedure" data-surface="figma code" href="guide-ops.html#usage"><span class="home-row-title">실제 업무 활용</span><span class="home-row-tag">제품 운영</span><span class="home-row-sub">신규 화면, 기존 화면 개선, 개발 핸드오프에 어떤 문서와 체크리스트를 붙일지.</span></a>
 
         <div class="home-stage" data-cat="stuck">막혔을 때 · 찾아본다</div>
-        <a class="home-row" data-cat="stuck" href="figma-mcp-traps.html"><span class="home-row-title">Figma MCP 작업 함정 모음</span><span class="home-row-tag">Figma</span><span class="home-row-sub">컴포넌트, API, 운영, 환경, 인스턴스·게시 정합 함정 14개. "값이 안 바뀐다", "0건이 나왔다"일 때 연다.</span></a>
+        <a class="home-row" data-cat="stuck" data-surface="figma agent" href="figma-mcp-traps.html"><span class="home-row-title">Figma MCP 작업 함정 모음</span><span class="home-row-tag">Figma</span><span class="home-row-sub">컴포넌트, API, 운영, 환경, 인스턴스·게시 정합 함정 14개. "값이 안 바뀐다", "0건이 나왔다"일 때 연다.</span></a>
         <a class="home-row" data-cat="stuck" href="guide-ops.html#drift-signals"><span class="home-row-title">방향 이탈 감지</span><span class="home-row-tag">에이전트</span><span class="home-row-sub">피드백이 반복되거나 구현이 의도에서 멀어질 때 점검할 신호와 대응.</span></a>
-        <a class="home-row" data-cat="stuck" href="guide-ops.html#figma-ai-skills"><span class="home-row-title">도구 / 작업 선택 가이드</span><span class="home-row-tag">에이전트</span><span class="home-row-sub">탐색, 정리, 검증, 전달 중 지금 일이 어디에 가까운지 판단하고 다음 행동을 고른다.</span></a>
+        <a class="home-row" data-cat="stuck" data-surface="figma agent" href="guide-ops.html#figma-ai-skills"><span class="home-row-title">도구 / 작업 선택 가이드</span><span class="home-row-tag">에이전트</span><span class="home-row-sub">탐색, 정리, 검증, 전달 중 지금 일이 어디에 가까운지 판단하고 다음 행동을 고른다.</span></a>
 
-        <a class="home-row" data-cat="stuck" href="guide-cases.html#case-publish-not-the-cause"><span class="home-row-title">안 바뀌는 건 게시 때문이 아니었다 <span class="nav-new">NEW</span></span><span class="home-row-tag">사례</span><span class="home-row-sub">「게시가 필요합니다」인데 게시할 게 없을 때. 안 바뀌는 원인 넷을 가른다.</span></a>
-        <a class="home-row" data-cat="stuck" href="guide-cases.html#case-rules-not-read"><span class="home-row-title">규칙이 있는데 같은 실수가 난다 <span class="nav-new">NEW</span></span><span class="home-row-tag">사례</span><span class="home-row-sub">규칙을 늘리지 말고 증상 색인과 실행 직전 훅으로 옮긴다.</span></a>
-        <a class="home-row" data-cat="stuck" href="guide-cases.html#case-audit-zero-and-false-defects"><span class="home-row-title">0건과 결함 3곳 <span class="nav-new">NEW</span></span><span class="home-row-tag">사례</span><span class="home-row-sub">전수 검사가 0을 내거나 일부러 둔 값을 결함으로 읽을 때 되묻는 법.</span></a>
-        <a class="home-row" data-cat="stuck" href="guide-cases.html#case-storybook-sketchpad"><span class="home-row-title">스토리북이 그림판이 될 때 <span class="nav-new">NEW</span></span><span class="home-row-tag">사례</span><span class="home-row-sub">화면 스토리가 패키지 컴포넌트를 안 쓰고 손 마크업과 자리표시로 그려질 때.</span></a>
-        <a class="home-row" data-cat="stuck" href="guide-cases.html#case-two-builds-compare"><span class="home-row-title">게시본 두 개 직접 대조 <span class="nav-new">NEW</span></span><span class="home-row-tag">사례</span><span class="home-row-sub">시각 비교 도구가 막혔을 때 URL 둘로 대조하고, 0%와 개수 비교를 믿지 않는다.</span></a>
-        <a class="home-row" data-cat="stuck" href="guide-cases.html#case-color-ramp-generations"><span class="home-row-title">이름은 같은데 값이 다를 때 <span class="nav-new">NEW</span></span><span class="home-row-tag">사례</span><span class="home-row-sub">토큰을 이름이 아니라 값으로, 라이트·다크 둘 다 대조한다.</span></a>
-        <a class="home-row" data-cat="stuck" href="guide-cases.html#case-copy-source-of-truth"><span class="home-row-title">문구의 정본이 세 군데일 때 <span class="nav-new">NEW</span></span><span class="home-row-tag">사례</span><span class="home-row-sub">언어 모드를 걸고 재고, 정본은 기획이 정하게 한다.</span></a>
+        <a class="home-row" data-cat="stuck" data-surface="figma" href="guide-cases.html#case-publish-not-the-cause"><span class="home-row-title">안 바뀌는 건 게시 때문이 아니었다 <span class="nav-new">NEW</span></span><span class="home-row-tag">사례</span><span class="home-row-sub">「게시가 필요합니다」인데 게시할 게 없을 때. 안 바뀌는 원인 넷을 가른다.</span></a>
+        <a class="home-row" data-cat="stuck" data-surface="agent" href="guide-cases.html#case-rules-not-read"><span class="home-row-title">규칙이 있는데 같은 실수가 난다 <span class="nav-new">NEW</span></span><span class="home-row-tag">사례</span><span class="home-row-sub">규칙을 늘리지 말고 증상 색인과 실행 직전 훅으로 옮긴다.</span></a>
+        <a class="home-row" data-cat="stuck" data-surface="figma agent" href="guide-cases.html#case-audit-zero-and-false-defects"><span class="home-row-title">0건과 결함 3곳 <span class="nav-new">NEW</span></span><span class="home-row-tag">사례</span><span class="home-row-sub">전수 검사가 0을 내거나 일부러 둔 값을 결함으로 읽을 때 되묻는 법.</span></a>
+        <a class="home-row" data-cat="stuck" data-surface="code storybook" href="guide-cases.html#case-storybook-sketchpad"><span class="home-row-title">스토리북이 그림판이 될 때 <span class="nav-new">NEW</span></span><span class="home-row-tag">사례</span><span class="home-row-sub">화면 스토리가 패키지 컴포넌트를 안 쓰고 손 마크업과 자리표시로 그려질 때.</span></a>
+        <a class="home-row" data-cat="stuck" data-surface="storybook" href="guide-cases.html#case-two-builds-compare"><span class="home-row-title">게시본 두 개 직접 대조 <span class="nav-new">NEW</span></span><span class="home-row-tag">사례</span><span class="home-row-sub">시각 비교 도구가 막혔을 때 URL 둘로 대조하고, 0%와 개수 비교를 믿지 않는다.</span></a>
+        <a class="home-row" data-cat="stuck" data-surface="figma code" href="guide-cases.html#case-color-ramp-generations"><span class="home-row-title">이름은 같은데 값이 다를 때 <span class="nav-new">NEW</span></span><span class="home-row-tag">사례</span><span class="home-row-sub">토큰을 이름이 아니라 값으로, 라이트·다크 둘 다 대조한다.</span></a>
+        <a class="home-row" data-cat="stuck" data-surface="figma code" href="guide-cases.html#case-copy-source-of-truth"><span class="home-row-title">문구의 정본이 세 군데일 때 <span class="nav-new">NEW</span></span><span class="home-row-tag">사례</span><span class="home-row-sub">언어 모드를 걸고 재고, 정본은 기획이 정하게 한다.</span></a>
 
         <div class="home-stage" data-cat="manual">AX 매뉴얼 · 처음부터 순서대로</div>
         <a class="home-row" data-cat="manual" href="guide-manual.html#manual-00"><span class="home-row-title">읽는 순서</span><span class="home-row-tag">지도</span><span class="home-row-sub">구축 → 운영 → 원리. 처음이면 구축부터, 구조가 있으면 운영에서 자기 영역만, 설득해야 하면 원리부터.</span></a>
-        <a class="home-row" data-cat="manual" href="guide-manual.html#manual-10"><span class="home-row-title">구축 10~13</span><span class="home-row-tag">구축</span><span class="home-row-sub">전제 다섯 자리, 채널 다섯과 게시 게이트, 시각 기준, 행동 기준. 에이전트가 움직일 구조를 세운다.</span></a>
-        <a class="home-row" data-cat="manual" href="guide-manual.html#manual-20"><span class="home-row-title">운영 20~26</span><span class="home-row-tag">운영</span><span class="home-row-sub">사고마다 붙은 하네스 여섯, 그리고 DS 감사·화면 왕복·계약 정리·배포·세션·판단에 실제로 붙여 넣는 프롬프트.</span></a>
+        <a class="home-row" data-cat="manual" data-surface="figma code storybook agent" href="guide-manual.html#manual-10"><span class="home-row-title">구축 10~13</span><span class="home-row-tag">구축</span><span class="home-row-sub">전제 다섯 자리, 채널 다섯과 게시 게이트, 시각 기준, 행동 기준. 에이전트가 움직일 구조를 세운다.</span></a>
+        <a class="home-row" data-cat="manual" data-surface="code storybook agent" href="guide-manual.html#manual-20"><span class="home-row-title">운영 20~26</span><span class="home-row-tag">운영</span><span class="home-row-sub">사고마다 붙은 하네스 여섯, 그리고 DS 감사·화면 왕복·계약 정리·배포·세션·판단에 실제로 붙여 넣는 프롬프트.</span></a>
         <a class="home-row" data-cat="manual" href="guide-manual.html#manual-31"><span class="home-row-title">원리 31~33</span><span class="home-row-tag">원리</span><span class="home-row-sub">이 방식의 단점 다섯, AI 몫과 사람 몫, PO·기획·FE·브랜드 사이의 중간안.</span></a>
 
       </div>
@@ -148,6 +155,7 @@
     <!-- 최근 갱신 -->
     <div class="home-group home-recent">
       <div class="home-group-title">최근 갱신 · <a href="changelog.html" style="color:inherit;">전체 이력</a></div>
+      <div class="home-recent-item"><time>2026.10.08</time><a href="changelog.html#v0-35">v0.35 빠른 시작을 새 전제로 고쳐 쓰고, 홈 목록을 표면으로 거름</a></div>
       <div class="home-recent-item"><time>2026.10.08</time><a href="changelog.html#v0-34">v0.34 문서 세트 가이드를 걷어 내고 프로세스 구축을 AX 매뉴얼로 넘김</a></div>
       <div class="home-recent-item"><time>2026.10.08</time><a href="changelog.html#v0-33">v0.33 홈에 최근 본 문서 다섯 개를 보여 줌</a></div>
       <div class="home-recent-item"><time>2026.10.08</time><a href="changelog.html#v0-32">v0.32 가이드 다섯 페이지가 검색에서 각자 자기 주소로 잡히게 고침</a></div>
@@ -164,16 +172,43 @@
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.34-manual-handoff"></script>
+<script src="ai-workflow-guide.js?v=0.35-surface"></script>
 <script>
 (function () {
   var tabs = document.querySelectorAll('.home-tab');
-  var rows = document.querySelectorAll('.home-row, .home-stage');
+  var chips = document.querySelectorAll('.home-surface');
+  var rows = document.querySelectorAll('.home-row');
+  var stages = document.querySelectorAll('.home-stage');
+  var cat = 'all', surface = '';
+  function apply() {
+    rows.forEach(function (row) {
+      var okCat = cat === 'all' || row.getAttribute('data-cat') === cat;
+      var okSurface = !surface || (' ' + (row.getAttribute('data-surface') || '') + ' ').indexOf(' ' + surface + ' ') !== -1;
+      row.hidden = !(okCat && okSurface);
+    });
+    // 아래 행이 모두 숨으면 단계 제목도 숨긴다
+    stages.forEach(function (stage) {
+      var el = stage.nextElementSibling, any = false;
+      while (el && !el.classList.contains('home-stage')) {
+        if (el.classList.contains('home-row') && !el.hidden) { any = true; break; }
+        el = el.nextElementSibling;
+      }
+      stage.hidden = !any;
+    });
+  }
   tabs.forEach(function (tab) {
     tab.addEventListener('click', function () {
-      var cat = tab.getAttribute('data-cat');
+      cat = tab.getAttribute('data-cat');
       tabs.forEach(function (t) { t.classList.toggle('active', t === tab); });
-      rows.forEach(function (row) { row.hidden = cat !== 'all' && row.getAttribute('data-cat') !== cat; });
+      apply();
+    });
+  });
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var value = chip.getAttribute('data-surface');
+      surface = surface === value ? '' : value;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.getAttribute('data-surface') === surface)); });
+      apply();
     });
   });
 })();

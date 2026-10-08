@@ -2288,6 +2288,14 @@ mark.search-inline-hit--active {
 }
 .home-tab:hover { color: var(--text-primary); }
 .home-tab.active { color: var(--text-primary); border-bottom-color: var(--accent); }
+.home-surfaces { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 12px 0 4px; }
+.home-surfaces-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: var(--text-muted); margin-right: 4px; }
+.home-surface {
+  background: none; border: 1px solid var(--border); border-radius: 999px; padding: 4px 11px;
+  font-family: inherit; font-size: 12px; font-weight: 600; color: var(--text-secondary); cursor: pointer;
+}
+.home-surface:hover { color: var(--text-primary); border-color: var(--text-muted); }
+.home-surface[aria-pressed="true"] { color: var(--accent); background: var(--accent-dim); border-color: var(--accent-border2); }
 .home-stage { padding: 20px 0 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
 .home-row {
   display: grid; grid-template-columns: 1fr auto; gap: 3px 16px; align-items: baseline;
