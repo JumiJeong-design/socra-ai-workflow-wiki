@@ -91,10 +91,7 @@ for i, g in enumerate(GROUPS):
     head = re.sub(r'<title>[^<]*</title>', f'<title>{page_title}</title>', SHELL_HEAD)
     head = re.sub(r'(<meta property="og:title" content=")[^"]*', rf'\g<1>{page_title}', head)
     head = head.replace('/ai-workflow-guide.html"', f'/{g["file"]}"')
-    head = head.replace(
-        '<span class="mobile-topbar-title">AI 운영 문서 구축 가이드</span>',
-        f'<span class="mobile-topbar-title">{g["nav_title"]}</span>'
-    )
+    head = re.sub(r'(<span class="mobile-topbar-title">)[^<]*', rf'\g<1>{g["nav_title"]}', head)
 
     nav = make_nav(g['file'])
 
