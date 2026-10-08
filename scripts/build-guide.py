@@ -13,7 +13,7 @@ with open(os.path.join(ROOT, 'site', 'ai-workflow-guide.html'), 'r') as f:
     src = f.read()
 
 SHELL_HEAD = src[:src.index('  <!-- Main -->') + len('  <!-- Main -->\n')]
-SHELL_FOOT = '\n<script src="ai-workflow-guide.js?v=0.33-viewed"></script>\n</body>\n</html>'
+SHELL_FOOT = '\n<script src="ai-workflow-guide.js?v=0.34-manual-handoff"></script>\n</body>\n</html>'
 
 # main 내부 전체 추출
 main_body = src[src.index('  <main class="main">') + len('  <main class="main">'):
@@ -38,15 +38,15 @@ GROUPS = [
     {
         'id': 'build',
         'file': 'guide-build.html',
-        'nav_title': '문서 구축 가이드',
+        'nav_title': '탐색 단계',
         'start': '    <!-- Step 0 -->',
-        'end': '    <section class="section" id="priority">',
+        'end': '    <!-- Usage -->',
     },
     {
         'id': 'ops',
         'file': 'guide-ops.html',
         'nav_title': '실무 운영',
-        'start': '    <section class="section" id="priority">',
+        'start': '    <!-- Usage -->',
         'end': '    <!-- 제품 유형 자가진단 -->',
     },
     {
@@ -62,7 +62,7 @@ GROUPS = [
 ALL_PAGES = [
     {'file': 'guide-basics.html',               'title': '기본 이해'},
     {'file': 'guide-setup.html',                'title': '연결 / 환경 설정'},
-    {'file': 'guide-build.html',                'title': '문서 구축 가이드'},
+    {'file': 'guide-build.html',                'title': '탐색 단계'},
     {'file': 'guide-ops.html',                  'title': '실무 운영'},
     {'file': 'guide-extensions.html',           'title': '제품 유형별 확장'},
     {'file': 'guide-wiki.html',                 'title': '실무 가이드'},

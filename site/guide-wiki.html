@@ -189,29 +189,26 @@
     <hr class="divider" />
 
     <section class="wiki-doc" id="daily-worklog-to-wiki">
-      <h1>Daily Worklog to Wiki</h1>
-      <h2>Purpose</h2>
-      <p><code>jumi-worklog</code>의 날짜별 기록을 그대로 복사하지 않고, 반복 가능한 지식으로 정제해서 이 repo에 승격한다.</p>
-      <h2>Promotion Criteria</h2>
-      <p>Worklog 항목은 아래 중 하나 이상에 해당하면 위키 후보가 된다.</p>
+      <h1>기록을 위키로 올리기</h1>
+      <p>날짜별 워크로그를 그대로 옮기지 않는다. 세 층을 거치며 줄이고, 검증된 것만 공개 위키로 내린다.</p>
+      <h2>세 층</h2>
+      <ol>
+      <li><strong>워크로그.</strong> 날짜별 파일 하나. 계획과 기록이 같이 있다. 비공개다.</li>
+      <li><strong>경험 기록과 매뉴얼.</strong> 판단이 뒤집힌 경험은 한 편의 글로 키운다. 같은 일이 되풀이되면 매뉴얼 장으로 정리한다. 원본은 마크다운이고 비공개다.</li>
+      <li><strong>위키.</strong> 매뉴얼 장은 같은 번호로 하나씩 내린다. 경험 기록은 원인과 처방, 프롬프트만 남겨 사례로 낸다.</li>
+      </ol>
+      <p>방향은 한쪽이다. 위키에서 고칠 것이 생기면 매뉴얼을 먼저 고치고 내려보낸다.</p>
+      <h2>무엇을 올리나</h2>
+      <p>아래 중 하나라도 맞으면 후보다.</p>
       <ul>
       <li>같은 문제가 다시 나올 가능성이 높다.</li>
-      <li>Figma, Git, AI 협업 방식의 규칙을 바꿨다.</li>
-      <li>특정 컴포넌트나 화면 설계 방식에 재사용 가능한 판단이 생겼다.</li>
-      <li>실패한 시도에서 다음 작업을 줄여주는 교훈이 나왔다.</li>
+      <li>피그마, 코드, AI 협업 방식의 규칙을 바꿨다.</li>
+      <li>다른 화면이나 컴포넌트에도 쓸 판단이 생겼다.</li>
+      <li>실패한 시도에서 다음 작업을 줄여 주는 교훈이 나왔다.</li>
       </ul>
-      <h2>Promotion Flow</h2>
-      <ol>
-      <li>Source worklog link를 확인한다.</li>
-      <li>날짜별 맥락에서 재사용 가능한 규칙만 추린다.</li>
-      <li><code>wiki/guides/</code>, <code>wiki/playbooks/</code>, <code>wiki/cases/</code> 중 목적에 맞는 위치를 고른다.</li>
-      <li>새 문서 하단에 <code>Source Worklog</code> 섹션을 둔다.</li>
-      <li>worklog에는 어떤 위키 문서로 승격됐는지 역링크를 남긴다.</li>
-      </ol>
-      <h2>Required Footer</h2>
-      <pre><code class="language-md">
-      - `jumi-worklog/YYYY-MM-DD.md`
-      </code></pre>
+      <p>초안은 올리지 않는다. 매뉴얼 본장이 되고, 사례는 한눈에 보는 표가 생긴 뒤에 낸다.</p>
+      <h2>공개용으로 거른다</h2>
+      <p>파일 키, 노드 ID, 내부 링크, 비공개 레포 경로, 사람 이름, PR 번호는 뺀다. 출처는 문서 끝 <code>Source Worklog</code> 절에만 남긴다. 이 절은 사이트에 렌더되지 않는다.</p>
     </section>
 
     <hr class="divider" />
@@ -363,6 +360,6 @@
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.33-viewed"></script>
+<script src="ai-workflow-guide.js?v=0.34-manual-handoff"></script>
 </body>
 </html>

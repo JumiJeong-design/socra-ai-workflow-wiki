@@ -13,7 +13,7 @@ GROUPS = [
         'docs': [
             {'id': 'figma-git-sync',                'src': 'wiki/guides/30-figma-git-sync.md',                'label': 'Figma-Git Sync'},
             {'id': 'ai-design-review',              'src': 'wiki/guides/40-ai-design-review.md',              'label': 'AI 디자인 리뷰'},
-            {'id': 'daily-worklog-to-wiki',         'src': 'wiki/guides/31-daily-worklog-to-wiki.md',         'label': 'Daily Worklog → Wiki'},
+            {'id': 'daily-worklog-to-wiki',         'src': 'wiki/guides/31-daily-worklog-to-wiki.md',         'label': '기록을 위키로 올리기'},
             {'id': 'designer-dev-terms',            'src': 'wiki/guides/80-designer-dev-terms.md',            'label': '개발 협업 용어'},
         ]
     },
@@ -68,7 +68,7 @@ GROUPS = [
 ALL_PAGES = [
     {'file': 'guide-basics.html',      'title': '기본 이해'},
     {'file': 'guide-setup.html',       'title': '연결 / 환경 설정'},
-    {'file': 'guide-build.html',       'title': '문서 구축 가이드'},
+    {'file': 'guide-build.html',       'title': '탐색 단계'},
     {'file': 'guide-ops.html',         'title': '실무 운영'},
     {'file': 'guide-extensions.html',  'title': '제품 유형별 확장'},
     {'file': 'guide-wiki.html',        'title': '실무 가이드'},
@@ -143,7 +143,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.33-viewed"></script>
+<script src="ai-workflow-guide.js?v=0.34-manual-handoff"></script>
 </body>
 </html>
 '''
