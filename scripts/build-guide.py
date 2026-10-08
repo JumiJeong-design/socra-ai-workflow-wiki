@@ -58,20 +58,14 @@ GROUPS = [
     },
 ]
 
-# ── prev/next 전체 순서 (가이드 5개 + wiki 7개) ───────────────
+# ── prev/next 순서 (가이드 5개 → build-wiki.py의 첫 페이지로 이어짐) ──
 ALL_PAGES = [
     {'file': 'guide-basics.html',               'title': '기본 이해'},
     {'file': 'guide-setup.html',                'title': '연결 / 환경 설정'},
     {'file': 'guide-build.html',                'title': '문서 구축 가이드'},
     {'file': 'guide-ops.html',                  'title': '실무 운영'},
     {'file': 'guide-extensions.html',           'title': '제품 유형별 확장'},
-    {'file': 'figma-git-sync.html',             'title': 'Figma-Git Sync'},
-    {'file': 'figma-first-storybook-verified.html', 'title': 'Historical Figma / Storybook 교훈'},
-    {'file': 'ai-design-review.html',           'title': 'AI 디자인 리뷰'},
-    {'file': 'daily-worklog-to-wiki.html',      'title': 'Daily Worklog → Wiki'},
-    {'file': 'designer-dev-terms.html',         'title': '개발 협업 용어'},
-    {'file': 'component-update-playbook.html',  'title': '컴포넌트 업데이트 플레이북'},
-    {'file': 'screen-design-playbook.html',     'title': '화면 디자인 플레이북'},
+    {'file': 'guide-wiki.html',                 'title': '실무 가이드'},
 ]
 
 def make_nav(file):
