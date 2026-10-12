@@ -1,5 +1,7 @@
 # Figma / Git Sync 경계
 
+> 이 문서의 정본 순서·스토리북 경계·「계획은 승인이 아니다」는 [매뉴얼 11 채널 다섯과 게시 게이트](../manual/11-five-channels-publish-gate.md)와 [13 행동 기준](../manual/13-behavior-baseline.md)으로 합쳤다(v0.39). 아래는 옛 판으로 남겨 둔다.
+
 ## 목적
 
 Figma, Prism(소크라의 디자인 시스템 패키지), 코드 구현, Storybook이 서로 다른 기준을 말하지 않도록 역할 경계를 정리한다.

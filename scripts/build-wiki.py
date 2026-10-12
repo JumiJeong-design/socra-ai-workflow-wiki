@@ -87,6 +87,15 @@ def make_nav(file):
 
 md_parser = markdown.Markdown(extensions=['tables', 'fenced_code'])
 
+# 위키 md끼리 건 링크(../manual/11-….md)는 저장소에서만 맞다. 사이트에서는 페이지#앵커로 바꾼다
+SITE_HREF = {os.path.normpath(d['src']): f"{g['file']}#{d['id']}" for g in GROUPS for d in g['docs']}
+def site_links(html, src):
+    base = os.path.dirname(src)
+    def to_site(m):
+        target = os.path.normpath(os.path.join(base, m.group(1)))
+        return f'href="{SITE_HREF.get(target, m.group(0)[6:-1])}"'
+    return re.sub(r'href="([^"#:]+\.md)"', to_site, html)
+
 for group in GROUPS:
     sections = []
     for doc in group['docs']:
@@ -97,6 +106,7 @@ for group in GROUPS:
         raw = re.split(r'\n## [^\n]*Source Worklog', raw, maxsplit=1)[0].rstrip() + '\n'
         md_parser.reset()
         body_html = md_parser.convert(raw)
+        body_html = site_links(body_html, doc['src'])
         # 들여쓰기는 <pre> 밖에서만 한다. 안에 넣으면 프롬프트 둘째 줄부터 공백 6칸이 화면에 보인다
         parts = re.split(r'(<pre>.*?</pre>)', body_html, flags=re.S)
         body_html = ''.join(p if p.startswith('<pre>') else p.replace('\n', '\n      ') for p in parts)
@@ -146,7 +156,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.38-hig-home"></script>
+<script src="ai-workflow-guide.js?v=0.39-merge-dupes"></script>
 </body>
 </html>
 '''
