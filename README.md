@@ -44,7 +44,6 @@ AI와 함께 Socra 제품을 설계하고 구현하면서 반복 가능한 협�
 | --- | --- |
 | `wiki/` | 사람이 읽는 위키 문서 |
 | `site/` | GitHub Pages용 정적 사이트 소스 |
-| `artifacts/` | Storybook 등 배포/검수 산출물 |
 | `scripts/` | 문서 검증 스크립트 |
 | `AGENTS.md`, `CLAUDE.md` | AI 에이전트 진입점 |
 
