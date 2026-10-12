@@ -4,15 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>플레이북 / 기록 · Socra AI Workflow Wiki</title>
-  <meta name="description" content="프로덕트 디자이너를 위한 AI 워크플로우 위키. 한 번 읽는 원칙, 하면서 따라가는 절차, 막혔을 때 찾아보는 함정을 소크라 제품 디자인 운영 경험에서 정제해 쌓는다." />
+  <meta name="description" content="프로덕트 디자이너를 위한 AI 워크플로우 위키. 한 번 읽는 원칙, 하면서 따라가는 절차, 막혔을 때 찾아보는 함정을 소크라 제품 디자인 운영 경험에서 정제해 쌓습니다." />
   <meta property="og:title" content="플레이북 / 기록 · Socra AI Workflow Wiki" />
-  <meta property="og:description" content="프로덕트 디자이너를 위한 AI 워크플로우 위키. 한 번 읽는 원칙, 하면서 따라가는 절차, 막혔을 때 찾아보는 함정을 소크라 제품 디자인 운영 경험에서 정제해 쌓는다." />
+  <meta property="og:description" content="프로덕트 디자이너를 위한 AI 워크플로우 위키. 한 번 읽는 원칙, 하면서 따라가는 절차, 막혔을 때 찾아보는 함정을 소크라 제품 디자인 운영 경험에서 정제해 쌓습니다." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://jumijeong-design.github.io/socra-ai-workflow-wiki/guide-playbooks.html" />
   <link rel="canonical" href="https://jumijeong-design.github.io/socra-ai-workflow-wiki/guide-playbooks.html" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.38-prism-color" />
+  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.41-title-link" />
   <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
@@ -33,9 +33,9 @@
     <section class="wiki-doc" id="screen-design-playbook">
       <h1>Screen Design Playbook</h1>
       <h2>When To Use</h2>
-      <p>Socra 제품의 새 화면이나 주요 화면 개편을 AI와 함께 설계할 때 사용한다.</p>
+      <p>Socra 제품의 새 화면이나 주요 화면 개편을 AI와 함께 설계할 때 사용합니다.</p>
       <h2>Principle</h2>
-      <p>화면 설계는 Figma에서 자유롭게 탐색하되, approved screen이 되기 전까지 Prism(소크라의 디자인 시스템 패키지) contract, code, Storybook의 구현 계약으로 보지 않는다.</p>
+      <p>화면 설계는 Figma에서 자유롭게 탐색하되, approved screen이 되기 전까지 Prism(소크라의 디자인 시스템 패키지) contract, code, Storybook의 구현 계약으로 보지 않습니다.</p>
       <h2>Figma Screen States</h2>
       <table>
       <thead>
@@ -69,34 +69,34 @@
       </tbody>
       </table>
       <h2>Page-First Validation</h2>
-      <p>신규 컴포넌트가 여러 개 필요한 화면은 컴포넌트를 모두 구현하기 전에 page shell story로 먼저 검증한다.</p>
+      <p>신규 컴포넌트가 여러 개 필요한 화면은 컴포넌트를 모두 구현하기 전에 page shell story로 먼저 검증합니다.</p>
       <ol>
-      <li>승인된 기존 컴포넌트만 사용해 화면의 큰 구조를 만든다.</li>
-      <li>아직 구현 전인 컴포넌트 자리는 placeholder로 명시한다.</li>
-      <li>mobile/web, light/dark, locale, long content 같은 큰 축에서 화면이 성립하는지 확인한다.</li>
-      <li>새 컴포넌트가 준비되면 placeholder를 실제 컴포넌트로 교체한다.</li>
-      <li>placeholder와 page shell 스타일은 구현 계약이 아니며 컴포넌트 contract로 승격하지 않는다.</li>
+      <li>승인된 기존 컴포넌트만 사용해 화면의 큰 구조를 만듭니다.</li>
+      <li>아직 구현 전인 컴포넌트 자리는 placeholder로 명시합니다.</li>
+      <li>mobile/web, light/dark, locale, long content 같은 큰 축에서 화면이 성립하는지 확인합니다.</li>
+      <li>새 컴포넌트가 준비되면 placeholder를 실제 컴포넌트로 교체합니다.</li>
+      <li>placeholder와 page shell 스타일은 구현 계약이 아니며 컴포넌트 contract로 승격하지 않습니다.</li>
       </ol>
       <h2>Steps</h2>
       <ol>
-      <li>화면의 핵심 사용자 목적을 한 문장으로 적는다.</li>
-      <li>Figma screen status를 <code>exploration</code>, <code>candidate</code>, <code>approved screen</code>, <code>archived</code> 중 하나로 표시한다.</li>
-      <li>Exploration 단계에서는 빠른 조합과 시각 실험을 우선하고 Prism contract로 옮기지 않는다.</li>
-      <li>Candidate 단계에서는 AI design review로 정보 구조, 상태, 접근성, 컴포넌트 gap을 비교한다.</li>
-      <li>Approved screen이 되면 필요한 기존 design system component를 확정한다.</li>
-      <li>반복 가능한 gap이 실제 구현 계약으로 이어지면 Prism의 최신 source-of-truth 문서에서 spec/contract 반영 범위를 확인한다.</li>
-      <li>구현 대상이면 Prism의 기준에 따라 Storybook 또는 product preview에서 구현 상태를 검증한다.</li>
-      <li>결정된 반복 패턴은 이 workflow wiki의 guide/playbook으로 승격할지 판단한다.</li>
+      <li>화면의 핵심 사용자 목적을 한 문장으로 적습니다.</li>
+      <li>Figma screen status를 <code>exploration</code>, <code>candidate</code>, <code>approved screen</code>, <code>archived</code> 중 하나로 표시합니다.</li>
+      <li>Exploration 단계에서는 빠른 조합과 시각 실험을 우선하고 Prism contract로 옮기지 않습니다.</li>
+      <li>Candidate 단계에서는 AI design review로 정보 구조, 상태, 접근성, 컴포넌트 gap을 비교합니다.</li>
+      <li>Approved screen이 되면 필요한 기존 design system component를 확정합니다.</li>
+      <li>반복 가능한 gap이 실제 구현 계약으로 이어지면 Prism의 최신 source-of-truth 문서에서 spec/contract 반영 범위를 확인합니다.</li>
+      <li>구현 대상이면 Prism의 기준에 따라 Storybook 또는 product preview에서 구현 상태를 검증합니다.</li>
+      <li>결정된 반복 패턴은 이 workflow wiki의 guide/playbook으로 승격할지 판단합니다.</li>
       </ol>
       <h2>Done Criteria</h2>
       <ul>
-      <li>화면의 Figma status가 명확하다.</li>
-      <li>Exploration/Candidate 화면이 실수로 구현 기준이 되지 않았다.</li>
-      <li>Approved screen은 디자인 시스템 컴포넌트 기반으로 설명된다.</li>
-      <li>새 컴포넌트 후보와 one-off UI가 구분된다.</li>
-      <li>구현 전 page-first 검증이 필요한 경우 shell story와 placeholder 범위가 구분되어 있다.</li>
-      <li>open question과 designer judgment가 분리되어 있다.</li>
-      <li>구현된 화면 또는 컴포넌트는 Storybook/product preview 검증 경로가 있다.</li>
+      <li>화면의 Figma status가 명확합니다.</li>
+      <li>Exploration/Candidate 화면이 실수로 구현 기준이 되지 않았습니다.</li>
+      <li>Approved screen은 디자인 시스템 컴포넌트 기반으로 설명됩니다.</li>
+      <li>새 컴포넌트 후보와 one-off UI가 구분됩니다.</li>
+      <li>구현 전 page-first 검증이 필요한 경우 shell story와 placeholder 범위가 구분되어 있습니다.</li>
+      <li>open question과 designer judgment가 분리되어 있습니다.</li>
+      <li>구현된 화면 또는 컴포넌트는 Storybook/product preview 검증 경로가 있습니다.</li>
       </ul>
     </section>
 
@@ -105,29 +105,29 @@
     <section class="wiki-doc" id="audit-ops-principles">
       <h1>재발 방지 규칙</h1>
       <h2>언제 사용하나</h2>
-      <p>같은 실수가 반복되는 패턴을 끊고 싶을 때 연다. 수십~수백 건을 한 번에 만지는 작업의 순서는 매뉴얼에 있다. 2026년 7~8월 디자인 시스템 게시·정합 운영에서 반복 검증된 규칙만 남긴다.</p>
-      <h2>대량 작업은 매뉴얼에 있다</h2>
-      <p>감사 → 승인 → 실행, 파일럿 1건 → 배치, 범위와 대조군을 먼저 적는 법은 매뉴얼로 옮겼다. 프롬프트째로 쓰려면 <a href="guide-manual.html#manual-21">21 DS 토큰 정합 검토</a>와 <a href="guide-manual.html#manual-22">22 화면 → DS → 화면 왕복</a>을, 멈출 자리는 <a href="guide-manual.html#manual-13">13 행동 기준</a>을 본다.</p>
-      <p>매뉴얼에 없는 것 세 가지만 여기 남긴다.</p>
+      <p>같은 실수가 반복되는 패턴을 끊고 싶을 때 엽니다. 수십~수백 건을 한 번에 만지는 작업의 순서는 매뉴얼에 있습니다. 2026년 7~8월 디자인 시스템 게시·정합 운영에서 반복 검증된 규칙만 남깁니다.</p>
+      <h2>대량 작업은 매뉴얼에 있습니다</h2>
+      <p>감사 → 승인 → 실행, 파일럿 1건 → 배치, 범위와 대조군을 먼저 적는 법은 매뉴얼로 옮겼습니다. 프롬프트째로 쓰려면 <a href="guide-manual.html#manual-21">21 DS 토큰 정합 검토</a>와 <a href="guide-manual.html#manual-22">22 화면 → DS → 화면 왕복</a>을, 멈출 자리는 <a href="guide-manual.html#manual-13">13 행동 기준</a>을 봅니다.</p>
+      <p>매뉴얼에 없는 것 세 가지만 여기 남깁니다.</p>
       <ul>
-      <li>되돌리기 쉬운 일은 묻지 않고 그냥 한다. 확인 요청이 잦으면 진행 자체가 멈춘다.</li>
-      <li>검증 명령이 실제 게이트와 같은지 확인한다. 로컬에서 typecheck·test만 돌리고 「통과」라고 보고했는데 CI가 도는 통합 명령에서 반나절 깨져 있던 일이 반복됐다.</li>
-      <li>개수보다 분포의 모양을 본다. 값이 축별로 깔끔하게 갈리면 인스턴스 오버라이드가 아니라 상위 마스터 내부값이 뿌리다. 마스터 24개를 고쳐 인스턴스 236개가 자동 정합된 사례가 있다.</li>
+      <li>되돌리기 쉬운 일은 묻지 않고 그냥 합니다. 확인 요청이 잦으면 진행 자체가 멈춥니다.</li>
+      <li>검증 명령이 실제 게이트와 같은지 확인합니다. 로컬에서 typecheck·test만 돌리고 「통과」라고 보고했는데 CI가 도는 통합 명령에서 반나절 깨져 있던 일이 반복됐습니다.</li>
+      <li>개수보다 분포의 모양을 봅니다. 값이 축별로 깔끔하게 갈리면 인스턴스 오버라이드가 아니라 상위 마스터 내부값이 뿌리입니다. 마스터 24개를 고쳐 인스턴스 236개가 자동 정합된 사례가 있습니다.</li>
       </ul>
       <h2>재발 방지 규칙</h2>
-      <h3>자동화는 조용히 썩는다</h3>
-      <p>스킬·프롬프트 절차는 참조 대상이 바뀌어도 문법 오류 없이 결과만 틀리게 나온다. 고친 스킬은 반드시 한 번 실행해야 검증된 것이다. "고쳤다"와 "돈다"는 다르다. 오탐(없는 문제 보고)은 즉시 걸리지만 안 해도 될 일을 계속 하는 쪽은 아무도 걸러내지 않아 훨씬 오래 남는다.</p>
-      <h3>낡은 문서는 사람의 결정을 뒤집는다</h3>
-      <p>에이전트가 몇 주 전 문서에 남은 "배포하지 않는다" 한 줄을 근거로, 이미 합의된 배포를 스스로 취소한 일이 있다. 방침을 폐기하면 그 문장을 <strong>같은 턴에</strong> 지운다. 결정 문서에는 무엇을 폐기했는지 함께 적는다. 세션이 갈리면 앞 결정을 안 읽어 서로 배타적인 두 결정이 각각 승인된 채 공존한다.</p>
-      <h3>목록을 믿지 말고 실물을 조회한다</h3>
-      <p>미결 목록의 항목이 이미 확정돼 있고 "확정"으로 적힌 항목이 실은 자체 승인이었던 일이 양방향으로 반복됐다. 착수 전 재실측을 0단계로 둔다. 브리핑의 파일·줄번호·노드가 이미 사라졌거나 이름이 바뀐 사례가 잦다. 잔무 목록은 순서가 아니라 후보다. 집기 전에 "지금 이게 뭘 사주나"를 먼저 답한다.</p>
-      <p>"A 때문에 대기"로 적힌 항목은 재측 전까지 열린 항목이 아니라 낡은 항목으로 본다. 2026년 9월 한 달 동안 대기 사유를 다시 재니 이미 풀려 있던 일이 여섯 번 있었다. 기획 회신이 이미 왔거나, 권한이 이미 열렸거나, 선행 PR이 이미 머지돼 있었다. 대기 사유에는 무엇이 오면 풀리는지와 마지막으로 잰 날짜를 같이 적는다.</p>
-      <h3>근거 없는 요소를 만들지 않는다</h3>
-      <p>스펙에 없는 A를 넣으면 A를 설명할 B가 필요해지고 B가 A를 정당화하는 순환이 생긴다. 새 요소는 스펙 원문에 근거가 있는지 확인하고 없으면 "확정"이 아니라 "디자인 제안"으로 표기한다. 철회는 아래로 번진다. 결정을 되돌릴 땐 그 결정을 참조하던 주석·표·변수·후속 항목을 같이 훑는다.</p>
-      <h3>증상을 원인으로 옮겨 적지 않는다</h3>
-      <p>"여백 8px 어긋남" 두 건 중 하나는 패딩, 하나는 컨테이너 폭 문제였다. 판정 전에 실측한다. 헤드리스 캡처·계측 한 번이 추측 세 번보다 빠르고 정확하다. 위반처럼 보이면 소속 프레임/맥락부터 확인한다. 참고용·아카이브 영역의 더미가 위반으로 집계되는 일이 반복됐다.</p>
-      <h3>규칙을 늘리지 말고 색인을 둔다</h3>
-      <p>규칙 문서가 수백 줄이 되면 통독은 낭비이고 통독해도 작업 순간에는 떠오르지 않는다. 워크로그 61일·함정 503건을 전수로 훑어 규칙에 없는데 반복되는 것만 골랐더니, 가장 많이 반복된 규칙은 이미 있었다. 제목과 무관한 규칙의 하위 불릿에 묻혀 있어서 훑어도 안 나왔을 뿐이다. 새 규칙은 제목이 내용을 말하는 자리에 두고 세션마다 자동 주입되는 진입 파일에는 "상황 → 규칙 번호" 색인만 둔다. 체크리스트가 아니라 색인이다. 절차를 강요하지 않고 판단은 남긴다.</p>
+      <h3>자동화는 조용히 썩습니다</h3>
+      <p>스킬·프롬프트 절차는 참조 대상이 바뀌어도 문법 오류 없이 결과만 틀리게 나옵니다. 고친 스킬은 반드시 한 번 실행해야 검증된 것입니다. "고쳤다"와 "돈다"는 다릅니다. 오탐(없는 문제 보고)은 즉시 걸리지만 안 해도 될 일을 계속 하는 쪽은 아무도 걸러내지 않아 훨씬 오래 남습니다.</p>
+      <h3>낡은 문서는 사람의 결정을 뒤집습니다</h3>
+      <p>에이전트가 몇 주 전 문서에 남은 "배포하지 않는다" 한 줄을 근거로, 이미 합의된 배포를 스스로 취소한 일이 있습니다. 방침을 폐기하면 그 문장을 <strong>같은 턴에</strong> 지웁니다. 결정 문서에는 무엇을 폐기했는지 함께 적습니다. 세션이 갈리면 앞 결정을 안 읽어 서로 배타적인 두 결정이 각각 승인된 채 공존합니다.</p>
+      <h3>목록을 믿지 말고 실물을 조회합니다</h3>
+      <p>미결 목록의 항목이 이미 확정돼 있고 "확정"으로 적힌 항목이 실은 자체 승인이었던 일이 양방향으로 반복됐습니다. 착수 전 재실측을 0단계로 둡니다. 브리핑의 파일·줄번호·노드가 이미 사라졌거나 이름이 바뀐 사례가 잦습니다. 잔무 목록은 순서가 아니라 후보입니다. 집기 전에 "지금 이게 뭘 사주나"를 먼저 답합니다.</p>
+      <p>"A 때문에 대기"로 적힌 항목은 재측 전까지 열린 항목이 아니라 낡은 항목으로 봅니다. 2026년 9월 한 달 동안 대기 사유를 다시 재니 이미 풀려 있던 일이 여섯 번 있었습니다. 기획 회신이 이미 왔거나, 권한이 이미 열렸거나, 선행 PR이 이미 머지돼 있었습니다. 대기 사유에는 무엇이 오면 풀리는지와 마지막으로 잰 날짜를 같이 적습니다.</p>
+      <h3>근거 없는 요소를 만들지 않습니다</h3>
+      <p>스펙에 없는 A를 넣으면 A를 설명할 B가 필요해지고 B가 A를 정당화하는 순환이 생깁니다. 새 요소는 스펙 원문에 근거가 있는지 확인하고 없으면 "확정"이 아니라 "디자인 제안"으로 표기합니다. 철회는 아래로 번집니다. 결정을 되돌릴 땐 그 결정을 참조하던 주석·표·변수·후속 항목을 같이 훑습니다.</p>
+      <h3>증상을 원인으로 옮겨 적지 않습니다</h3>
+      <p>"여백 8px 어긋남" 두 건 중 하나는 패딩, 하나는 컨테이너 폭 문제였습니다. 판정 전에 실측합니다. 헤드리스 캡처·계측 한 번이 추측 세 번보다 빠르고 정확합니다. 위반처럼 보이면 소속 프레임/맥락부터 확인합니다. 참고용·아카이브 영역의 더미가 위반으로 집계되는 일이 반복됐습니다.</p>
+      <h3>규칙을 늘리지 말고 색인을 둡니다</h3>
+      <p>규칙 문서가 수백 줄이 되면 통독은 낭비이고 통독해도 작업 순간에는 떠오르지 않습니다. 워크로그 61일·함정 503건을 전수로 훑어 규칙에 없는데 반복되는 것만 골랐더니, 가장 많이 반복된 규칙은 이미 있었습니다. 제목과 무관한 규칙의 하위 불릿에 묻혀 있어서 훑어도 안 나왔을 뿐입니다. 새 규칙은 제목이 내용을 말하는 자리에 두고 세션마다 자동 주입되는 진입 파일에는 "상황 → 규칙 번호" 색인만 둡니다. 체크리스트가 아니라 색인입니다. 절차를 강요하지 않고 판단은 남깁니다.</p>
     </section>
 
     <hr class="divider" />
@@ -135,10 +135,10 @@
     <section class="wiki-doc" id="completion-stages">
       <h1>완료 기준 플레이북: 1차 / 공유 가능 / 픽스</h1>
       <h2>언제 사용하나</h2>
-      <p>에이전트가 "완료"라고 보고했는데 디자이너 눈에는 남은 일이 보일 때, 그리고 팀에 화면 일정을 말해야 할 때 사용한다. 2026년 8월에 규칙으로 정했고 이후 에이전트 보고 형식으로 쓰고 있다.</p>
+      <p>에이전트가 "완료"라고 보고했는데 디자이너 눈에는 남은 일이 보일 때, 그리고 팀에 화면 일정을 말해야 할 때 사용합니다. 2026년 8월에 규칙으로 정했고 이후 에이전트 보고 형식으로 쓰고 있습니다.</p>
       <h2>왜 완료를 나누나</h2>
-      <p>에이전트의 "완료"와 디자이너의 "완료"가 다르다. 에이전트는 기획과 구조가 그려지면 끝났다고 보고 디자이너 기준으로는 시각 품질과 UX 검토가 남아 있다. 이 간극 때문에 남은 일이 어디에도 기록되지 않은 채 사람 머릿속에만 쌓인다.</p>
-      <p>일이 도착하는 모양도 바뀌었다. 기획→디자인→개발→QA로 한 번에 하나씩 오던 구조에서, 화면 설계·컴포넌트·문서·QA 준비가 에이전트 완료 시점에 동시에 도착하는 구조가 됐다. 검수 1명 앞에 큐가 생기고 열어보기 전에는 10분짜리 확인인지 2시간짜리 재작업인지 모른다. "이 화면 2.5일" 같은 점 추정은 순차 전제에서만 성립한다.</p>
+      <p>에이전트의 "완료"와 디자이너의 "완료"가 다릅니다. 에이전트는 기획과 구조가 그려지면 끝났다고 보고 디자이너 기준으로는 시각 품질과 UX 검토가 남아 있습니다. 이 간극 때문에 남은 일이 어디에도 기록되지 않은 채 사람 머릿속에만 쌓입니다.</p>
+      <p>일이 도착하는 모양도 바뀌었습니다. 기획→디자인→개발→QA로 한 번에 하나씩 오던 구조에서, 화면 설계·컴포넌트·문서·QA 준비가 에이전트 완료 시점에 동시에 도착하는 구조가 됐습니다. 검수 1명 앞에 큐가 생기고 열어보기 전에는 10분짜리 확인인지 2시간짜리 재작업인지 모릅니다. "이 화면 2.5일" 같은 점 추정은 순차 전제에서만 성립합니다.</p>
       <h2>3단계</h2>
       <table>
       <thead>
@@ -170,42 +170,42 @@
       </tr>
       </tbody>
       </table>
-      <p>기존 Figma 화면 상태와 같은 사다리다. <code>공유 가능</code> ≈ <code>candidate</code>, <code>픽스</code> ≈ <code>approved screen</code>.</p>
+      <p>기존 Figma 화면 상태와 같은 사다리입니다. <code>공유 가능</code> ≈ <code>candidate</code>, <code>픽스</code> ≈ <code>approved screen</code>.</p>
       <h2>에이전트 보고 규칙</h2>
       <ul>
-      <li>"완료"를 단독으로 쓰지 않는다. 항상 단계명으로 보고한다.</li>
-      <li><code>1차 완료. 남은 것: 시각 품질, UX 흐름</code>처럼 남은 단계를 문장으로 남긴다.</li>
-      <li><code>공유 가능</code>은 아래 기준을 자가 검사하고 결과를 보고에 붙였을 때만 선언한다.</li>
-      <li><code>픽스</code>는 에이전트가 선언할 수 없다. 준비만 한다.</li>
+      <li>"완료"를 단독으로 쓰지 않습니다. 항상 단계명으로 보고합니다.</li>
+      <li><code>1차 완료. 남은 것: 시각 품질, UX 흐름</code>처럼 남은 단계를 문장으로 남깁니다.</li>
+      <li><code>공유 가능</code>은 아래 기준을 자가 검사하고 결과를 보고에 붙였을 때만 선언합니다.</li>
+      <li><code>픽스</code>는 에이전트가 선언할 수 없습니다. 준비만 합니다.</li>
       </ul>
       <h2>공유 가능 기준</h2>
-      <p>하나라도 빠지면 <code>공유 가능</code>으로 부르지 않는다.</p>
+      <p>하나라도 빠지면 <code>공유 가능</code>으로 부르지 않습니다.</p>
       <ol>
       <li><strong>목적 한 문장</strong>: 이 화면이 해결하는 사용자 목적</li>
       <li><strong>핵심 흐름·분기</strong>: IA와 사용자 분기가 정의됨</li>
       <li><strong>DS 준수</strong>: 승인된 컴포넌트·인스턴스만 사용. 손코딩 0</li>
       <li><strong>핵심 상태</strong>: 그 화면에 필요한 상태가 있음 (empty/loading/error 전체 강제는 아님)</li>
-      <li><strong>출처 근거</strong>: Figma node id·variables 또는 패키지 계약. 없으면 <code>pending</code>으로 두고 추측하지 않는다</li>
+      <li><strong>출처 근거</strong>: Figma node id·variables 또는 패키지 계약. 없으면 <code>pending</code>으로 두고 추측하지 않습니다</li>
       <li><strong>미결 질문 분리</strong>: 디자이너 판단이 필요한 항목이 목록으로 뽑혀 있음</li>
       <li><strong>공유 라벨</strong>: <code>구조·플로우 픽스 / 비주얼·디테일 미픽스</code>처럼 무엇이 픽스인지 명시</li>
       </ol>
-      <p>문구는 lorem만 아니면 된다. 확정 문구는 <code>픽스</code> 몫이다.</p>
+      <p>문구는 lorem만 아니면 됩니다. 확정 문구는 <code>픽스</code> 몫입니다.</p>
       <h2>픽스 기준</h2>
-      <p>디자이너 판단이다.</p>
+      <p>디자이너 판단입니다.</p>
       <ol>
       <li><strong>UX 흐름</strong>: 사용자가 주요 행동을 바로 찾는가</li>
       <li><strong>시각 품질</strong>: 위계·밸런스·브랜드 톤</li>
       <li><strong>토큰 준수</strong>: spacing·typography·color 임의값 0</li>
-      <li><strong>QA 축</strong>: 전 축이 아니라 그 컴포넌트의 리스크 우선 축만. 축 정의는 <a href="guide-manual.html#manual-11">AX 매뉴얼 11장</a>에 있다</li>
+      <li><strong>QA 축</strong>: 전 축이 아니라 그 컴포넌트의 리스크 우선 축만. 축 정의는 <a href="guide-manual.html#manual-11">AX 매뉴얼 11장</a>에 있습니다</li>
       <li><strong>실제 도는 표면에서 확인</strong>: 컴포넌트 안은 Storybook, 화면 밖은 앱</li>
       <li><strong>승인 기록</strong>: 승인 대기와 승인 완료를 구분해 기록</li>
       </ol>
-      <h2>일정은 두 날짜로 말한다</h2>
+      <h2>일정은 두 날짜로 말합니다</h2>
       <ul>
-      <li><strong>공유 가능일</strong>은 예측 가능하니 팀에 약속한다. 이 날 FE 착수와 리뷰가 시작되고 디자이너 품질 검토는 그 뒤로 병렬 진행한다.</li>
-      <li><strong>픽스일</strong>은 AI 품질 편차와 진행 중 발견되는 범위 때문에 구간으로만 말하고 진행하며 갱신한다.</li>
-      <li>날짜가 박힌 일은 처음부터 병렬 밖으로 빼서 순차로 처리한다.</li>
-      <li>공유할 때 라벨을 빼면 미픽스 디테일에 피드백이 쏟아져 부하가 오히려 늘어난다.</li>
+      <li><strong>공유 가능일</strong>은 예측 가능하니 팀에 약속합니다. 이 날 FE 착수와 리뷰가 시작되고 디자이너 품질 검토는 그 뒤로 병렬 진행합니다.</li>
+      <li><strong>픽스일</strong>은 AI 품질 편차와 진행 중 발견되는 범위 때문에 구간으로만 말하고 진행하며 갱신합니다.</li>
+      <li>날짜가 박힌 일은 처음부터 병렬 밖으로 빼서 순차로 처리합니다.</li>
+      <li>공유할 때 라벨을 빼면 미픽스 디테일에 피드백이 쏟아져 부하가 오히려 늘어납니다.</li>
       </ul>
     </section>
 
@@ -217,6 +217,6 @@
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.40-paste-prompts"></script>
+<script src="ai-workflow-guide.js?v=0.41-hamnida"></script>
 </body>
 </html>

@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://jumijeong-design.github.io/socra-ai-workflow-wiki/changelog.html" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.38-prism-color" />
+  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.41-title-link" />
   <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
@@ -39,6 +39,26 @@
       <h1>버전 히스토리</h1>
       <p>Socra AI Workflow Wiki의 변경 사항을 버전별로 기록한다.</p>
     </div>
+
+    <!-- v0.41 -->
+    <section class="section" id="v0-41">
+      <div class="section-header">
+        <div class="section-num">0.41</div>
+        <h2>본문 문체 통일 <span class="section-tag">2026.10.12</span></h2>
+      </div>
+
+      <div class="highlight">
+        <p>본문이 해라체와 해요체로 섞여 있던 것을 합니다체로 맞췄다. 문장 끝만 바꾸고 낱말은 그대로 뒀다.</p>
+      </div>
+
+      <h3>고침</h3>
+      <ul class="styled">
+        <li><strong>사이드바 제목</strong>: 「Socra 워크플로우 위키」를 누르면 홈으로 간다.</li>
+        <li><strong>문체</strong>: 홈과 문서 9개의 문장 끝을 합니다체로 바꿨다. 원본(<code>wiki/*.md</code>, <code>ai-workflow-guide.html</code>)에서 고쳐 빌드해도 그대로 남는다. 인용, 프롬프트 예시, 코드, 사례 제목은 그대로 뒀다.</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
 
     <!-- v0.40 -->
     <section class="section" id="v0-40">
@@ -1019,6 +1039,6 @@
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.40-paste-prompts"></script>
+<script src="ai-workflow-guide.js?v=0.41-hamnida"></script>
 </body>
 </html>

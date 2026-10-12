@@ -4,15 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>연결 / 환경 설정 · Socra AI Workflow Wiki</title>
-  <meta name="description" content="프로덕트 디자이너를 위한 AI 워크플로우 위키. 한 번 읽는 원칙, 하면서 따라가는 절차, 막혔을 때 찾아보는 함정을 소크라 제품 디자인 운영 경험에서 정제해 쌓는다." />
+  <meta name="description" content="프로덕트 디자이너를 위한 AI 워크플로우 위키. 한 번 읽는 원칙, 하면서 따라가는 절차, 막혔을 때 찾아보는 함정을 소크라 제품 디자인 운영 경험에서 정제해 쌓습니다." />
   <meta property="og:title" content="연결 / 환경 설정 · Socra AI Workflow Wiki" />
-  <meta property="og:description" content="프로덕트 디자이너를 위한 AI 워크플로우 위키. 한 번 읽는 원칙, 하면서 따라가는 절차, 막혔을 때 찾아보는 함정을 소크라 제품 디자인 운영 경험에서 정제해 쌓는다." />
+  <meta property="og:description" content="프로덕트 디자이너를 위한 AI 워크플로우 위키. 한 번 읽는 원칙, 하면서 따라가는 절차, 막혔을 때 찾아보는 함정을 소크라 제품 디자인 운영 경험에서 정제해 쌓습니다." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://jumijeong-design.github.io/socra-ai-workflow-wiki/guide-setup.html" />
   <link rel="canonical" href="https://jumijeong-design.github.io/socra-ai-workflow-wiki/guide-setup.html" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.38-prism-color" />
+  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.41-title-link" />
   <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
@@ -39,10 +39,10 @@
     <section class="section" id="connect">
       <h2>AI 에디터 연결 설정</h2>
 
-      <p>빠른 시작에서 진입 파일을 만들었다면, 이제 쓰는 도구가 그 파일을 읽게 해야 한다. 아무리 잘 써 두어도 AI 에디터에 연결되지 않으면 그냥 폴더 안의 파일이다.</p>
+      <p>빠른 시작에서 진입 파일을 만들었다면, 이제 쓰는 도구가 그 파일을 읽게 해야 합니다. 아무리 잘 써 두어도 AI 에디터에 연결되지 않으면 그냥 폴더 안의 파일입니다.</p>
 
       <div class="highlight">
-        <p>모든 AI 에디터는 프로젝트 루트의 <strong>특정 파일을 자동으로 읽는다.</strong> 이 파일 하나가 "AI가 이 프로젝트를 어떻게 이해해야 하는지"를 담는 진입점이 된다.</p>
+        <p>모든 AI 에디터는 프로젝트 루트의 <strong>특정 파일을 자동으로 읽습니다.</strong> 이 파일 하나가 "AI가 이 프로젝트를 어떻게 이해해야 하는지"를 담는 진입점이 됩니다.</p>
       </div>
 
       <h3>도구별 진입점 파일</h3>
@@ -63,7 +63,7 @@
       </table>
 
       <h3>진입점 파일 구조</h3>
-      <p>진입 파일에는 매 세션 필요한 것만 둔다. 정본 순서, 세션 시작과 끝, 절대 하지 않는 것, 그리고 「이런 상황이면 이 규칙」 색인이다. 규칙 본문은 따로 두고 색인이 가리키게 한다.</p>
+      <p>진입 파일에는 매 세션 필요한 것만 둡니다. 정본 순서, 세션 시작과 끝, 절대 하지 않는 것, 그리고 「이런 상황이면 이 규칙」 색인입니다. 규칙 본문은 따로 두고 색인이 가리키게 합니다.</p>
 
       <div class="code-label">CLAUDE.md / AGENTS.md / .cursor/rules/design.mdc, 공통 구조</div>
       <pre><code><span class="token-heading"># 이 프로젝트의 에이전트 작업 기준</span>
@@ -93,7 +93,7 @@
           <ul class="styled">
             <li>프로젝트 루트에 <code>CLAUDE.md</code> 파일 생성</li>
             <li>Claude Code 실행 시 자동으로 읽힘</li>
-            <li><code>@docs/rules.md</code>처럼 <code>@</code>로 적은 파일은 같이 읽힌다. 경로만 적은 파일은 필요할 때 연다</li>
+            <li><code>@docs/rules.md</code>처럼 <code>@</code>로 적은 파일은 같이 읽힙니다. 경로만 적은 파일은 필요할 때 엽니다</li>
           </ul>
         </div>
         <div class="card">
@@ -134,15 +134,15 @@
 
       <div class="callout green">
         <div class="callout-icon">✅</div>
-        <p>진입 파일은 세션마다 읽히지만, 길어지면 읽혀도 작업하는 순간에 떠오르지 않는다. <strong>진입 파일은 짧게 두고, 자주 어기는 규칙은 훅과 검사로 옮긴다.</strong> 자세한 내용은 <a href="guide-manual.html#manual-20" style="color:var(--accent);">AX 매뉴얼 20장 하네스</a>에 있다.</p>
+        <p>진입 파일은 세션마다 읽히지만, 길어지면 읽혀도 작업하는 순간에 떠오르지 않습니다. <strong>진입 파일은 짧게 두고, 자주 어기는 규칙은 훅과 검사로 옮깁니다.</strong> 자세한 내용은 <a href="guide-manual.html#manual-20" style="color:var(--accent);">AX 매뉴얼 20장 하네스</a>에 있습니다.</p>
       </div>
 
       <h3 id="figma-mcp-setup">Figma MCP 연결 설정</h3>
-      <p>Figma MCP는 AI 에디터가 Figma 파일을 읽고, 필요한 경우 캔버스에 직접 쓰기 작업까지 수행할 수 있게 하는 연결 통로다. 문서 컨텍스트와 달리 <strong>Figma 계정 권한, 파일 접근 권한, 사용하는 MCP 방식</strong>이 함께 맞아야 안정적으로 동작한다.</p>
+      <p>Figma MCP는 AI 에디터가 Figma 파일을 읽고, 필요한 경우 캔버스에 직접 쓰기 작업까지 수행할 수 있게 하는 연결 통로입니다. 문서 컨텍스트와 달리 <strong>Figma 계정 권한, 파일 접근 권한, 사용하는 MCP 방식</strong>이 함께 맞아야 안정적으로 동작합니다.</p>
 
       <div class="callout">
         <div class="callout-icon">📌</div>
-        <p><strong>최신 기준:</strong> Figma 공식 문서는 대부분의 사용자는 Remote MCP 서버를 쓰는 것을 권장한다. Desktop MCP 서버는 Figma 데스크탑 앱을 통해 실행되며, 특정 조직/엔터프라이즈 환경에서 필요할 수 있다.</p>
+        <p><strong>최신 기준:</strong> Figma 공식 문서는 대부분의 사용자는 Remote MCP 서버를 쓰는 것을 권장합니다. Desktop MCP 서버는 Figma 데스크탑 앱을 통해 실행되며, 특정 조직/엔터프라이즈 환경에서 필요할 수 있습니다.</p>
       </div>
 
       <p style="font-size:13px; color:var(--text-muted); margin-top:-8px;">공식 문서 참고: <a href="https://developers.figma.com/docs/figma-mcp-server" target="_blank" style="color:var(--accent);">Figma MCP Server</a> · <a href="https://help.figma.com/hc/en-us/articles/39888612464151-Claude-Code-and-Figma-Set-up-the-MCP-server" target="_blank" style="color:var(--accent);">Claude Code MCP 설정</a> · <a href="https://developers.figma.com/docs/figma-mcp-server/local-server-installation/" target="_blank" style="color:var(--accent);">Desktop MCP 설정</a></p>
@@ -203,23 +203,23 @@
       <div class="flow">
         <div class="flow-item">
           <strong>1. AI 도구에서 Figma MCP 연결 추가</strong>
-          <div class="subdesc">Claude Code, Cursor, Codex 등 사용하는 MCP 클라이언트의 공식 설정 화면에서 Figma MCP를 추가한다.</div>
+          <div class="subdesc">Claude Code, Cursor, Codex 등 사용하는 MCP 클라이언트의 공식 설정 화면에서 Figma MCP를 추가합니다.</div>
         </div>
         <div class="flow-item">
           <strong>2. Figma OAuth 승인 계정 확인</strong>
-          <div class="subdesc">승인한 계정이 볼 수 있는 파일만 AI가 접근할 수 있다. 팀 파일이면 개인 계정/공용 계정 선택을 먼저 정한다.</div>
+          <div class="subdesc">승인한 계정이 볼 수 있는 파일만 AI가 접근할 수 있습니다. 팀 파일이면 개인 계정/공용 계정 선택을 먼저 정합니다.</div>
         </div>
         <div class="flow-item">
           <strong>3. Desktop MCP를 쓰는 경우 Dev Mode에서 서버 활성화</strong>
-          <div class="subdesc">Figma 데스크탑 앱에서 대상 파일을 열고 Dev Mode로 전환한 뒤 MCP 서버가 켜져 있는지 확인한다.</div>
+          <div class="subdesc">Figma 데스크탑 앱에서 대상 파일을 열고 Dev Mode로 전환한 뒤 MCP 서버가 켜져 있는지 확인합니다.</div>
         </div>
         <div class="flow-item">
           <strong>4. IDE/터미널에서 MCP 상태 확인</strong>
-          <div class="subdesc">Claude Code라면 <code>/mcp</code> 같은 서버 상태 화면에서 연결 실패 여부를 확인하고 필요 시 reconnect한다. Cursor/Codex도 MCP 서버 목록에서 연결 상태를 먼저 본다.</div>
+          <div class="subdesc">Claude Code라면 <code>/mcp</code> 같은 서버 상태 화면에서 연결 실패 여부를 확인하고 필요 시 reconnect합니다. Cursor/Codex도 MCP 서버 목록에서 연결 상태를 먼저 봅니다.</div>
         </div>
         <div class="flow-item highlight-item">
           <strong>5. 첫 테스트는 읽기 작업으로 시작</strong>
-          <div class="subdesc">Figma 링크를 주고 "이 파일의 page 목록, 선택한 frame의 metadata, variables를 읽을 수 있는지 확인해줘"처럼 요청한다.</div>
+          <div class="subdesc">Figma 링크를 주고 "이 파일의 page 목록, 선택한 frame의 metadata, variables를 읽을 수 있는지 확인해줘"처럼 요청합니다.</div>
         </div>
       </div>
 
@@ -262,16 +262,16 @@
         <div class="compare-box good">
           <div class="compare-label">정확한 표현</div>
           <ul class="styled" style="margin:0;">
-            <li>Remote MCP와 Desktop MCP는 설정 방식이 다르다</li>
-            <li>Variables는 연결 권한과 파일 구조가 맞으면 읽을 수 있다</li>
-            <li>폰트 접근은 Remote/Desktop 방식, Figma 업로드 여부에 따라 달라질 수 있다</li>
+            <li>Remote MCP와 Desktop MCP는 설정 방식이 다릅니다</li>
+            <li>Variables는 연결 권한과 파일 구조가 맞으면 읽을 수 있습니다</li>
+            <li>폰트 접근은 Remote/Desktop 방식, Figma 업로드 여부에 따라 달라질 수 있습니다</li>
           </ul>
         </div>
       </div>
 
       <div class="callout orange">
         <div class="callout-icon">⚠️</div>
-        <p><strong>MCP 연결 정보도 운영 문서에 남긴다.</strong> 어떤 계정으로 승인했는지, 어떤 파일을 테스트했는지, 연결 실패 시 어디서 reconnect하는지 기록해두면 공용 계정·공용 파일에서 같은 시행착오를 반복하지 않는다.</p>
+        <p><strong>MCP 연결 정보도 운영 문서에 남깁니다.</strong> 어떤 계정으로 승인했는지, 어떤 파일을 테스트했는지, 연결 실패 시 어디서 reconnect하는지 기록해두면 공용 계정·공용 파일에서 같은 시행착오를 반복하지 않습니다.</p>
       </div>
     </section>
 
@@ -288,7 +288,7 @@
               Figma MCP · 실전 함정
             </div>
             <h1>Figma MCP 작업 함정 모음</h1>
-            <p>Claude Code + Figma MCP로 실제 디자인 시스템을 운영하면서 마주친 함정들이다.<br>실수 한 번에 발견한 것들을 기록해두고 다음엔 처음부터 피해간다.</p>
+            <p>Claude Code + Figma MCP로 실제 디자인 시스템을 운영하면서 마주친 함정들입니다.<br>실수 한 번에 발견한 것들을 기록해두고 다음엔 처음부터 피해갑니다.</p>
             <div class="hero-meta" style="margin-top:20px;">
               <div class="hero-meta-item">
                 <svg fill="none" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.5"><path d="M8 2a6 6 0 100 12A6 6 0 008 2z"/><path d="M3 8h10M8 3v10"/></svg>
@@ -310,7 +310,7 @@
             <div class="callout-icon">📌</div>
             <div>
               <p style="font-weight:700; color:var(--text-primary); margin-bottom:4px;">이 페이지 활용법</p>
-              <p style="margin:0;">새 작업을 시작하기 전 훑어본다. 함정은 계속 추가된다. 실수할 때마다 여기 먼저 기록한다.</p>
+              <p style="margin:0;">새 작업을 시작하기 전 훑어봅니다. 함정은 계속 추가됩니다. 실수할 때마다 여기 먼저 기록합니다.</p>
             </div>
           </div>
       
@@ -334,7 +334,7 @@
                   </div>
                   <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
                     <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">✅ 올바른 방법</div>
-                    <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">작업 시작 전 <code>design-system/components.md</code>를 확인해 이미 만들어진 컴포넌트 목록을 파악한다. 존재하는 컴포넌트는 반드시 <code>createInstance()</code>로 인스턴스를 생성해 사용한다.</p>
+                    <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">작업 시작 전 <code>design-system/components.md</code>를 확인해 이미 만들어진 컴포넌트 목록을 파악합니다. 존재하는 컴포넌트는 반드시 <code>createInstance()</code>로 인스턴스를 생성해 사용합니다.</p>
                   </div>
                 </div>
                 <div style="background:var(--bg-code); border-radius:var(--radius-sm); padding:14px;">
@@ -358,7 +358,7 @@
                   </div>
                   <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
                     <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">✅ 올바른 방법</div>
-                    <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">특정 node-id를 받았더라도 <strong>부모 프레임 metadata를 먼저 조회</strong>해 variant 전체 목록을 확인한다. 이후 모든 variant에 동일한 작업을 적용한다.</p>
+                    <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">특정 node-id를 받았더라도 <strong>부모 프레임 metadata를 먼저 조회</strong>해 variant 전체 목록을 확인합니다. 이후 모든 variant에 동일한 작업을 적용합니다.</p>
                   </div>
                 </div>
                 <div style="background:var(--bg-code); border-radius:var(--radius-sm); padding:14px; font-family:monospace; font-size:13px; color:var(--text-secondary);">
@@ -384,7 +384,7 @@
                 <strong style="font-size:15px;">vectorPaths: 오픈소스 SVG 경로 직접 주입 불가</strong>
               </div>
               <div style="padding:20px;">
-                <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">Figma Plugin API의 <code>vectorPaths</code>는 MCP 환경에서 SVG 경로 커맨드의 일부를 지원하지 않는다. Simple Icons, LobeHub 등에서 가져온 실제 브랜드 SVG 경로를 코드로 직접 주입하면 파싱 오류가 발생한다.</p>
+                <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">Figma Plugin API의 <code>vectorPaths</code>는 MCP 환경에서 SVG 경로 커맨드의 일부를 지원하지 않습니다. Simple Icons, LobeHub 등에서 가져온 실제 브랜드 SVG 경로를 코드로 직접 주입하면 파싱 오류가 발생합니다.</p>
       
                 <div style="background:var(--bg-code-block); border-radius:var(--radius-sm); padding:14px; margin-bottom:16px; overflow-x:auto;">
                   <div style="font-size:11px; font-weight:700; color:var(--text-muted); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">지원 안 되는 SVG 커맨드</div>
@@ -400,9 +400,9 @@
                 <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
                   <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">✅ 대안</div>
                   <ul style="font-size:14px; color:var(--text-secondary); margin:0; padding-left:18px; line-height:2;">
-                    <li><a href="https://lobehub.com/ko/icons" target="_blank" style="color:var(--accent);">LobeHub Icons</a>에서 SVG를 직접 Figma에 드래그해 넣는다</li>
-                    <li>오픈소스 SVG를 Figma에서 직접 가져와 컴포넌트에 적용한다</li>
-                    <li>코드로 만들어야 할 경우 <code>createStar()</code>, <code>createPolygon()</code> 등 내장 shape API를 쓴다</li>
+                    <li><a href="https://lobehub.com/ko/icons" target="_blank" style="color:var(--accent);">LobeHub Icons</a>에서 SVG를 직접 Figma에 드래그해 넣습니다</li>
+                    <li>오픈소스 SVG를 Figma에서 직접 가져와 컴포넌트에 적용합니다</li>
+                    <li>코드로 만들어야 할 경우 <code>createStar()</code>, <code>createPolygon()</code> 등 내장 shape API를 씁니다</li>
                   </ul>
                 </div>
               </div>
@@ -415,14 +415,14 @@
                 <strong style="font-size:15px;">createNodeFromSvgAsync: MCP 환경에서 미지원</strong>
               </div>
               <div style="padding:20px;">
-                <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">Figma Plugin API 공식 문서에는 <code>figma.createNodeFromSvgAsync(svg)</code>가 존재하지만, MCP(Claude Code) 환경에서는 이 메서드가 없다.</p>
+                <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">Figma Plugin API 공식 문서에는 <code>figma.createNodeFromSvgAsync(svg)</code>가 존재하지만, MCP(Claude Code) 환경에서는 이 메서드가 없습니다.</p>
                 <div style="background:var(--bg-code-block); border-radius:var(--radius-sm); padding:14px; font-family:monospace; font-size:13px; color:var(--text-secondary);">
                   <span style="color:var(--red);">// TypeError: figma.createNodeFromSvgAsync: no such property</span><br>
                   <span style="color:var(--text-muted);">const node = await figma.createNodeFromSvgAsync(svgString);</span>
                 </div>
                 <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px; margin-top:12px;">
                   <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:6px;">✅ 대안</div>
-                  <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">SVG 가져오기는 사용자 직접 드래그 방식을 권장. 코드에서는 <code>createStar()</code>, <code>createPolygon()</code>, <code>createRectangle()</code> 등의 기본 shape API로 대체한다.</p>
+                  <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">SVG 가져오기는 사용자 직접 드래그 방식을 권장. 코드에서는 <code>createStar()</code>, <code>createPolygon()</code>, <code>createRectangle()</code> 등의 기본 shape API로 대체합니다.</p>
                 </div>
               </div>
             </div>
@@ -434,7 +434,7 @@
                 <strong style="font-size:15px;">combineAsVariants: 자동 배치 안 됨, 위치 직접 설정 필요</strong>
               </div>
               <div style="padding:20px;">
-                <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;"><code>figma.combineAsVariants(components, page)</code>를 호출하면 모든 variant가 좌표 (0, 0)에 겹쳐진다. combine 전에 각 컴포넌트 위치를 지정해도 무시된다.</p>
+                <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;"><code>figma.combineAsVariants(components, page)</code>를 호출하면 모든 variant가 좌표 (0, 0)에 겹쳐집니다. combine 전에 각 컴포넌트 위치를 지정해도 무시됩니다.</p>
       
                 <div style="background:var(--bg-code-block); border-radius:var(--radius-sm); padding:14px; font-family:monospace; font-size:13px; color:var(--text-secondary); margin-bottom:12px; line-height:1.8;">
                   <span style="color:var(--text-muted);">// ❌ combine 전 위치 지정 → 무시됨</span><br>
@@ -482,12 +482,12 @@
                   </div>
                   <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
                     <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">✅ 올바른 방법</div>
-                    <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">작업 중 배운 규칙은 반드시 프로젝트 문서에 기록한다. 규칙 → <code>design-system/rules.md</code>, 결정 이유 → <code>design-system/decisions.md</code>, AI 작업 원칙 → 진입 파일(<code>CLAUDE.md</code>, <code>AGENTS.md</code>).</p>
+                    <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">작업 중 배운 규칙은 반드시 프로젝트 문서에 기록합니다. 규칙 → <code>design-system/rules.md</code>, 결정 이유 → <code>design-system/decisions.md</code>, AI 작업 원칙 → 진입 파일(<code>CLAUDE.md</code>, <code>AGENTS.md</code>).</p>
                   </div>
                 </div>
                 <div style="background:var(--accent-dim); border:1px solid var(--accent-border); border-radius:var(--radius-sm); padding:14px;">
                   <div style="font-size:11px; font-weight:700; color:var(--accent); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:6px;">핵심 원칙</div>
-                  <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">AI 도구 자체의 메모리는 세션 간 신뢰성이 낮고, 도구가 바뀌면 사라진다. <strong>프로젝트 폴더 안의 문서가 유일한 신뢰 가능한 기록 공간이다.</strong> 이 원칙은 어떤 AI 도구를 쓰든 동일하게 적용된다.</p>
+                  <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">AI 도구 자체의 메모리는 세션 간 신뢰성이 낮고, 도구가 바뀌면 사라집니다. <strong>프로젝트 폴더 안의 문서가 유일한 신뢰 가능한 기록 공간입니다.</strong> 이 원칙은 어떤 AI 도구를 쓰든 동일하게 적용됩니다.</p>
                 </div>
               </div>
             </div>
@@ -506,10 +506,10 @@
                 <strong style="font-size:15px;">작업 페이지를 지정하지 않아 첫 번째 페이지만 바라보는 실수</strong>
               </div>
               <div style="padding:20px;">
-                <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">Figma 파일에 여러 페이지가 있을 때, 에이전트가 기본 페이지나 첫 번째 페이지 기준으로 노드를 찾는 경우가 있다. 사용자가 특정 페이지 링크를 주었더라도 코드 실행 시 페이지 컨텍스트를 명시하지 않으면 엉뚱한 페이지에서 작업할 수 있다.</p>
+                <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">Figma 파일에 여러 페이지가 있을 때, 에이전트가 기본 페이지나 첫 번째 페이지 기준으로 노드를 찾는 경우가 있습니다. 사용자가 특정 페이지 링크를 주었더라도 코드 실행 시 페이지 컨텍스트를 명시하지 않으면 엉뚱한 페이지에서 작업할 수 있습니다.</p>
                 <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
                   <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">✅ 대안</div>
-                  <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">작업 시작 시 전달받은 node-id가 속한 page를 확인하고, 필요한 경우 <code>await figma.setCurrentPageAsync(page)</code>를 먼저 실행한다. 페이지 이동이 필요한 스크립트에는 이 처리를 공통 유틸처럼 넣는다.</p>
+                  <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">작업 시작 시 전달받은 node-id가 속한 page를 확인하고, 필요한 경우 <code>await figma.setCurrentPageAsync(page)</code>를 먼저 실행합니다. 페이지 이동이 필요한 스크립트에는 이 처리를 공통 유틸처럼 넣습니다.</p>
                 </div>
               </div>
             </div>
@@ -521,10 +521,10 @@
                 <strong style="font-size:15px;">로컬 폰트 접근 여부를 단정하는 실수</strong>
               </div>
               <div style="padding:20px;">
-                <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">Figma AI나 원격 플러그인 방식은 내 컴퓨터의 로컬 폰트를 직접 쓰지 못할 수 있다. 반대로 Figma 데스크탑 앱과 연결된 로컬 서버 방식에서는 데스크탑 앱이 인식한 폰트를 사용할 수 있는 경우가 있어, “항상 불가”처럼 단정하면 안 된다.</p>
+                <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">Figma AI나 원격 플러그인 방식은 내 컴퓨터의 로컬 폰트를 직접 쓰지 못할 수 있습니다. 반대로 Figma 데스크탑 앱과 연결된 로컬 서버 방식에서는 데스크탑 앱이 인식한 폰트를 사용할 수 있는 경우가 있어, “항상 불가”처럼 단정하면 안 됩니다.</p>
                 <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
                   <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">✅ 대안</div>
-                  <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">팀에서 쓰는 폰트는 Figma 팀 폰트 또는 클라우드에서 접근 가능한 폰트로 등록한다. AI에게는 폰트명, 용도, 대체 폰트, 지원 언어를 문서로 제공하고, 실행 전 <code>figma.loadFontAsync()</code> 가능 여부를 확인한다.</p>
+                  <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">팀에서 쓰는 폰트는 Figma 팀 폰트 또는 클라우드에서 접근 가능한 폰트로 등록합니다. AI에게는 폰트명, 용도, 대체 폰트, 지원 언어를 문서로 제공하고, 실행 전 <code>figma.loadFontAsync()</code> 가능 여부를 확인합니다.</p>
                 </div>
               </div>
             </div>
@@ -536,10 +536,10 @@
                 <strong style="font-size:15px;">Variables를 못 읽는다고 결론내리는 실수</strong>
               </div>
               <div style="padding:20px;">
-                <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">연결 방식이나 권한, 변수 구조에 따라 AI가 Variables를 충분히 읽지 못하는 것처럼 보일 수 있다. 하지만 MCP가 올바르게 연결되어 있고 필요한 권한이 있으면 컬렉션, 모드, 오타, semantic token 부족 같은 구조 문제까지 감사할 수 있다.</p>
+                <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.7;">연결 방식이나 권한, 변수 구조에 따라 AI가 Variables를 충분히 읽지 못하는 것처럼 보일 수 있습니다. 하지만 MCP가 올바르게 연결되어 있고 필요한 권한이 있으면 컬렉션, 모드, 오타, semantic token 부족 같은 구조 문제까지 감사할 수 있습니다.</p>
                 <div style="background:var(--green-bg); border:1px solid var(--green-border); border-radius:var(--radius-sm); padding:14px;">
                   <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">✅ 대안</div>
-                  <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">“Variables 못 읽음”으로 기록하지 말고, 연결 방식과 권한을 먼저 확인한다. Semantic 컬렉션에는 bg, text, border, icon, status처럼 목적 기반 토큰을 충분히 만들고, mode 이름은 <code>light</code>/<code>dark</code>처럼 명확하게 둔다.</p>
+                  <p style="font-size:14px; color:var(--text-secondary); margin:0; line-height:1.7;">“Variables 못 읽음”으로 기록하지 말고, 연결 방식과 권한을 먼저 확인합니다. Semantic 컬렉션에는 bg, text, border, icon, status처럼 목적 기반 토큰을 충분히 만들고, mode 이름은 <code>light</code>/<code>dark</code>처럼 명확하게 둡니다.</p>
                 </div>
               </div>
             </div>
@@ -556,7 +556,7 @@
                   <div class="flow-item">
                     <div style="flex:1;">
                       <strong>components.md 확인</strong>
-                      <div class="subdesc">이미 만들어진 컴포넌트 목록을 파악한다. 패널·컨테이너 작업 시 인스턴스를 써야 할 대상을 미리 확인.</div>
+                      <div class="subdesc">이미 만들어진 컴포넌트 목록을 파악합니다. 패널·컨테이너 작업 시 인스턴스를 써야 할 대상을 미리 확인.</div>
                     </div>
                   </div>
                   <div class="flow-item">
@@ -568,25 +568,25 @@
                   <div class="flow-item">
                     <div style="flex:1;">
                       <strong>SVG 아이콘은 직접 드래그</strong>
-                      <div class="subdesc">브랜드 로고·커스텀 아이콘은 코드 주입 대신 <a href="https://lobehub.com/ko/icons" target="_blank" style="color:var(--accent);">LobeHub</a> 등에서 직접 드래그해 넣는다.</div>
+                      <div class="subdesc">브랜드 로고·커스텀 아이콘은 코드 주입 대신 <a href="https://lobehub.com/ko/icons" target="_blank" style="color:var(--accent);">LobeHub</a> 등에서 직접 드래그해 넣습니다.</div>
                     </div>
                   </div>
                   <div class="flow-item">
                     <div style="flex:1;">
                       <strong>작업 페이지와 폰트 접근 확인</strong>
-                      <div class="subdesc">여러 페이지가 있는 파일은 <code>setCurrentPageAsync</code>로 페이지를 먼저 맞춘다. 로컬 폰트는 연결 방식에 따라 접근 가능 여부가 달라지므로 실행 전 확인한다.</div>
+                      <div class="subdesc">여러 페이지가 있는 파일은 <code>setCurrentPageAsync</code>로 페이지를 먼저 맞춥니다. 로컬 폰트는 연결 방식에 따라 접근 가능 여부가 달라지므로 실행 전 확인합니다.</div>
                     </div>
                   </div>
                   <div class="flow-item">
                     <div style="flex:1;">
                       <strong>Variables 읽기 실패를 바로 단정하지 않기</strong>
-                      <div class="subdesc">권한, 연결 방식, collection/mode 구조를 먼저 확인한다. semantic token이 부족하면 AI도 Palette를 직접 쓰는 방향으로 흔들린다.</div>
+                      <div class="subdesc">권한, 연결 방식, collection/mode 구조를 먼저 확인합니다. semantic token이 부족하면 AI도 Palette를 직접 쓰는 방향으로 흔들립니다.</div>
                     </div>
                   </div>
                   <div class="flow-item highlight-item">
                     <div style="flex:1;">
                       <strong>새로 배운 규칙은 즉시 문서화</strong>
-                      <div class="subdesc">실수 발견 즉시 <code>rules.md</code> 또는 <code>decisions.md</code>에 기록. "다음엔 기억하지" 말고 바로 문서에 쓴다.</div>
+                      <div class="subdesc">실수 발견 즉시 <code>rules.md</code> 또는 <code>decisions.md</code>에 기록. "다음엔 기억하지" 말고 바로 문서에 씁니다.</div>
                     </div>
                   </div>
                 </div>
@@ -605,6 +605,6 @@
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.40-paste-prompts"></script>
+<script src="ai-workflow-guide.js?v=0.41-hamnida"></script>
 </body>
 </html>

@@ -2362,7 +2362,8 @@ mark.search-inline-hit--active {
 .sidebar-logo-badge, .sidebar-subtitle { display: none; }
 .sidebar-version { padding: 14px 8px 0; border: 0; background: transparent; }
 .sidebar-logo { padding: 10px 8px 18px; border: 0; }
-.sidebar-title { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); margin: 0; }
+.sidebar-title { display: block; font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); margin: 0; text-decoration: none; }
+.sidebar-title:hover { color: var(--accent); }
 .sidebar-search { padding: 0 8px 14px; border: 0; }
 .sidebar-search label { display: none; }
 .sidebar-search input { height: 36px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); font-size: 14px; padding: 0 12px; }

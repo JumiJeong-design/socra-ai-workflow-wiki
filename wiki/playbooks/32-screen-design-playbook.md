@@ -2,11 +2,11 @@
 
 ## When To Use
 
-Socra 제품의 새 화면이나 주요 화면 개편을 AI와 함께 설계할 때 사용한다.
+Socra 제품의 새 화면이나 주요 화면 개편을 AI와 함께 설계할 때 사용합니다.
 
 ## Principle
 
-화면 설계는 Figma에서 자유롭게 탐색하되, approved screen이 되기 전까지 Prism(소크라의 디자인 시스템 패키지) contract, code, Storybook의 구현 계약으로 보지 않는다.
+화면 설계는 Figma에서 자유롭게 탐색하되, approved screen이 되기 전까지 Prism(소크라의 디자인 시스템 패키지) contract, code, Storybook의 구현 계약으로 보지 않습니다.
 
 ## Figma Screen States
 
@@ -19,34 +19,34 @@ Socra 제품의 새 화면이나 주요 화면 개편을 AI와 함께 설계할 
 
 ## Page-First Validation
 
-신규 컴포넌트가 여러 개 필요한 화면은 컴포넌트를 모두 구현하기 전에 page shell story로 먼저 검증한다.
+신규 컴포넌트가 여러 개 필요한 화면은 컴포넌트를 모두 구현하기 전에 page shell story로 먼저 검증합니다.
 
-1. 승인된 기존 컴포넌트만 사용해 화면의 큰 구조를 만든다.
-2. 아직 구현 전인 컴포넌트 자리는 placeholder로 명시한다.
-3. mobile/web, light/dark, locale, long content 같은 큰 축에서 화면이 성립하는지 확인한다.
-4. 새 컴포넌트가 준비되면 placeholder를 실제 컴포넌트로 교체한다.
-5. placeholder와 page shell 스타일은 구현 계약이 아니며 컴포넌트 contract로 승격하지 않는다.
+1. 승인된 기존 컴포넌트만 사용해 화면의 큰 구조를 만듭니다.
+2. 아직 구현 전인 컴포넌트 자리는 placeholder로 명시합니다.
+3. mobile/web, light/dark, locale, long content 같은 큰 축에서 화면이 성립하는지 확인합니다.
+4. 새 컴포넌트가 준비되면 placeholder를 실제 컴포넌트로 교체합니다.
+5. placeholder와 page shell 스타일은 구현 계약이 아니며 컴포넌트 contract로 승격하지 않습니다.
 
 ## Steps
 
-1. 화면의 핵심 사용자 목적을 한 문장으로 적는다.
-2. Figma screen status를 `exploration`, `candidate`, `approved screen`, `archived` 중 하나로 표시한다.
-3. Exploration 단계에서는 빠른 조합과 시각 실험을 우선하고 Prism contract로 옮기지 않는다.
-4. Candidate 단계에서는 AI design review로 정보 구조, 상태, 접근성, 컴포넌트 gap을 비교한다.
-5. Approved screen이 되면 필요한 기존 design system component를 확정한다.
-6. 반복 가능한 gap이 실제 구현 계약으로 이어지면 Prism의 최신 source-of-truth 문서에서 spec/contract 반영 범위를 확인한다.
-7. 구현 대상이면 Prism의 기준에 따라 Storybook 또는 product preview에서 구현 상태를 검증한다.
-8. 결정된 반복 패턴은 이 workflow wiki의 guide/playbook으로 승격할지 판단한다.
+1. 화면의 핵심 사용자 목적을 한 문장으로 적습니다.
+2. Figma screen status를 `exploration`, `candidate`, `approved screen`, `archived` 중 하나로 표시합니다.
+3. Exploration 단계에서는 빠른 조합과 시각 실험을 우선하고 Prism contract로 옮기지 않습니다.
+4. Candidate 단계에서는 AI design review로 정보 구조, 상태, 접근성, 컴포넌트 gap을 비교합니다.
+5. Approved screen이 되면 필요한 기존 design system component를 확정합니다.
+6. 반복 가능한 gap이 실제 구현 계약으로 이어지면 Prism의 최신 source-of-truth 문서에서 spec/contract 반영 범위를 확인합니다.
+7. 구현 대상이면 Prism의 기준에 따라 Storybook 또는 product preview에서 구현 상태를 검증합니다.
+8. 결정된 반복 패턴은 이 workflow wiki의 guide/playbook으로 승격할지 판단합니다.
 
 ## Done Criteria
 
-- 화면의 Figma status가 명확하다.
-- Exploration/Candidate 화면이 실수로 구현 기준이 되지 않았다.
-- Approved screen은 디자인 시스템 컴포넌트 기반으로 설명된다.
-- 새 컴포넌트 후보와 one-off UI가 구분된다.
-- 구현 전 page-first 검증이 필요한 경우 shell story와 placeholder 범위가 구분되어 있다.
-- open question과 designer judgment가 분리되어 있다.
-- 구현된 화면 또는 컴포넌트는 Storybook/product preview 검증 경로가 있다.
+- 화면의 Figma status가 명확합니다.
+- Exploration/Candidate 화면이 실수로 구현 기준이 되지 않았습니다.
+- Approved screen은 디자인 시스템 컴포넌트 기반으로 설명됩니다.
+- 새 컴포넌트 후보와 one-off UI가 구분됩니다.
+- 구현 전 page-first 검증이 필요한 경우 shell story와 placeholder 범위가 구분되어 있습니다.
+- open question과 designer judgment가 분리되어 있습니다.
+- 구현된 화면 또는 컴포넌트는 Storybook/product preview 검증 경로가 있습니다.
 
 ## Source Worklog
 
