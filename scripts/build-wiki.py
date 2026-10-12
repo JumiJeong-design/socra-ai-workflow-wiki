@@ -97,9 +97,12 @@ for group in GROUPS:
         raw = re.split(r'\n## [^\n]*Source Worklog', raw, maxsplit=1)[0].rstrip() + '\n'
         md_parser.reset()
         body_html = md_parser.convert(raw)
+        # 들여쓰기는 <pre> 밖에서만 한다. 안에 넣으면 프롬프트 둘째 줄부터 공백 6칸이 화면에 보인다
+        parts = re.split(r'(<pre>.*?</pre>)', body_html, flags=re.S)
+        body_html = ''.join(p if p.startswith('<pre>') else p.replace('\n', '\n      ') for p in parts)
         sections.append(
             f'    <section class="wiki-doc" id="{doc["id"]}">\n'
-            f'      {body_html.replace(chr(10), chr(10) + "      ")}\n'
+            f'      {body_html}\n'
             f'    </section>'
         )
 
@@ -120,7 +123,7 @@ for group in GROUPS:
   <link rel="canonical" href="https://jumijeong-design.github.io/socra-ai-workflow-wiki/{group["file"]}" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.35-surface" />
+  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.37-prompt-wrap" />
   <script>(function(){{var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}})();</script>
 </head>
 <body>
@@ -143,7 +146,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.36-entry-file"></script>
+<script src="ai-workflow-guide.js?v=0.37-manual-prompts"></script>
 </body>
 </html>
 '''

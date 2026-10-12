@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://jumijeong-design.github.io/socra-ai-workflow-wiki/changelog.html" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.35-surface" />
+  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.37-prompt-wrap" />
   <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
@@ -39,6 +39,27 @@
       <h1>버전 히스토리</h1>
       <p>Socra AI Workflow Wiki의 변경 사항을 버전별로 기록한다.</p>
     </div>
+
+    <!-- v0.37 -->
+    <section class="section" id="v0-37">
+      <div class="section-header">
+        <div class="section-num">0.37</div>
+        <h2>AX 매뉴얼 프롬프트 읽기 쉽게 <span class="section-tag">2026.10.12</span></h2>
+      </div>
+
+      <div class="highlight">
+        <p>매뉴얼에서 사람들이 실제로 복사해 가는 프롬프트 칸이 가장 읽기 어려웠다. 줄이 안 바뀌어 옆으로 스크롤해야 했고, 둘째 줄부터 빌드 들여쓰기 공백이 같이 찍혔다. 프롬프트 문장은 그대로 두고 보이는 방식과 안내만 고쳤다.</p>
+      </div>
+
+      <h3>고침</h3>
+      <ul class="styled">
+        <li><strong>프롬프트 칸</strong>: 화면 폭 안에서 줄을 바꾸고, 한글은 단어 중간에서 안 끊는다. 빌드 스크립트가 프롬프트 안에 넣던 공백 6칸을 뺐다. 매뉴얼 · 사례 · 실무 가이드의 프롬프트 44칸에 같이 적용된다.</li>
+        <li><strong>AX 매뉴얼 21~24장</strong>: 프롬프트 위에 문단(또는 묶음·줄)마다 무엇을 정하는지 표로 적었다. 내 상황에 맞게 고칠 자리를 바로 찾을 수 있다.</li>
+        <li><strong>AX 매뉴얼 21~26장</strong>: 장 끝에 「처음 보면 막히는 말」을 넣었다. 미바인딩, override, changeset, worktree처럼 처음 읽는 사람이 막히는 말을 한 줄씩 풀었다.</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
 
     <!-- v0.36 -->
     <section class="section" id="v0-36">
@@ -937,6 +958,6 @@
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.36-entry-file"></script>
+<script src="ai-workflow-guide.js?v=0.37-manual-prompts"></script>
 </body>
 </html>

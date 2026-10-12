@@ -1730,6 +1730,13 @@ ol.styled li::before {
   color: var(--text-primary);
 }
 
+/* 프롬프트 블록은 복사해 가는 글이라 옆 스크롤 없이 줄을 바꾼다 */
+.wiki-doc pre code.language-text {
+  white-space: pre-wrap;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
 .wiki-doc blockquote {
   margin: 0 0 16px;
   padding: 10px 16px;
