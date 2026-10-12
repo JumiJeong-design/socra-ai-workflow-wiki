@@ -74,7 +74,7 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.37-manual-prompts')
+fetch('sidebar.html?v=0.38-hig-home')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;

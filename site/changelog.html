@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://jumijeong-design.github.io/socra-ai-workflow-wiki/changelog.html" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.37-prompt-wrap" />
+  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.38-prism-color" />
   <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
@@ -39,6 +39,28 @@
       <h1>버전 히스토리</h1>
       <p>Socra AI Workflow Wiki의 변경 사항을 버전별로 기록한다.</p>
     </div>
+
+    <!-- v0.38 -->
+    <section class="section" id="v0-38">
+      <div class="section-header">
+        <div class="section-num">0.38</div>
+        <h2>첫 화면과 사이드바 새로 짜기 <span class="section-tag">2026.10.12</span></h2>
+      </div>
+
+      <div class="highlight">
+        <p>항목이 50개로 늘면서 무엇부터 봐야 할지 알 수 없게 됐다. 문서를 지우지 않고, 읽는 사람이 지금 무엇을 하려는지에 따라 네 칸으로 다시 나눴다. 화면은 Apple HIG와 Figma Learn을 따랐다.</p>
+      </div>
+
+      <h3>고침</h3>
+      <ul class="styled">
+        <li><strong>묶음</strong>: 원칙 · 절차 · AX 매뉴얼 · 막혔을 때를 처음이에요 · 지금 할 일 · 찾아볼 게 · 왜 이렇게 하나로 바꿨다. 프롬프트 21~26장은 「지금 할 일」로, 구축·원리 장은 「왜 이렇게 하나」로 갈렸다. 주소는 그대로라 기존 링크는 안 깨진다.</li>
+        <li><strong>첫 화면</strong>: 큰 질문과 검색창, 자주 찾는 칩을 맨 위에 두고, 그 아래 네 칸을 아이콘 카드로 놓았다. 문서 목록 50줄과 읽기 경로는 뺐다. 전체 목록은 사이드바와 검색이 맡는다.</li>
+        <li><strong>사이드바</strong>: 배지와 부제, 구분선을 걷고 항목마다 아이콘을 붙였다. 현재 항목은 굵은 글씨와 파란 아이콘으로 표시한다.</li>
+        <li><strong>색</strong>: 회색 단계와 다크 모드를 프리즘 토큰으로 바꾸고, 포인트는 심볼 파랑·주황만 쓴다. 보라와 남색 기운을 뺐다. 링크는 밑줄로 구분한다.</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
 
     <!-- v0.37 -->
     <section class="section" id="v0-37">
@@ -958,6 +980,6 @@
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.37-manual-prompts"></script>
+<script src="ai-workflow-guide.js?v=0.38-hig-home"></script>
 </body>
 </html>
