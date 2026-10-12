@@ -74,7 +74,7 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.39-merge-dupes')
+fetch('sidebar.html?v=0.40-paste-prompts')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;

@@ -44,6 +44,7 @@ GROUPS = [
             {'id': 'manual-24', 'src': 'wiki/manual/24-prompt-release.md', 'label': '배포'},
             {'id': 'manual-25', 'src': 'wiki/manual/25-prompt-session.md', 'label': '세션 시작 · 병렬 · 복구 · 마무리'},
             {'id': 'manual-26', 'src': 'wiki/manual/26-prompt-judgement.md', 'label': '판단을 올릴 때'},
+            {'id': 'manual-27', 'src': 'wiki/manual/27-appendix-paste-prompts.md', 'label': '부록: 바로 붙여 넣는 지시어'},
             {'id': 'manual-31', 'src': 'wiki/manual/31-principle-costs.md', 'label': '이 방식의 단점'},
             {'id': 'manual-32', 'src': 'wiki/manual/32-principle-ai-vs-human.md', 'label': 'AI가 잘하는 것과 사람이 판단할 것'},
             {'id': 'manual-33', 'src': 'wiki/manual/33-principle-middle-ground.md', 'label': '의사결정자들 사이의 중간안'},
@@ -156,7 +157,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.39-merge-dupes"></script>
+<script src="ai-workflow-guide.js?v=0.40-paste-prompts"></script>
 </body>
 </html>
 '''
