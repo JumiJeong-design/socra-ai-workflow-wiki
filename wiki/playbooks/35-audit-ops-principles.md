@@ -6,7 +6,7 @@
 
 ## 대량 작업은 매뉴얼에 있습니다
 
-감사 → 승인 → 실행, 파일럿 1건 → 배치, 범위와 대조군을 먼저 적는 법은 매뉴얼로 옮겼습니다. 프롬프트째로 쓰려면 [21 DS 토큰 정합 검토](../manual/21-prompt-ds-token-audit.md)와 [22 화면 → DS → 화면 왕복](../manual/22-prompt-screen-ds-roundtrip.md)을, 멈출 자리는 [13 행동 기준](../manual/13-behavior-baseline.md)을 봅니다.
+감사 → 승인 → 실행, 파일럿 1건 → 배치, 범위와 대조군을 먼저 적는 법은 매뉴얼로 옮겼습니다. 프롬프트째로 쓰려면 [27 바로 붙여 넣는 지시어](../manual/27-appendix-paste-prompts.md)의 「디자인 시스템 점검」을, 멈출 자리는 [13 행동 기준](../manual/13-behavior-baseline.md)을 봅니다.
 
 매뉴얼에 없는 것 세 가지만 여기 남깁니다.
 

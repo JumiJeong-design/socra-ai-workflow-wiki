@@ -35,12 +35,6 @@ GROUPS = [
             {'id': 'manual-12', 'src': 'wiki/manual/12-visual-baseline.md', 'label': '시각 기준'},
             {'id': 'manual-13', 'src': 'wiki/manual/13-behavior-baseline.md', 'label': '행동 기준'},
             {'id': 'manual-20', 'src': 'wiki/manual/20-harness.md', 'label': '하네스'},
-            {'id': 'manual-21', 'src': 'wiki/manual/21-prompt-ds-token-audit.md', 'label': 'DS 토큰 정합 검토'},
-            {'id': 'manual-22', 'src': 'wiki/manual/22-prompt-screen-ds-roundtrip.md', 'label': '화면 → DS → 화면 왕복'},
-            {'id': 'manual-23', 'src': 'wiki/manual/23-prompt-ds-storybook-contract.md', 'label': 'DS → 스토리북 계약 정리'},
-            {'id': 'manual-24', 'src': 'wiki/manual/24-prompt-release.md', 'label': '배포'},
-            {'id': 'manual-25', 'src': 'wiki/manual/25-prompt-session.md', 'label': '세션 시작 · 병렬 · 복구 · 마무리'},
-            {'id': 'manual-26', 'src': 'wiki/manual/26-prompt-judgement.md', 'label': '판단을 올릴 때'},
             {'id': 'manual-27', 'src': 'wiki/manual/27-appendix-paste-prompts.md', 'label': '부록: 바로 붙여 넣는 지시어'},
             {'id': 'manual-31', 'src': 'wiki/manual/31-principle-costs.md', 'label': '이 방식의 단점'},
             {'id': 'manual-32', 'src': 'wiki/manual/32-principle-ai-vs-human.md', 'label': 'AI가 잘하는 것과 사람이 판단할 것'},
@@ -157,7 +151,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.48-terms-table"></script>
+<script src="ai-workflow-guide.js?v=0.49-manual-public"></script>
 </body>
 </html>
 '''
