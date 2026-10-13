@@ -13,7 +13,7 @@ with open(os.path.join(ROOT, 'site', 'ai-workflow-guide.html'), 'r') as f:
     src = f.read()
 
 SHELL_HEAD = src[:src.index('  <!-- Main -->') + len('  <!-- Main -->\n')]
-SHELL_FOOT = '\n<script src="ai-workflow-guide.js?v=0.45-instant-scroll"></script>\n</body>\n</html>'
+SHELL_FOOT = '\n<script src="ai-workflow-guide.js?v=0.46-trim"></script>\n</body>\n</html>'
 
 # main 내부 전체 추출
 main_body = src[src.index('  <main class="main">') + len('  <main class="main">'):
@@ -47,24 +47,16 @@ GROUPS = [
         'file': 'guide-ops.html',
         'nav_title': '실무 운영',
         'start': '    <!-- Usage -->',
-        'end': '    <!-- 제품 유형 자가진단 -->',
-    },
-    {
-        'id': 'extensions',
-        'file': 'guide-extensions.html',
-        'nav_title': '제품 유형별 확장',
-        'start': '    <!-- 제품 유형 자가진단 -->',
         'end': None,  # 끝까지
     },
 ]
 
-# ── prev/next 순서 (가이드 5개 → build-wiki.py의 첫 페이지로 이어짐) ──
+# ── prev/next 순서 (가이드 4개 → build-wiki.py의 첫 페이지로 이어짐) ──
 ALL_PAGES = [
     {'file': 'guide-basics.html',               'title': '기본 이해'},
     {'file': 'guide-setup.html',                'title': '연결 / 환경 설정'},
     {'file': 'guide-build.html',                'title': '탐색 단계'},
     {'file': 'guide-ops.html',                  'title': '실무 운영'},
-    {'file': 'guide-extensions.html',           'title': '제품 유형별 확장'},
     {'file': 'guide-wiki.html',                 'title': '실무 가이드'},
 ]
 
@@ -109,4 +101,4 @@ for i, g in enumerate(GROUPS):
         f.write(html)
     print(f'  ✓ site/{g["file"]}')
 
-print(f'\n5개 가이드 페이지 빌드 완료')
+print(f'\n4개 가이드 페이지 빌드 완료')

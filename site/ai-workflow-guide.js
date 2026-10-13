@@ -74,7 +74,7 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.45-instant-scroll')
+fetch('sidebar.html?v=0.46-trim')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;
@@ -167,7 +167,6 @@ const SEARCH_PAGES = [
   { path: 'guide-setup.html',       label: '연결 / 환경 설정' },
   { path: 'guide-build.html',       label: '문서 구축 가이드' },
   { path: 'guide-ops.html',         label: '실무 운영' },
-  { path: 'guide-extensions.html',  label: '제품 유형별 확장' },
   { path: 'guide-wiki.html',        label: '실무 가이드' },
   { path: 'guide-playbooks.html',   label: '플레이북' },
   { path: 'guide-manual.html',      label: 'AX 매뉴얼' },

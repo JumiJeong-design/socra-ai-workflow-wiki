@@ -30,193 +30,6 @@
   <nav class="sidebar" id="sidebar"></nav>
 
   <main class="main">
-    <section class="wiki-doc" id="figma-git-sync">
-      <h1>Figma / Git Sync 경계</h1>
-      <blockquote>
-      <p>이 문서의 정본 순서·스토리북 경계·「계획은 승인이 아니다」는 <a href="guide-manual.html#manual-11">매뉴얼 11 채널 다섯과 게시 게이트</a>와 <a href="guide-manual.html#manual-13">13 행동 기준</a>으로 합쳤습니다(v0.39). 아래는 옛 판으로 남겨 둡니다.</p>
-      </blockquote>
-      <h2>목적</h2>
-      <p>Figma, Prism(소크라의 디자인 시스템 패키지), 코드 구현, Storybook이 서로 다른 기준을 말하지 않도록 역할 경계를 정리합니다.</p>
-      <p>이 문서는 현재 Prism의 실제 계약 문서가 아닙니다. Prism의 component/token/package/source-of-truth 판단은 Prism의 README, 에이전트 진입 문서, 에이전트 규칙 문서, 디자인 시스템 규칙 문서, 패키지·Storybook 문서를 우선합니다.</p>
-      <h2>출처 기준 (Source of Truth)</h2>
-      <table>
-      <thead>
-      <tr>
-      <th>영역</th>
-      <th>현재 출처</th>
-      <th>이 Wiki의 역할</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-      <td>일상 작업 기록</td>
-      <td>워크로그</td>
-      <td>반복 가능한 교훈만 승격</td>
-      </tr>
-      <tr>
-      <td>Prism 컴포넌트/토큰/패키지 계약</td>
-      <td>Prism</td>
-      <td>경계 설명 및 링크</td>
-      </tr>
-      <tr>
-      <td>디자인 탐색 / 시각 근거</td>
-      <td>Figma / Prism design-system 근거 문서</td>
-      <td>교훈 보존 (계약 아님)</td>
-      </tr>
-      <tr>
-      <td>구현 동작 기준</td>
-      <td>코드 / 패키지 계약</td>
-      <td>스펙 중복 금지</td>
-      </tr>
-      <tr>
-      <td>구현 UI 검토</td>
-      <td>Prism의 Storybook</td>
-      <td>QA 패턴 설명만</td>
-      </tr>
-      </tbody>
-      </table>
-      <h2>절대 원칙</h2>
-      <p>코드, 프리뷰, Storybook에서 시각 값을 AI가 임의로 만들어 sync라고 부르면 안 됩니다.</p>
-      <ul>
-      <li>이 가이드를 적용하기 전에 Prism의 현재 운영 모델을 확인합니다.</li>
-      <li>Prism 문서가 패키지/컴포넌트 계약을 정의한다면 여기서 반복하지 않습니다.</li>
-      <li>이 wiki와 Prism 문서가 충돌하면 구현 기준은 Prism 문서가 우선합니다.</li>
-      <li>이 wiki에는 경계가 생긴 이유와 실수를 반복하지 않는 방법만 기록합니다.</li>
-      </ul>
-      <p>계획은 승인과 다릅니다. worklog나 plan에 "피그마 변경" 항목이 있어도, 에이전트는 read-only 감사와 변경안 보고 전까지 피그마 파일을 수정하지 않습니다. 시각 방향, 공통 컴포넌트 스타일, 화면 톤 변경은 디자이너가 명시적으로 승인한 뒤에만 write합니다.</p>
-      <h2>Storybook 경계</h2>
-      <p>Storybook이 Figma 디자인 파일을 페이지 단위로 시각적으로 복사할 필요는 없습니다.</p>
-      <ul>
-      <li>Storybook의 docs 페이지 레이아웃, 패널, 제목, 설명 영역은 개발자/디자이너 가독성을 위해 자유롭게 설계해도 됩니다.</li>
-      <li>렌더링된 컴포넌트 내부는 Figma와 일치해야 합니다: 토큰, 치수, variant, 상태, 타이포그래피, spacing, radius, shadow, 아이콘 크기, 인터랙션 상태 시각.</li>
-      <li>Storybook 페이지 shell 스타일이 컴포넌트 CSS로 유입되거나 컴포넌트 기준이 되어선 안 됩니다.</li>
-      </ul>
-      <h2>Figma 영역 구분</h2>
-      <table>
-      <thead>
-      <tr>
-      <th>영역</th>
-      <th>Sync 규칙</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-      <td>탐색(Exploration)</td>
-      <td>Git/Storybook에 sync 금지</td>
-      </tr>
-      <tr>
-      <td>후보(Candidates)</td>
-      <td>맥락만 기록, 구현 계약 아님</td>
-      </tr>
-      <tr>
-      <td>컴포넌트</td>
-      <td>승인 후 sync</td>
-      </tr>
-      <tr>
-      <td>화면</td>
-      <td>승인 표시 후에만 sync</td>
-      </tr>
-      <tr>
-      <td>아카이브</td>
-      <td>근거로 참조되는 경우만 sync</td>
-      </tr>
-      </tbody>
-      </table>
-      <h2>Sync 원칙</h2>
-      <ul>
-      <li>이 wiki는 컴포넌트 스펙, 토큰 계약, 패키지 API, 릴리즈 규칙을 소유하지 않습니다.</li>
-      <li>Prism이 현재 구현 계약을 소유합니다.</li>
-      <li>이 wiki는 세션 간 반복 패턴(무엇을 먼저 확인할지, 무엇을 중복하면 안 되는지, 언제 워크로그 교훈을 승격할지)을 소유합니다.</li>
-      <li>Code Connect는 선택 사항입니다. 이로 인해 워크플로가 막히면 안 됩니다.</li>
-      </ul>
-      <h2>Sync 흐름</h2>
-      <pre><code class="language-text">워크로그 / Figma / 프로토타입 신호
--&gt; Prism 출처 확인
--&gt; 필요 시 Prism 계약 업데이트
--&gt; 코드 구현 / Storybook 검증
--&gt; 재사용 가능한 교훈을 이 wiki에 기록
-</code></pre>
-      <p>컴포넌트 시각 계약이 변경될 경우, 흐름은 이 wiki가 아니라 Prism의 최신 문서에서 시작해야 합니다.</p>
-      <h2>AI 체크리스트</h2>
-      <p>Prism 계약 문서, 코드, 프리뷰, Storybook을 수정하기 전 AI는 다음을 확인해야 합니다.</p>
-      <ul>
-      <li>이 결정을 소유하는 곳은 워크로그, Prism, 이 wiki 중 어디입니까?</li>
-      <li>이것은 현재 Prism 계약인가, 아니면 재사용 가능한 운영 교훈입니까?</li>
-      <li>plan/worklog 항목을 실행 승인으로 오해하고 있지 않습니까?</li>
-      <li>Prism README·에이전트 진입 문서와 관련 계약 문서를 확인했습니까?</li>
-      <li>Prism에 있어야 할 컴포넌트/토큰/패키지 내용을 중복하고 있지 않습니까?</li>
-      <li>이 내용은 먼저 워크로그에 기록하고 반복된 이후에 wiki로 승격해야 합니까?</li>
-      </ul>
-      <h2>검수 기준</h2>
-      <ul>
-      <li>현재 구현 규칙은 직접 기술하지 않고 Prism 출처 문서를 링크합니다.</li>
-      <li>이 wiki 문서는 재사용 가능한 경계와 교훈을 설명합니다.</li>
-      <li>워크로그 항목은 원본 기록으로 남기고 wiki 문서에는 승격된 패턴만 담습니다.</li>
-      <li>Prism이 확인하지 않은 컴포넌트/토큰/패키지 계약을 현행 기준으로 취급하지 않습니다.</li>
-      </ul>
-    </section>
-
-    <hr class="divider" />
-
-    <section class="wiki-doc" id="ai-design-review">
-      <h1>AI 디자인 리뷰</h1>
-      <h2>목적</h2>
-      <p>AI가 디자인 결과물을 단순 취향 평가가 아니라 제품 사용성, 일관성, 접근성, 구현 가능성 관점으로 검토하게 만듭니다.</p>
-      <h2>리뷰 입력 정보</h2>
-      <ul>
-      <li>Figma 링크 또는 스크린샷</li>
-      <li>사용자가 수행하려는 작업</li>
-      <li>컴포넌트 또는 화면 범위</li>
-      <li>현재 디자인 시스템 제약 조건</li>
-      <li>미결 질문 (Open questions)</li>
-      </ul>
-      <h2>리뷰 체크리스트</h2>
-      <ul>
-      <li>사용자가 주요 행동을 바로 찾을 수 있는가</li>
-      <li>컴포넌트 variant/state가 기존 시스템과 맞는가</li>
-      <li>spacing, typography, color token이 임의 값으로 흩어지지 않는가</li>
-      <li>loading, disabled, empty, error 상태가 있는가</li>
-      <li>모바일/데스크톱에서 텍스트가 넘치거나 겹치지 않는가</li>
-      </ul>
-      <h2>출력 형식</h2>
-      <p>AI 리뷰는 다음 순서로 작성합니다.</p>
-      <ol>
-      <li>치명적 이슈 (Critical issues)</li>
-      <li>제품/디자인 리스크</li>
-      <li>수정 제안</li>
-      <li>디자이너 판단이 필요한 질문</li>
-      <li>관련 워크로그 또는 Prism(소크라의 디자인 시스템 패키지) 출처 문서 링크</li>
-      </ol>
-    </section>
-
-    <hr class="divider" />
-
-    <section class="wiki-doc" id="daily-worklog-to-wiki">
-      <h1>기록을 위키로 올리기</h1>
-      <p>날짜별 워크로그를 그대로 옮기지 않습니다. 세 층을 거치며 줄이고, 검증된 것만 공개 위키로 내립니다.</p>
-      <p>워크로그 자체를 어떻게 쓰고 세션 사이에 잇는지는 <a href="guide-manual.html#manual-20">매뉴얼 20 하네스</a>에 있습니다. 이 문서는 그 기록을 위키까지 올리는 흐름만 다룹니다.</p>
-      <h2>세 층</h2>
-      <ol>
-      <li><strong>워크로그.</strong> 날짜별 파일 하나. 계획과 기록이 같이 있습니다. 비공개입니다.</li>
-      <li><strong>경험 기록과 매뉴얼.</strong> 판단이 뒤집힌 경험은 한 편의 글로 키웁니다. 같은 일이 되풀이되면 매뉴얼 장으로 정리합니다. 원본은 마크다운이고 비공개입니다.</li>
-      <li><strong>위키.</strong> 매뉴얼 장은 같은 번호로 하나씩 내립니다. 경험 기록은 원인과 처방, 프롬프트만 남겨 사례로 냅니다.</li>
-      </ol>
-      <p>방향은 한쪽입니다. 위키에서 고칠 것이 생기면 매뉴얼을 먼저 고치고 내려보냅니다.</p>
-      <h2>무엇을 올리나</h2>
-      <p>아래 중 하나라도 맞으면 후보입니다.</p>
-      <ul>
-      <li>같은 문제가 다시 나올 가능성이 높습니다.</li>
-      <li>피그마, 코드, AI 협업 방식의 규칙을 바꿨습니다.</li>
-      <li>다른 화면이나 컴포넌트에도 쓸 판단이 생겼습니다.</li>
-      <li>실패한 시도에서 다음 작업을 줄여 주는 교훈이 나왔습니다.</li>
-      </ul>
-      <p>초안은 올리지 않습니다. 매뉴얼 본장이 되고, 사례는 한눈에 보는 표가 생긴 뒤에 냅니다.</p>
-      <h2>공개용으로 거릅니다</h2>
-      <p>파일 키, 노드 ID, 내부 링크, 비공개 레포 경로, 사람 이름, PR 번호는 뺍니다. 출처는 문서 끝 <code>Source Worklog</code> 절에만 남깁니다. 이 절은 사이트에 렌더되지 않습니다.</p>
-    </section>
-
-    <hr class="divider" />
-
     <section class="wiki-doc" id="designer-dev-terms">
       <h1>디자이너를 위한 개발 협업 용어 가이드</h1>
       <p>디자인 시스템이나 제품 UI를 AI/개발자와 함께 다루다 보면 PR, CI, Storybook, Token 같은 개발 용어를 자주 만나게 됩니다. 이 문서는 디자이너가 작업 흐름을 이해하고 변경사항을 안전하게 확인하기 위해 필요한 기본 용어를 정리합니다.</p>
@@ -357,13 +170,13 @@
     </section>
 
     <nav class="wiki-page-nav">
-      <a href="guide-extensions.html" class="wiki-nav-btn wiki-nav-prev">← 제품 유형별 확장</a>
+      <a href="guide-ops.html" class="wiki-nav-btn wiki-nav-prev">← 실무 운영</a>
       <a href="guide-playbooks.html" class="wiki-nav-btn wiki-nav-next">플레이북 / 기록 →</a>
     </nav>
 
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.45-instant-scroll"></script>
+<script src="ai-workflow-guide.js?v=0.46-trim"></script>
 </body>
 </html>
