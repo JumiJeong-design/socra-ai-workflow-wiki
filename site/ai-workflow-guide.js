@@ -74,7 +74,7 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.47-glossary')
+fetch('sidebar.html?v=0.48-terms-table')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;

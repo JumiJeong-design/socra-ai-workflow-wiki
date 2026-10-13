@@ -157,7 +157,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.47-glossary"></script>
+<script src="ai-workflow-guide.js?v=0.48-terms-table"></script>
 </body>
 </html>
 '''
