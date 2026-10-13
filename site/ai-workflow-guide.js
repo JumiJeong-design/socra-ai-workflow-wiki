@@ -74,7 +74,7 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.43-paseo')
+fetch('sidebar.html?v=0.44-agent-tools')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;

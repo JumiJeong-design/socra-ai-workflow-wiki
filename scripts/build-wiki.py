@@ -161,7 +161,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.43-paseo"></script>
+<script src="ai-workflow-guide.js?v=0.44-agent-tools"></script>
 </body>
 </html>
 '''
