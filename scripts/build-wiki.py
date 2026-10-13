@@ -95,7 +95,11 @@ def site_links(html, src):
     def to_site(m):
         target = os.path.normpath(os.path.join(base, m.group(1)))
         return f'href="{SITE_HREF.get(target, m.group(0)[6:-1])}"'
-    return re.sub(r'href="([^"#:]+\.md)"', to_site, html)
+    html = re.sub(r'href="([^"#:]+\.md)"', to_site, html)
+    # 그림은 md에서 ../../site/img/…로 건다(저장소에서도 보이게). 사이트 페이지는 site/ 안에 있으니 img/…로 바꾼다
+    # CSS에 그림 규칙이 없어 원본 폭으로 넘친다. 본문 폭에 맞춘다
+    html = re.sub(r'src="(?:\.\./)+site/', 'src="', html)
+    return html.replace('<img ', '<img style="max-width:100%;height:auto;border-radius:8px;" ')
 
 for group in GROUPS:
     sections = []
@@ -157,7 +161,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.41-hamnida"></script>
+<script src="ai-workflow-guide.js?v=0.42-paste-prompts"></script>
 </body>
 </html>
 '''
