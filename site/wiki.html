@@ -6,7 +6,7 @@
   <title>실무 가이드 & 플레이북 · Socra AI Workflow</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.41-title-link" />
+  <link rel="stylesheet" href="ai-workflow-guide.css?v=0.45-instant-scroll" />
   <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
   <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
@@ -79,13 +79,13 @@ Promise.all(DOCS.map(doc =>
   const hash = location.hash.slice(1);
   if (hash) {
     const el = document.getElementById(hash);
-    if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
+    if (el) setTimeout(() => el.scrollIntoView(), 100);
   }
 }).catch(id => {
   mainEl.innerHTML = `<div class="wiki-doc"><p style="color:var(--text-muted)">일부 문서를 불러오지 못했습니다 (${id}).</p></div>`;
 });
 </script>
 
-<script src="ai-workflow-guide.js?v=0.44-agent-tools"></script>
+<script src="ai-workflow-guide.js?v=0.45-instant-scroll"></script>
 </body>
 </html>

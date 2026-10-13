@@ -74,7 +74,7 @@ document.querySelectorAll('.code-label').forEach(label => {
 });
 
 // ─── Sidebar (shared, fetched) ────────────────────────────
-fetch('sidebar.html?v=0.44-agent-tools')
+fetch('sidebar.html?v=0.45-instant-scroll')
   .then(res => res.text())
   .then(html => {
     sidebarEl.innerHTML = html;
@@ -355,7 +355,7 @@ function highlightTargetFromHash(hash = location.hash) {
     hits[cur]?.classList.remove('search-inline-hit--active');
     cur = (i + hits.length) % hits.length;
     hits[cur].classList.add('search-inline-hit--active');
-    hits[cur].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    hits[cur].scrollIntoView({ block: 'center' });
     countEl.textContent = `${cur + 1} / ${hits.length}`;
   }
 
