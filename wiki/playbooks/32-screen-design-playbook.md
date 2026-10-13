@@ -6,7 +6,7 @@ Socra 제품의 새 화면이나 주요 화면 개편을 AI와 함께 설계할 
 
 ## Principle
 
-화면 설계는 Figma에서 자유롭게 탐색하되, approved screen이 되기 전까지 Prism(소크라의 디자인 시스템 패키지) contract, code, Storybook의 구현 계약으로 보지 않습니다.
+화면 설계는 Figma에서 자유롭게 탐색하되, approved screen이 되기 전까지 Prism(소크라의 디자인 시스템 패키지) contract, code, Storybook의 구현 계약(컴포넌트를 어떻게 구현할지 적은 약속 문서)으로 보지 않습니다.
 
 ## Figma Screen States
 

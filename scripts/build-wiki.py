@@ -11,7 +11,7 @@ GROUPS = [
         'title': '실무 가이드',
         'nav_title': '실무 가이드',
         'docs': [
-            {'id': 'designer-dev-terms',            'src': 'wiki/guides/80-designer-dev-terms.md',            'label': '개발 협업 용어'},
+            {'id': 'designer-dev-terms',            'src': 'wiki/guides/80-designer-dev-terms.md',            'label': '용어 모음'},
         ]
     },
     {
@@ -157,7 +157,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.46-trim"></script>
+<script src="ai-workflow-guide.js?v=0.47-glossary"></script>
 </body>
 </html>
 '''
