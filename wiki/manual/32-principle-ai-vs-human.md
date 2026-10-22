@@ -69,5 +69,5 @@ AI의 칭찬과 의견은 참고로만 듣습니다. 「잘하셨어요」는 �
 
 ## Source Worklog
 
-- 정본: ax-log-records `manual/32-principle-ai-vs-human.md` (비공개, 2026-09-28 판)
+- 정본: AX 기록 `manual/32-principle-ai-vs-human.md` (비공개, 2026-09-28 판)
 - 관련 경험 기록: 02편 홈 배경 탐색, 03편 모션은 스토리북에서, 10편 0.1px이 화면 230개에

@@ -68,4 +68,4 @@ Claude Code에서는 명령 실행 직전(PreToolUse 훅), 세션 시작(Session
 
 ## Source Worklog
 
-- 정본: ax-log-records 19편 「규칙이 879줄 있는데 같은 실수가 났다」 (비공개)
+- 정본: AX 기록 19편 「규칙이 879줄 있는데 같은 실수가 났다」 (비공개)

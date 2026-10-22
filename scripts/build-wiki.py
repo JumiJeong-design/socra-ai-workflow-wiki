@@ -151,7 +151,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.50-token-monthly"></script>
+<script src="ai-workflow-guide.js?v=0.51-source-name"></script>
 </body>
 </html>
 '''

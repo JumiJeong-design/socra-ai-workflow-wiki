@@ -45,5 +45,5 @@ FE 입장에서 스토리북(컴포넌트를 상태별로 띄워 보는 화면)�
 
 ## Source Worklog
 
-- 정본: ax-log-records `manual/33-principle-middle-ground.md` (비공개, 2026-09-28 판)
+- 정본: AX 기록 `manual/33-principle-middle-ground.md` (비공개, 2026-09-28 판)
 - 관련 경험 기록: 13편 디자이너가 패키지를 배포한다, 21편 스토리북이 스케치패드가 됐다, 24편 JP 문구 정본 셋

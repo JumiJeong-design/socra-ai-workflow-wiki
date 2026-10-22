@@ -32,5 +32,5 @@
 
 ## Source Worklog
 
-- 정본: ax-log-records `manual/12-visual-baseline.md` (비공개, 2026-09-28 판)
+- 정본: AX 기록 `manual/12-visual-baseline.md` (비공개, 2026-09-28 판)
 - 관련 경험 기록: 01편 토큰 드리프트, 20편 원시값 감사, 23편 색 램프 두 세대

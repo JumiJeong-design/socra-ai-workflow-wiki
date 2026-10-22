@@ -48,5 +48,5 @@
 
 ## Source Worklog
 
-- 정본: ax-log-records `manual/20-harness.md` (비공개, 2026-09-28 판)
+- 정본: AX 기록 `manual/20-harness.md` (비공개, 2026-09-28 판)
 - 관련 경험 기록: 07편 하네스 튜닝, 11편 병렬 세션, 19편 규칙이 안 읽힌다

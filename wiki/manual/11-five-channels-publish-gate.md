@@ -49,5 +49,5 @@ Figma와 Git 사이에 게시가 있습니다. 디자인 시스템 파일에서 
 
 ## Source Worklog
 
-- 정본: ax-log-records `manual/11-five-channels-publish-gate.md` (비공개, 2026-09-28 판)
+- 정본: AX 기록 `manual/11-five-channels-publish-gate.md` (비공개, 2026-09-28 판)
 - 관련 경험 기록: 18편 게시 게이트 열흘

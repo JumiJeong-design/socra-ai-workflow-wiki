@@ -80,6 +80,6 @@ Claude에 피그마 MCP를 연결해 두면 AI가 피그마 파일을 직접 읽
 
 ## Source Worklog
 
-- 정본: ax-log-records `manual/27-appendix-paste-prompts.md` (비공개, 2026-10-13 판)
+- 정본: AX 기록 `manual/27-appendix-paste-prompts.md` (비공개, 2026-10-13 판)
 - 원본: 노션 「프롬프트 지시어 정리」(10/8까지 디자이너 TODO에 모아 둔 지시어)
 - 관련 경험 기록: 27편 AI가 반복하는 실수를 고친 방안들

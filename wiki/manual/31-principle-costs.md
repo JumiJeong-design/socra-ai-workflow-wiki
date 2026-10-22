@@ -66,5 +66,5 @@
 
 ## Source Worklog
 
-- 정본: ax-log-records `manual/31-principle-costs.md` (비공개, 2026-09-28 판)
+- 정본: AX 기록 `manual/31-principle-costs.md` (비공개, 2026-09-28 판)
 - 관련 경험 기록: 11편 병렬 세션, 19편 규칙이 안 읽힌다, 20편 0건과 오탐

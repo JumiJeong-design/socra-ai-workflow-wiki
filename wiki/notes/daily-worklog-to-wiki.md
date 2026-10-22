@@ -30,4 +30,4 @@
 ## Source Worklog
 
 - `jumi-worklog/YYYY-MM-DD.md`
-- 승격 규칙: ax-log-records `manual/90-wiki-mapping.md` (2026-10-02)
+- 승격 규칙: AX 기록 `manual/90-wiki-mapping.md` (2026-10-02)

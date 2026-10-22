@@ -27,5 +27,5 @@
 
 ## Source Worklog
 
-- 정본: ax-log-records `manual/13-behavior-baseline.md` (비공개, 2026-09-28 판)
+- 정본: AX 기록 `manual/13-behavior-baseline.md` (비공개, 2026-09-28 판)
 - 관련 경험 기록: 19편 규칙이 안 읽힌다

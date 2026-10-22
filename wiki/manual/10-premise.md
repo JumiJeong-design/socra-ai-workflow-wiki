@@ -49,4 +49,4 @@ FE가 패키지를 주면서 목표가 바뀌었습니다. 에이전트가 디�
 
 ## Source Worklog
 
-- 정본: ax-log-records `manual/10-premise.md` (비공개, 2026-09-28 판)
+- 정본: AX 기록 `manual/10-premise.md` (비공개, 2026-09-28 판)
