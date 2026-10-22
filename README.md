@@ -50,10 +50,7 @@ AI와 함께 Socra 제품을 설계하고 구현하면서 반복 가능한 협�
 ## Read These First
 
 1. [AX 매뉴얼 읽는 순서](wiki/manual/00-reading-order.md)
-2. [Figma / Git Sync Boundary](wiki/guides/30-figma-git-sync.md)
-3. [Screen Design Playbook](wiki/playbooks/32-screen-design-playbook.md)
-4. [AI Design Review](wiki/guides/40-ai-design-review.md)
-5. [Daily Worklog to Wiki](wiki/guides/31-daily-worklog-to-wiki.md)
+2. [Screen Design Playbook](wiki/playbooks/32-screen-design-playbook.md)
 
 ## Reference Docs
 
