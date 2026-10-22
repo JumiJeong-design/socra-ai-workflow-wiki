@@ -120,6 +120,7 @@ for group in GROUPS:
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>{group["title"]} · Socra AI Workflow Wiki</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="description" content="프로덕트 디자이너를 위한 AI 워크플로우 위키. 한 번 읽는 원칙, 하면서 따라가는 절차, 막혔을 때 찾아보는 함정을 소크라 제품 디자인 운영 경험에서 정제해 쌓습니다." />
   <meta property="og:title" content="{group["title"]} · Socra AI Workflow Wiki" />
   <meta property="og:description" content="프로덕트 디자이너를 위한 AI 워크플로우 위키. 한 번 읽는 원칙, 하면서 따라가는 절차, 막혔을 때 찾아보는 함정을 소크라 제품 디자인 운영 경험에서 정제해 쌓습니다." />
@@ -151,7 +152,7 @@ for group in GROUPS:
   </main>
 </div>
 
-<script src="ai-workflow-guide.js?v=0.51-source-name"></script>
+<script src="ai-workflow-guide.js?v=0.52-favicon"></script>
 </body>
 </html>
 '''
